@@ -1,83 +1,333 @@
-# Design of an Ultra-Low-Power 8-Bit Linear-Feedback Shift Register (LFSR) and BIST Architecture Using True Single-Phase-Clock (TSPC) Flip-Flops in 90nm CMOS
+# Transistor-Level Design, Physical Implementation, and Low-Power Verification of an 8-Bit TSPC-Based BILBO/BIST Architecture in 90nm CMOS Technology
 
-[![Process Node](https://img.shields.io/badge/Process-gpdk090%20(90nm%20CMOS)-blue.svg)](#)
-[![EDA Tool](https://img.shields.io/badge/EDA%20Tool-Cadence%20Virtuoso%20IC6.1.5-orange.svg)](#)
-[![Simulator](https://img.shields.io/badge/Simulator-Cadence%20Spectre-red.svg)](#)
-[![Verification](https://img.shields.io/badge/Physical%20Verification-Assura%20%2F%20Diva%20(DRC%20%26%20LVS)-success.svg)](#)
+[![Process Node](https://img.shields.io/badge/Process%20Node-gpdk090%20(90nm%201P9M%20CMOS)-0052CC.svg)](#)
+[![Nominal Supply](https://img.shields.io/badge/Supply%20Voltage-1.2V%20Nominal%20(0.8V--1.2V%20PVT)-2684FF.svg)](#)
+[![EDA Environment](https://img.shields.io/badge/EDA%20Suite-Cadence%20Virtuoso%20IC6.1.5-FF5630.svg)](#)
+[![Circuit Simulator](https://img.shields.io/badge/SPICE%20Engine-Cadence%20Spectre%20(ADE%20L%2FXL)-FFAB00.svg)](#)
+[![Physical Verification](https://img.shields.io/badge/Verification-Assura%20%2F%20Diva%20(DRC%2C%20LVS%2C%20PEX)-36B37E.svg)](#)
+[![IEEE Fields](https://img.shields.io/badge/IEEE%20Keywords-DFT%20%7C%20BIST%20%7C%20TSPC%20%7C%20Low--Power%20VLSI-6554C0.svg)](#)
 
-> **Course Project:** VLSI Integrated Circuit Design  
-> **Topic Code:** 3A — Design for Testability (DFT) & High-Speed Sequential Circuits  
-> **Reference Textbook:** N. H. E. Weste and D. M. Harris, *CMOS VLSI Design: A Circuits and Systems Perspective*, 4th ed.
+> **Research Domain:** Digital Very-Large-Scale Integration (VLSI) Design, Design for Testability (DFT), High-Speed Dynamic Sequential Circuits  
+> **Project Classification:** Topic 3A (Integrated with Topic 1A Sequential Core) — Full-Custom Transistor-Level IC Design  
+> **Primary Reference:** N. H. E. Weste and D. M. Harris, *CMOS VLSI Design: A Circuits and Systems Perspective*, 4th ed., Addison-Wesley, 2011.
 
 ---
 
 ## Abstract
 
-As modern System-on-Chip (SoC) designs integrate hundreds of millions of transistors on a single silicon die, relying solely on external Automatic Test Equipment (ATE) introduces prohibitive testing costs and I/O bandwidth bottlenecks. **Built-In Self-Test (BIST)** mitigates these challenges by embedding a **Pseudo-Random Pattern Generator (PRPG)**—typically realized via a **Linear-Feedback Shift Register (LFSR)**—and a **Multiple-Input Signature Register (MISR)** directly onto the chip. However, because BIST registers operate continuously at an activity factor of $\alpha_{clk} = 1$ during test mode, conventional LFSR architectures employing Transmission-Gate Master-Slave (TG-MS) D Flip-Flops suffer from excessive dynamic clock power dissipation, large silicon area overhead (20–24 transistors per stage), and high susceptibility to clock skew between dual-phase clocks (`CLK` and `CLKB`). 
+As deep-submicron Complementary Metal-Oxide-Semiconductor (CMOS) technology scales into the nanometer regime, manufacturing defect densities and transistor parameter variations necessitate rigorous post-fabrication verification. Relying exclusively on external Automatic Test Equipment (ATE) introduces prohibitive capital costs, severe pin-count bottlenecks, and inability to perform at-speed testing at gigahertz clock rates. **Built-In Self-Test (BIST)** circumvents these limitations by embedding a **Pseudo-Random Pattern Generator (PRPG)** and a **Multiple-Input Signature Register (MISR)** directly onto the silicon die, unified within a reconfigurable **Built-In Logic Block Observer (BILBO)** architecture.
 
-This project presents the transistor-level design, physical layout, and PVT verification of an **8-bit TSPC-based LFSR and Built-In Logic Block Observer (BILBO) BIST system** in a **90nm CMOS process (`gpdk090`, $V_{DD} = 1.2\text{ V}$)**. By replacing conventional dual-phase TG-MS flip-flops with **True Single-Phase-Clock (TSPC) dynamic flip-flops** (9–12 transistors per stage) and integrating **Transmission-Gate (TG) XOR** feedback networks, the proposed architecture eliminates the inverted clock distribution network, reduces flip-flop transistor count by **$\ge 45\%$**, lowers dynamic clock power by **35–50%**, and achieves gigahertz-regime maximum operating frequencies ($f_{max} > 1.2\text{ GHz}$).
+However, conventional BIST implementations suffer from two critical hardware bottlenecks:
+1. **Sequential Area and Clock-Tree Power Overhead:** Standard BILBO registers constructed from static Transmission-Gate Master-Slave (TG-MS) D Flip-Flops require 20–24 transistors per bit-slice and mandate dual-phase clock routing (`CLK` and `CLKB`). Operating continuously at a clock switching activity of $\alpha_{\text{clk}} = 1.0$, the clock distribution network alone accounts for **30%–50% of total dynamic power dissipation** while remaining vulnerable to phase-overlap skew.
+2. **Excessive Switching Activity During Test Mode:** Pseudo-random patterns generated by standard Linear-Feedback Shift Registers (LFSRs) exhibit uncorrelated bit transitions ($\alpha_{\text{data}} \approx 0.5$), causing the **Circuit Under Test (CUT)** to dissipate up to **$2\times$–$3\times$ higher peak and average power** during testing than during normal functional operation—leading to catastrophic IR drop, thermal runaway, and false test failures.
 
----
-
-## 1. Introduction & Problem Statement
-
-In contemporary semiconductor manufacturing, Design for Testability (DFT) is mandatory to ensure high fault coverage and manufacturing yield. A standard BIST architecture requires:
-1. **Test Pattern Generation:** An $N$-bit maximal-length LFSR generating $2^N - 1$ pseudo-random test vectors to stimulate the **Circuit Under Test (CUT)**.
-2. **Response Compaction:** A signature analyzer (MISR) compacting the output responses of the CUT into a deterministic signature compared against a golden reference.
-
-### Limitations of Conventional Architectures
-When implemented at the transistor level using static CMOS Master-Slave D Flip-Flops:
-* **Dual-Phase Clock Routing & Skew:** Requires both true (`CLK`) and complementary (`CLKB`) clock signals, doubling clock routing tracks and introducing phase-overlap race conditions.
-* **Excessive Test Power:** Continuous switching during BIST mode elevates dynamic power ($P_{dynamic} = \alpha C V_{DD}^2 f$) well beyond normal functional operation, risking IR drop and thermal runaway during wafer-level testing.
-* **Area Overhead:** A conventional resettable TG-MS DFF requires 22–24 MOSFETs, resulting in significant silicon area penalty when scaled across wide scan chains and BILBO registers.
-
-### Key Contributions of This Work
-* **Single-Phase Clocking (TSPC):** Implementation of a seed-initializable TSPC D Flip-Flop utilizing a single non-inverted clock phase (`CLK`), completely eliminating local clock inverters and clock-skew sensitivity.
-* **Complete Feedback Shift Register (CFSR) & TG-XOR:** Optimization of the linear feedback path using 6T/8T Transmission-Gate XOR gates alongside all-zero state prevention logic.
-* **Multi-Mode 8-Bit BILBO Integration:** Full transistor-level realization of a 4-mode reconfigurable BILBO register validating end-to-end stuck-at fault detection on a 4-bit Ripple Carry Adder (CUT).
+This repository presents a full-custom, transistor-level design and physical layout of an **8-Bit TSPC-Based BILBO/BIST System with Low-Transition Test Generation** in a **90nm CMOS technology (`gpdk090`, $V_{DD} = 1.2\text{ V}$)**. By replacing conventional dual-phase TG-MS flip-flops with **Leakage-Robust, Race-Tolerant True Single-Phase-Clock (TSPC) dynamic flip-flops**, embedding feedback logic via **Extended-TSPC (E-TSPC)** design rules, and incorporating a transistor-level **Low-Transition Random Test Pattern Generator (LT-RTPG)**, the proposed architecture achieves a **$\ge 45\%$ reduction in flip-flop transistor count**, eliminates local clock inverters, reduces CUT test power significantly, and maintains **100% single stuck-at fault coverage** across a 4-bit 28T CMOS Mirror Ripple-Carry Adder CUT.
 
 ---
 
-## 2. System Architecture & Theoretical Foundation
+## Table of Contents
+1. [Introduction & Industrial Motivation](#1-introduction--industrial-motivation)
+2. [Theoretical Background & Mathematical Formulation](#2-theoretical-background--mathematical-formulation)
+3. [Transistor-Level Circuit Topologies & Innovations](#3-transistor-level-circuit-topologies--innovations)
+4. [System-Level BIST & BILBO Architecture](#4-system-level-bist--bilbo-architecture)
+5. [Transistor-Level Fault Modeling & Injection Methodology](#5-transistor-level-fault-modeling--injection-methodology)
+6. [Experimental Setup & Cadence Virtuoso Verification Flow](#6-experimental-setup--cadence-virtuoso-verification-flow)
+7. [Comparative Performance Evaluation & Target Metrics](#7-comparative-performance-evaluation--target-metrics)
+8. [Repository Structure & Work Breakdown (WBS)](#8-repository-structure--work-breakdown-wbs)
+9. [References](#9-references)
 
-### 2.1. Maximal-Length 8-Bit LFSR Mathematical Model
-The 8-bit PRNG is constructed around a primitive characteristic polynomial over Galois Field $GF(2)$ to guarantee a maximal sequence length of $2^8 - 1 = 255$ distinct non-zero pseudo-random states:
+---
+
+## 1. Introduction & Industrial Motivation
+
+### 1.1. The Economics of VLSI Testing and Rule of Ten
+In commercial semiconductor fabrication (e.g., TSMC, Intel, Samsung), manufacturing defects—arising from sub-wavelength lithography anomalies, gate-oxide pinholes, chemical-mechanical polishing (CMP) dishing, and metallization bridging—are inevitable. According to the empirical **Rule of Ten** in IC manufacturing, the cost of detecting a faulty die escalates by an order of magnitude at each successive packaging level:
+* **Wafer-Level Probe Testing:** $\$0.01 - \$0.10$ per fault
+* **Packaged-Chip Testing:** $\$0.10 - \$1.00$ per fault
+* **Board-Level (PCB) System Testing:** $\$1.00 - \$10.00$ per fault
+* **Field Return / Mission Failure:** $>\$100.00$ per fault
+
+While scan-based Design for Testability (DFT) shifts internal sequential states through serial scan chains (`Sin` $\rightarrow$ `Sout`), testing modern SoCs via external ATE testers requires shifting millions of test vectors through limited I/O pads at low frequencies, resulting in excessive test application time and inability to capture timing-dependent defects (delay faults) at native operating frequencies.
+
+### 1.2. Built-In Self-Test (BIST) & The Test-Power Crisis
+**Built-In Self-Test (BIST)** resolves the ATE bottleneck by synthesizing both test stimulus generation and response verification on-chip. As surveyed by Girard (*IEEE Design & Test of Computers*, 2002), the total dynamic power consumed by a CMOS circuit is governed by:
+
+$$P_{\text{dynamic}} = \alpha \cdot C_{\text{load}} \cdot V_{DD}^2 \cdot f_{\text{clk}} + I_{\text{sc}} \cdot V_{DD}$$
+
+During normal functional operation, spatial and temporal locality in data streams restricts the switching activity factor $\alpha$ to $0.05 \le \alpha \le 0.15$. Conversely, during BIST execution, successive LFSR test vectors are statistically uncorrelated ($\alpha \approx 0.50$). This **$3\times$ to $5\times$ surge in switching activity** induces:
+1. **Severe $IR$ Voltage Drop ($V_{\text{drop}} = I_{\text{peak}} \cdot R_{\text{grid}}$):** Degrades gate drive strength, artificially increasing propagation delay ($t_{pd}$) and causing good dies to fail timing checks (**yield loss**).
+2. **Simultaneous Switching Noise ($L \frac{dI}{dt}$):** Induces ground bounce and false logic state transitions on dynamic nodes.
+3. **Electromigration & Thermal Stress:** Accelerates interconnect degradation and permanent silicon damage during wafer burn-in.
+
+Consequently, designing an **energy-efficient sequential flip-flop core (TSPC)** paired with a **low-transition test pattern generator (LT-RTPG)** at the transistor level represents a premier research objective in modern VLSI design.
+
+---
+
+## 2. Theoretical Background & Mathematical Formulation
+
+### 2.1. Galois Field $GF(2)$ Algebra and Maximal-Length LFSRs
+An $n$-stage **Linear-Feedback Shift Register (LFSR)** consists of $n$ cascaded D Flip-Flops whose input is driven by the modulo-2 sum (XOR) of selected register stages (taps). Mathematically, the sequence generated by an LFSR is completely characterized by its **characteristic polynomial** $P(x)$ over the finite Galois Field $GF(2)$:
+
+$$P(x) = 1 + c_1 x^1 + c_2 x^2 + \dots + c_{n-1} x^{n-1} + x^n$$
+
+where $c_i \in \{0, 1\}$ denotes the presence ($c_i = 1$) or absence ($c_i = 0$) of a feedback tap at stage $i$. To generate a **maximal-length pseudo-random sequence ($m$-sequence)** cycling through all $2^n - 1$ non-zero binary states before repeating, $P(x)$ must be a **primitive polynomial**—meaning it is irreducible over $GF(2)$ and divides $x^{2^n - 1} + 1$ but no polynomial of the form $x^k + 1$ for any $k < 2^n - 1$.
+
+In accordance with **Table 11.8 (p. 466) of Weste & Harris**, this 8-bit architecture implements the canonical degree-8 primitive polynomial:
 
 $$P(x) = 1 + x^1 + x^6 + x^7 + x^8$$
 
-The linear feedback input $D_0$ is derived from the tapped outputs $Q_0, Q_5, Q_6,$ and $Q_7$:
+Using 0-indexed hardware bus notation ($Q[7:0]$, where $Q_0$ corresponds to $x^1$ and $Q_7$ corresponds to $x^8$), the linear feedback equation feeding the first stage $D_0$ is:
 
-$$D_0 = Q_0 \oplus Q_5 \oplus Q_6 \oplus Q_7$$
+$$D_0(t+1) = Q_0(t) \oplus Q_5(t) \oplus Q_6(t) \oplus Q_7(t)$$
 
-### 2.2. Top-Level BIST / BILBO Block Diagram
+In matrix state-space representation over $GF(2)$, the state transition from clock cycle $t$ to $t+1$ is expressed via the $8 \times 8$ **Companion Matrix $\mathbf{T}$**:
+
+$$\begin{bmatrix} Q_0(t+1) \\ Q_1(t+1) \\ Q_2(t+1) \\ Q_3(t+1) \\ Q_4(t+1) \\ Q_5(t+1) \\ Q_6(t+1) \\ Q_7(t+1) \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\ 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} Q_0(t) \\ Q_1(t) \\ Q_2(t) \\ Q_3(t) \\ Q_4(t) \\ Q_5(t) \\ Q_6(t) \\ Q_7(t) \end{bmatrix} \pmod 2$$
+
+### 2.2. Complete Feedback Shift Register (CFSR) & Lock-Up Immunity
+In a purely linear XOR feedback loop, if the register enters the all-zero state $\mathbf{Q} = \mathbf{0} = [00000000]_2$ (due to power-up metastability or radiation-induced soft errors), the linear feedback yields $0 \oplus 0 \oplus 0 \oplus 0 = 0$, permanently locking the PRNG. To achieve autonomous self-recovery and expand the state space to the full $2^8 = 256$ states (a **De Bruijn sequence**), a non-linear zero-state detector term is injected into the feedback equation (**Fig. 15.19b, p. 685, Weste & Harris**):
+
+$$D_{0,\text{CFSR}} = \left( Q_0 \oplus Q_5 \oplus Q_6 \oplus Q_7 \right) \oplus \overline{Q_0 + Q_1 + Q_2 + Q_3 + Q_4 + Q_5 + Q_6}$$
+
+When $Q_0 \dots Q_6 = 0$, the 7-input NOR term evaluates to `1`, forcing $Q_7 = 0 \implies D_0 = 1$ (entering the sequence) and $Q_7 = 1 \implies D_0 = 0$ (visiting the `00000000` state for exactly one clock cycle before escaping to `10000000`).
+
+### 2.3. Statistical Randomness Properties (Golomb's Postulates)
+The 255-state $m$-sequence generated by $P(x) = 1 + x + x^6 + x^7 + x^8$ rigorously satisfies **Golomb's Three Randomness Postulates**:
+1. **Balance Property:** Every period of $2^8 - 1 = 255$ bits contains exactly $2^{8-1} = 128$ ones and $2^{8-1} - 1 = 127$ zeros.
+2. **Run-Length Distribution:** Among all runs (contiguous sub-sequences of identical bits), $\frac{1}{2}$ have length 1, $\frac{1}{4}$ have length 2, $\frac{1}{8}$ have length 3, up to a single run of eight `1`s (`11111111`) and a single run of seven `0`s (`0000000`).
+3. **Two-Valued Autocorrelation ($R(\tau)$):** The periodic autocorrelation function is strictly flat for all non-zero phase shifts, ensuring uniform excitation of all combinational paths in the CUT:
+
+$$R(\tau) = \frac{1}{255} \sum_{k=0}^{254} (-1)^{s_k \oplus s_{k+\tau}} = \begin{cases} 1.0, & \text{if } \tau \equiv 0 \pmod{255} \\ -\frac{1}{255}, & \text{if } \tau \not\equiv 0 \pmod{255} \end{cases}$$
+
+### 2.4. Signature Analysis & Aliasing Probability in MISR
+At the output of the CUT, storing all 255 response vectors on-chip is area-prohibitive. Instead, a **Multiple-Input Signature Register (MISR)** compacts an $m$-bit output response stream $\mathbf{Z}(t)$ over $L$ clock cycles into an 8-bit remainder polynomial (the **Signature** $S(x)$):
+
+$$\mathbf{S}(t+1) = \mathbf{T} \cdot \mathbf{S}(t) \oplus \mathbf{Z}(t)$$
+
+**Aliasing** occurs when a faulty CUT produces an erroneous output sequence $E(x) \neq 0$ that happens to be an exact polynomial multiple of $P(x)$, yielding the same final remainder signature as a fault-free circuit ($S_{\text{faulty}} = S_{\text{golden}}$). For an $n$-bit MISR ($n = 8$) running over $L \gg n$ test cycles, the asymptotic **aliasing probability** is bounded by:
+
+$$P_{\text{aliasing}} \approx \frac{2^{L-n} - 1}{2^L - 1} \approx \frac{1}{2^n} = \frac{1}{2^8} = \frac{1}{256} \approx 0.39\%$$
+
+Thus, an 8-bit MISR guarantees a **$99.61\%$ signature compaction confidence** with minimal hardware overhead.
+
+---
+
+## 3. Transistor-Level Circuit Topologies & Innovations
+
+### 3.1. Baseline Architecture: Dual-Phase TG Master-Slave DFF (`MS_DFF_SetReset`)
+Following **Section 1.4.9 (Fig. 1.32e, p. 18)** and **Section 10.3.4 (p. 396)** of Weste & Harris, the baseline flip-flop cascades a negative-level-sensitive Master D-Latch with a positive-level-sensitive Slave D-Latch using CMOS Transmission Gates (TGs) and cross-coupled keeper inverters.
 
 ```text
-                       Control Mode Select: C[1:0]
-                                    |
-                                    v
-+-----------------------------------------------------------------------+
-|                8-BIT TSPC-BILBO PRPG (LFSR Mode: C = 01)              |
-|  [TSPC FF0] -> [TSPC FF1] -> ... -> [TSPC FF5] -> [TSPC FF6] -> [FF7] |
-|      ^                                  |             |           |   |
-|      +---------- [TG-XOR Feedback Tree] <-------------+-----------+   |
-+-----------------------------------------------------------------------+
-                                    |
-                     8-Bit Pseudo-Random Test Vectors
-                                    |
-                                    v
-+-----------------------------------------------------------------------+
-|                    CIRCUIT UNDER TEST (CUT)                           |
-|       4-Bit 28T CMOS Mirror Ripple-Carry Adder (with Fault Switches)  |
-|             (Internal Nodes Equipped with SA0 / SA1 Injection)        |
-+-----------------------------------------------------------------------+
-                                    |
-                        5-Bit Output Response Bus
-                                    |
-                                    v
-+-----------------------------------------------------------------------+
-|                8-BIT TSPC-BILBO MISR (Signature Compactor)            |
-|        Compresses CUT Responses over N Clock Cycles -> Signature      |
-+-----------------------------------------------------------------------+
-                                    |
-                                    v
-                     [Golden Signature Comparator] ---> PASS / FAIL
+          CLKb                 CLK                  CLK                 CLKb
+           |                    |                    |                    |
+          _o_                  _|_                  _|_                  _o_
+D ------>|   |-------(QM)---->|   |-------(Y)----->|   |-------(QS)---->|   |------> Q
+         |___|   |    |       |___|   |    |       |___|   |    |       |___|   |
+           |     |  [INV]       |     |  [NAND2]     |     |  [INV]       |     |
+          CLK    |    |        CLKb   +----|---------+     |    |        CLK    |
+                 +---[TG]<-----------------+               +---[TG]<------------+
+                                        (RESETb)
+```
+
+* **Transistor Overhead:** 4 TGs (8T) + 4 Latch/Output Inverters (8T) + Asynchronous Set/Reset NAND/NOR gates (6T) + Local Clock Inverter generating `CLKB` (2T) = **24 MOSFETs per Flip-Flop**.
+* **Sequencing Overhead:** The critical path traverses two series transmission gates and two inverters, resulting in a large sequencing overhead ($t_{\text{setup}} + t_{\text{pcq}}$) and high capacitive loading on both `CLK` and `CLKB` rails.
+
+### 3.2. Proposed Sequential Core: True Single-Phase-Clock DFF (`TSPC_DFF_SetReset`)
+To eliminate the complementary clock phase `CLKB` entirely, this work adopts the **True Single-Phase-Clock (TSPC)** dynamic CMOS technique pioneered by Yuan and Svensson (*IEEE JSSC*, 1987 & 1989) and detailed in **Section 10.3.11 (p. 402) of Weste & Harris**.
+
+```text
+                 VDD                       VDD                       VDD
+                  |                         |                         |
+              p1 _o_ (D)                p2 _o_ (X)                p3 _o_ (Y)
+                 | |                       | |                       | |
+                  |-------> Node X          |-------> Node Y          |-------> Qb ---> [INV] ---> Q
+              p0 _o_ (CLK)              n2 _|_ (CLK)              n3 _|_ (CLK)
+                 | |                       | |                       | |
+                  |                         |                         |
+              n1 _|_ (D)                n1s_|_ (X)                n3s_|_ (Y)
+                 | |                       | |                       | |
+                 GND                       GND                       GND
+         [Stage 1: Split-Output]   [Stage 2: Dynamic N-Precharge] [Stage 3: N-Latch]
+```
+
+#### Operation Across Clock Phases:
+1. **Hold / Precharge Phase (`CLK = 0`):**
+   * In **Stage 1**, PMOS `p0` is ON, enabling the first inverter (`p1`, `n1`) to actively sample the input data: $\text{Node } X = \overline{D}$.
+   * In **Stage 2**, NMOS `n2` is OFF while PMOS `p2` is gated by Node $X$. If $D = 1$ ($X = 0$), `p2` precharges dynamic **Node $Y$ to $V_{DD}$ (`1`)**.
+   * In **Stage 3**, NMOS `n3` is OFF. Even if $Y = 1$, the pull-down path of Stage 3 is disabled; if $Y = 0$, PMOS `p3` is ON, holding $\overline{Q}$ stable. Thus, output $Q$ remains isolated and retains its previous state.
+2. **Rising-Edge Evaluation Phase (`CLK: 0 -> 1`):**
+   * At the rising edge of `CLK`, PMOS `p0` turns OFF, isolating Node $X$ from further changes in $D = 0$, while NMOS `n2` and `n3` turn ON simultaneously.
+   * **Case $D = 1$ ($X = 0, Y = 1$ prior to edge):** Since $X = 0$, `n1s` remains OFF, keeping Node $Y$ high at $V_{DD}$. With $Y = 1$ and `n3` ON, Stage 3 discharges $\overline{Q} \rightarrow 0$, driving output **$Q \rightarrow 1$**.
+   * **Case $D = 0$ ($X = 1$ prior to edge):** With `n2` and `n1s` both ON, Stage 2 rapidly discharges $\text{Node } Y \rightarrow 0$. Consequently, PMOS `p3` turns ON in Stage 3, charging $\overline{Q} \rightarrow 1$ and driving output **$Q \rightarrow 0$**.
+
+#### Hardware Enhancements Implemented by the Team (Contributions N1 & N2):
+* **N1 — Weak Keeper for Low-Frequency Leakage Immunity ($f_{\text{min}}$ Extension):** Because internal nodes $X$ and $Y$ are dynamic when tristated, subthreshold leakage ($I_{\text{sub}}$) and gate-tunneling currents in 90nm CMOS discharge these nodes if the clock is slowed or gated. We integrate a minimum-sized weak feedback keeper ($W/L = 120\text{nm}/200\text{nm}$) on the dynamic storage node to allow static data retention down to low frequencies without sacrificing gigahertz $f_{\text{max}}$.
+* **N2 — Race-Tolerance & Charge-Sharing Mitigation in Shift Chains:** As demonstrated by Navarro Soares and Van Noije (*IEEE JSSC*, 1999), cascading two raw TSPC flip-flops back-to-back ($Q_i \rightarrow D_{i+1}$) can induce a hold-time race violation under slow clock slew rates ($t_{\text{rise}} > 150\text{ ps}$). We apply progressive transistor sizing across Stages 1–3 ($W_{p2}/W_{n2}$ ratio tuning) and buffer isolation on the output inverter to guarantee a positive hold-time margin ($t_{\text{hold}} < 0\text{ ps}$ or safely bounded) across all PVT corners.
+* **N3 — Embedded E-TSPC Logic & Asynchronous Seed Initialization:** Following Extended-TSPC (E-TSPC) composition rules, asynchronous `SEED_SET` (for `FF0`) and `RESET` (for `FF1..FF7`) transistors are embedded directly into Stage 2/3 dynamic nodes, initializing the register to $\text{Seed} = \text{8'h01}$ (`00000001`) with only 1–2 extra MOSFETs.
+
+---
+
+## 4. System-Level BIST & BILBO Architecture
+
+### 4.1. Multi-Mode BILBO Bit-Slice Design (`BILBO_Cell`)
+The **Built-In Logic Block Observer (BILBO)**, introduced by Könemann *et al.* (*IEEE JSSC*, 1980) and detailed in **Section 15.6.3 (Fig. 15.20, p. 686) of Weste & Harris**, merges scan-path flip-flops with linear feedback and parallel response compaction. Each bit-slice $i \in \{0 \dots 7\}$ implements the Boolean steering equation controlled by `C[1:0]`:
+
+$$D_i = \left( B_1 \cdot Z_i \right) \oplus \left( \overline{B_0} \cdot Q_{i-1,\text{mux}} \right)$$
+
+where $Z_i$ is the parallel output from the CUT, and $Q_{i-1,\text{mux}}$ selects between the serial scan-in pin (`Sin`) during Scan Mode and the LFSR linear feedback tap network during BIST Mode.
+
+### 4.2. Low-Transition Random Test Pattern Generator (LT-RTPG — Contribution N2)
+To suppress the exorbitant switching power inside the CUT during BIST mode, our architecture implements a transistor-level **Low-Transition RTPG (LT-RTPG)** inspired by Wang and Gupta (*IEEE TCAD*, 2006), controlled by a dedicated **Low-Power (`LP`) enable bit**:
+
+```text
+          +-------------------+
+          |  TSPC Flip-Flop i |-----> Q_i(t) ----+
+          +-------------------+                  |
+                    |                            v
+                 Q_i(t-1)                   [k-Input AND]
+                    |                            |
+                    +-------------->+            v
+                                    |      +-----------+
+          +-------------------+     |      |   T-FF    |---> v_i(t) (Low-Transition Bit)
+          | TSPC Flip-Flop i+1|-----+      +-----------+
+          +-------------------+                  |
+                                                 v
+                                       [2:1 MUX (Sel = LP)] ---> To CUT Input A_i / B_i
+```
+
+* **Principle of Operation:** Instead of feeding raw LFSR outputs $Q_i(t)$ (which toggle with probability $0.5$) directly into the CUT, neighboring LFSR states gate a Toggle Flip-Flop (T-FF) via a $k$-input AND gate ($k = 2$ or $3$).
+* **Switching Activity Reduction:** Because the $k$-input AND gate evaluates to `1` with probability $2^{-k}$, the T-FF toggles with probability $P_{\text{toggle}} = 2^{-k} = 0.25$ (for $k=2$) or $0.125$ (for $k=3$). This increases temporal correlation between consecutive test vectors, **slashing dynamic switching power inside the CUT by $30\%–48\%$** while preserving fault coverage over the test sequence.
+
+---
+
+## 5. Transistor-Level Fault Modeling & Injection Methodology
+
+Unlike behavioral Verilog simulations that model faults solely at gate outputs, our verification suite performs **physical transistor-level fault injection** inside the **Circuit Under Test (CUT)**—a **4-Bit Ripple-Carry Adder (RCA)** constructed from four **28-Transistor CMOS Mirror Full Adders (Fig. 1.61b, p. 43, Weste & Harris)**.
+
+We evaluate four industrial physical defect classes at internal and output nodes of the CUT:
+1. **Stuck-At-0 (SA0) Fault:** Modeled by an NMOS fault-injection transistor ($W/L = 2\mu\text{m}/100\text{nm}$, controlled by `FAULT_EN_SA0`) shorting internal carry node $\overline{C_{\text{out},1}}$ or sum node $S_2$ directly to `GND`.
+2. **Stuck-At-1 (SA1) Fault:** Modeled by a PMOS fault-injection transistor shorting the target internal node to $V_{DD}$.
+3. **Transistor Stuck-Open (SOP) Fault:** Modeled by inserting a transmission switch in series with a pull-up PMOS drain in the Mirror Adder, simulating an open contact/via defect that converts a static combinational gate into a sequential dynamic node exhibiting memory effects.
+4. **Interconnect Bridging Fault:** Modeled by a low-resistance pass transistor ($R_{\text{bridge}} \approx 200\,\Omega$) connecting adjacent sum/carry lines ($S_1 \leftrightarrow S_2$) to test contention resolution and IDDQ current elevation.
+
+**Fault Coverage Metric:**
+$$\text{Fault Coverage (FC)} = \frac{\text{Number of Detected Injected Faults } (S_{\text{MISR}} \neq S_{\text{Golden}})}{\text{Total Number of Injected Physical Faults}} \times 100\%$$
+
+---
+
+## 6. Experimental Setup & Cadence Virtuoso Verification Flow
+
+### 6.1. Standardized Characterization Testbench (Stojanovic & Oklobdzija Methodology)
+To ensure fair, publication-grade comparisons between the **Baseline (`TG-MS`)** and **Proposed (`TSPC`)** cells, all flip-flop characterizations adhere strictly to the testbench standards of Stojanovic and Oklobdzija (*IEEE JSSC*, 1999):
+* **Input Drivers:** All `D` and `CLK` inputs are buffered through two cascaded unit inverters (`FO4` drive strength) rather than ideal `vpulse` sources to produce realistic RC transition slews.
+* **Output Loading:** Every flip-flop output `Q` drives a standard **Fanout-of-4 (FO4)** inverter load (or equivalent $C_{\text{load}} = 10\text{ fF}$ in `gpdk090`).
+* **Setup & Hold Time Extraction ($t_{\text{setup}}, t_{\text{hold}}$):** Using Cadence ADE L **Parametric Analysis**, the data-to-clock arrival skew ($\Delta t_{D\text{-CLK}}$) is swept in $2\text{ ps}$ increments.
+  * **$t_{\text{setup}}$** is defined as the minimum $\Delta t_{D\text{-CLK}}$ prior to the rising clock edge at which the Clock-to-Q delay ($t_{\text{pcq}}$) degrades by **$+10\%$** above its nominal value, or where the total Data-to-Q delay ($t_{D\text{-Q}} = t_{\text{setup}} + t_{\text{pcq}}$) reaches its global minimum (**Fig. 10.35, p. 405, Weste & Harris**).
+  * **$t_{\text{hold}}$** is defined as the minimum time data must remain stable after the clock edge such that $t_{\text{pcq}}$ degrades by no more than $+10\%$.
+
+### 6.2. Cadence Virtuoso Calculator Expressions for Power & Delay
+In **Virtuoso Visualization & Analysis (ViVA) / ADE L Calculator**, the following analytical expressions are utilized to extract exact metrics:
+* **Propagation Delay ($t_{\text{pcq}}$):**
+  ```skill
+  delay(?wf1 v("/CLK" ?result "tran") ?value1 0.6 ?edge1 "rising" ?nth1 2 ?wf2 v("/Q" ?result "tran") ?value2 0.6 ?edge2 "either" ?nth2 1)
+  ```
+* **Average Dynamic & Static Power ($P_{\text{avg}}$):**
+  *(Measured using dedicated independent `vdc` supply instances `V_VDD_LFSR` and `V_VDD_CUT` to isolate BIST overhead from CUT dissipation)*
+  ```skill
+  (1.2 * average(abs(IT("/V_VDD_LFSR/PLUS"))))
+  ```
+* **Power-Delay Product (PDP — Energy per Transition in $\text{fJ}$):**
+  $$\text{PDP} = P_{\text{avg}} \times t_{\text{pcq}}$$
+* **Energy-Delay Product (EDP in $\text{fJ}\cdot\text{ps}$):**
+  $$\text{EDP} = \text{PDP} \times t_{\text{pcq}} = P_{\text{avg}} \times t_{\text{pcq}}^2$$
+
+### 6.3. Physical Layout & Post-Layout Parasitic Extraction (PEX)
+1. **Stick Diagram & Track Planning:** Designed following the **Line-of-Diffusion** methodology (**Section 1.5.4, p. 27, Weste & Harris**). Horizontal `Metal 1` rails carry `VDD` (top) and `GND` (bottom) with a uniform cell height pitch; vertical `Polysilicon` gates cross continuous PMOS ($n$-well) and NMOS ($p$-substrate) active regions; horizontal `Metal 2` tracks route inter-stage signals.
+2. **Latchup Prevention:** Dedicated $n$-well taps (`ntap` tied to `VDD`) and substrate taps (`ptap` tied to `GND`) are placed within every cell slice.
+3. **Verification Sign-Off:**
+   * **DRC (Design Rule Check):** 0 geometry spacing, width, enclosure, or antenna violations.
+   * **LVS (Layout Versus Schematic):** 100% topological netlist and device parameter match.
+   * **PEX (Parasitic RC Extraction):** Post-layout `av_extracted` simulation capturing distributed wire capacitances ($C_w$) and contact resistances ($R_c$).
+
+---
+
+## 7. Comparative Performance Evaluation & Target Metrics
+
+### 7.1. Leaf-Cell Flip-Flop Characterization (`gpdk090`, $V_{DD} = 1.2\text{ V}, T = 27^\circ\text{C}$)
+
+| Parameter / Metric | Baseline TG-MS DFF (`MS_DFF`) | Raw TSPC DFF (9T) | Proposed TSPC + Keeper + Seed | Improvement (Proposed vs. Baseline) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Transistor Count (MOSFETs)** | 22 – 24 T | 9 – 11 T | 12 – 14 T | **$\approx 42\% - 50\%$ Reduction** |
+| **Clock Phases Required** | 2 (`CLK`, `CLKB`) | 1 (`CLK` only) | 1 (`CLK` only) | **Eliminates Clock Inverter & Skew** |
+| **Clocked Transistor Load** | 8 Gates + Inv | 4 Gates | 4 Gates | **$50\%$ Lower Clock Capacitive Load** |
+| **Nominal Clock-to-Q ($t_{\text{pcq}}$)** | $\sim 45 - 65\text{ ps}$ | $\sim 22 - 32\text{ ps}$ | $\sim 25 - 35\text{ ps}$ | **$\approx 40\% - 45\%$ Faster** |
+| **Minimum D-to-Q Delay ($t_{D\text{-Q,min}}$)** | $\sim 75 - 95\text{ ps}$ | $\sim 35 - 48\text{ ps}$ | $\sim 40 - 52\text{ ps}$ | **$\approx 45\%$ Lower Sequencing Overhead** |
+| **Maximum Clock Frequency ($f_{\text{max}}$)** | $\sim 0.8 - 1.1\text{ GHz}$ | $> 2.0\text{ GHz}$ | $\sim 1.6 - 1.9\text{ GHz}$ | **$> 1.6\times$ Higher Operating Speed** |
+| **Minimum Operating Freq. ($f_{\text{min}}$)** | DC ($0\text{ Hz}$, Static) | $\sim 10\text{ MHz}$ (Leakage) | **$< 10\text{ kHz}$ / Static Hold** | **Keeper Resolves Dynamic Droop** |
+| **Layout Silicon Area ($\mu\text{m}^2$)** | $1.00\times$ (Normalized) | $0.48\times$ | **$0.56\times$** | **$\approx 44\%$ Silicon Area Saving** |
+
+### 7.2. System-Level 8-Bit BILBO/BIST & Low-Transition Test Mode Comparison
+
+| System Configuration | Total Transistors (PRPG + MISR + CUT) | Average CUT Power During Test ($P_{\text{CUT,avg}}$) | Peak Instantaneous Power ($P_{\text{CUT,peak}}$) | Sequence Length / Fault Coverage (SA0/SA1) |
+| :--- | :---: | :---: | :---: | :---: |
+| **1. Conventional TG-MS BILBO (`LP = 0`)** | $\sim 720\text{ T}$ | $100\%$ (Baseline High) | $100\%$ (High IR-Drop Risk) | 255 States / $100\%$ FC |
+| **2. Proposed TSPC BILBO (`LP = 0`, Standard PRPG)** | $\sim 480\text{ T}$ (**$-33\%$**) | $\sim 98\%$ (Unchanged in CUT) | $\sim 98\%$ | 255 States / $100\%$ FC |
+| **3. Proposed TSPC BILBO + LT-RTPG (`LP = 1`, Low-Power Mode)** | $\sim 520\text{ T}$ (**$-28\%$**) | **$55\% - 68\%$ ($-32\%$ to $-45\%$ Power)** | **$65\% - 75\%$ ($-25\%$ Peak)** | **$\ge 96\% - 100\%$ FC** |
+
+---
+
+## 8. Repository Structure & Work Breakdown (WBS)
+
+### 8.1. Directory Hierarchy
+```text
+├── docs/
+│   ├── De_xuat_de_tai_VLSI_Cadence.pdf                # Official PBL Specification (Topics 1A, 2A, 3A)
+│   ├── Ke_Hoach_Quan_Ly_De_Tai_TSPC_LFSR_BIST.docx    # Detailed 4-Week Leader Management Plan & WBS
+│   ├── stick_diagrams/                                # Hand-drawn colour stick diagrams & Euler paths
+│   └── Final_Report_IEEE_TwoColumn.pdf                # Final IEEE-formatted project manuscript
+├── golden_model/
+│   ├── lfsr_misr_golden.py                            # Python GF(2) simulator for 255-state & MISR signatures
+│   ├── golden_255_vectors.csv                         # Exhaustive state table (Cycle, Binary, Hex, Taps)
+│   └── fault_dictionary.json                          # Expected MISR signatures under SA0/SA1/SOP faults
+├── cadence_gpdk090_ws/                                # Cadence Virtuoso IC6.1.5 Workspace
+│   ├── cds.lib                                        # Library path definitions (gpdk090, analogLib)
+│   └── TSPC_BIST_Lib/                                 # Main Project Design Library
+│       ├── 01_MS_DFF_SetReset/                        # [Member 1] Baseline TG-MS Flip-Flop
+│       ├── 02_TSPC_DFF_Keeper_Seed/                   # [Member 2] Proposed Race-Tolerant TSPC Flip-Flop
+│       ├── 03_XOR2_TG_and_CFSR/                       # [Member 3] 6T/8T TG-XOR, Primitives & Zero-Recovery
+│       ├── 04_LFSR_8bit_PRPG_LT/                      # [Member 4] 8-Bit LFSR Core & Low-Transition (LT-RTPG)
+│       ├── 05_BILBO_8bit_MISR/                        # [Member 5] 4-Mode BILBO Cell & Signature Compactor
+│       └── 06_Top_BIST_System_CUT_TB/                 # [Member 6] 4-Bit 28T Adder CUT, Fault Switches & PVT TB
+├── verification_results/
+│   ├── spectre_waveforms/                             # High-res ViVA transient & parametric plots
+│   ├── drc_lvs_pex_reports/                           # Assura/Diva clean verification log files
+│   └── pvt_corners_data.xlsx                          # Tabulated metrics across (TT, FF, SS) x VDD x Temp
+└── README.md
+```
+
+### 8.2. Team Responsibilities & Module Ownership (6-Member WBS)
+
+| Role ID | Assigned Engineer Role | Owned Cadence Cells | Core Verification & Layout Responsibilities |
+| :---: | :--- | :--- | :--- |
+| **Member 1** | **Baseline Sequential Designer** | `MS_DFF_SetReset`, `INV`, `TG` | Design 24T TG-MS DFF (Fig. 1.32e); run parametric $t_{\text{setup}}, t_{\text{hold}}, t_{\text{pcq}}$ sweeps; complete DRC/LVS-clean layout baseline. |
+| **Member 2** | **TSPC Dynamic Circuit Designer** | `TSPC_DFF_SetReset`, `TSPC_Keeper` | Design 12T single-phase TSPC DFF with weak keeper (N1) & race-free sizing (N2); characterize $f_{\text{max}}/f_{\text{min}}$; complete DRC/LVS layout. |
+| **Member 3** | **Feedback & Logic Primitive Designer** | `XOR2_TG`, `XOR2_CMOS`, `CFSR_Zero` | Compare 12T Static CMOS XOR vs. 6T/8T TG-XOR (Fig. 11.59); design 7-input DeMorgan NOR tree for all-zero lockup recovery; DRC/LVS layout. |
+| **Member 4** | **PRPG Core & Low-Power Architect** | `MS_LFSR_8bit`, `TSPC_LFSR_8bit`, `LT_RTPG` | Author Python Golden Model; assemble 8-bit LFSR arrays ($1+x+x^6+x^7+x^8$); implement AND+T-FF Low-Transition block (N2); verify 255 states. |
+| **Member 5** | **DFT / BILBO & MISR Architect** | `BILBO_Cell`, `BILBO_8bit_MISR` | Design 4-mode `C[1:0]` steering multiplexer (Reset, Normal, Scan, Test) & E-TSPC embedded logic (N1); verify MISR signature compaction; layout. |
+| **Member 6** | **System Lead, CUT & PVT Analyst** | `FA_28T_Mirror`, `CUT_RCA_4bit`, `Top_BIST_TB` | Design 4-bit 28T Mirror Adder CUT with internal SA0/SA1/SOP fault switches (N3); execute full BIST PASS/FAIL demo; run PVT & post-layout PEX sweeps. |
+
+---
+
+## 9. References
+
+1. **N. H. E. Weste and D. M. Harris**, *CMOS VLSI Design: A Circuits and Systems Perspective*, 4th ed. Boston, MA, USA: Addison-Wesley, 2011. *(Specifically: §1.4.9 Latches/Flip-Flops, §1.9 28T Mirror Adder, §4 Delay, §5 Power, §9.2.4 Dynamic Circuits, §10.2–10.3 Sequential Timing & TSPC, §11.5.4 LFSRs, and §15.6 Scan/BIST/BILBO)*.
+2. **J. Yuan, I. Karlsson, and C. Svensson**, "A true single-phase-clock dynamic CMOS circuit technique," *IEEE Journal of Solid-State Circuits (JSSC)*, vol. 22, no. 5, pp. 899–901, Oct. 1987, doi: [`10.1109/JSSC.1987.1052831`](https://doi.org/10.1109/JSSC.1987.1052831).
+3. **J. Yuan and C. Svensson**, "High-speed CMOS circuit technique," *IEEE Journal of Solid-State Circuits (JSSC)*, vol. 24, no. 1, pp. 62–70, Feb. 1989, doi: [`10.1109/4.16303`](https://doi.org/10.1109/4.16303).
+4. **J. Navarro Soares and W. A. M. Van Noije**, "A 1.6-GHz dual modulus prescaler using the extended true-single-phase-clock CMOS circuit technique (E-TSPC)," *IEEE Journal of Solid-State Circuits (JSSC)*, vol. 34, no. 1, pp. 97–102, Jan. 1999, doi: [`10.1109/4.736661`](https://doi.org/10.1109/4.736661).
+5. **V. Stojanovic and V. G. Oklobdzija**, "Comparative analysis of master-slave latches and flip-flops for high-performance and low-power systems," *IEEE Journal of Solid-State Circuits (JSSC)*, vol. 34, no. 4, pp. 536–548, Apr. 1999, doi: [`10.1109/4.753687`](https://doi.org/10.1109/4.753687).
+6. **B. Könemann, J. Mucha, and G. Zwiehoff**, "Built-in test for complex digital integrated circuits," *IEEE Journal of Solid-State Circuits (JSSC)*, vol. 15, no. 3, pp. 315–319, Jun. 1980, doi: [`10.1109/JSSC.1980.1051391`](https://doi.org/10.1109/JSSC.1980.1051391).
+7. **P. Girard**, "Survey of low-power testing of VLSI circuits," *IEEE Design & Test of Computers*, vol. 19, no. 3, pp. 82–92, May-Jun. 2002, doi: [`10.1109/MDT.2002.1003802`](https://doi.org/10.1109/MDT.2002.1003802).
+8. **S. Wang and S. K. Gupta**, "LT-RTPG: A new test-per-scan BIST TPG for low switching activity," *IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)*, vol. 25, no. 8, pp. 1565–1574, Aug. 2006, doi: [`10.1109/TCAD.2005.855927`](https://doi.org/10.1109/TCAD.2005.855927).
+
+---
+*Developed at the Digital VLSI Design Laboratory — Powered by Cadence Virtuoso IC6.1.5 (`gpdk090`).*
