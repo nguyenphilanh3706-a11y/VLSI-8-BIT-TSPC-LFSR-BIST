@@ -1,0 +1,7 @@
+// XORTAP8, corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../cells/cells.scs"
+include "../cells/XOR2_TG/XOR2_TG.scs"
+include "../blocks/XORTAP8.scs"
+include "tb_XORTAP8.scs"

@@ -1,0 +1,17 @@
+// XORTAP8_TG: 16 to hop ngo vao, 2 ns/vector, suon 20 ps, tai 4x INV_X1
+simulator lang=spectre
+global 0
+VVDD (VDD 0) vsource dc=1.2
+VVSS (VSS 0) vsource dc=0
+VQ0 (Q0 0) vsource type=pwl wave=[ 0 0 2000p 0 2020p 1.2 4000p 1.2 4020p 0 6000p 0 6020p 1.2 8000p 1.2 8020p 0 10000p 0 10020p 1.2 12000p 1.2 12020p 0 14000p 0 14020p 1.2 16000p 1.2 16020p 0 18000p 0 18020p 1.2 20000p 1.2 20020p 0 22000p 0 22020p 1.2 24000p 1.2 24020p 0 26000p 0 26020p 1.2 28000p 1.2 28020p 0 30000p 0 30020p 1.2 ]
+VQ5 (Q5 0) vsource type=pwl wave=[ 0 0 4000p 0 4020p 1.2 8000p 1.2 8020p 0 12000p 0 12020p 1.2 16000p 1.2 16020p 0 20000p 0 20020p 1.2 24000p 1.2 24020p 0 28000p 0 28020p 1.2 ]
+VQ6 (Q6 0) vsource type=pwl wave=[ 0 0 8000p 0 8020p 1.2 16000p 1.2 16020p 0 24000p 0 24020p 1.2 ]
+VQ7 (Q7 0) vsource type=pwl wave=[ 0 0 16000p 0 16020p 1.2 ]
+XDUT (Q0 Q5 Q6 Q7 FB VDD VSS) XORTAP8_TG
+XL_FB_0 (FB ld0 VDD VSS) INV_X1
+XL_FB_1 (FB ld1 VDD VSS) INV_X1
+XL_FB_2 (FB ld2 VDD VSS) INV_X1
+XL_FB_3 (FB ld3 VDD VSS) INV_X1
+save Q0 Q5 Q6 Q7 FB VVDD:p
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=32n maxstep=20p errpreset=moderate
