@@ -2,3 +2,4 @@
 simulator lang=spectre
 include "INV_X1/INV_X1.scs"
 include "NAND2_X1/NAND2_X1.scs"
+include "NOR2_X1/NOR2_X1.scs"
