@@ -1,0 +1,3 @@
+// Cong co ban dung chung. Include mot lan sau file model.
+simulator lang=spectre
+include "INV_X1/INV_X1.scs"
