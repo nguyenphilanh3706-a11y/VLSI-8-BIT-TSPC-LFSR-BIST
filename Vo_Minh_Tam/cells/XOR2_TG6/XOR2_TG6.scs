@@ -1,0 +1,11 @@
+// Y = A ^ B.  Pins: A B Y VDD VSS.  Transmission gate, 6 transistors:
+// A=0: TG truyen B. A=1: cap MP1/MN1 (nguon A / An) dao B; cap nay rong gap doi de keo Y nhanh.
+simulator lang=spectre
+subckt XOR2_TG6 A B Y VDD VSS
+    MN0 (An A VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u
+    MP0 (An A VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN1 (Y B An VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MP1 (Y B A VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MN2 (Y An B VSS) gpdk090_nmos1v w=0.12u l=0.1u
+    MP2 (Y A B VDD) gpdk090_pmos1v w=0.24u l=0.1u
+ends XOR2_TG6
