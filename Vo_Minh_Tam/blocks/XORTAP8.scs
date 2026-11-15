@@ -1,14 +1,15 @@
 // Mang XOR hoi tiep LFSR 8 bit, da thuc 1 + x + x^6 + x^7 + x^8: FB = Q0 ^ Q5 ^ Q6 ^ Q7
+// Tang 1 dung XOR 6T (ngo vao la Q cua flip-flop, du suc keo), tang 2 dung XOR CMOS de phuc hoi muc logic.
 simulator lang=spectre
 subckt XORTAP8 Q0 Q5 Q6 Q7 FB VDD VSS
-I0 (Q0 Q5 t05 VDD VSS) XOR2_X1
-I1 (Q6 Q7 t67 VDD VSS) XOR2_X1
+I0 (Q0 Q5 t05 VDD VSS) XOR2_TG6
+I1 (Q6 Q7 t67 VDD VSS) XOR2_TG6
 I2 (t05 t67 FB VDD VSS) XOR2_X1
 ends XORTAP8
 
-// Cung mang tren dung XOR truyen gate
-subckt XORTAP8_TG Q0 Q5 Q6 Q7 FB VDD VSS
-I0 (Q0 Q5 t05 VDD VSS) XOR2_TG
-I1 (Q6 Q7 t67 VDD VSS) XOR2_TG
-I2 (t05 t67 FB VDD VSS) XOR2_TG
-ends XORTAP8_TG
+// Ban doi chung: 3 XOR CMOS 12T
+subckt XORTAP8_CMOS Q0 Q5 Q6 Q7 FB VDD VSS
+I0 (Q0 Q5 t05 VDD VSS) XOR2_X1
+I1 (Q6 Q7 t67 VDD VSS) XOR2_X1
+I2 (t05 t67 FB VDD VSS) XOR2_X1
+ends XORTAP8_CMOS
