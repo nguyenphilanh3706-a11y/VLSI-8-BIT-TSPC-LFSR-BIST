@@ -42,3 +42,9 @@ Cac phuong an da thu va bo: dung XOR 6T ca 4 cong (44T, 468 ps NN), XOR 6T hai t
 `scripts/lfsr_model.awk`: LFSR (FB = Q0^Q5^Q6^Q7, dich Q0 -> Q7) co 255 trang thai khac nhau;
 CFSR co 256 trang thai, gom ca 00000000. Bang gia tri mong doi cua testbench sinh tu cung cong thuc.
 NOR3_X1 chua co testbench rieng; moi to hop ngo vao cua no da duoc phu trong 256 vector cua CFSR_FB.
+
+## 5. Schematic va symbol (thu vien TV3_CELLS)
+Chan thong nhat cua nhom: VDD, GND. 12 cell: INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG, XOR2_TG6,
+XORTAP8, XORTAP8_CMOS, ZERO7, CFSR_FB, CFSR_FB_CMOS.
+Ve: `bash virtuoso/run_schematic.sh` (sinh tu chinh cac file .scs, du an ~/TV3_PROJ; mo xem: `cd ~/TV3_PROJ && virtuoso &`).
+Ket qua: 12 cell, schCheck 0 loi; 288 chan cua schematic khop netlist (`scripts/check_sch.awk`).
