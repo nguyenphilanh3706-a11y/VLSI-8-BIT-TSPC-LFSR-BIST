@@ -46,5 +46,5 @@ NOR3_X1 chua co testbench rieng; moi to hop ngo vao cua no da duoc phu trong 256
 ## 5. Schematic va symbol (thu vien TV3_CELLS)
 Chan thong nhat cua nhom: VDD, GND. 12 cell: INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG, XOR2_TG6,
 XORTAP8, XORTAP8_CMOS, ZERO7, CFSR_FB, CFSR_FB_CMOS.
-Ve: `bash virtuoso/run_schematic.sh` (sinh tu chinh cac file .scs, du an ~/TV3_PROJ; mo xem: `cd ~/TV3_PROJ && virtuoso &`).
-Ket qua: 12 cell, schCheck 0 loi; 288 chan cua schematic khop netlist (`scripts/check_sch.awk`).
+Day noi that: PMOS tren, NMOS duoi, MOS noi tiep chong doc, ray VDD/GND.
+Ket qua: 12 cell, schCheck 0 loi 0 canh bao; 288 chan khop netlist.
