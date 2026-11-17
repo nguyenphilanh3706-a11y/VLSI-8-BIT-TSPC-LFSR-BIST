@@ -41,9 +41,23 @@ Cac phuong an da thu va bo: dung XOR 6T ca 4 cong (44T, 468 ps NN), XOR 6T hai t
 ## 4. Mo hinh chuan
 `scripts/lfsr_model.awk`: LFSR (FB = Q0^Q5^Q6^Q7, dich Q0 -> Q7) co 255 trang thai khac nhau;
 CFSR co 256 trang thai, gom ca 00000000. Bang gia tri mong doi cua testbench sinh tu cung cong thuc.
-NOR3_X1 chua co testbench rieng; moi to hop ngo vao cua no da duoc phu trong 256 vector cua CFSR_FB.
 
-## 5. Schematic va symbol (thu vien TV3_CELLS)
+## 5. Testbench tung cell (`bash scripts/run_cells.sh`, tai FO4, ngo vao suon 20 ps)
+
+| Cell | Vector | Tre NN | Tre SS | Tre FF |
+|---|---|---|---|---|
+| INV_X1 | 3/3 | 34,1 ps | 45,6 ps | 28,1 ps |
+| NAND2_X1 | 9/9 | 53,4 ps | 72,2 ps | 43,4 ps |
+| NOR2_X1 | 9/9 | 50,1 ps | 67,2 ps | 40,4 ps |
+| NOR3_X1 | 9/9 | 64,8 ps | 86,9 ps | 52,2 ps |
+| XOR2_X1 | 9/9 | 77,3 ps | 108,5 ps | 60,6 ps |
+| XOR2_TG | 9/9 | 82,6 ps | 114,5 ps | 65,7 ps |
+| XOR2_TG6 | 9/9 | 75,5 ps | 106,4 ps | 58,5 ps |
+
+Ngo vao lay truc tiep tu nguon PWL (khong qua INV dem) nen tre nho hon bang muc 1.
+Cach dung testbench va mo ta tung cell: `HUONG_DAN_TV3.md`.
+
+## 6. Schematic va symbol (thu vien TV3_CELLS)
 Chan thong nhat cua nhom: VDD, GND. 12 cell: INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG, XOR2_TG6,
 XORTAP8, XORTAP8_CMOS, ZERO7, CFSR_FB, CFSR_FB_CMOS.
 Day noi that: PMOS tren, NMOS duoi, MOS noi tiep chong doc, ray VDD/GND.
