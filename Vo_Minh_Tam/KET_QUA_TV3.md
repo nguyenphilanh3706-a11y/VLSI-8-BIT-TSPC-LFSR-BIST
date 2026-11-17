@@ -1,50 +1,50 @@
-# Ket qua TV3: cong XOR, mang hoi tiep LFSR, CFSR
+# Kết quả TV3: cổng XOR, mạng hồi tiếp LFSR, CFSR
 
-Spectre, 27 do C, VDD 1,2 V. Moi ngo vao qua 2 INV_X1 dem (giong ngo ra flip-flop), moi ngo ra tai 4 INV_X1.
-Tre = lan cat 0,6 V cuoi cung cua ngo ra, tinh tu giua suon vao, lay lon nhat tren moi vector.
-Tong W = tong be rong kenh cua cac transistor (dai dien dien tich truoc khi ve layout).
+Spectre, 27 °C, VDD 1,2 V. Mỗi ngõ vào qua 2 INV_X1 đệm (giống ngõ ra flip-flop), mỗi ngõ ra tải 4 INV_X1.
+Trễ = lần cắt 0,6 V cuối cùng của ngõ ra, tính từ giữa sườn vào, lấy lớn nhất trên mọi vector.
+Tổng W = tổng bề rộng kênh của các transistor (đại diện diện tích trước khi vẽ layout).
 
-Chay lai: `bash scripts/run_sim.sh tb/tb_<ten>_<NN|SS|FF>.scs`
+Chạy lại: `bash scripts/run_sim.sh tb/tb_<tên>_<NN|SS|FF>.scs`
 
-## 1. Cong XOR2 (9 vector, duyet moi canh cua 2 ngo vao)
+## 1. Cổng XOR2 (9 vector, duyệt mọi cạnh của 2 ngõ vào)
 
-| Cell | Transistor | Tong W | Tre NN | Tre SS | Tre FF | Nang luong NN |
+| Cell | Transistor | Tổng W | Trễ NN | Trễ SS | Trễ FF | Năng lượng NN |
 |---|---|---|---|---|---|---|
-| XOR2_X1 (CMOS tinh) | 12 | 3,60 um | 136,0 ps | 191,8 ps | 106,3 ps | 0,020 pJ |
-| XOR2_TG (cong truyen) | 8 | 2,16 um | 147,4 ps | 207,1 ps | 115,6 ps | 0,021 pJ |
-| XOR2_TG6 (6T) | 6 | 1,44 um | 137,6 ps | 194,9 ps | 106,6 ps | 0,019 pJ |
+| XOR2_X1 (CMOS tĩnh) | 12 | 3,60 µm | 136,0 ps | 191,8 ps | 106,3 ps | 0,020 pJ |
+| XOR2_TG (cổng truyền) | 8 | 2,16 µm | 147,4 ps | 207,1 ps | 115,6 ps | 0,021 pJ |
+| XOR2_TG6 (6T) | 6 | 1,44 µm | 137,6 ps | 194,9 ps | 106,6 ps | 0,019 pJ |
 
-XOR2_TG6 giam 50% transistor va 60% tong W so voi CMOS, tre chi cham hon 1,6 ps (NN), nang luong thap hon 5%.
-Kich thuoc chon sau khi quet 8 bo: cap dao B (MN1/MP1) 0,24/0,48 um, cong truyen va inverter nho nhat.
-Lam cap dao lon hon nua (0,36/0,72) khong nhanh them ma ton nang luong.
+XOR2_TG6 giảm 50% transistor và 60% tổng W so với CMOS, trễ chỉ chậm hơn 1,6 ps (NN), năng lượng thấp hơn 5%.
+Kích thước chọn sau khi quét 8 bộ: cặp đảo B (MN1/MP1) 0,24/0,48 µm, cổng truyền và inverter nhỏ nhất.
+Làm cặp đảo lớn hơn nữa (0,36/0,72) không nhanh thêm mà tốn năng lượng.
 
-## 2. Mang XOR hoi tiep FB = Q0 ^ Q5 ^ Q6 ^ Q7 (16 to hop)
+## 2. Mạng XOR hồi tiếp FB = Q0 ^ Q5 ^ Q6 ^ Q7 (16 tổ hợp)
 
-| Khoi | Transistor | Tong W | Tre NN | Tre SS | Tre FF | Nang luong NN |
+| Khối | Transistor | Tổng W | Trễ NN | Trễ SS | Trễ FF | Năng lượng NN |
 |---|---|---|---|---|---|---|
-| XORTAP8_CMOS (3 XOR CMOS) | 36 | 10,80 um | 220,0 ps | 312,7 ps | 170,8 ps | 0,029 pJ |
-| XORTAP8 (2 XOR 6T + 1 XOR CMOS) | 24 | 6,48 um | 225,0 ps | 321,5 ps | 173,1 ps | 0,026 pJ |
+| XORTAP8_CMOS (3 XOR CMOS) | 36 | 10,80 µm | 220,0 ps | 312,7 ps | 170,8 ps | 0,029 pJ |
+| XORTAP8 (2 XOR 6T + 1 XOR CMOS) | 24 | 6,48 µm | 225,0 ps | 321,5 ps | 173,1 ps | 0,026 pJ |
 
-Tang cuoi giu XOR CMOS: hai XOR 6T noi tiep lam suy muc logic, tre tang 25% (do duoc 274,9 ps NN).
+Tầng cuối giữ XOR CMOS: hai XOR 6T nối tiếp làm suy mức logic, trễ tăng 25% (đo được 274,9 ps NN).
 
-## 3. CFSR_FB: hoi tiep day du (256 to hop)
+## 3. CFSR_FB: hồi tiếp đầy đủ (256 tổ hợp)
 
-| Khoi | Transistor | Tong W | Tre NN | Tre SS | Tre FF | Nang luong NN |
+| Khối | Transistor | Tổng W | Trễ NN | Trễ SS | Trễ FF | Năng lượng NN |
 |---|---|---|---|---|---|---|
-| CFSR_FB_CMOS (XOR CMOS, cay NOR2/NAND2) | 74 | 21,48 um | 305,8 ps | 434,6 ps | 237,6 ps | 0,048 pJ |
-| CFSR_FB (XORTAP8 + ZERO7 + XOR CMOS) | 56 | 15,84 um | 316,7 ps | 437,3 ps | 250,1 ps | 0,045 pJ |
+| CFSR_FB_CMOS (XOR CMOS, cây NOR2/NAND2) | 74 | 21,48 µm | 305,8 ps | 434,6 ps | 237,6 ps | 0,048 pJ |
+| CFSR_FB (XORTAP8 + ZERO7 + XOR CMOS) | 56 | 15,84 µm | 316,7 ps | 437,3 ps | 250,1 ps | 0,045 pJ |
 
-CFSR_FB giam 24% transistor, 26% tong W, 6% nang luong; o SS (corner quyet dinh tan so) tre chi tang 0,6%.
-ZERO7 phat hien Q0..Q6 = 0 bang 2 NOR3 + NAND2 + NOR2 (20T, thay cho 26T).
-Cac phuong an da thu va bo: dung XOR 6T ca 4 cong (44T, 468 ps NN), XOR 6T hai tang dau (50T, 326 ps NN).
+CFSR_FB giảm 24% transistor, 26% tổng W, 6% năng lượng; ở SS (corner quyết định tần số) trễ chỉ tăng 0,6%.
+ZERO7 phát hiện Q0..Q6 = 0 bằng 2 NOR3 + NAND2 + NOR2 (20T, thay cho 26T).
+Các phương án đã thử và bỏ: dùng XOR 6T cả 4 cổng (44T, 468 ps NN), XOR 6T hai tầng đầu (50T, 326 ps NN).
 
-## 4. Mo hinh chuan
-`scripts/lfsr_model.awk`: LFSR (FB = Q0^Q5^Q6^Q7, dich Q0 -> Q7) co 255 trang thai khac nhau;
-CFSR co 256 trang thai, gom ca 00000000. Bang gia tri mong doi cua testbench sinh tu cung cong thuc.
+## 4. Mô hình chuẩn
+`scripts/lfsr_model.awk`: LFSR (FB = Q0^Q5^Q6^Q7, dịch Q0 -> Q7) có 255 trạng thái khác nhau;
+CFSR có 256 trạng thái, gồm cả 00000000. Bảng giá trị mong đợi của testbench sinh từ cùng công thức.
 
-## 5. Testbench tung cell (`bash scripts/run_cells.sh`, tai FO4, ngo vao suon 20 ps)
+## 5. Testbench từng cell (`bash scripts/run_cells.sh`, tải FO4, ngõ vào sườn 20 ps)
 
-| Cell | Vector | Tre NN | Tre SS | Tre FF |
+| Cell | Vector | Trễ NN | Trễ SS | Trễ FF |
 |---|---|---|---|---|
 | INV_X1 | 3/3 | 34,1 ps | 45,6 ps | 28,1 ps |
 | NAND2_X1 | 9/9 | 53,4 ps | 72,2 ps | 43,4 ps |
@@ -54,11 +54,11 @@ CFSR co 256 trang thai, gom ca 00000000. Bang gia tri mong doi cua testbench sin
 | XOR2_TG | 9/9 | 82,6 ps | 114,5 ps | 65,7 ps |
 | XOR2_TG6 | 9/9 | 75,5 ps | 106,4 ps | 58,5 ps |
 
-Ngo vao lay truc tiep tu nguon PWL (khong qua INV dem) nen tre nho hon bang muc 1.
-Cach dung testbench va mo ta tung cell: `HUONG_DAN_TV3.md`.
+Ngõ vào lấy trực tiếp từ nguồn PWL (không qua INV đệm) nên trễ nhỏ hơn bảng mục 1.
+Cách dùng testbench và mô tả từng cell: `HUONG_DAN_TV3.md`.
 
-## 6. Schematic va symbol (thu vien TV3_CELLS)
-Chan thong nhat cua nhom: VDD, GND. 12 cell: INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG, XOR2_TG6,
+## 6. Schematic và symbol (thư viện TV3_CELLS)
+Chân thống nhất của nhóm: VDD, GND. 12 cell: INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG, XOR2_TG6,
 XORTAP8, XORTAP8_CMOS, ZERO7, CFSR_FB, CFSR_FB_CMOS.
-Day noi that: PMOS tren, NMOS duoi, MOS noi tiep chong doc, ray VDD/GND.
-Ket qua: 12 cell, schCheck 0 loi 0 canh bao; 288 chan khop netlist.
+Dây nối thật: PMOS trên, NMOS dưới, MOS nối tiếp chồng dọc, ray VDD/GND.
+Kết quả: 12 cell, schCheck 0 lỗi 0 cảnh báo; 288 chân khớp netlist.
