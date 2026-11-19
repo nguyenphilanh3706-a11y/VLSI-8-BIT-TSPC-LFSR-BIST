@@ -1,0 +1,7 @@
+# tb_MS_LFSR_slew corner NN  Thu Nov 19 08:18:22 BDT 2026
+trf=20ps  RESULT sx_tb_MS_LFSR_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=172.0 P_dut_uW=92.729 P_clk_uW=0.000 P_tai_uW=5.123 E_dut_pJ=0.1855 E_clk_pJ=0.0000
+trf=100ps  RESULT sx_tb_MS_LFSR_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=224.3 P_dut_uW=94.779 P_clk_uW=0.000 P_tai_uW=5.025 E_dut_pJ=0.1896 E_clk_pJ=0.0000
+trf=200ps  RESULT sx_tb_MS_LFSR_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=289.6 P_dut_uW=99.775 P_clk_uW=0.000 P_tai_uW=4.920 E_dut_pJ=0.1995 E_clk_pJ=0.0000
+trf=400ps  RESULT sx_tb_MS_LFSR_slew_400ps_NN PASS 301/301 T=2e-09 tre_ps=408.7 P_dut_uW=112.075 P_clk_uW=0.000 P_tai_uW=4.854 E_dut_pJ=0.2241 E_clk_pJ=0.0000
+trf=600ps  RESULT sx_tb_MS_LFSR_slew_600ps_NN PASS 301/301 T=2e-09 tre_ps=520.4 P_dut_uW=125.372 P_clk_uW=0.000 P_tai_uW=4.870 E_dut_pJ=0.2507 E_clk_pJ=0.0000
+trf=800ps  RESULT sx_tb_MS_LFSR_slew_800ps_NN PASS 301/301 T=2e-09 tre_ps=629.4 P_dut_uW=139.375 P_clk_uW=0.000 P_tai_uW=4.919 E_dut_pJ=0.2788 E_clk_pJ=0.0000

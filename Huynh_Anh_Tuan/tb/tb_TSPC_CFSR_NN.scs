@@ -1,0 +1,10 @@
+// tb_TSPC_CFSR, corner NN
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../deps/tv3/cells/cells.scs"
+include "../deps/tv3/blocks/XORTAP8.scs"
+include "../deps/tv3/blocks/CFSR_FB.scs"
+include "../cells/cells.scs"
+include "../blocks/LFSR_8bit.scs"
+include "../blocks/LT_RTPG_8bit.scs"
+include "tb_TSPC_CFSR.scs"

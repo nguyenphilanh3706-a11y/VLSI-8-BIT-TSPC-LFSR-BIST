@@ -1,0 +1,7 @@
+// AND2_T - cong phu tro cua TV4 (gpdk090, 1.2 V), dung cell TV3 (INV_X1, NAND2_X1).
+simulator lang=spectre
+// AND2 = NAND2_X1 + INV_X1 (6 transistor)
+subckt AND2_T A B Y VDD GND
+    I0 (A B yn VDD GND) NAND2_X1
+    I1 (yn Y VDD GND) INV_X1
+ends AND2_T

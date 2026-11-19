@@ -1,0 +1,51 @@
+// tb_LT_RTPG_LP0: TSPC_LFSR_8bit + LT_RTPG_8bit, LP=0, moi V_i co 4 INV tai (FO4)
+// Sinh boi scripts/gen_tb.py - khong sua tay (sua gen_tb.py roi chay lai).
+simulator lang=spectre
+global 0
+parameters tclk=2n trf=20p
+VVDD (VDD 0) vsource dc=1.2          // nguon rieng cua DUT -> do nang luong DUT
+VVDDCK (VDDCK 0) vsource dc=1.2      // nguon rieng bo dem clock -> do cong suat clock
+VVDDL (VDDL 0) vsource dc=1.2        // nguon rieng tai (gia lap ngo vao CUT)
+VGND (GND 0) vsource dc=0
+VRST (RST 0) vsource type=pulse val0=1.2 val1=0 delay=0.5*tclk rise=20p fall=20p width=1 period=2
+VCK (ck0 0) vsource type=pulse val0=0 val1=1.2 delay=tclk rise=trf fall=trf width=0.5*tclk-trf period=tclk
+XCK1 (ck0 ckb VDDCK GND) INV_CLK
+XCK2 (ckb CLK VDDCK GND) INV_CLK
+VLP (LP 0) vsource dc=0
+XLFSR (CLK RST Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 VDD GND) TSPC_LFSR_8bit
+XLT (Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 CLK RST LP V0 V1 V2 V3 V4 V5 V6 V7 VDD GND) LT_RTPG_8bit
+XL_V0_0 (V0 ld_V0_0 VDDL GND) INV_X1
+XL_V0_1 (V0 ld_V0_1 VDDL GND) INV_X1
+XL_V0_2 (V0 ld_V0_2 VDDL GND) INV_X1
+XL_V0_3 (V0 ld_V0_3 VDDL GND) INV_X1
+XL_V1_0 (V1 ld_V1_0 VDDL GND) INV_X1
+XL_V1_1 (V1 ld_V1_1 VDDL GND) INV_X1
+XL_V1_2 (V1 ld_V1_2 VDDL GND) INV_X1
+XL_V1_3 (V1 ld_V1_3 VDDL GND) INV_X1
+XL_V2_0 (V2 ld_V2_0 VDDL GND) INV_X1
+XL_V2_1 (V2 ld_V2_1 VDDL GND) INV_X1
+XL_V2_2 (V2 ld_V2_2 VDDL GND) INV_X1
+XL_V2_3 (V2 ld_V2_3 VDDL GND) INV_X1
+XL_V3_0 (V3 ld_V3_0 VDDL GND) INV_X1
+XL_V3_1 (V3 ld_V3_1 VDDL GND) INV_X1
+XL_V3_2 (V3 ld_V3_2 VDDL GND) INV_X1
+XL_V3_3 (V3 ld_V3_3 VDDL GND) INV_X1
+XL_V4_0 (V4 ld_V4_0 VDDL GND) INV_X1
+XL_V4_1 (V4 ld_V4_1 VDDL GND) INV_X1
+XL_V4_2 (V4 ld_V4_2 VDDL GND) INV_X1
+XL_V4_3 (V4 ld_V4_3 VDDL GND) INV_X1
+XL_V5_0 (V5 ld_V5_0 VDDL GND) INV_X1
+XL_V5_1 (V5 ld_V5_1 VDDL GND) INV_X1
+XL_V5_2 (V5 ld_V5_2 VDDL GND) INV_X1
+XL_V5_3 (V5 ld_V5_3 VDDL GND) INV_X1
+XL_V6_0 (V6 ld_V6_0 VDDL GND) INV_X1
+XL_V6_1 (V6 ld_V6_1 VDDL GND) INV_X1
+XL_V6_2 (V6 ld_V6_2 VDDL GND) INV_X1
+XL_V6_3 (V6 ld_V6_3 VDDL GND) INV_X1
+XL_V7_0 (V7 ld_V7_0 VDDL GND) INV_X1
+XL_V7_1 (V7 ld_V7_1 VDDL GND) INV_X1
+XL_V7_2 (V7 ld_V7_2 VDDL GND) INV_X1
+XL_V7_3 (V7 ld_V7_3 VDDL GND) INV_X1
+save CLK RST Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 V0 V1 V2 V3 V4 V5 V6 V7 VVDD:p VVDDCK:p VVDDL:p
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=301*tclk+0.2*tclk maxstep=20p errpreset=moderate

@@ -1,0 +1,9 @@
+# tb_MS_LFSR corner SS  Thu Nov 19 08:44:09 BDT 2026
+T=800ps f=1250MHz  RESULT fx_tb_MS_LFSR_800ps_SS PASS 301/301 T=8e-10 tre_ps=335.7 P_dut_uW=221.372 P_clk_uW=51.858 P_tai_uW=11.293 E_dut_pJ=0.1771 E_clk_pJ=0.0415
+T=650ps f=1538MHz  RESULT fx_tb_MS_LFSR_650ps_SS FAIL 18/301 T=6.5e-10 tre_ps=342.5 P_dut_uW=293.567 P_clk_uW=63.937 P_tai_uW=16.070 E_dut_pJ=0.1908 E_clk_pJ=0.0416
+T=600ps f=1667MHz  RESULT fx_tb_MS_LFSR_600ps_SS FAIL 5/301 T=6e-10 tre_ps=346.7 P_dut_uW=260.171 P_clk_uW=69.032 P_tai_uW=13.637 E_dut_pJ=0.1561 E_clk_pJ=0.0414
+T=550ps f=1818MHz  RESULT fx_tb_MS_LFSR_550ps_SS FAIL 1/301 T=5.5e-10 tre_ps=430.7 P_dut_uW=60.085 P_clk_uW=75.371 P_tai_uW=0.770 E_dut_pJ=0.0330 E_clk_pJ=0.0415
+T=500ps f=2000MHz  RESULT fx_tb_MS_LFSR_500ps_SS FAIL 1/301 T=5e-10 tre_ps=447.7 P_dut_uW=280.098 P_clk_uW=81.529 P_tai_uW=17.669 E_dut_pJ=0.1400 E_clk_pJ=0.0408
+T=480ps f=2083MHz  RESULT fx_tb_MS_LFSR_480ps_SS FAIL 1/301 T=4.8e-10 tre_ps=298.5 P_dut_uW=224.845 P_clk_uW=85.023 P_tai_uW=11.116 E_dut_pJ=0.1079 E_clk_pJ=0.0408
+T=460ps f=2174MHz  RESULT fx_tb_MS_LFSR_460ps_SS FAIL 1/301 T=4.6e-10 tre_ps=443.6 P_dut_uW=190.460 P_clk_uW=88.784 P_tai_uW=8.249 E_dut_pJ=0.0876 E_clk_pJ=0.0408
+T=450ps f=2222MHz  RESULT fx_tb_MS_LFSR_450ps_SS FAIL 2/301 T=4.5e-10 tre_ps=284.5 P_dut_uW=183.042 P_clk_uW=90.794 P_tai_uW=8.708 E_dut_pJ=0.0824 E_clk_pJ=0.0409

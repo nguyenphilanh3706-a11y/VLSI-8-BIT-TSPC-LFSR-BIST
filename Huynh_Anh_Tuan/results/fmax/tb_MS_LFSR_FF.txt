@@ -1,0 +1,9 @@
+# tb_MS_LFSR corner FF  Thu Nov 19 08:56:29 BDT 2026
+T=800ps f=1250MHz  RESULT fx_tb_MS_LFSR_800ps_FF PASS 301/301 T=8e-10 tre_ps=188.1 P_dut_uW=240.790 P_clk_uW=55.005 P_tai_uW=13.263 E_dut_pJ=0.1926 E_clk_pJ=0.0440
+T=650ps f=1538MHz  RESULT fx_tb_MS_LFSR_650ps_FF PASS 301/301 T=6.5e-10 tre_ps=188.1 P_dut_uW=294.941 P_clk_uW=67.670 P_tai_uW=16.221 E_dut_pJ=0.1917 E_clk_pJ=0.0440
+T=600ps f=1667MHz  RESULT fx_tb_MS_LFSR_600ps_FF PASS 301/301 T=6e-10 tre_ps=188.0 P_dut_uW=318.966 P_clk_uW=73.305 P_tai_uW=17.547 E_dut_pJ=0.1914 E_clk_pJ=0.0440
+T=550ps f=1818MHz  RESULT fx_tb_MS_LFSR_550ps_FF PASS 301/301 T=5.5e-10 tre_ps=188.0 P_dut_uW=347.305 P_clk_uW=79.971 P_tai_uW=19.128 E_dut_pJ=0.1910 E_clk_pJ=0.0440
+T=500ps f=2000MHz  RESULT fx_tb_MS_LFSR_500ps_FF PASS 301/301 T=5e-10 tre_ps=187.9 P_dut_uW=381.236 P_clk_uW=87.995 P_tai_uW=21.055 E_dut_pJ=0.1906 E_clk_pJ=0.0440
+T=480ps f=2083MHz  RESULT fx_tb_MS_LFSR_480ps_FF PASS 301/301 T=4.8e-10 tre_ps=187.8 P_dut_uW=396.789 P_clk_uW=91.683 P_tai_uW=21.955 E_dut_pJ=0.1905 E_clk_pJ=0.0440
+T=460ps f=2174MHz  RESULT fx_tb_MS_LFSR_460ps_FF PASS 301/301 T=4.6e-10 tre_ps=187.8 P_dut_uW=413.726 P_clk_uW=95.692 P_tai_uW=22.953 E_dut_pJ=0.1903 E_clk_pJ=0.0440
+T=450ps f=2222MHz  RESULT fx_tb_MS_LFSR_450ps_FF PASS 301/301 T=4.5e-10 tre_ps=187.7 P_dut_uW=422.741 P_clk_uW=97.855 P_tai_uW=23.495 E_dut_pJ=0.1902 E_clk_pJ=0.0440

@@ -1,0 +1,22 @@
+// DFF_MS_TMP - flip-flop master-slave cong truyen TAM THOI cua TV4.
+// CHI DE THU LUONG TICH HOP (testbench, script kiem tra) khi TV1 chua co cell MS_DFF_SetReset.
+// Khi TV1 nop cell that: sua cells/DFF_MS/DFF_MS.scs, KHONG dung file nay de lay so lieu bao cao.
+// Pins: D CLK CLKB SET RST Q VDD GND ; SET, RST tich cuc muc cao, bat dong bo. 24 transistor.
+// Can NOR2_X1 cua TV3.
+simulator lang=spectre
+subckt DFF_MS_TMP D CLK CLKB SET RST Q VDD GND
+    // master: trong suot khi CLK = 0
+    MN1 (n1 CLKB D GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP1 (n1 CLK D VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    I1 (n1 SET mb VDD GND) NOR2_X1
+    I2 (mb RST n1f VDD GND) NOR2_X1
+    MN2 (n1 CLK n1f GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP2 (n1 CLKB n1f VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    // slave: trong suot khi CLK = 1
+    MN3 (n2 CLK mb GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP3 (n2 CLKB mb VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    I3 (n2 RST Q VDD GND) NOR2_X1
+    I4 (Q SET n2f VDD GND) NOR2_X1
+    MN4 (n2 CLKB n2f GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP4 (n2 CLK n2f VDD) gpdk090_pmos1v w=0.48u l=0.1u
+ends DFF_MS_TMP

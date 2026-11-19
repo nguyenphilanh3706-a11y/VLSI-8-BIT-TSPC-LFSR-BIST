@@ -1,0 +1,25 @@
+// tb_TSPC_LFSR_CMOS: TSPC_LFSR_8bit_CMOS, 300 canh clock, seed 01 sau RST
+// Sinh boi scripts/gen_tb.py - khong sua tay (sua gen_tb.py roi chay lai).
+simulator lang=spectre
+global 0
+parameters tclk=2n trf=20p
+VVDD (VDD 0) vsource dc=1.2          // nguon rieng cua DUT -> do nang luong DUT
+VVDDCK (VDDCK 0) vsource dc=1.2      // nguon rieng bo dem clock -> do cong suat clock
+VVDDL (VDDL 0) vsource dc=1.2        // nguon rieng tai (gia lap ngo vao CUT)
+VGND (GND 0) vsource dc=0
+VRST (RST 0) vsource type=pulse val0=1.2 val1=0 delay=0.5*tclk rise=20p fall=20p width=1 period=2
+VCK (ck0 0) vsource type=pulse val0=0 val1=1.2 delay=tclk rise=trf fall=trf width=0.5*tclk-trf period=tclk
+XCK1 (ck0 ckb VDDCK GND) INV_CLK
+XCK2 (ckb CLK VDDCK GND) INV_CLK
+XDUT (CLK RST Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 VDD GND) TSPC_LFSR_8bit_CMOS
+XL_Q0_0 (Q0 ld_Q0_0 VDDL GND) INV_X1
+XL_Q1_0 (Q1 ld_Q1_0 VDDL GND) INV_X1
+XL_Q2_0 (Q2 ld_Q2_0 VDDL GND) INV_X1
+XL_Q3_0 (Q3 ld_Q3_0 VDDL GND) INV_X1
+XL_Q4_0 (Q4 ld_Q4_0 VDDL GND) INV_X1
+XL_Q5_0 (Q5 ld_Q5_0 VDDL GND) INV_X1
+XL_Q6_0 (Q6 ld_Q6_0 VDDL GND) INV_X1
+XL_Q7_0 (Q7 ld_Q7_0 VDDL GND) INV_X1
+save CLK RST Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 VVDD:p VVDDCK:p VVDDL:p
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=301*tclk+0.2*tclk maxstep=20p errpreset=moderate

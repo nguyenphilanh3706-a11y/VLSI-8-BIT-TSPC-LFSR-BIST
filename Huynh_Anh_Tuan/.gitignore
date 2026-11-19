@@ -1,0 +1,10 @@
+# Ket qua mo phong va file sinh tu dong
+/out/
+scripts/ngspice/build/
+scripts/cadence/tv4_build.il
+golden_model/out/*.png
+__pycache__/
+# Cadence
+virtuoso/
+.cadence/
+*.log

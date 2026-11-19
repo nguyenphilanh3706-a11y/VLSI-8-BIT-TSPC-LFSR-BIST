@@ -1,0 +1,20 @@
+# Spectre gpdk090, 27 C, VDD 1,2 V, T = 2 ns (500 MHz), 300 canh clock (301 vector). Flip-flop tam cua TV4, cell TV3 commit 86e42ee. Chay 19/11/2026.
+# Cot: thoi diem, RESULT <testbench_corner> <PASS|FAIL> <so vector dung>/<tong> T tre_ps P_dut_uW P_clk_uW P_tai_uW E_dut_pJ E_clk_pJ
+2026-11-19_07:26:11 RESULT tb_LT_RTPG_LP0_FF PASS 301/301 T=2e-09 tre_ps=245.4 P_dut_uW=199.022 P_clk_uW=41.554 P_tai_uW=15.722 E_dut_pJ=0.3980 E_clk_pJ=0.0831
+2026-11-19_07:30:12 RESULT tb_LT_RTPG_LP0_NN PASS 301/301 T=2e-09 tre_ps=312.0 P_dut_uW=173.818 P_clk_uW=39.888 P_tai_uW=14.441 E_dut_pJ=0.3476 E_clk_pJ=0.0798
+2026-11-19_07:33:51 RESULT tb_LT_RTPG_LP0_SS PASS 301/301 T=2e-09 tre_ps=441.2 P_dut_uW=157.150 P_clk_uW=38.597 P_tai_uW=13.442 E_dut_pJ=0.3143 E_clk_pJ=0.0772
+2026-11-19_07:37:49 RESULT tb_LT_RTPG_LP1_FF PASS 301/301 T=2e-09 tre_ps=223.5 P_dut_uW=192.190 P_clk_uW=41.555 P_tai_uW=9.078 E_dut_pJ=0.3844 E_clk_pJ=0.0831
+2026-11-19_07:41:34 RESULT tb_LT_RTPG_LP1_NN PASS 301/301 T=2e-09 tre_ps=286.8 P_dut_uW=166.762 P_clk_uW=39.888 P_tai_uW=7.967 E_dut_pJ=0.3335 E_clk_pJ=0.0798
+2026-11-19_07:45:16 RESULT tb_LT_RTPG_LP1_SS PASS 301/301 T=2e-09 tre_ps=406.1 P_dut_uW=150.345 P_clk_uW=38.596 P_tai_uW=7.179 E_dut_pJ=0.3007 E_clk_pJ=0.0772
+2026-11-19_07:47:00 RESULT tb_MS_LFSR_FF PASS 301/301 T=2e-09 tre_ps=188.2 P_dut_uW=99.402 P_clk_uW=22.133 P_tai_uW=5.565 E_dut_pJ=0.1988 E_clk_pJ=0.0443
+2026-11-19_07:48:35 RESULT tb_MS_LFSR_NN PASS 301/301 T=2e-09 tre_ps=240.1 P_dut_uW=94.142 P_clk_uW=21.312 P_tai_uW=5.005 E_dut_pJ=0.1883 E_clk_pJ=0.0426
+2026-11-19_07:50:01 RESULT tb_MS_LFSR_SS PASS 301/301 T=2e-09 tre_ps=336.5 P_dut_uW=89.921 P_clk_uW=20.706 P_tai_uW=4.534 E_dut_pJ=0.1798 E_clk_pJ=0.0414
+2026-11-19_07:51:46 RESULT tb_TSPC_CFSR_FF PASS 301/301 T=2e-09 tre_ps=144.6 P_dut_uW=68.515 P_clk_uW=24.483 P_tai_uW=3.622 E_dut_pJ=0.1370 E_clk_pJ=0.0490
+2026-11-19_07:53:21 RESULT tb_TSPC_CFSR_NN PASS 301/301 T=2e-09 tre_ps=185.6 P_dut_uW=63.698 P_clk_uW=23.489 P_tai_uW=3.325 E_dut_pJ=0.1274 E_clk_pJ=0.0470
+2026-11-19_07:54:58 RESULT tb_TSPC_CFSR_SS PASS 301/301 T=2e-09 tre_ps=262.4 P_dut_uW=60.004 P_clk_uW=22.735 P_tai_uW=3.117 E_dut_pJ=0.1200 E_clk_pJ=0.0455
+2026-11-19_07:56:41 RESULT tb_TSPC_LFSR_CMOS_FF PASS 301/301 T=2e-09 tre_ps=130.8 P_dut_uW=66.592 P_clk_uW=24.476 P_tai_uW=3.521 E_dut_pJ=0.1332 E_clk_pJ=0.0490
+2026-11-19_07:58:20 RESULT tb_TSPC_LFSR_CMOS_NN PASS 301/301 T=2e-09 tre_ps=167.9 P_dut_uW=61.890 P_clk_uW=23.482 P_tai_uW=3.239 E_dut_pJ=0.1238 E_clk_pJ=0.0470
+2026-11-19_07:59:50 RESULT tb_TSPC_LFSR_CMOS_SS PASS 301/301 T=2e-09 tre_ps=237.8 P_dut_uW=58.295 P_clk_uW=22.730 P_tai_uW=3.049 E_dut_pJ=0.1166 E_clk_pJ=0.0455
+2026-11-19_08:01:15 RESULT tb_TSPC_LFSR_FF PASS 301/301 T=2e-09 tre_ps=141.2 P_dut_uW=63.526 P_clk_uW=24.481 P_tai_uW=3.575 E_dut_pJ=0.1271 E_clk_pJ=0.0490
+2026-11-19_08:02:35 RESULT tb_TSPC_LFSR_NN PASS 301/301 T=2e-09 tre_ps=181.2 P_dut_uW=59.007 P_clk_uW=23.486 P_tai_uW=3.288 E_dut_pJ=0.1180 E_clk_pJ=0.0470
+2026-11-19_08:03:55 RESULT tb_TSPC_LFSR_SS PASS 301/301 T=2e-09 tre_ps=256.5 P_dut_uW=55.560 P_clk_uW=22.730 P_tai_uW=3.091 E_dut_pJ=0.1111 E_clk_pJ=0.0455

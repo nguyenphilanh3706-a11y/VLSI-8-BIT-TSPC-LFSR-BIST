@@ -1,0 +1,48 @@
+// LT_RTPG_8bit.scs - bo tao mau giam lat (Low-Transition RTPG, y tuong Wang & Gupta TCAD 2006) cua TV4.
+// Moi bit i: a_i = Q_i & Q_(i+1 mod 8) ; T-FF: tq_i(t+1) = tq_i(t) ^ a_i(t) ; V_i = LP ? tq_i : Q_i
+// LP = 0: CUT nhan thang LFSR ; LP = 1: CUT nhan chuoi it lat (golden model: giam 50 phan tram so bit lat).
+// T-FF dung DFF_TSPC (cells/DFF_TSPC), reset ve 0 cung RST cua LFSR.
+simulator lang=spectre
+subckt LT_RTPG_8bit Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 CLK RST LP V0 V1 V2 V3 V4 V5 V6 V7 VDD GND
+    ILPB (LP LPB VDD GND) INV_X1
+    // bit 0
+    IA0 (Q0 Q1 a0 VDD GND) AND2_T
+    IX0 (tq0 a0 dt0 VDD GND) XOR2_X1
+    IT0 (dt0 CLK GND RST tq0 VDD GND) DFF_TSPC
+    IM0 (Q0 tq0 LP LPB V0 VDD GND) MUX2_N
+    // bit 1
+    IA1 (Q1 Q2 a1 VDD GND) AND2_T
+    IX1 (tq1 a1 dt1 VDD GND) XOR2_X1
+    IT1 (dt1 CLK GND RST tq1 VDD GND) DFF_TSPC
+    IM1 (Q1 tq1 LP LPB V1 VDD GND) MUX2_N
+    // bit 2
+    IA2 (Q2 Q3 a2 VDD GND) AND2_T
+    IX2 (tq2 a2 dt2 VDD GND) XOR2_X1
+    IT2 (dt2 CLK GND RST tq2 VDD GND) DFF_TSPC
+    IM2 (Q2 tq2 LP LPB V2 VDD GND) MUX2_N
+    // bit 3
+    IA3 (Q3 Q4 a3 VDD GND) AND2_T
+    IX3 (tq3 a3 dt3 VDD GND) XOR2_X1
+    IT3 (dt3 CLK GND RST tq3 VDD GND) DFF_TSPC
+    IM3 (Q3 tq3 LP LPB V3 VDD GND) MUX2_N
+    // bit 4
+    IA4 (Q4 Q5 a4 VDD GND) AND2_T
+    IX4 (tq4 a4 dt4 VDD GND) XOR2_X1
+    IT4 (dt4 CLK GND RST tq4 VDD GND) DFF_TSPC
+    IM4 (Q4 tq4 LP LPB V4 VDD GND) MUX2_N
+    // bit 5
+    IA5 (Q5 Q6 a5 VDD GND) AND2_T
+    IX5 (tq5 a5 dt5 VDD GND) XOR2_X1
+    IT5 (dt5 CLK GND RST tq5 VDD GND) DFF_TSPC
+    IM5 (Q5 tq5 LP LPB V5 VDD GND) MUX2_N
+    // bit 6
+    IA6 (Q6 Q7 a6 VDD GND) AND2_T
+    IX6 (tq6 a6 dt6 VDD GND) XOR2_X1
+    IT6 (dt6 CLK GND RST tq6 VDD GND) DFF_TSPC
+    IM6 (Q6 tq6 LP LPB V6 VDD GND) MUX2_N
+    // bit 7
+    IA7 (Q7 Q0 a7 VDD GND) AND2_T
+    IX7 (tq7 a7 dt7 VDD GND) XOR2_X1
+    IT7 (dt7 CLK GND RST tq7 VDD GND) DFF_TSPC
+    IM7 (Q7 tq7 LP LPB V7 VDD GND) MUX2_N
+ends LT_RTPG_8bit
