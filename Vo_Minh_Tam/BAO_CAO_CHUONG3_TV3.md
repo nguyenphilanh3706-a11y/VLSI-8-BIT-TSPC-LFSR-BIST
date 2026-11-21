@@ -12,7 +12,7 @@ giá trị hồi tiếp về ngõ vào D0 là
   FB = Q0 ⊕ Q5 ⊕ Q6 ⊕ Q7.
 
 Vì P(x) nguyên thủy, chuỗi trạng thái có chu kỳ cực đại 2⁸ − 1 = 255 và đi qua mọi trạng thái khác 00000000.
-Mô hình chuẩn `scripts/lfsr_model.awk` xác nhận 255 trạng thái khác nhau; bảng giá trị mong đợi của các testbench
+Mô hình chuẩn của LFSR xác nhận 255 trạng thái khác nhau; bảng giá trị mong đợi của các testbench
 được sinh từ cùng công thức này.
 
 Bốn tín hiệu được XOR theo cây hai tầng (khối XORTAP8): tầng 1 gồm XOR(Q0, Q5) và XOR(Q6, Q7), tầng 2 XOR hai kết quả.

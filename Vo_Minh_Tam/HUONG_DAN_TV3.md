@@ -10,7 +10,6 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm cho mọi transistor. Chân nguồn
 | `cells/cells.scs` | include chung các cell cơ bản |
 | `blocks/` | khối ghép: XORTAP8, ZERO7, CFSR_FB và bản đối chứng |
 | `tb/` | testbench khối và testbench so sánh XOR (`*_cmp`), mỗi cái có bản NN/SS/FF |
-| `scripts/` | chạy mô phỏng (`run_cells.sh`, `run_sim.sh`) và kiểm tra kết quả (`check.awk`) |
 
 ## 2. Giới thiệu cell
 
@@ -70,25 +69,17 @@ V <k> <đo trễ 0|1> <Y mong đợi> ; <mô tả>
 
 ## 4. Chạy mô phỏng (trong VM, tại thư mục Vo_Minh_Tam)
 
-Một cell, một corner:
-```
-ONLY="NOR3_X1" bash scripts/run_cells.sh NN
-```
-Tất cả cell, cả 3 corner: `bash scripts/run_cells.sh`. Kết quả: `out/cells/<corner>/<CELL>/tr.tran`, log `spectre.log`.
-Dòng cuối `TAT CA CELL: PASS` là đạt.
-
-Khối và testbench so sánh:
-```
-bash scripts/run_sim.sh tb/tb_CFSR_FB_NN.scs
-bash scripts/run_sim.sh tb/tb_XOR2_*_cmp_NN.scs
-```
-In ra số vector đúng, trễ lớn nhất, năng lượng; kết quả ở `out/<tên testbench>/`.
-
-Chạy tay một testbench:
+Một testbench cell:
 ```
 cd cells/NOR3_X1 && spectre tb_NOR3_X1.scs -raw ../../out/nor3 +log ../../out/nor3.log
 cd ../.. && viva -datadir out/nor3 &
 ```
+Testbench khối, so sánh XOR (bản NN/SS/FF) chạy giống vậy trong thư mục `tb`:
+```
+cd tb && spectre tb_CFSR_FB_NN.scs -raw ../out/cfsr_nn +log ../out/cfsr_nn.log
+```
+So Y ở cuối mỗi vector với bảng `.exp` cạnh testbench. Trễ: Calculator -> `delay`, ngưỡng 0,6 V;
+năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 
 ## 5. Mô phỏng bằng ADE L
 
@@ -117,8 +108,7 @@ Cell khác nhóm làm cùng khuôn này thì xếp liền hàng với cell TV3 �
 
 Mô phỏng sau layout (trong VM, thư mục Vo_Minh_Tam):
 ```
-bash scripts/run_sim.sh layout/rcx/tb_CFSR_FB_post_NN.scs
-bash scripts/run_sim.sh layout/rcx/tb_XOR2_*_cmp_post_NN.scs
-bash scripts/run_sim.sh tb/tb_XOR2_*_fo8_NN.scs          # XOR tải 8 cổng, trước layout
+cd layout/rcx && spectre tb_CFSR_FB_post_NN.scs -raw ../../out/cfsr_post +log ../../out/cfsr_post.log
+cd ../../tb && spectre tb_XOR2_TG6_fo8_NN.scs -raw ../out/tg6_fo8 +log ../out/tg6_fo8.log   # XOR tải 8 cổng, trước layout
 ```
 Testbench sau layout dùng lại phần thân `tb/*.scs` và bảng `.exp` cũ, chỉ thay mạch DUT bằng `layout/rcx/<CELL>_rcx.scs`.

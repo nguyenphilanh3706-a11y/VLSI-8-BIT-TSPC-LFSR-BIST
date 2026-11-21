@@ -4,7 +4,7 @@ Spectre, 27 °C, VDD 1,2 V. Mỗi ngõ vào qua 2 INV_X1 đệm (giống ngõ ra
 Trễ = lần cắt 0,6 V cuối cùng của ngõ ra, tính từ giữa sườn vào, lấy lớn nhất trên mọi vector.
 Tổng W = tổng bề rộng kênh của các transistor (đại diện diện tích trước khi vẽ layout).
 
-Chạy lại: `bash scripts/run_sim.sh tb/tb_<tên>_<NN|SS|FF>.scs`
+Cách chạy testbench: `HUONG_DAN_TV3.md` mục 4.
 
 ## 1. Cổng XOR2 (9 vector, duyệt mọi cạnh của 2 ngõ vào)
 
@@ -39,10 +39,10 @@ ZERO7 phát hiện Q0..Q6 = 0 bằng 2 NOR3 + NAND2 + NOR2 (20T, thay cho 26T).
 Các phương án đã thử và bỏ: dùng XOR 6T cả 4 cổng (44T, 468 ps NN), XOR 6T hai tầng đầu (50T, 326 ps NN).
 
 ## 4. Mô hình chuẩn
-`scripts/lfsr_model.awk`: LFSR (FB = Q0^Q5^Q6^Q7, dịch Q0 -> Q7) có 255 trạng thái khác nhau;
+LFSR (FB = Q0^Q5^Q6^Q7, dịch Q0 -> Q7) có 255 trạng thái khác nhau;
 CFSR có 256 trạng thái, gồm cả 00000000. Bảng giá trị mong đợi của testbench sinh từ cùng công thức.
 
-## 5. Testbench từng cell (`bash scripts/run_cells.sh`, tải FO4, ngõ vào sườn 20 ps)
+## 5. Testbench từng cell (tải FO4, ngõ vào sườn 20 ps)
 
 | Cell | Vector | Trễ NN | Trễ SS | Trễ FF |
 |---|---|---|---|---|
