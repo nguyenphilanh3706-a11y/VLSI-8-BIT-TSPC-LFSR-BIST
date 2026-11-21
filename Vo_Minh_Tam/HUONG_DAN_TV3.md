@@ -99,3 +99,26 @@ cd ../.. && viva -datadir out/nor3 &
 4. Analyses -> `tran`, stop 1.5n (INV) hoặc 4.5n (cổng 2-3 ngõ vào), `conservative`.
 5. Outputs -> To Be Plotted -> chọn ngõ vào và Y trên schematic. Netlist and Run.
 6. Đo trễ: Calculator -> `delay`, ngưỡng 0,6 V cả hai tín hiệu. Session -> Save State để dùng lại.
+
+## 6. Layout, extracted và mô phỏng sau layout
+
+| Nội dung | Vị trí |
+|---|---|
+| Layout + av_extracted 7 cell lá (và FILL1/2/4/8 lấp chỗ trống) | `~/TV3_PROJ/TV3_CELLS` |
+| Layout + av_extracted 5 khối (XORTAP8, ZERO7, CFSR_FB, bản CMOS) | `~/TV3_PROJ/TV3_BLK` |
+| GDS từng cell và từng khối (khối đã gộp cell lá) | `layout/gds/` |
+| Báo cáo LVS khối | `layout/assura/` |
+| Ảnh layout | `layout/hinh/` |
+| Netlist trích ký sinh (Spectre) và testbench sau layout | `layout/rcx/` |
+
+Mở xem: `cd ~/TV3_PROJ && virtuoso &`, Library Manager -> `TV3_CELLS` hoặc `TV3_BLK` -> view `layout` / `av_extracted`.
+Khuôn cell: cao 2,76 µm, bước cột 0,27 µm, ray GND (dưới) và VDD (trên) Metal1 rộng 0,24 µm, chân tín hiệu Metal1.
+Cell khác nhóm làm cùng khuôn này thì xếp liền hàng với cell TV3 được (dùng chung ray).
+
+Mô phỏng sau layout (trong VM, thư mục Vo_Minh_Tam):
+```
+bash scripts/run_sim.sh layout/rcx/tb_CFSR_FB_post_NN.scs
+bash scripts/run_sim.sh layout/rcx/tb_XOR2_*_cmp_post_NN.scs
+bash scripts/run_sim.sh tb/tb_XOR2_*_fo8_NN.scs          # XOR tải 8 cổng, trước layout
+```
+Testbench sau layout dùng lại phần thân `tb/*.scs` và bảng `.exp` cũ, chỉ thay mạch DUT bằng `layout/rcx/<CELL>_rcx.scs`.
