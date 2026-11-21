@@ -316,6 +316,12 @@ In **Virtuoso Visualization & Analysis (ViVA) / ADE L Calculator**, the followin
 | **Member 5** | **DFT / BILBO & MISR Architect** | `BILBO_Cell`, `BILBO_8bit_MISR` | Design 4-mode `C[1:0]` steering multiplexer (Reset, Normal, Scan, Test) & E-TSPC embedded logic (N1); verify MISR signature compaction; layout. |
 | **Member 6** | **System Lead, CUT & PVT Analyst** | `FA_28T_Mirror`, `CUT_RCA_4bit`, `Top_BIST_TB` | Design 4-bit 28T Mirror Adder CUT with internal SA0/SA1/SOP fault switches (N3); execute full BIST PASS/FAIL demo; run PVT & post-layout PEX sweeps. |
 
+### 8.3. Progress
+
+| Member | Folder | Status |
+| :---: | :--- | :--- |
+| **Member 3** (Võ Minh Tâm) | [`Vo_Minh_Tam/`](Vo_Minh_Tam/README.md) | Done: XOR2 CMOS 12T / TG 8T / TG 6T, INV, NAND2, NOR2, NOR3, XORTAP8, ZERO7, CFSR_FB (256 states). Schematic, symbol, layout, extracted; DRC clean, LVS match; post-layout PASS at NN/SS/FF. CFSR_FB: 56T, 62.6 µm², 275.5 ps (NN). |
+
 ---
 
 ## 9. References
