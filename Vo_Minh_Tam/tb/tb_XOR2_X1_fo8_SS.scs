@@ -1,0 +1,6 @@
+// XOR2_X1 tai FO8, corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../cells/cells.scs"
+include "../cells/XOR2_TG/XOR2_TG.scs"
+include "tb_XOR2_X1_fo8.scs"

@@ -1,0 +1,6 @@
+// XORTAP8_CMOS sau layout (Assura RCX), corner NN
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../../cells/INV_X1/INV_X1.scs"
+include "XORTAP8_CMOS_rcx.scs"
+include "../../tb/tb_XORTAP8_CMOS.scs"

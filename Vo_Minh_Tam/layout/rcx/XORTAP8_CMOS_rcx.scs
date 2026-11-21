@@ -1,0 +1,321 @@
+// XORTAP8_CMOS sau layout: Assura RCX
+simulator lang=spectre
+subckt XORTAP8_CMOS Q0 Q5 Q6 Q7 FB VDD GND
+    I_MXI2_MN1 (XI2_Bn_3 t67_10 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_MN5 (XI2_n2 XI2_Bn_7 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_MN4 (FB_6 XI2_An_3 XI2_n2 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_MN2 (XI2_n1 t05_9 FB_6 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_MN3 (GND t67_16 XI2_n1 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_MN0 (XI2_An_8 t05_14 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_MN1 (XI1_Bn_5 Q7_9 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_MN5 (XI1_n2 XI1_Bn_3 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_MN4 (t67_3 XI1_An_7 XI1_n2 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_MN2 (XI1_n1 Q6_10 t67_3 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_MN3 (GND Q7_3 XI1_n1 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_MN0 (XI1_An Q6_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_MN1 (XI0_Bn_3 Q5_5 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_MN5 (XI0_n2 XI0_Bn_8 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_MN4 (t05_3 XI0_An_4 XI0_n2 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI0_MN2 (XI0_n1 Q0_4 t05_3 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI0_MN3 (GND Q5_10 XI0_n1 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_MN0 (XI0_An_7 Q0_11 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_MP1 (VDD t67_11 XI2_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_MP5 (FB_1 XI2_Bn_8 XI2_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_MP4 (XI2_p1_3 XI2_An_4 FB_1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_MP2 (VDD t05_10 XI2_p1_3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_MP3 (XI2_p1_5 t67_17 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_MP0 (VDD t05_16 XI2_An_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_MP1 (VDD Q7_10 XI1_Bn_7 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_MP5 (t67_4 XI1_Bn_4 XI1_p1_5 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_MP4 (XI1_p1_3 XI1_An_8 t67_4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_MP2 (VDD Q6_11 XI1_p1_3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_MP3 (XI1_p1 Q7_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_MP0 (VDD Q6_6 XI1_An_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_MP1 (VDD Q5_4 XI0_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_MP5 (t05 XI0_Bn_7 XI0_p1_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_MP4 (XI0_p1_4 XI0_An_3 t05 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI0_MP2 (VDD Q0_3 XI0_p1_4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI0_MP3 (XI0_p1_6 Q5_9 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_MP0 (VDD Q0_9 XI0_An_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_Rj1 (Q6_4 Q6_5) resistor r=54.5435
+    I_Rj2 (Q6_5 Q6_6) resistor r=48.5435
+    I_Rj3 (Q6_1 Q6_5) resistor r=10.0000
+    I_Rj4 (Q7_3 Q7_2) resistor r=48.5435
+    I_Rj5 (Q7_2 Q7_4) resistor r=36.5435
+    I_Rj6 (Q6_10 Q6_7) resistor r=48.5435
+    I_Rj7 (Q6_7 Q6_11) resistor r=36.5435
+    I_Rj8 (XI1_An_7 XI1_An_6) resistor r=48.5435
+    I_Rj9 (XI1_An_6 XI1_An_8) resistor r=36.5435
+    I_Rj10 (Q5_4 Q5_1) resistor r=48.5435
+    I_Rj11 (Q5_1 Q5_5) resistor r=54.5435
+    I_Rj12 (XI1_Bn_3 XI1_Bn) resistor r=48.5435
+    I_Rj13 (XI1_Bn XI1_Bn_4) resistor r=36.5435
+    I_Rj14 (XI0_Bn_7 XI0_Bn_5) resistor r=36.5435
+    I_Rj15 (XI0_Bn_5 XI0_Bn_8) resistor r=48.5435
+    I_Rj16 (Q7_9 Q7_7) resistor r=54.5435
+    I_Rj17 (Q7_7 Q7_10) resistor r=48.5435
+    I_Rj18 (XI0_An_3 XI0_An) resistor r=36.5435
+    I_Rj19 (XI0_An XI0_An_4) resistor r=48.5435
+    I_Rj20 (Q0_3 Q0_1) resistor r=36.5435
+    I_Rj21 (Q0_1 Q0_4) resistor r=48.5435
+    I_Rj22 (t67_10 t67_9) resistor r=54.5435
+    I_Rj23 (t67_9 t67_11) resistor r=48.5435
+    I_Rj24 (Q5_9 Q5_6) resistor r=36.5435
+    I_Rj25 (Q5_6 Q5_10) resistor r=48.5435
+    I_Rj26 (XI2_Bn_7 XI2_Bn_6) resistor r=48.5435
+    I_Rj27 (XI2_Bn_6 XI2_Bn_8) resistor r=36.5435
+    I_Rj28 (Q0_9 Q0_10) resistor r=48.5435
+    I_Rj29 (Q0_10 Q0_11) resistor r=54.5435
+    I_Rj30 (Q0_5 Q0_10) resistor r=10.0000
+    I_Rj31 (XI2_An_3 XI2_An) resistor r=48.5435
+    I_Rj32 (XI2_An XI2_An_4) resistor r=36.5435
+    I_Rj33 (t05_9 t05_7) resistor r=48.5435
+    I_Rj34 (t05_7 t05_10) resistor r=36.5435
+    I_Rj35 (t67_16 t67_14) resistor r=48.5435
+    I_Rj36 (t67_14 t67_17) resistor r=36.5435
+    I_Rj37 (t05_14 t05_15) resistor r=54.5435
+    I_Rj38 (t05_15 t05_16) resistor r=48.5435
+    I_Rj39 (t05_11 t05_15) resistor r=10.0000
+    I_Ri1 (XI1_An XI1_An_2) resistor r=16.6347
+    I_Ri2 (Q6_1 Q6_2) resistor r=6.133E-02
+    I_Ri3 (Q6_2 Q6_3) resistor r=1.5200
+    I_Ri4 (XI1_An_3 XI1_An_4) resistor r=16.8907
+    I_Ri5 (XI1_p1 XI1_p1_2) resistor r=16.4267
+    I_Ri6 (Q7_1 Q7_2) resistor r=11.4267
+    I_Ri7 (Q6_7 Q6_8) resistor r=11.5813
+    I_Ri8 (t67 t67_2) resistor r=1.4347
+    I_Ri9 (t67_2 t67_3) resistor r=15.0453
+    I_Ri10 (XI1_p1_3 XI1_p1_4) resistor r=16.4267
+    I_Ri11 (XI0_Bn XI0_Bn_2) resistor r=16.8907
+    I_Ri12 (XI1_An_6 XI1_An_5) resistor r=10.1280
+    I_Ri13 (Q5_1 Q5_2) resistor r=10.0267
+    I_Ri14 (Q5_2 Q5_3) resistor r=3.467E-02
+    I_Ri15 (t67_4 t67_5) resistor r=17.0453
+    I_Ri16 (XI0_Bn_3 XI0_Bn_4) resistor r=16.6347
+    I_Ri17 (XI1_Bn XI1_Bn_2) resistor r=11.5280
+    I_Ri18 (XI1_p1_5 XI1_p1_6) resistor r=16.4267
+    I_Ri19 (XI0_p1 XI0_p1_2) resistor r=16.4267
+    I_Ri20 (XI0_Bn_5 XI0_Bn_6) resistor r=11.5280
+    I_Ri21 (XI1_Bn_5 XI1_Bn_6) resistor r=16.6347
+    I_Ri22 (t05 t05_2) resistor r=17.0453
+    I_Ri23 (Q7_5 Q7_6) resistor r=3.467E-02
+    I_Ri24 (Q7_6 Q7_7) resistor r=10.0267
+    I_Ri25 (XI0_An XI0_An_2) resistor r=11.5280
+    I_Ri26 (XI1_Bn_7 XI1_Bn_8) resistor r=16.8907
+    I_Ri27 (XI0_p1_3 XI0_p1_4) resistor r=16.4267
+    I_Ri28 (t05_3 t05_4) resistor r=15.0453
+    I_Ri29 (t05_4 t05_5) resistor r=1.4347
+    I_Ri30 (Q0_1 Q0_2) resistor r=11.5813
+    I_Ri31 (XI2_Bn XI2_Bn_2) resistor r=16.8907
+    I_Ri32 (t67_7 t67_8) resistor r=3.467E-02
+    I_Ri33 (t67_8 t67_9) resistor r=10.0267
+    I_Ri34 (Q5_6 Q5_7) resistor r=11.4267
+    I_Ri35 (XI2_Bn_3 XI2_Bn_4) resistor r=16.6347
+    I_Ri36 (XI0_p1_5 XI0_p1_6) resistor r=16.4267
+    I_Ri37 (XI2_p1 XI2_p1_2) resistor r=16.4267
+    I_Ri38 (XI0_An_5 XI0_An_6) resistor r=16.8907
+    I_Ri39 (XI2_Bn_6 XI2_Bn_5) resistor r=10.1280
+    I_Ri40 (Q0_5 Q0_6) resistor r=6.133E-02
+    I_Ri41 (Q0_6 Q0_7) resistor r=1.5200
+    I_Ri42 (FB_1 FB_2) resistor r=17.0453
+    I_Ri43 (XI0_An_7 XI0_An_8) resistor r=16.6347
+    I_Ri44 (XI2_An XI2_An_2) resistor r=11.5280
+    I_Ri45 (FB_4 FB_5) resistor r=1.4347
+    I_Ri46 (FB_5 FB_6) resistor r=15.0453
+    I_Ri47 (XI2_p1_3 XI2_p1_4) resistor r=16.4267
+    I_Ri48 (t05_7 t05_8) resistor r=11.5813
+    I_Ri49 (t67_13 t67_14) resistor r=11.4267
+    I_Ri50 (XI2_p1_5 XI2_p1_6) resistor r=16.4267
+    I_Ri51 (XI2_An_5 XI2_An_6) resistor r=16.8907
+    I_Ri52 (t05_11 t05_12) resistor r=6.133E-02
+    I_Ri53 (t05_12 t05_13) resistor r=1.5200
+    I_Ri54 (XI2_An_8 XI2_An_7) resistor r=15.2347
+    I_Rh1 (Q6_8 Q6_9) resistor r=0.5319
+    I_Rh2 (Q6_9 Q6_3) resistor r=0.1119
+    I_Rh3 (Q6_9 Q6) resistor r=1.7614
+    I_Rh4 (XI1_An_5 XI1_An_4) resistor r=2.1560
+    I_Rh5 (XI1_An_4 XI1_An_2) resistor r=0.2160
+    I_Rh6 (t67 t67_6) resistor r=0.1492
+    I_Rh7 (t67_6 t67_5) resistor r=2.300E-02
+    I_Rh8 (XI1_p1_6 XI1_p1_4) resistor r=0.4320
+    I_Rh9 (XI1_p1_4 XI1_p1_2) resistor r=0.4320
+    I_Rh10 (XI0_Bn_6 XI0_Bn_4) resistor r=0.3240
+    I_Rh11 (XI0_Bn_4 XI0_Bn_2) resistor r=0.2160
+    I_Rh12 (Q7 Q7_8) resistor r=1.8284
+    I_Rh13 (Q7_8 Q7_1) resistor r=1.0800
+    I_Rh14 (Q7_6 Q7_8) resistor r=1.4000
+    I_Rh15 (XI1_Bn_8 XI1_Bn_6) resistor r=0.2160
+    I_Rh16 (XI1_Bn_6 XI1_Bn_2) resistor r=0.3240
+    I_Rh17 (t05_5 t05_2) resistor r=0.2160
+    I_Rh18 (t05_5 t05_6) resistor r=1.8513
+    I_Rh19 (Q5_7 Q5_8) resistor r=1.0079
+    I_Rh20 (Q5_8 Q5) resistor r=1.8043
+    I_Rh21 (Q5_8 Q5_2) resistor r=1.4679
+    I_Rh22 (XI0_p1_5 XI0_p1_3) resistor r=0.4320
+    I_Rh23 (XI0_p1_3 XI0_p1) resistor r=0.4320
+    I_Rh24 (XI2_Bn_5 XI2_Bn_4) resistor r=1.7240
+    I_Rh25 (XI2_Bn_4 XI2_Bn_2) resistor r=0.2160
+    I_Rh26 (FB FB_3) resistor r=2.8268
+    I_Rh27 (Q0_7 Q0_8) resistor r=0.1639
+    I_Rh28 (Q0_8 Q0_2) resistor r=0.4799
+    I_Rh29 (Q0_8 Q0) resistor r=1.6800
+    I_Rh30 (XI0_An_8 XI0_An_6) resistor r=0.2160
+    I_Rh31 (XI0_An_6 XI0_An_2) resistor r=0.7560
+    I_Rh32 (FB_4 FB_2) resistor r=0.2160
+    I_Rh33 (FB_2 FB_7) resistor r=2.830E-02
+    I_Rh34 (t67_13 t67_12) resistor r=1.0522
+    I_Rh35 (t67_12 t67_15) resistor r=1.472E-02
+    I_Rh36 (t67_8 t67_15) resistor r=1.4000
+    I_Rh37 (XI2_p1_6 XI2_p1_4) resistor r=0.4320
+    I_Rh38 (XI2_p1_4 XI2_p1_2) resistor r=0.4320
+    I_Rh39 (XI2_An_7 XI2_An_6) resistor r=1.6160
+    I_Rh40 (XI2_An_6 XI2_An_2) resistor r=0.7560
+    I_Rh41 (t05_13 t05_8) resistor r=0.6480
+    I_Rh42 (t05_13 t05_17) resistor r=2.4883
+    I_Rg1 (t67_12 t67_6) resistor r=4.1774
+    I_Rg2 (FB_7 FB_3) resistor r=2.0612
+    I_Rg3 (t05_17 t05_6) resistor r=2.1058
+    I_C1 (VDD GND) capacitor c=6.401E-15
+    I_C2 (FB GND) capacitor c=1.508E-16
+    I_C3 (Q0 GND) capacitor c=2.020E-16
+    I_C4 (Q5 GND) capacitor c=2.048E-16
+    I_C5 (Q6 GND) capacitor c=1.822E-16
+    I_C6 (Q7 GND) capacitor c=1.953E-16
+    I_C7 (t05 GND) capacitor c=1.178E-16
+    I_C8 (t67 GND) capacitor c=5.503E-17
+    I_C9 (XI2_n2 GND) capacitor c=8.634E-18
+    I_C10 (XI2_An GND) capacitor c=1.068E-16
+    I_C11 (XI2_Bn GND) capacitor c=8.800E-17
+    I_C12 (XI1_n2 GND) capacitor c=5.124E-18
+    I_C13 (XI1_An GND) capacitor c=3.467E-17
+    I_C14 (XI1_Bn GND) capacitor c=1.021E-16
+    I_C15 (XI0_p1 GND) capacitor c=1.392E-16
+    I_C16 (XI0_n2 GND) capacitor c=7.635E-18
+    I_C17 (XI0_An GND) capacitor c=1.068E-16
+    I_C18 (XI0_Bn GND) capacitor c=7.055E-17
+    I_C19 (t05_16 GND) capacitor c=5.020E-17
+    I_C20 (t67_17 GND) capacitor c=7.092E-17
+    I_C21 (t05_10 GND) capacitor c=5.725E-17
+    I_C22 (XI2_An_4 GND) capacitor c=6.300E-17
+    I_C23 (Q0_9 GND) capacitor c=5.878E-17
+    I_C24 (XI2_Bn_8 GND) capacitor c=6.306E-17
+    I_C25 (Q5_9 GND) capacitor c=6.004E-17
+    I_C26 (t67_11 GND) capacitor c=5.745E-17
+    I_C27 (Q0_3 GND) capacitor c=5.685E-17
+    I_C28 (XI0_An_3 GND) capacitor c=6.574E-17
+    I_C29 (Q7_10 GND) capacitor c=5.591E-17
+    I_C30 (XI0_Bn_7 GND) capacitor c=6.657E-17
+    I_C31 (XI1_Bn_4 GND) capacitor c=6.741E-17
+    I_C32 (Q5_4 GND) capacitor c=5.469E-17
+    I_C33 (XI1_An_8 GND) capacitor c=6.639E-17
+    I_C34 (Q6_11 GND) capacitor c=5.738E-17
+    I_C35 (Q7_4 GND) capacitor c=6.000E-17
+    I_C36 (Q6_6 GND) capacitor c=4.952E-17
+    I_C37 (t05_14 GND) capacitor c=5.088E-17
+    I_C38 (t67_16 GND) capacitor c=5.787E-17
+    I_C39 (t05_9 GND) capacitor c=5.787E-17
+    I_C40 (XI2_An_3 GND) capacitor c=5.327E-17
+    I_C41 (Q0_11 GND) capacitor c=5.814E-17
+    I_C42 (XI2_Bn_7 GND) capacitor c=5.594E-17
+    I_C43 (Q5_10 GND) capacitor c=5.976E-17
+    I_C44 (t67_10 GND) capacitor c=5.446E-17
+    I_C45 (Q0_4 GND) capacitor c=5.584E-17
+    I_C46 (XI0_An_4 GND) capacitor c=5.168E-17
+    I_C47 (Q7_9 GND) capacitor c=5.559E-17
+    I_C48 (XI0_Bn_8 GND) capacitor c=5.536E-17
+    I_C49 (XI1_Bn_3 GND) capacitor c=5.550E-17
+    I_C50 (Q5_5 GND) capacitor c=5.628E-17
+    I_C51 (XI1_An_7 GND) capacitor c=5.815E-17
+    I_C52 (Q6_10 GND) capacitor c=5.810E-17
+    I_C53 (Q7_3 GND) capacitor c=5.833E-17
+    I_C54 (Q6_4 GND) capacitor c=5.739E-17
+    I_C55 (t05_17 GND) capacitor c=3.066E-16
+    I_C56 (FB_7 GND) capacitor c=1.617E-16
+    I_C57 (FB_3 GND) capacitor c=2.139E-16
+    I_C58 (t67_12 GND) capacitor c=1.589E-16
+    I_C59 (t05_6 GND) capacitor c=3.019E-16
+    I_C60 (t67_6 GND) capacitor c=1.862E-16
+    I_C61 (t05_11 GND) capacitor c=5.956E-17
+    I_C62 (t67_14 GND) capacitor c=5.345E-17
+    I_C63 (t05_7 GND) capacitor c=9.778E-17
+    I_C64 (Q0_5 GND) capacitor c=1.386E-16
+    I_C65 (XI2_Bn_6 GND) capacitor c=1.011E-16
+    I_C66 (Q5_6 GND) capacitor c=1.177E-16
+    I_C67 (t67_9 GND) capacitor c=6.729E-17
+    I_C68 (Q0_1 GND) capacitor c=9.674E-17
+    I_C69 (Q7_7 GND) capacitor c=7.026E-17
+    I_C70 (XI0_Bn_5 GND) capacitor c=1.025E-16
+    I_C71 (Q5_1 GND) capacitor c=1.629E-16
+    I_C72 (XI1_An_6 GND) capacitor c=1.061E-16
+    I_C73 (Q6_7 GND) capacitor c=9.649E-17
+    I_C74 (Q7_2 GND) capacitor c=5.531E-17
+    I_C75 (Q6_1 GND) capacitor c=6.385E-17
+    I_C76 (XI2_An_7 GND) capacitor c=1.152E-16
+    I_C77 (t05_13 GND) capacitor c=2.107E-16
+    I_C78 (XI2_An_6 GND) capacitor c=2.347E-16
+    I_C79 (XI2_p1_6 GND) capacitor c=1.680E-16
+    I_C80 (t67_13 GND) capacitor c=3.836E-16
+    I_C81 (t05_8 GND) capacitor c=2.688E-16
+    I_C82 (FB_4 GND) capacitor c=6.929E-17
+    I_C83 (XI2_p1_4 GND) capacitor c=2.096E-16
+    I_C84 (XI0_An_8 GND) capacitor c=8.310E-17
+    I_C85 (XI2_An_2 GND) capacitor c=2.869E-16
+    I_C86 (Q0_7 GND) capacitor c=8.404E-17
+    I_C87 (FB_2 GND) capacitor c=1.465E-16
+    I_C88 (XI0_An_6 GND) capacitor c=2.136E-16
+    I_C89 (XI2_Bn_5 GND) capacitor c=1.585E-16
+    I_C90 (XI2_p1_2 GND) capacitor c=1.556E-16
+    I_C91 (XI0_p1_5 GND) capacitor c=1.786E-16
+    I_C92 (Q5_7 GND) capacitor c=3.074E-16
+    I_C93 (XI2_Bn_4 GND) capacitor c=1.456E-16
+    I_C94 (t67_8 GND) capacitor c=2.641E-16
+    I_C95 (Q0_2 GND) capacitor c=2.228E-16
+    I_C96 (XI2_Bn_2 GND) capacitor c=1.603E-16
+    I_C97 (XI0_p1_3 GND) capacitor c=2.002E-16
+    I_C98 (t05_5 GND) capacitor c=7.726E-17
+    I_C99 (XI0_An_2 GND) capacitor c=2.747E-16
+    I_C100 (XI1_Bn_8 GND) capacitor c=1.545E-16
+    I_C101 (t05_2 GND) capacitor c=2.057E-16
+    I_C102 (Q7_6 GND) capacitor c=4.028E-16
+    I_C103 (XI0_Bn_6 GND) capacitor c=1.344E-16
+    I_C104 (XI1_Bn_6 GND) capacitor c=1.456E-16
+    I_C105 (XI1_p1_6 GND) capacitor c=1.365E-16
+    I_C106 (XI0_Bn_4 GND) capacitor c=1.302E-16
+    I_C107 (XI1_Bn_2 GND) capacitor c=1.431E-16
+    I_C108 (Q5_2 GND) capacitor c=4.161E-17
+    I_C109 (t67_5 GND) capacitor c=1.479E-16
+    I_C110 (XI0_Bn_2 GND) capacitor c=1.479E-16
+    I_C111 (XI1_An_5 GND) capacitor c=2.685E-16
+    I_C112 (XI1_p1_4 GND) capacitor c=2.006E-16
+    I_C113 (Q6_8 GND) capacitor c=2.371E-16
+    I_C114 (Q7_1 GND) capacitor c=3.706E-16
+    I_C115 (XI1_p1_2 GND) capacitor c=1.730E-16
+    I_C116 (XI1_An_4 GND) capacitor c=2.052E-16
+    I_C117 (Q6_3 GND) capacitor c=7.602E-17
+    I_C118 (XI1_An_2 GND) capacitor c=7.836E-17
+    I_C119 (XI2_An_5 GND) capacitor c=1.081E-16
+    I_C120 (XI2_p1_5 GND) capacitor c=7.398E-19
+    I_C121 (XI2_p1_3 GND) capacitor c=1.382E-18
+    I_C122 (FB_1 GND) capacitor c=1.100E-16
+    I_C123 (XI0_An_5 GND) capacitor c=1.088E-16
+    I_C124 (XI0_p1_4 GND) capacitor c=1.067E-18
+    I_C125 (XI1_Bn_7 GND) capacitor c=8.999E-17
+    I_C126 (t67_4 GND) capacitor c=1.181E-16
+    I_C127 (XI1_p1_3 GND) capacitor c=1.097E-18
+    I_C128 (XI1_An_3 GND) capacitor c=1.047E-16
+    I_C129 (XI2_An_8 GND) capacitor c=4.257E-17
+    I_C130 (XI0_An_7 GND) capacitor c=3.576E-17
+    I_C131 (XI2_Bn_3 GND) capacitor c=4.439E-17
+    I_C132 (XI1_Bn_5 GND) capacitor c=4.309E-17
+    I_C133 (XI0_Bn_3 GND) capacitor c=4.152E-17
+    I_C134 (t05_12 GND) capacitor c=6.739E-17
+    I_C135 (FB_5 GND) capacitor c=7.668E-17
+    I_C136 (t67_7 GND) capacitor c=1.062E-16
+    I_C137 (t05_4 GND) capacitor c=7.244E-17
+    I_C138 (Q7_5 GND) capacitor c=1.020E-16
+    I_C139 (t67_2 GND) capacitor c=7.741E-17
+    I_C140 (Q6_2 GND) capacitor c=7.428E-17
+    I_C141 (Q6_9 GND) capacitor c=2.628E-16
+    I_C142 (Q5_8 GND) capacitor c=3.685E-16
+    I_C143 (Q0_8 GND) capacitor c=2.486E-16
+ends XORTAP8_CMOS

@@ -1,0 +1,99 @@
+// XOR2_X1 sau layout: Assura RCX
+simulator lang=spectre
+subckt XOR2_X1 A B Y VDD GND
+    I_MN1 (Bn_3 B_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MN5 (n2 Bn_8 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MN4 (Y_3 An_4 n2 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MN2 (Y_3 A_4 n1 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MN3 (n1 B_8 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MN0 (An_7 A_9 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MP1 (Bn B_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MP5 (Y_1 Bn_7 p1_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MP4 (Y_1 An_3 p1_4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MP2 (p1_4 A_3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MP3 (p1_6 B_7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MP0 (An_5 A_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_Rj1 (B_3 B_1) resistor r=48.5435
+    I_Rj2 (B_1 B_4) resistor r=54.5435
+    I_Rj3 (Bn_7 Bn_5) resistor r=36.5435
+    I_Rj4 (Bn_5 Bn_8) resistor r=48.5435
+    I_Rj5 (An_3 An) resistor r=36.5435
+    I_Rj6 (An An_4) resistor r=48.5435
+    I_Rj7 (A_3 A_1) resistor r=36.5435
+    I_Rj8 (A_1 A_4) resistor r=48.5435
+    I_Rj9 (B_7 B_5) resistor r=36.5435
+    I_Rj10 (B_5 B_8) resistor r=48.5435
+    I_Rj11 (A_7 A_8) resistor r=48.5435
+    I_Rj12 (A_8 A_9) resistor r=54.5435
+    I_Rj13 (A_5 A_8) resistor r=10.0000
+    I_Ri1 (Bn Bn_2) resistor r=16.8907
+    I_Ri2 (B_1 B_2) resistor r=10.0267
+    I_Ri3 (B_2 B) resistor r=3.467E-02
+    I_Ri4 (Bn_3 Bn_4) resistor r=16.6347
+    I_Ri5 (p1 p1_2) resistor r=16.4267
+    I_Ri6 (Bn_5 Bn_6) resistor r=11.5280
+    I_Ri7 (Y_1 Y_2) resistor r=17.0453
+    I_Ri8 (An An_2) resistor r=11.5280
+    I_Ri9 (p1_3 p1_4) resistor r=16.4267
+    I_Ri10 (Y_3 Y) resistor r=15.0453
+    I_Ri11 (Y Y_4) resistor r=1.4347
+    I_Ri12 (A_1 A_2) resistor r=11.5813
+    I_Ri13 (B_5 B_6) resistor r=11.4267
+    I_Ri14 (p1_5 p1_6) resistor r=16.4267
+    I_Ri15 (An_5 An_6) resistor r=16.8907
+    I_Ri16 (A_5 A) resistor r=6.133E-02
+    I_Ri17 (A A_6) resistor r=1.5200
+    I_Ri18 (An_7 An_8) resistor r=16.6347
+    I_Rh1 (Bn_6 Bn_4) resistor r=0.3240
+    I_Rh2 (Bn_4 Bn_2) resistor r=0.2160
+    I_Rh3 (Y_4 Y_2) resistor r=0.2160
+    I_Rh4 (B_6 B_2) resistor r=2.4800
+    I_Rh5 (p1_5 p1_3) resistor r=0.4320
+    I_Rh6 (p1_3 p1) resistor r=0.4320
+    I_Rh7 (A_6 A_2) resistor r=0.6480
+    I_Rh8 (An_8 An_6) resistor r=0.2160
+    I_Rh9 (An_6 An_2) resistor r=0.7560
+    I_C1 (VDD GND) capacitor c=6.404E-16
+    I_C2 (Y GND) capacitor c=7.743E-17
+    I_C3 (p1 GND) capacitor c=1.245E-16
+    I_C4 (n2 GND) capacitor c=1.071E-17
+    I_C5 (An GND) capacitor c=1.067E-16
+    I_C6 (Bn GND) capacitor c=6.713E-17
+    I_C7 (B_3 GND) capacitor c=5.876E-17
+    I_C8 (Bn_7 GND) capacitor c=6.534E-17
+    I_C9 (An_3 GND) capacitor c=6.555E-17
+    I_C10 (A_3 GND) capacitor c=5.685E-17
+    I_C11 (B_7 GND) capacitor c=6.720E-17
+    I_C12 (A_7 GND) capacitor c=6.507E-17
+    I_C13 (B_4 GND) capacitor c=5.584E-17
+    I_C14 (Bn_8 GND) capacitor c=5.383E-17
+    I_C15 (An_4 GND) capacitor c=5.361E-17
+    I_C16 (A_4 GND) capacitor c=5.728E-17
+    I_C17 (B_8 GND) capacitor c=5.837E-17
+    I_C18 (A_9 GND) capacitor c=5.759E-17
+    I_C19 (B_1 GND) capacitor c=1.663E-16
+    I_C20 (Bn_5 GND) capacitor c=1.021E-16
+    I_C21 (A_1 GND) capacitor c=9.750E-17
+    I_C22 (B_5 GND) capacitor c=5.367E-17
+    I_C23 (A_5 GND) capacitor c=1.394E-16
+    I_C24 (Bn_2 GND) capacitor c=1.501E-16
+    I_C25 (B_2 GND) capacitor c=2.319E-16
+    I_C26 (Bn_4 GND) capacitor c=1.276E-16
+    I_C27 (Bn_6 GND) capacitor c=1.311E-16
+    I_C28 (Y_2 GND) capacitor c=2.069E-16
+    I_C29 (An_2 GND) capacitor c=2.696E-16
+    I_C30 (Y_4 GND) capacitor c=6.291E-17
+    I_C31 (p1_3 GND) capacitor c=1.946E-16
+    I_C32 (A_2 GND) capacitor c=2.636E-16
+    I_C33 (B_6 GND) capacitor c=3.732E-16
+    I_C34 (p1_5 GND) capacitor c=1.669E-16
+    I_C35 (An_6 GND) capacitor c=2.087E-16
+    I_C36 (A_6 GND) capacitor c=1.452E-16
+    I_C37 (An_8 GND) capacitor c=7.942E-17
+    I_C38 (Y_1 GND) capacitor c=1.209E-16
+    I_C39 (p1_4 GND) capacitor c=1.038E-18
+    I_C40 (p1_6 GND) capacitor c=7.398E-19
+    I_C41 (An_5 GND) capacitor c=1.055E-16
+    I_C42 (Bn_3 GND) capacitor c=4.092E-17
+    I_C43 (An_7 GND) capacitor c=3.459E-17
+ends XOR2_X1

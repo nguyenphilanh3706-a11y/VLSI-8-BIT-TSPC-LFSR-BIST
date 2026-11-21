@@ -1,0 +1,18 @@
+// INV_X1 sau layout: Assura RCX
+simulator lang=spectre
+subckt INV_X1 A Y VDD GND
+    I_MN0 (Y_1 A_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MP0 (Y_2 A_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_Rj1 (A_2 A_3) resistor r=48.5435
+    I_Rj2 (A_3 A_4) resistor r=54.5435
+    I_Rj3 (A A_3) resistor r=10.0000
+    I_Ri2 (Y Y_1) resistor r=15.1467
+    I_Ri3 (Y Y_2) resistor r=15.5787
+    I_C1 (VDD GND) capacitor c=1.313E-16
+    I_C2 (A GND) capacitor c=1.544E-16
+    I_C3 (Y GND) capacitor c=9.914E-17
+    I_C4 (A_2 GND) capacitor c=6.322E-17
+    I_C5 (A_4 GND) capacitor c=5.603E-17
+    I_C6 (Y_2 GND) capacitor c=7.083E-17
+    I_C7 (Y_1 GND) capacitor c=2.428E-17
+ends INV_X1
