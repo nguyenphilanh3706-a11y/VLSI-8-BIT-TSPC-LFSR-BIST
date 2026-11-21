@@ -1,0 +1,9 @@
+Schematic           | Layout                              | Status
+-------------------------------------------------------------------------------
+XOR2_TG6            | XOR2_TG6                            | matched         
+NOR3_X1             | NOR3_X1                             | matched         
+AOI21_X1            | AOI21_X1                            | matched         
+XNOR2_X1            | XNOR2_X1                            | matched         
+CFSR_FB_OPT         | CFSR_FB_OPT                         | matched         
+
+Schematic and Layout Match

@@ -19,7 +19,8 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm cho mọi transistor. Chân nguồn
 | INV_X1 | Y = !A | 2 | N 0,12 / P 0,24 | P gấp đôi N để cân bằng sườn lên/xuống |
 | NAND2_X1 | Y = !(A.B) | 4 | N 0,24 nối tiếp / P 0,24 song song | N nối tiếp nên rộng gấp đôi |
 | NOR2_X1 | Y = !(A+B) | 4 | N 0,12 song song / P 0,48 nối tiếp | P nối tiếp (p1) rộng gấp 4 lần N |
-| NOR3_X1 | Y = !(A+B+C) | 6 | N 0,12 song song / P 0,48 nối tiếp 3 tầng | dùng trong ZERO7 |
+| NOR3_X1 | Y = !(A+B+C) | 6 | N 0,12 song song / P 0,48 nối tiếp 3 tầng | dùng trong ZERO7, CFSR_FB_OPT |
+| AOI21_X1 | Y = !(A1.A2 + B) | 6 | N A1-A2 0,24 nối tiếp, B 0,12 / P 0,48 | dùng trong CFSR_FB_OPT |
 
 ### Cổng XOR2 (Y = A ^ B)
 | Cell | Kiểu | T | Tổng W | Nguyên lý |
@@ -27,6 +28,7 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm cho mọi transistor. Chân nguồn
 | XOR2_X1 | CMOS tĩnh | 12 | 3,60 µm | 2 inverter tạo An, Bn + cổng phức Y = !(A.B + An.Bn); ngõ ra luôn được kéo về ray |
 | XOR2_TG | cổng truyền 8T | 8 | 2,16 µm | 2 inverter + 2 cổng truyền: A=0 cho B qua, A=1 cho Bn qua |
 | XOR2_TG6 | cổng truyền 6T | 6 | 1,44 µm | 1 inverter (An) + 1 cổng truyền + cặp MP1/MN1 lấy nguồn từ A/An đảo B; cặp này rộng gấp đôi để kéo Y nhanh |
+| XNOR2_X1 | CMOS tĩnh (Y = !(A ^ B)) | 12 | 3,60 µm | như XOR2_X1, cổng phức Y = !(A.Bn + An.B); tầng cuối của CFSR_FB_OPT |
 
 XOR2_TG6 ít transistor nhất nhưng ngõ ra không phục hồi mức logic, nên không đặt hai tầng 6T nối tiếp.
 
@@ -38,6 +40,7 @@ XOR2_TG6 ít transistor nhất nhưng ngõ ra không phục hồi mức logic, n
 | ZERO7 | Z = 1 khi Q0..Q6 = 0: NOR(NAND(NOR3(Q0,Q1,Q2), NOR3(Q3,Q4,Q5)), Q6) | 20 |
 | CFSR_FB | FB = XORTAP8 ^ ZERO7: đưa trạng thái 00000000 vào chuỗi, LFSR 255 -> 256 trạng thái | 56 |
 | CFSR_FB_CMOS | bản đối chứng: XOR CMOS + cây NOR2/NAND2/INV | 74 |
+| CFSR_FB_OPT | bản tối ưu, cùng hàm CFSR_FB: FB = (Q6 ^ Q7) ^ [(Q0 ^ Q5) + NOR3(Q0,Q1,Q2).NOR3(Q3,Q4,Q6)] | 42 |
 
 Số liệu trễ, năng lượng và so sánh: `KET_QUA_TV3.md`.
 
@@ -55,6 +58,8 @@ Mỗi testbench cell có cùng cấu trúc:
 | tb_INV_X1 | A: 0 1 0 |
 | tb_NAND2_X1, tb_NOR2_X1, tb_XOR2_X1, tb_XOR2_TG, tb_XOR2_TG6 | AB: 00 10 00 01 11 10 11 01 00 |
 | tb_NOR3_X1 | ABC: 000 100 110 010 011 111 101 001 000 |
+| tb_AOI21_X1 | A1 A2 B: 000 100 110 010 011 111 101 001 000 |
+| tb_XNOR2_X1 | AB: như tb_XOR2_X1, Y mong đợi đảo lại |
 | tb/tb_XOR2_*_cmp | 9 vector, ngõ vào qua 2 INV đệm, có đo năng lượng |
 | tb/tb_XORTAP8*, tb/tb_CFSR_FB* | 16 / 256 tổ hợp, ngõ vào qua 2 INV đệm |
 
@@ -95,8 +100,9 @@ năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 
 | Nội dung | Vị trí |
 |---|---|
-| Layout + av_extracted 7 cell lá (và FILL1/2/4/8 lấp chỗ trống) | `~/TV3_PROJ/TV3_CELLS` |
-| Layout + av_extracted 5 khối (XORTAP8, ZERO7, CFSR_FB, bản CMOS) | `~/TV3_PROJ/TV3_BLK` |
+| Layout + av_extracted 9 cell lá, gồm AOI21_X1, XNOR2_X1 (và FILL1/2/4/8 lấp chỗ trống) | `~/TV3_PROJ/TV3_CELLS` |
+| Layout + av_extracted 6 khối (XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT, bản CMOS) | `~/TV3_PROJ/TV3_BLK` |
+| XOR2_X1 bản nén 15 cột (so sánh với XOR2_X1 17 cột) | `~/TV3_PROJ/TV3_OPT` |
 | GDS từng cell và từng khối (khối đã gộp cell lá) | `layout/gds/` |
 | Báo cáo LVS khối | `layout/assura/` |
 | Ảnh layout | `layout/hinh/` |
@@ -109,6 +115,7 @@ Cell khác nhóm làm cùng khuôn này thì xếp liền hàng với cell TV3 �
 Mô phỏng sau layout (trong VM, thư mục Vo_Minh_Tam):
 ```
 cd layout/rcx && spectre tb_CFSR_FB_post_NN.scs -raw ../../out/cfsr_post +log ../../out/cfsr_post.log
+spectre tb_CFSR_FB_OPT_post_NN.scs -raw ../../out/cfsr_opt_post +log ../../out/cfsr_opt_post.log   # ban toi uu
 cd ../../tb && spectre tb_XOR2_TG6_fo8_NN.scs -raw ../out/tg6_fo8 +log ../out/tg6_fo8.log   # XOR tải 8 cổng, trước layout
 ```
 Testbench sau layout dùng lại phần thân `tb/*.scs` và bảng `.exp` cũ, chỉ thay mạch DUT bằng `layout/rcx/<CELL>_rcx.scs`.
