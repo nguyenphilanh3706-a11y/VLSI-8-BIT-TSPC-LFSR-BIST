@@ -1,0 +1,7 @@
+// CFSR_FB_OPT, corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../cells/cells.scs"
+include "../cells/XOR2_TG/XOR2_TG.scs"
+include "../blocks/CFSR_FB_OPT.scs"
+include "tb_CFSR_FB_OPT.scs"

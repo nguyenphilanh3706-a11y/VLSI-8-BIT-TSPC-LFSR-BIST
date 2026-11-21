@@ -127,13 +127,59 @@ Hình 3.2. Layout XOR2_X1 (CMOS 12 transistor).
 ![Hình 3.3](layout/hinh/CFSR_FB.png)
 Hình 3.3. Layout khối CFSR_FB sau đặt và đi dây.
 
-## 3.x.5 Kết luận phần
+## 3.x.5 Tối ưu khối hồi tiếp (CFSR_FB_OPT)
 
-Phần TV3 đã xây dựng thư viện cổng INV, NAND2, NOR2, NOR3, ba cấu trúc XOR2 và khối hồi tiếp CFSR 8 bit với đủ
-schematic, symbol, layout và view trích ký sinh; toàn bộ 12 cell và khối đạt DRC 0 lỗi, LVS khớp. So với bản dùng toàn
-cổng CMOS, khối CFSR_FB đề xuất giảm 24 % transistor và 25 % diện tích, nhanh hơn 2 % và tốn ít hơn 7 % năng lượng,
-đồng thời bảo đảm thanh ghi không kẹt ở trạng thái toàn 0. Hướng tiếp theo: ghép CFSR_FB với flip-flop TSPC của TV2
-thành TSPC_LFSR_8bit và đo trễ trên đường hồi tiếp thực tế.
+Hàm hồi tiếp được rút gọn thêm dựa trên quan hệ giữa các số hạng. Khi Z = NOR(Q0, …, Q6) = 1 thì Q0 = Q5 = Q6 = 0,
+do đó (Q0 ⊕ Q5) và Z không bao giờ cùng bằng 1 và phép ⊕ giữa chúng tương đương phép OR. Ngoài ra, khi Q0 ⊕ Q5 = 0 và
+Q0 = 0 thì Q5 = 0, nên nhánh phát hiện 0 không cần xét Q5:
+
+  FB = (Q6 ⊕ Q7) ⊕ W,  W = (Q0 ⊕ Q5) + NOR3(Q0, Q1, Q2) · NOR3(Q3, Q4, Q6).
+
+Giá trị !W được tạo bằng một cổng AOI21 (6 transistor), thay cho NAND2, NOR2 và một XOR CMOS của CFSR_FB. Tầng cuối
+dùng XNOR2 CMOS để phục hồi mức logic khi lái ngõ D: FB = XNOR(Q6 ⊕ Q7, !W). Mạch còn 42 transistor và 3 tầng trên
+đường dài nhất (CFSR_FB: 56 transistor, 4 tầng); mô hình chuẩn và mô phỏng ở ba góc công nghệ đều cho 256/256 tổ hợp đúng.
+Năm phương án thu nhỏ hoặc tăng kích thước AOI21, NOR3, XNOR2 đều chậm hơn từ 1 đến 6 % mà năng lượng gần như không đổi, nên
+khối giữ kích thước của các cell gốc.
+
+Về layout, cell XOR2_X1 được sắp lại thứ tự transistor để chỉ còn một chỗ đứt vùng khuếch tán: bề rộng giảm từ 17 xuống
+15 cột (4,86 → 4,32 µm, 11 %) mà trễ và năng lượng sau layout không đổi (Hình 3.4). Khối CFSR_FB_OPT được đặt và đi dây
+với mật độ lõi 0,9 và vòng nguồn Metal2/Metal3 rộng 0,3 µm (Hình 3.5); với cấu hình này CFSR_FB chiếm 123,8 µm², còn
+CFSR_FB_OPT chiếm 99,2 µm². Bảng 3.7 và Bảng 3.8 tổng hợp kết quả.
+
+Bảng 3.7. Layout các cell và khối của bản tối ưu
+
+| Cell / khối | Transistor | Kích thước | Diện tích | DRC | LVS |
+|---|---|---|---|---|---|
+| AOI21_X1 | 6 | 2,16 × 2,76 µm | 5,96 µm² | 0 lỗi | Match |
+| XNOR2_X1 | 12 | 4,32 × 2,76 µm | 11,92 µm² | 0 lỗi | Match |
+| XOR2_X1 (bản nén) | 12 | 4,32 × 2,76 µm | 11,92 µm² | 0 lỗi | Match |
+| CFSR_FB_OPT | 42 | 11,85 × 8,37 µm (cả vòng nguồn) | 44,7 µm² cell | 0 lỗi | Match |
+
+Bảng 3.8. So sánh ba khối hồi tiếp đầy đủ (256 tổ hợp, sau layout)
+
+| Khối | Transistor | Diện tích cell | Trễ NN | Trễ SS | Trễ FF | Năng lượng NN |
+|---|---|---|---|---|---|---|
+| CFSR_FB_CMOS | 74 | 83,5 µm² | 281,0 ps | 398,5 ps | 218,5 ps | 0,043 pJ |
+| CFSR_FB | 56 | 62,6 µm² | 275,5 ps | 390,6 ps | 214,9 ps | 0,040 pJ |
+| CFSR_FB_OPT | 42 | 44,7 µm² | 244,8 ps | 350,5 ps | 188,4 ps | 0,036 pJ |
+
+So với CFSR_FB, CFSR_FB_OPT giảm 25 % transistor, 29 % diện tích cell, 10 % trễ ở góc SS và 10 % năng lượng; tích
+diện tích × trễ × năng lượng giảm 43 % (so với bản CMOS: 61 %).
+
+![Hình 3.4](layout/hinh/XOR2_X1_OPT.png)
+Hình 3.4. Layout XOR2_X1 bản nén 15 cột (so với 17 cột ở Hình 3.2).
+
+![Hình 3.5](layout/hinh/CFSR_FB_OPT.png)
+Hình 3.5. Layout khối CFSR_FB_OPT sau đặt và đi dây.
+
+## 3.x.6 Kết luận phần
+
+Phần TV3 đã xây dựng thư viện cổng INV, NAND2, NOR2, NOR3, AOI21, XNOR2, ba cấu trúc XOR2 và khối hồi tiếp CFSR 8 bit
+với đủ schematic, symbol, layout và view trích ký sinh; mọi cell và khối đạt DRC 0 lỗi, LVS khớp. So với bản dùng toàn
+cổng CMOS, khối CFSR_FB giảm 24 % transistor và 25 % diện tích, nhanh hơn 2 % và tốn ít hơn 7 % năng lượng. Bản tối ưu
+CFSR_FB_OPT rút gọn hàm hồi tiếp bằng quan hệ loại trừ giữa các số hạng, giảm tiếp 25 % transistor, 29 % diện tích cell,
+10 % trễ và 10 % năng lượng so với CFSR_FB, đồng thời vẫn bảo đảm thanh ghi không kẹt ở trạng thái toàn 0.
+Hướng tiếp theo: ghép CFSR_FB_OPT với flip-flop TSPC của TV2 thành TSPC_LFSR_8bit và đo trễ trên đường hồi tiếp thực tế.
 
 ## Tài liệu tham khảo
 

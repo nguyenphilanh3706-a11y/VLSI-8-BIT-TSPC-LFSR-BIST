@@ -1,0 +1,45 @@
+// AOI21_X1 sau layout: Assura RCX
+simulator lang=spectre
+subckt AOI21_X1 A1 A2 B Y VDD GND
+    I_MN2 (Y_2 B_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0468p pd=1.16u ps=0.68u
+    I_MN1 (n1 A2_4 GND GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MN0 (Y_4 A1_4 n1 GND) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MP2 (Y_3 B_2 p1_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MP1 (p1_2 A2_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MP0 (p1_4 A1_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_Rj1 (B_2 B_3) resistor r=36.5435
+    I_Rj2 (B_3 B_4) resistor r=54.5435
+    I_Rj3 (B B_3) resistor r=10.0000
+    I_Rj4 (A2_2 A2_3) resistor r=36.5435
+    I_Rj5 (A2_3 A2_4) resistor r=48.5435
+    I_Rj6 (A2 A2_3) resistor r=10.0000
+    I_Rj7 (A1_2 A1_3) resistor r=36.5435
+    I_Rj8 (A1_3 A1_4) resistor r=48.5435
+    I_Rj9 (A1 A1_3) resistor r=10.0000
+    I_Ri1 (Y Y_1) resistor r=6.667E-02
+    I_Ri2 (Y_1 Y_2) resistor r=15.0800
+    I_Ri3 (Y Y_3) resistor r=15.5787
+    I_Ri5 (p1 p1_2) resistor r=16.4267
+    I_Ri8 (p1_3 p1_4) resistor r=16.4267
+    I_Ri9 (Y_4 Y_5) resistor r=16.4800
+    I_Rh1 (p1_3 p1) resistor r=0.4320
+    I_Rh2 (Y_5 Y_1) resistor r=2.0480
+    I_C1 (VDD GND) capacitor c=2.984E-16
+    I_C2 (A1 GND) capacitor c=1.144E-16
+    I_C3 (A2 GND) capacitor c=1.255E-16
+    I_C4 (B GND) capacitor c=1.589E-16
+    I_C5 (p1 GND) capacitor c=1.098E-16
+    I_C6 (n1 GND) capacitor c=4.095E-18
+    I_C7 (B_2 GND) capacitor c=6.339E-17
+    I_C8 (A2_2 GND) capacitor c=6.253E-17
+    I_C9 (A1_2 GND) capacitor c=6.353E-17
+    I_C10 (B_4 GND) capacitor c=5.471E-17
+    I_C11 (A2_4 GND) capacitor c=5.956E-17
+    I_C12 (A1_4 GND) capacitor c=5.971E-17
+    I_C13 (Y_1 GND) capacitor c=1.779E-16
+    I_C14 (Y_5 GND) capacitor c=1.070E-16
+    I_C15 (p1_3 GND) capacitor c=1.023E-16
+    I_C16 (Y_3 GND) capacitor c=7.236E-17
+    I_C17 (Y_2 GND) capacitor c=2.248E-17
+    I_C18 (Y_4 GND) capacitor c=3.597E-17
+ends AOI21_X1

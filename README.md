@@ -320,7 +320,7 @@ In **Virtuoso Visualization & Analysis (ViVA) / ADE L Calculator**, the followin
 
 | Member | Folder | Status |
 | :---: | :--- | :--- |
-| **Member 3** (Võ Minh Tâm) | [`Vo_Minh_Tam/`](Vo_Minh_Tam/README.md) | Done: XOR2 CMOS 12T / TG 8T / TG 6T, INV, NAND2, NOR2, NOR3, XORTAP8, ZERO7, CFSR_FB (256 states). Schematic, symbol, layout, extracted; DRC clean, LVS match; post-layout PASS at NN/SS/FF. CFSR_FB: 56T, 62.6 µm², 275.5 ps (NN). |
+| **Member 3** (Võ Minh Tâm) | [`Vo_Minh_Tam/`](Vo_Minh_Tam/README.md) | Done: XOR2 CMOS 12T / TG 8T / TG 6T, INV, NAND2, NOR2, NOR3, AOI21, XNOR2, XORTAP8, ZERO7, CFSR_FB and optimized CFSR_FB_OPT (256 states). Schematic, symbol, layout, extracted; DRC clean, LVS match; post-layout PASS at NN/SS/FF. CFSR_FB_OPT: 42T, 44.7 µm², 244.8 ps (NN), vs CFSR_FB 56T, 62.6 µm², 275.5 ps. |
 
 ---
 

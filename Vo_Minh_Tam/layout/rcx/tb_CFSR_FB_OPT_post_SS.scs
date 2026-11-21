@@ -1,0 +1,6 @@
+// CFSR_FB_OPT sau layout (Assura RCX), corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../../cells/INV_X1/INV_X1.scs"
+include "CFSR_FB_OPT_rcx.scs"
+include "../../tb/tb_CFSR_FB_OPT.scs"
