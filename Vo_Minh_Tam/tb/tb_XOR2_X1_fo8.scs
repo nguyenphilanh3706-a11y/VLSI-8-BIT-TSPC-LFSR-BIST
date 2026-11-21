@@ -1,0 +1,23 @@
+// XOR2_X1 so sanh: 9 vector, 1 ns, ngo vao qua 2 INV_X1 dem, tai 8x INV_X1 (FO8)
+simulator lang=spectre
+global 0
+VVDD (VDD 0) vsource dc=1.2
+VGND (GND 0) vsource dc=0
+VA (A0 0) vsource type=pwl wave=[ 0 0 2000p 0 2020p 1.2 4000p 1.2 4020p 0 5000p 0 5020p 1.2 7000p 1.2 7020p 0 ]
+XBA1 (A0 A1 VDD GND) INV_X1
+XBA2 (A1 A VDD GND) INV_X1
+VB (B0 0) vsource type=pwl wave=[ 0 0 1000p 0 1020p 1.2 3000p 1.2 3020p 0 6000p 0 6020p 1.2 8000p 1.2 8020p 0 ]
+XBB1 (B0 B1 VDD GND) INV_X1
+XBB2 (B1 B VDD GND) INV_X1
+XDUT (A B Y VDD GND) XOR2_X1
+XL_Y_0 (Y ld0 VDD GND) INV_X1
+XL_Y_1 (Y ld1 VDD GND) INV_X1
+XL_Y_2 (Y ld2 VDD GND) INV_X1
+XL_Y_3 (Y ld3 VDD GND) INV_X1
+XL_Y_4 (Y ld4 VDD GND) INV_X1
+XL_Y_5 (Y ld5 VDD GND) INV_X1
+XL_Y_6 (Y ld6 VDD GND) INV_X1
+XL_Y_7 (Y ld7 VDD GND) INV_X1
+save A B Y VVDD:p
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=9n maxstep=5p errpreset=conservative

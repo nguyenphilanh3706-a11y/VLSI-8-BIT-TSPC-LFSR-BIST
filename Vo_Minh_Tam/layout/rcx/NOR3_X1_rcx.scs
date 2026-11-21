@@ -1,0 +1,42 @@
+// NOR3_X1 sau layout: Assura RCX
+simulator lang=spectre
+subckt NOR3_X1 A B C Y VDD GND
+    I_MN2 (Y_2 C_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MN1 (Y_4 B_4 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0408p pd=0.68u ps=0.68u
+    I_MN0 (Y_4 A_3 GND GND) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MP2 (Y_3 C_2 p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MP1 (p2 B_2 p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MP0 (p2 A_1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_Rj1 (C_2 C_3) resistor r=36.5435
+    I_Rj2 (C_3 C_4) resistor r=54.5435
+    I_Rj3 (C C_3) resistor r=10.0000
+    I_Rj4 (B_2 B_3) resistor r=36.5435
+    I_Rj5 (B_3 B_4) resistor r=54.5435
+    I_Rj6 (B B_3) resistor r=10.0000
+    I_Rj7 (A_1 A_2) resistor r=36.5435
+    I_Rj8 (A_2 A_3) resistor r=54.5435
+    I_Ri1 (Y Y_1) resistor r=6.667E-02
+    I_Ri2 (Y_1 Y_2) resistor r=15.0800
+    I_Ri3 (Y Y_3) resistor r=15.5787
+    I_Ri6 (Y_4 Y_5) resistor r=16.4800
+    I_Ri8 (A_2 A) resistor r=10.0000
+    I_Rh1 (Y_5 Y_1) resistor r=1.8320
+    I_C1 (VDD GND) capacitor c=2.000E-16
+    I_C2 (A GND) capacitor c=6.055E-17
+    I_C3 (B GND) capacitor c=1.303E-16
+    I_C4 (C GND) capacitor c=1.589E-16
+    I_C5 (p2 GND) capacitor c=5.058E-18
+    I_C6 (p1 GND) capacitor c=5.058E-18
+    I_C7 (C_2 GND) capacitor c=5.283E-17
+    I_C8 (B_2 GND) capacitor c=5.651E-17
+    I_C9 (A_1 GND) capacitor c=5.153E-17
+    I_C10 (C_4 GND) capacitor c=5.731E-17
+    I_C11 (B_4 GND) capacitor c=5.826E-17
+    I_C12 (A_3 GND) capacitor c=5.634E-17
+    I_C13 (A_2 GND) capacitor c=5.421E-17
+    I_C14 (Y_1 GND) capacitor c=1.528E-16
+    I_C15 (Y_5 GND) capacitor c=7.454E-17
+    I_C16 (Y_3 GND) capacitor c=6.127E-17
+    I_C17 (Y_2 GND) capacitor c=2.248E-17
+    I_C18 (Y_4 GND) capacitor c=3.817E-17
+ends NOR3_X1
