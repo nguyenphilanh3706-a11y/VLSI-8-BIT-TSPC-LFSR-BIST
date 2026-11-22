@@ -21,7 +21,7 @@ matlab -batch lfsr_golden_tv4      # hoặc mở MATLAB, cd vào thư mục này
 | Thanh ghi | 8 flip-flop, dịch Q0 → Q1 → … → Q7 mỗi cạnh lên clock |
 | Hồi tiếp | D0 = Q0 ⊕ Q5 ⊕ Q6 ⊕ Q7 (khối XORTAP8 của TV3) |
 | Seed | 0x01 sau RST (FF0 nạp 1 bằng chân SET, FF1..FF7 nạp 0 bằng RST) |
-| CFSR | thêm ZERO7: khi Q0..Q6 = 0 thì đảo D0, đưa 0x00 vào chuỗi |
+| CFSR | thêm số hạng NOR(Q0..Q6): khi Q0..Q6 = 0 thì đảo D0, đưa 0x00 vào chuỗi (CFSR_FB_OPT của TV3) |
 
 Dạng ma trận: Q(t+1) = T·Q(t) (mod 2), với T là ma trận đồng hành 8×8 (hàng đầu `1 0 0 0 0 1 1 1`, phần còn lại là dịch).
 

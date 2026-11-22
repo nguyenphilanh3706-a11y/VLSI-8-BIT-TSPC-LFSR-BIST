@@ -3,29 +3,31 @@
     python3 scripts/cadence/gen_skill.py  ->  scripts/cadence/tv4_build.il
 Moi subckt -> 1 cell (schematic + symbol). Linh kien MOS: gpdk090 nmos1v/pmos1v (chan D G S B).
 Noi day kieu "doan day ngan + nhan ten net" (cung ten = cung net), dat instance theo hang luoi.
-Cell cua TV3 (INV_X1, NAND2_X1, NOR2_X1, XOR2_X1, XOR2_TG, XORTAP8, XORTAP8_TG, CFSR_FB) duoc chep lai
+Cell cua TV3 (INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB, CFSR_FB_OPT) duoc chep lai
 vao tv4 (BAN SAO de mo phong/ve layout duoc ngay); khi TV3 co thu vien rieng thi doi master sang thu vien do.
 """
 import os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # scripts/cadence -> goc
 
 FILES = [  # thu tu phu thuoc: cell con truoc
-    "deps/tv3/cells/INV_X1/INV_X1.scs", "deps/tv3/cells/NAND2_X1/NAND2_X1.scs",
-    "deps/tv3/cells/NOR2_X1/NOR2_X1.scs", "deps/tv3/cells/XOR2_X1/XOR2_X1.scs",
-    "deps/tv3/cells/NOR3_X1/NOR3_X1.scs", "deps/tv3/cells/XOR2_TG6/XOR2_TG6.scs",
-    "deps/tv3/blocks/XORTAP8.scs", "deps/tv3/blocks/CFSR_FB.scs",
+    "depend/tv3/cells/INV_X1/INV_X1.scs", "depend/tv3/cells/NAND2_X1/NAND2_X1.scs",
+    "depend/tv3/cells/NOR2_X1/NOR2_X1.scs", "depend/tv3/cells/XOR2_X1/XOR2_X1.scs",
+    "depend/tv3/cells/NOR3_X1/NOR3_X1.scs", "depend/tv3/cells/XOR2_TG6/XOR2_TG6.scs",
+    "depend/tv3/cells/AOI21_X1/AOI21_X1.scs", "depend/tv3/cells/XNOR2_X1/XNOR2_X1.scs",
+    "depend/tv3/blocks/XORTAP8.scs", "depend/tv3/blocks/CFSR_FB.scs", "depend/tv3/blocks/CFSR_FB_OPT.scs",
     "cells/INV_CLK/INV_CLK.scs", "cells/AND2_T/AND2_T.scs", "cells/MUX2_N/MUX2_N.scs",
     "cells/DFF_MS_TMP/DFF_MS_TMP.scs", "cells/DFF_TSPC_TMP/DFF_TSPC_TMP.scs",
-    "cells/DFF_MS/DFF_MS.scs", "cells/DFF_TSPC/DFF_TSPC.scs",
+    "cells/DFF_MS/DFF_MS.scs",
+    "depend/tv2/cells/TSPC_DFF_R/TSPC_DFF_R.scs", "depend/tv2/cells/TSPC_DFF_S/TSPC_DFF_S.scs",
     "blocks/LFSR_8bit.scs", "blocks/LT_RTPG_8bit.scs",
 ]
-OUTPUTS = {"Y", "FB", "Z", "Q", "Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7",
+OUTPUTS = {"Y", "FB", "Z", "Q", "QB", "Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7",
            "V0", "V1", "V2", "V3", "V4", "V5", "V6", "V7"}
 SUPPLY = {"VDD", "VSS", "GND"}
 SKIP_CELLS = {"CFSR_FB_CMOS"}   # ban doi chung cua TV3, TV4 khong dung
-Q_INPUT_CELLS = {"XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "LT_RTPG_8bit"}   # o cac cell nay Q0..Q7 la NGO VAO
+Q_INPUT_CELLS = {"XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "CFSR_FB_OPT", "LT_RTPG_8bit"}   # o cac cell nay Q0..Q7 la NGO VAO
 MOS = {"gpdk090_nmos1v": "nmos1v", "gpdk090_pmos1v": "pmos1v"}
-TV3_CELLS = {"INV_X1", "NAND2_X1", "NOR2_X1", "NOR3_X1", "XOR2_X1", "XOR2_TG6", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB"}
+TV3_CELLS = {"INV_X1", "NAND2_X1", "NOR2_X1", "NOR3_X1", "XOR2_X1", "XOR2_TG6", "AOI21_X1", "XNOR2_X1", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "CFSR_FB_OPT"}
 
 
 def parse(path):
@@ -81,6 +83,9 @@ def main():
                     raise SystemExit("master %s chua co (thu tu FILES?)" % master)
                 pins = known[master]["pins"]
                 assert len(pins) == len(nodes), (c["name"], n)
+                # net chi noi vao dung mot chan (vd QB cua flip-flop TV2 de ho) -> ve noConn thay vi nhan ten
+                nodes = ["__NC__" if (x not in c["pins"] and sum(y.count(x) for (_, y, _, _) in c["inst"]) == 1) else x
+                         for x in nodes]
                 L.append('  tv4Sub("%s" "%s" list(%s) list(%s))' % (
                     n, master, " ".join(skill_str(x) for x in pins), " ".join(skill_str(x) for x in nodes)))
         L.append('  tv4End()) t)')
@@ -135,7 +140,9 @@ procedure(tv4Stub(inst termName netName)
           then if(dx < 0 then list(xCoord(p) - d yCoord(p)) else list(xCoord(p) + d yCoord(p)))
           else if(dy < 0 then list(xCoord(p) yCoord(p) - d) else list(xCoord(p) yCoord(p) + d)))
     w = schCreateWire(tv4Cv "draw" "direct" list(p q) tv4Grid tv4Grid 0.0)
-    schCreateWireLabel(tv4Cv car(w) q netName "lowerLeft" "R0" "stick" tv4Grid nil)
+    if(netName == "__NC__"
+      then schCreateInst(tv4Cv tv4Master("basic" "noConn") nil q "R0")   ; chan de ho co chu dich (QB cua TV2)
+      else schCreateWireLabel(tv4Cv car(w) q netName "lowerLeft" "R0" "stick" tv4Grid nil))
     q))
 
 ;; dat instance vao o tiep theo cua luoi (goc tren-trai cua bBox trung con tro)

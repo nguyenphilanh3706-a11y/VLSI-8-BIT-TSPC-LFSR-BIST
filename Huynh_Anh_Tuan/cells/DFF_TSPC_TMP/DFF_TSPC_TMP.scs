@@ -9,7 +9,9 @@ subckt DFF_TSPC_TMP D CLK SET RST Q VDD GND
     // tang 1 (p-C2MOS): X = !D khi CLK = 0, giu khi CLK = 1
     MP1 (p1 D VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
     MP2 (X CLK p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
-    MN1 (X D GND GND) gpdk090_nmos1v w=0.24u l=0.1u
+    // MN1 de nho (0.12u): khi CLK vua len, Q cua FF truoc doi lam X xa qua nhanh se cat MN2 truoc khi Y xa xong
+    // (Y lo lung -> QB tranh chap). Loi nay xuat hien o mo phong hau layout corner FF voi MN1 = 0.24u (docs/5_layout.md).
+    MN1 (X D GND GND) gpdk090_nmos1v w=0.12u l=0.1u
     // tang 2 (n-precharge): Y = 1 khi CLK = 0 ; CLK = 1 -> Y = !X
     MP3 (Y CLK VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
     MN2 (Y X n1 GND) gpdk090_nmos1v w=0.36u l=0.1u

@@ -1,0 +1,19 @@
+.SUBCKT DFF_TSPC_TMP D CLK SET RST Q VDD GND
+MMP1 p1 D VDD VDD pmos1v w=0.48u l=0.1u
+MMP2 X CLK p1 VDD pmos1v w=0.48u l=0.1u
+MMN1 X D GND GND nmos1v w=0.12u l=0.1u
+MMP3 Y CLK VDD VDD pmos1v w=0.48u l=0.1u
+MMN2 Y X n1 GND nmos1v w=0.36u l=0.1u
+MMN3 n1 CLK GND GND nmos1v w=0.36u l=0.1u
+MMPS p2 SET VDD VDD pmos1v w=0.48u l=0.1u
+MMP4 QB Y p2 VDD pmos1v w=0.48u l=0.1u
+MMN4 QB CLK n2 GND nmos1v w=0.36u l=0.1u
+MMN5 n2 Y n3 GND nmos1v w=0.36u l=0.1u
+MMNR n3 RSTB GND GND nmos1v w=0.36u l=0.1u
+MMNS QB SET GND GND nmos1v w=0.24u l=0.1u
+MMPR QB RSTB VDD VDD pmos1v w=0.24u l=0.1u
+MMN6 RSTB RST GND GND nmos1v w=0.12u l=0.1u
+MMP6 RSTB RST VDD VDD pmos1v w=0.24u l=0.1u
+MMN7 Q QB GND GND nmos1v w=0.24u l=0.1u
+MMP7 Q QB VDD VDD pmos1v w=0.48u l=0.1u
+.ENDS

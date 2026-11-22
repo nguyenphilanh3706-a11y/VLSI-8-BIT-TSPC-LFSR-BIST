@@ -1,9 +1,12 @@
-# tb_TSPC_LFSR corner SS  Thu Nov 19 08:39:23 BDT 2026
-T=500ps f=2000MHz  RESULT fx_tb_TSPC_LFSR_500ps_SS PASS 301/301 T=5e-10 tre_ps=254.8 P_dut_uW=215.583 P_clk_uW=91.316 P_tai_uW=11.961 E_dut_pJ=0.1078 E_clk_pJ=0.0457
-T=400ps f=2500MHz  RESULT fx_tb_TSPC_LFSR_400ps_SS PASS 301/301 T=4e-10 tre_ps=250.6 P_dut_uW=265.795 P_clk_uW=112.399 P_tai_uW=14.911 E_dut_pJ=0.1063 E_clk_pJ=0.0450
-T=350ps f=2857MHz  RESULT fx_tb_TSPC_LFSR_350ps_SS FAIL 8/301 T=3.5e-10 tre_ps=280.4 P_dut_uW=233.099 P_clk_uW=123.992 P_tai_uW=10.687 E_dut_pJ=0.0816 E_clk_pJ=0.0434
-T=320ps f=3125MHz  RESULT fx_tb_TSPC_LFSR_320ps_SS FAIL 9/301 T=3.2e-10 tre_ps=229.0 P_dut_uW=157.953 P_clk_uW=129.574 P_tai_uW=11.036 E_dut_pJ=0.0505 E_clk_pJ=0.0415
-T=300ps f=3333MHz  RESULT fx_tb_TSPC_LFSR_300ps_SS FAIL 9/301 T=3e-10 tre_ps=235.4 P_dut_uW=237.334 P_clk_uW=136.800 P_tai_uW=11.073 E_dut_pJ=0.0712 E_clk_pJ=0.0410
-T=280ps f=3571MHz  RESULT fx_tb_TSPC_LFSR_280ps_SS FAIL 6/301 T=2.8e-10 tre_ps=233.6 P_dut_uW=255.239 P_clk_uW=141.895 P_tai_uW=14.013 E_dut_pJ=0.0715 E_clk_pJ=0.0397
-T=260ps f=3846MHz  RESULT fx_tb_TSPC_LFSR_260ps_SS FAIL 6/301 T=2.6e-10 tre_ps=240.9 P_dut_uW=278.872 P_clk_uW=147.082 P_tai_uW=16.388 E_dut_pJ=0.0725 E_clk_pJ=0.0382
-T=250ps f=4000MHz  RESULT fx_tb_TSPC_LFSR_250ps_SS FAIL 6/301 T=2.5e-10 tre_ps=234.2 P_dut_uW=303.335 P_clk_uW=149.814 P_tai_uW=17.100 E_dut_pJ=0.0758 E_clk_pJ=0.0375
+# tb_TSPC_LFSR corner SS  Sun Nov 22 11:26:52 BDT 2026  (flip-flop TSPC cua TV2; them diem T=460ps, T=440ps, T=420ps)
+T=500ps f=2000MHz  RESULT fx_tb_TSPC_LFSR_500ps_SS PASS 301/301 T=5e-10 tre_ps=259.3 P_dut_uW=235.499 P_clk_uW=92.017 P_tai_uW=11.997 E_dut_pJ=0.1177 E_clk_pJ=0.0460
+T=460ps f=2174MHz  RESULT fx_tb_TSPC_LFSR_460ps_SS PASS 301/301 T=4.6e-10 tre_ps=257.0 P_dut_uW=254.926 P_clk_uW=99.196 P_tai_uW=13.029 E_dut_pJ=0.1173 E_clk_pJ=0.0456
+T=440ps f=2273MHz  RESULT fx_tb_TSPC_LFSR_440ps_SS PASS 301/301 T=4.4e-10 tre_ps=255.6 P_dut_uW=265.666 P_clk_uW=103.097 P_tai_uW=13.616 E_dut_pJ=0.1169 E_clk_pJ=0.0454
+T=420ps f=2381MHz  RESULT fx_tb_TSPC_LFSR_420ps_SS PASS 301/301 T=4.2e-10 tre_ps=254.0 P_dut_uW=277.125 P_clk_uW=107.250 P_tai_uW=14.259 E_dut_pJ=0.1164 E_clk_pJ=0.0450
+T=400ps f=2500MHz  RESULT fx_tb_TSPC_LFSR_400ps_SS FAIL 9/301 T=4e-10 tre_ps=237.2 P_dut_uW=159.725 P_clk_uW=108.609 P_tai_uW=9.716 E_dut_pJ=0.0639 E_clk_pJ=0.0434
+T=350ps f=2857MHz  RESULT fx_tb_TSPC_LFSR_350ps_SS FAIL 9/301 T=3.5e-10 tre_ps=232.5 P_dut_uW=162.912 P_clk_uW=120.905 P_tai_uW=10.117 E_dut_pJ=0.0570 E_clk_pJ=0.0423
+T=320ps f=3125MHz  RESULT fx_tb_TSPC_LFSR_320ps_SS FAIL 6/301 T=3.2e-10 tre_ps=306.3 P_dut_uW=240.689 P_clk_uW=130.158 P_tai_uW=12.512 E_dut_pJ=0.0770 E_clk_pJ=0.0417
+T=300ps f=3333MHz  RESULT fx_tb_TSPC_LFSR_300ps_SS FAIL 6/301 T=3e-10 tre_ps=228.8 P_dut_uW=256.165 P_clk_uW=135.595 P_tai_uW=13.113 E_dut_pJ=0.0768 E_clk_pJ=0.0407
+T=280ps f=3571MHz  RESULT fx_tb_TSPC_LFSR_280ps_SS FAIL 6/301 T=2.8e-10 tre_ps=225.8 P_dut_uW=282.668 P_clk_uW=141.068 P_tai_uW=14.293 E_dut_pJ=0.0791 E_clk_pJ=0.0395
+T=260ps f=3846MHz  RESULT fx_tb_TSPC_LFSR_260ps_SS FAIL 6/301 T=2.6e-10 tre_ps=238.9 P_dut_uW=321.120 P_clk_uW=146.634 P_tai_uW=15.732 E_dut_pJ=0.0835 E_clk_pJ=0.0381
+T=250ps f=4000MHz  RESULT fx_tb_TSPC_LFSR_250ps_SS FAIL 6/301 T=2.5e-10 tre_ps=237.3 P_dut_uW=332.488 P_clk_uW=149.322 P_tai_uW=16.743 E_dut_pJ=0.0831 E_clk_pJ=0.0373

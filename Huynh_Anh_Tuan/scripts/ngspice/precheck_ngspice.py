@@ -50,7 +50,7 @@ def conv_file(src, dst):
 
 
 def build_lib():
-    for sub in ["deps/tv3/cells", "deps/tv3/blocks", "cells", "blocks"]:
+    for sub in ["depend/tv3/cells", "depend/tv3/blocks", "depend/tv2/cells", "cells", "blocks"]:
         for dp, _, fs in os.walk(os.path.join(ROOT, sub)):
             for f in fs:
                 if f.endswith(".scs") and not f.startswith("tb_"):
@@ -79,8 +79,8 @@ def tb_to_spice(name):
     body = open(os.path.join(ROOT, "tb", name + ".scs")).read().splitlines()
     par = {}
     out = ["* %s (ngspice)" % name, MODELS]
-    for inc in ["deps/tv3/cells/cells.sp", "deps/tv3/blocks/XORTAP8.sp", "deps/tv3/blocks/CFSR_FB.sp",
-                "cells/cells.sp", "blocks/LFSR_8bit.sp", "blocks/LT_RTPG_8bit.sp"]:
+    for inc in ["depend/tv3/cells/cells.sp", "depend/tv3/blocks/XORTAP8.sp", "depend/tv3/blocks/CFSR_FB_OPT.sp",
+                "depend/tv2/cells/cells.sp", "cells/cells.sp", "blocks/LFSR_8bit.sp", "blocks/LT_RTPG_8bit.sp"]:
         out.append('.include "%s"' % os.path.join(BUILD, inc))
     saves = []
     for l in body:

@@ -1,0 +1,9 @@
+Schematic           | Layout                              | Status
+-------------------------------------------------------------------------------
+INV_CLK             | INV_CLK                             | matched         
+DFF_MS_TMP          | DFF_MS_TMP                          | matched         
+XOR2_TG6            | XOR2_TG6                            | matched         
+XOR2_X1             | XOR2_X1                             | matched         
+MS_LFSR_8bit        | MS_LFSR_8bit                        | matched         
+
+Schematic and Layout Match

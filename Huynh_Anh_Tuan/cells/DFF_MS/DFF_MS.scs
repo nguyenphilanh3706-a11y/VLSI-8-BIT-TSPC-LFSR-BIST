@@ -1,7 +1,6 @@
 // DFF_MS.scs - LOP CHUYEN DOI giua LFSR cua TV4 va flip-flop cua TV1.
-// Cac khoi LFSR/LT cua TV4 chi goi ten co dinh nay:
+// Khoi MS_LFSR_8bit cua TV4 chi goi ten co dinh nay:
 //     DFF_MS   (D CLK CLKB SET RST Q VDD GND)   SET/RST tich cuc cao, bat dong bo
-//     DFF_TSPC (D CLK SET RST Q VDD GND)        SET/RST tich cuc cao, bat dong bo
 // HIEN TAI tro toi flip-flop tam cua TV4 (cells/DFF_MS_TMP). Khi TV1 nop cell:
 //   1. include netlist cua TV1 trong cells/cells.scs
 //   2. sua dong instance ben duoi cho dung ten cell va THU TU CHAN (them inverter neu reset tich cuc thap)

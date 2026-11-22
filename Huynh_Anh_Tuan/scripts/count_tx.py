@@ -30,7 +30,7 @@ def flat(name, ports=None):
 
 
 rows = []
-for nmx in ["DFF_MS_TMP", "DFF_TSPC_TMP", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "AND2_T", "MUX2_N",
+for nmx in ["DFF_MS_TMP", "DFF_TSPC_TMP", "TSPC_DFF_R", "TSPC_DFF_S", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "CFSR_FB_OPT", "AND2_T", "MUX2_N",
             "MS_LFSR_8bit", "TSPC_LFSR_8bit", "TSPC_LFSR_8bit_CMOS", "TSPC_CFSR_8bit", "LT_RTPG_8bit"]:
     n, k = flat(nmx)
     rows.append((nmx, n, k))

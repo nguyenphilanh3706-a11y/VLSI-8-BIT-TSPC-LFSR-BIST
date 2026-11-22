@@ -1,0 +1,25 @@
+// TSPC_DFF_R: TSPC D flip-flop, kich canh len, Reset bat dong bo (RST=1 -> Q=0). 15 transistor (gom 2 keeper).
+// Pins: D CLK RST Q QB VDD GND   (khop schematic TV2_TSPC/TSPC_DFF_R)
+simulator lang=spectre
+subckt TSPC_DFF_R D CLK RST Q QB VDD GND
+    // tang 1: nua P-latch (X = !D khi CLK=0)
+    M1  (pa D VDD VDD)   gpdk090_pmos1v w=480n l=100n
+    M2  (X CLK pa VDD)   gpdk090_pmos1v w=480n l=100n
+    M3  (X D GND GND)    gpdk090_nmos1v w=240n l=100n
+    // tang 2: N-precharge + Reset (Y = D)
+    MRP (pm RST VDD VDD) gpdk090_pmos1v w=480n l=100n
+    M6  (Y CLK pm VDD)   gpdk090_pmos1v w=480n l=100n
+    M4  (Y X n4 GND)     gpdk090_nmos1v w=480n l=100n
+    M5  (n4 CLK GND GND) gpdk090_nmos1v w=480n l=100n
+    MRN (Y RST GND GND)  gpdk090_nmos1v w=240n l=100n
+    // tang 3: N-C2MOS (QB = !D)
+    M9  (QB Y VDD VDD)   gpdk090_pmos1v w=480n l=100n
+    M7  (QB CLK n7 GND)    gpdk090_nmos1v w=240n l=100n
+    M8  (n7 Y GND GND) gpdk090_nmos1v w=240n l=100n
+    // tang 4: inverter ra (Q = D)
+    MP  (Q QB VDD VDD)   gpdk090_pmos1v w=480n l=100n
+    MN  (Q QB GND GND)   gpdk090_nmos1v w=240n l=100n
+    // keeper yeu (staticizer): giu QB va Y khi clock dung
+    MKQ (QB Q VDD VDD)   gpdk090_pmos1v w=120n l=400n
+    MKY (Y QB VDD VDD)   gpdk090_pmos1v w=120n l=400n
+ends TSPC_DFF_R

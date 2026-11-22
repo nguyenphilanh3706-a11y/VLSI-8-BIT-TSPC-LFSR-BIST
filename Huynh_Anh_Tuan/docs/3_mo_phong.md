@@ -1,6 +1,6 @@
 # 3. Testbench và cách mô phỏng
 
-[← 2. Thiết kế mạch](2_thiet_ke_mach.md) · [README](../README.md) · [4. Kết quả →](4_ket_qua.md)
+[← 2. Thiết kế mạch](2_thiet_ke_mach.md) · [README](../README.md) · [4. Kết quả →](4_ket_qua.md) · [5. Layout →](5_layout.md)
 
 ## 3.1. Luồng kiểm chứng
 
@@ -23,6 +23,7 @@ flowchart LR
 | `tb_TSPC_CFSR` | TSPC_CFSR_8bit | NN, SS, FF | chuỗi 256 trạng thái từ 0x00 |
 | `tb_LT_RTPG_LP0`, `tb_LT_RTPG_LP1` | TSPC_LFSR_8bit + LT_RTPG_8bit, LP = 0 / 1 | NN, SS, FF | mỗi V_i tải 4 INV_X1 (giả lập ngõ vào CUT) |
 | `tb_MS_LFSR_slew`, `tb_TSPC_LFSR_slew` | clock nối thẳng nguồn, không qua đệm | NN | quét độ dốc sườn clock |
+| `tb_MS_LFSR_post`, `tb_TSPC_LFSR_post` | netlist trích RC sau layout (`layout/rcx/*_post.scs`) | NN, SS, FF | giống `tb_*_LFSR`, chỉ thay khối LFSR; xem [5. Layout](5_layout.md) |
 
 Mỗi testbench gồm: thân `tb_<tên>.scs`, ba file corner `tb_<tên>_<NN|SS|FF>.scs` (chỉ khác `section=` của model) và bảng mong đợi `tb_<tên>.exp`. Tất cả sinh bằng `python3 scripts/gen_tb.py`, không sửa tay.
 
@@ -49,7 +50,7 @@ V 0 0 10000000 ; k=0 Q=01        vector k, có đo trễ (0/1), bit mong đợi 
 V 1 1 11000000 ; k=1 Q=03
 ```
 
-**Kiểm tra** (`scripts/check_tv4.awk`, mở rộng từ `check.awk` của TV3): đọc `tran.tran` (psfascii), so từng ngõ ra ở từng vector, đo trễ CLK→Q lớn nhất (lần cắt VDD/2 cuối của ngõ ra, tính từ giữa sườn clock lý tưởng, đã gồm 2 tầng đệm) và công suất trung bình của 3 nguồn. Mạch đạt khi **mọi** vector đúng.
+**Kiểm tra** (`scripts/check_tv4.awk`, mở rộng từ `check.awk` của TV3 (bản 14/11)): đọc `tran.tran` (psfascii), so từng ngõ ra ở từng vector, đo trễ CLK→Q lớn nhất (lần cắt VDD/2 cuối của ngõ ra, tính từ giữa sườn clock lý tưởng, đã gồm 2 tầng đệm) và công suất trung bình của 3 nguồn. Mạch đạt khi **mọi** vector đúng.
 
 ## 3.3. Chạy Spectre
 
@@ -57,7 +58,7 @@ Cần Cadence MMSIM (Spectre) và model gpdk090. Đường dẫn model nằm ở
 
 ```bash
 cd Huynh_Anh_Tuan
-bash scripts/run_tv4.sh                                   # 18 testbench NN/SS/FF (khoảng 40 phút)
+bash scripts/run_tv4.sh                                   # 24 testbench NN/SS/FF: 18 trước layout + 6 hậu layout (khoảng 55 phút)
 bash scripts/run_tv4.sh tb/tb_TSPC_LFSR_NN.scs            # một testbench
 ```
 
@@ -108,6 +109,16 @@ load("<thu muc>/scripts/cadence/tv4_build.il")   ; ve schematic + symbol tung ce
 Thư viện tạo tại `/home/buet/pjck_tv4/tv4` (biến `path` trong `tv4_lib.il`), nhật ký `/home/buet/pjck_tv4/tv4_build_log.txt`; đổi hai đường dẫn này nếu máy khác. `tv4_build.il` xóa cell cũ (hoặc CDF cũ) trước khi vẽ lại, để không bật hộp thoại "Overwrite Base Cell CDF".
 
 Mô phỏng bằng ADE L: tạo cell testbench có DUT lấy từ `tv4`, nguồn `vdc` 1,2 V cho VDD, `vpulse` cho CLK (chu kỳ 2 ns, sườn 20 ps) và RST (1 → 0 tại 1 ns); Model Libraries trỏ tới `gpdk090.scs`, section NN; `tran` 602 ns, `moderate`; cách dựng giống testbench Spectre ở mục 3.2.
+
+Vẽ lại khối cho dễ đọc, dựng testbench schematic và mô phỏng ngay trong Virtuoso (luồng ADE/OCEAN), trong CIW:
+```lisp
+load("<thu muc>/scripts/cadence/ve_khoi_de_doc.il")
+vkAll()                                                   ; TSPC_LFSR_8bit, _CMOS, TSPC_CFSR_8bit, LT_RTPG_8bit
+vkTb("tb_TSPC_LFSR_8bit" "TSPC_LFSR_8bit")                ; tuong tu: tb_TSPC_CFSR_8bit, ("tb_LT_RTPG_8bit" "LT")
+vkSim("tb_TSPC_LFSR_8bit" "NN" '("CLK" "RST" "Q0" "Q1" "Q2" "Q3" "Q4" "Q5" "Q6" "Q7") nil "<thu muc ra>")
+vkExport("TSPC_LFSR_8bit" "schematic" "<ra>.png" 4800 2700)
+```
+`vkSim` ghi giá trị các tín hiệu tại (k+1)T − 0,1 ns ra file `<tb>_<corner>_mau.txt`, so với bảng `.exp` như testbench netlist (22/11/2026: tb_TSPC_LFSR, tb_TSPC_CFSR, tb_LT_RTPG LP = 0 và 1 đều 301/301). Ảnh dạng sóng chụp từ ViVA rồi ghép dải giá trị bus bằng `scripts/hinh/ghep_dang_song.py`.
 
 ## 3.6. Kiểm tra nhanh bằng ngspice (không cần Cadence)
 

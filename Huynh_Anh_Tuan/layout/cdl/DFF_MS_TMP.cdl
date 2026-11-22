@@ -1,0 +1,26 @@
+.SUBCKT DFF_MS_TMP D CLK CLKB SET RST Q VDD GND
+MMN1 n1 CLKB D GND nmos1v w=0.24u l=0.1u
+MMP1 n1 CLK D VDD pmos1v w=0.48u l=0.1u
+MI1_MN0 mb n1 GND GND nmos1v w=0.12u l=0.1u
+MI1_MN1 mb SET GND GND nmos1v w=0.12u l=0.1u
+MI1_MP0 I1_p1 n1 VDD VDD pmos1v w=0.48u l=0.1u
+MI1_MP1 mb SET I1_p1 VDD pmos1v w=0.48u l=0.1u
+MI2_MN0 n1f mb GND GND nmos1v w=0.12u l=0.1u
+MI2_MN1 n1f RST GND GND nmos1v w=0.12u l=0.1u
+MI2_MP0 I2_p1 mb VDD VDD pmos1v w=0.48u l=0.1u
+MI2_MP1 n1f RST I2_p1 VDD pmos1v w=0.48u l=0.1u
+MMN2 n1 CLK n1f GND nmos1v w=0.24u l=0.1u
+MMP2 n1 CLKB n1f VDD pmos1v w=0.48u l=0.1u
+MMN3 n2 CLK mb GND nmos1v w=0.24u l=0.1u
+MMP3 n2 CLKB mb VDD pmos1v w=0.48u l=0.1u
+MI3_MN0 Q n2 GND GND nmos1v w=0.12u l=0.1u
+MI3_MN1 Q RST GND GND nmos1v w=0.12u l=0.1u
+MI3_MP0 I3_p1 n2 VDD VDD pmos1v w=0.48u l=0.1u
+MI3_MP1 Q RST I3_p1 VDD pmos1v w=0.48u l=0.1u
+MI4_MN0 n2f Q GND GND nmos1v w=0.12u l=0.1u
+MI4_MN1 n2f SET GND GND nmos1v w=0.12u l=0.1u
+MI4_MP0 I4_p1 Q VDD VDD pmos1v w=0.48u l=0.1u
+MI4_MP1 n2f SET I4_p1 VDD pmos1v w=0.48u l=0.1u
+MMN4 n2 CLKB n2f GND nmos1v w=0.24u l=0.1u
+MMP4 n2 CLK n2f VDD pmos1v w=0.48u l=0.1u
+.ENDS

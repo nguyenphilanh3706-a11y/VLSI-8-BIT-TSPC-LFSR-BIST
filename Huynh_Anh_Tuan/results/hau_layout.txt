@@ -1,0 +1,20 @@
+# Mo phong hau layout (Assura RCX, R + C), Spectre, gpdk090, 27 C, T = 2 ns, 300 canh clock
+# tb/tb_<ten>_post_<corner>.scs, netlist layout/rcx/<dai>_post.scs, chay ngay 21/11/2026
+# Cot: T chu ky (s), tre_ps tre CLK->Q lon nhat, P_dut_uW / P_clk_uW / P_tai_uW cong suat nguon VVDD / VVDDCK / VVDDL
+
+## Ban cuoi (DFF_TSPC_TMP: MN1 = 0.12u)
+RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=201.5 P_dut_uW=54.694 P_clk_uW=35.110 P_tai_uW=3.442 E_dut_pJ=0.1094 E_clk_pJ=0.0702
+RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=283.6 P_dut_uW=49.775 P_clk_uW=34.348 P_tai_uW=3.141 E_dut_pJ=0.0996 E_clk_pJ=0.0687
+RESULT tb_TSPC_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=157.1 P_dut_uW=63.058 P_clk_uW=36.118 P_tai_uW=4.025 E_dut_pJ=0.1261 E_clk_pJ=0.0722
+RESULT tb_MS_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=381.6 P_dut_uW=118.268 P_clk_uW=42.318 P_tai_uW=5.134 E_dut_pJ=0.2365 E_clk_pJ=0.0846
+RESULT tb_MS_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=535.7 P_dut_uW=111.567 P_clk_uW=41.709 P_tai_uW=4.599 E_dut_pJ=0.2231 E_clk_pJ=0.0834
+RESULT tb_MS_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=298.1 P_dut_uW=125.990 P_clk_uW=43.136 P_tai_uW=5.766 E_dut_pJ=0.2520 E_clk_pJ=0.0863
+
+## Lan chay dau (DFF_TSPC_TMP: MN1 = 0.24u) - loi race o corner FF, xem docs/5_layout.md
+RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=202.3 P_dut_uW=56.738 P_clk_uW=35.115 P_tai_uW=3.455 E_dut_pJ=0.1135 E_clk_pJ=0.0702
+RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=284.7 P_dut_uW=50.269 P_clk_uW=34.350 P_tai_uW=3.155 E_dut_pJ=0.1005 E_clk_pJ=0.0687
+RESULT tb_TSPC_LFSR_post_FF FAIL 13/301 T=2e-09 tre_ps=1111.8 P_dut_uW=100.052 P_clk_uW=36.201 P_tai_uW=5.370 E_dut_pJ=0.2001 E_clk_pJ=0.0724
+#   vector sai dau tien: SAI vector 13 [k=13 Q=29]: Q4=0.933V(can 0)
+## Thu sua tren chinh netlist RCX, corner FF
+RESULT tb_TSPC_LFSR_vA_FF PASS 301/301 (MN1 0.24u -> 0.12u)        tre_ps=157.1 P_dut_uW=63.031 P_clk_uW=36.119
+RESULT tb_TSPC_LFSR_vB_FF PASS 301/301 (MN2, MN3 0.36u -> 0.48u)   tre_ps=154.8 P_dut_uW=65.496 P_clk_uW=37.605

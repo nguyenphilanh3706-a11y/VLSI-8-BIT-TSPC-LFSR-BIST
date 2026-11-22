@@ -1,8 +1,8 @@
-# tb_TSPC_LFSR_slew corner NN  Thu Nov 19 08:09:01 BDT 2026
-trf=20ps  RESULT sx_tb_TSPC_LFSR_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=115.0 P_dut_uW=57.469 P_clk_uW=0.000 P_tai_uW=3.273 E_dut_pJ=0.1149 E_clk_pJ=0.0000
-trf=100ps  RESULT sx_tb_TSPC_LFSR_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=158.1 P_dut_uW=59.219 P_clk_uW=0.000 P_tai_uW=3.287 E_dut_pJ=0.1184 E_clk_pJ=0.0000
-trf=200ps  RESULT sx_tb_TSPC_LFSR_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=210.0 P_dut_uW=67.567 P_clk_uW=0.000 P_tai_uW=3.363 E_dut_pJ=0.1351 E_clk_pJ=0.0000
-trf=300ps  RESULT sx_tb_TSPC_LFSR_slew_300ps_NN FAIL 2/301 T=2e-09 tre_ps=1374.1 P_dut_uW=52.064 P_clk_uW=0.000 P_tai_uW=2.286 E_dut_pJ=0.1041 E_clk_pJ=0.0000
-trf=400ps  RESULT sx_tb_TSPC_LFSR_slew_400ps_NN FAIL 1/301 T=2e-09 tre_ps=1700.1 P_dut_uW=32.385 P_clk_uW=0.000 P_tai_uW=0.958 E_dut_pJ=0.0648 E_clk_pJ=0.0000
-trf=600ps  RESULT sx_tb_TSPC_LFSR_slew_600ps_NN FAIL 1/301 T=2e-09 tre_ps=1431.6 P_dut_uW=90.676 P_clk_uW=0.000 P_tai_uW=2.466 E_dut_pJ=0.1814 E_clk_pJ=0.0000
-trf=800ps  RESULT sx_tb_TSPC_LFSR_slew_800ps_NN FAIL 2/301 T=2e-09 tre_ps=1638.0 P_dut_uW=108.195 P_clk_uW=0.000 P_tai_uW=3.786 E_dut_pJ=0.2164 E_clk_pJ=0.0000
+# tb_TSPC_LFSR_slew corner NN  Sun Nov 22 11:13:36 BDT 2026  (flip-flop TSPC cua TV2)
+trf=20ps  RESULT sx_tb_TSPC_LFSR_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=119.5 P_dut_uW=61.967 P_clk_uW=0.000 P_tai_uW=3.282 E_dut_pJ=0.1239 E_clk_pJ=0.0000
+trf=100ps  RESULT sx_tb_TSPC_LFSR_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=162.6 P_dut_uW=63.473 P_clk_uW=0.000 P_tai_uW=3.288 E_dut_pJ=0.1269 E_clk_pJ=0.0000
+trf=200ps  RESULT sx_tb_TSPC_LFSR_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=213.6 P_dut_uW=69.875 P_clk_uW=0.000 P_tai_uW=3.329 E_dut_pJ=0.1397 E_clk_pJ=0.0000
+trf=300ps  RESULT sx_tb_TSPC_LFSR_slew_300ps_NN PASS 301/301 T=2e-09 tre_ps=262.1 P_dut_uW=78.968 P_clk_uW=0.000 P_tai_uW=3.372 E_dut_pJ=0.1579 E_clk_pJ=0.0000
+trf=400ps  RESULT sx_tb_TSPC_LFSR_slew_400ps_NN PASS 301/301 T=2e-09 tre_ps=309.8 P_dut_uW=96.762 P_clk_uW=0.000 P_tai_uW=3.419 E_dut_pJ=0.1935 E_clk_pJ=0.0000
+trf=600ps  RESULT sx_tb_TSPC_LFSR_slew_600ps_NN FAIL 6/301 T=2e-09 tre_ps=1352.4 P_dut_uW=100.008 P_clk_uW=0.000 P_tai_uW=1.873 E_dut_pJ=0.2000 E_clk_pJ=0.0000
+trf=800ps  RESULT sx_tb_TSPC_LFSR_slew_800ps_NN FAIL 1/301 T=2e-09 tre_ps=1836.8 P_dut_uW=182.389 P_clk_uW=0.000 P_tai_uW=5.796 E_dut_pJ=0.3648 E_clk_pJ=0.0000

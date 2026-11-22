@@ -40,9 +40,10 @@ def golden_lt(n):
 TB = os.path.join(ROOT, "tb")
 MODEL = "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs"
 INCLUDES = [
-    "../deps/tv3/cells/cells.scs",          # cell TV3 (ban sao, xem deps/tv3/NGUON.md)
-    "../deps/tv3/blocks/XORTAP8.scs",
-    "../deps/tv3/blocks/CFSR_FB.scs",
+    "../depend/tv3/cells/cells.scs",          # cell TV3 (ban sao, xem depend/tv3/NGUON.md)
+    "../depend/tv3/blocks/XORTAP8.scs",
+    "../depend/tv3/blocks/CFSR_FB_OPT.scs",    # CFSR_FB_OPT (TV3, 435f6f0) cho TSPC_CFSR_8bit
+    "../depend/tv2/cells/cells.scs",          # flip-flop TSPC cua TV2 (TSPC_DFF_R, TSPC_DFF_S), xem depend/tv2/NGUON.md
     "../cells/cells.scs",                    # cell TV4 (INV_CLK, AND2_T, MUX2_N, DFF_*)
     "../blocks/LFSR_8bit.scs",
     "../blocks/LT_RTPG_8bit.scs",
@@ -101,26 +102,26 @@ def write_exp(name, outs, vecs, tclk=2e-9, note=""):
             f.write("V %d %d %s ; %s\n" % (k, 0 if k == 0 else 1, w, d))
 
 
-def write_tb(name, lines, corners=("NN", "SS", "FF")):
+def write_tb(name, lines, corners=("NN", "SS", "FF"), includes=None):
     with open(os.path.join(TB, name + ".scs"), "w") as f:
         f.write("\n".join(lines) + "\n")
     for c in corners:
         w = ["// %s, corner %s" % (name, c), "simulator lang=spectre",
              'include "%s" section=%s' % (MODEL, c)]
-        w += ['include "%s"' % i for i in INCLUDES]
+        w += ['include "%s"' % i for i in (includes or INCLUDES)]
         w += ['include "%s.scs"' % name]
         with open(os.path.join(TB, "%s_%s.scs" % (name, c)), "w") as f:
             f.write("\n".join(w) + "\n")
 
 
-def lfsr_tb(name, cell, mode="lfsr", direct=False):
+def lfsr_tb(name, cell, mode="lfsr", direct=False, includes=None):
     seed = 0x01 if mode == "lfsr" else 0x00
     seq = golden(mode, NCYC + 1)                # NCYC+1 trang thai
     L = common_head("%s: %s, %d canh clock, seed %02X sau RST" % (name, cell, NCYC, seed), direct)
     L += ["XDUT (CLK RST %s VDD GND) %s" % (" ".join(QN), cell)]
     L += loads(QN)
     L += tail(QN, NCYC + 1)
-    write_tb(name, L, ("NN",) if direct else ("NN", "SS", "FF"))
+    write_tb(name, L, ("NN",) if direct else ("NN", "SS", "FF"), includes)
     write_exp(name, QN, [(bits(s), "k=%d Q=%02X" % (k, s)) for k, s in enumerate(seq)],
               note="%s, %d vector" % (mode.upper(), len(seq)))
 
@@ -149,6 +150,11 @@ if __name__ == "__main__":
     lfsr_tb("tb_MS_LFSR_slew", "MS_LFSR_8bit", direct=True)
     lt_tb("tb_LT_RTPG_LP1", 1)
     lt_tb("tb_LT_RTPG_LP0", 0)
+    # sau layout: khoi LFSR thay bang netlist trich ky sinh (layout/rcx/*_post.scs)
+    for cell, tb in (("TSPC_LFSR_8bit", "tb_TSPC_LFSR_post"), ("MS_LFSR_8bit", "tb_MS_LFSR_post")):
+        post = "../layout/rcx/%s_post.scs" % cell
+        if os.path.isfile(os.path.join(TB, post)):
+            lfsr_tb(tb, cell, includes=["../depend/tv3/cells/cells.scs", "../cells/cells.scs", post])
     print("Da sinh testbench trong", TB)
     for f in sorted(os.listdir(TB)):
         print("  ", f)

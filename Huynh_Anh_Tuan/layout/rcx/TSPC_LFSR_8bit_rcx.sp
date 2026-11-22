@@ -1,0 +1,2050 @@
+*
+*
+*
+*                       LINUX           Sat Nov 21 19:57:57 2026
+*
+*
+*
+*  PROGRAM  advgen
+*
+*  HSPICE LIBRARY
+*
+*
+*
+
+*
+.SUBCKT TSPC_LFSR_8bit VDD GND CLK Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 RST
+*
+*
+*  caps2d version: 10
+*
+*
+*       TRANSISTOR CARDS
+*
+*
+MavI11/avD1_1	GND#84	RST#64	avI11/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI11/avD1_2	avI11/avC8	Q6#15	GND#84	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI11/avD1_3	avI11/avC12	avI11/avC8#6	avI11/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI11/avD1_4	GND#83	CLK#99	avI11/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI11/avD1_5	avI11/avC13	avI11/avC9#8	GND#83	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI11/avD1_6	avI11/avC14	avI11/avC10#8	avI11/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI11/avD1_7	avI11/avC11#3	CLK#104	avI11/avC14	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI11/avD1_8	GND#82	GND#56	avI11/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI11/avD1_9	Q7#3	avI11/avC11#8	GND#82	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI10/avD1_1	GND#87	RST#56	avI10/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI10/avD1_2	avI10/avC8	Q5#15	GND#87	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI10/avD1_3	avI10/avC12	avI10/avC8#6	avI10/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI10/avD1_4	GND#86	CLK#86	avI10/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI10/avD1_5	avI10/avC13	avI10/avC9#8	GND#86	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI10/avD1_6	avI10/avC14	avI10/avC10#8	avI10/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI10/avD1_7	avI10/avC11#3	CLK#90	avI10/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI10/avD1_8	GND#85	GND#49	avI10/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI10/avD1_9	Q6#3	avI10/avC11#8	GND#85	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI9/avD1_1	GND#90	RST#48	avI9/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI9/avD1_2	avI9/avC8	Q4#15	GND#90	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI9/avD1_3	avI9/avC12	avI9/avC8#6	avI9/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI9/avD1_4	GND#89	CLK#73	avI9/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI9/avD1_5	avI9/avC13	avI9/avC9#8	GND#89	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI9/avD1_6	avI9/avC14	avI9/avC10#8	avI9/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI9/avD1_7	avI9/avC11#3	CLK#77	avI9/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI9/avD1_8	GND#88	GND#42	avI9/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI9/avD1_9	Q5#3	avI9/avC11#8	GND#88	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI8/avD1_1	GND#93	RST#40	avI8/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI8/avD1_2	avI8/avC8	Q3#15	GND#93	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI8/avD1_3	avI8/avC12	avI8/avC8#6	avI8/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI8/avD1_4	GND#92	CLK#60	avI8/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI8/avD1_5	avI8/avC13	avI8/avC9#8	GND#92	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI8/avD1_6	avI8/avC14	avI8/avC10#8	avI8/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI8/avD1_7	avI8/avC11#3	CLK#64	avI8/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI8/avD1_8	GND#91	GND#35	avI8/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI8/avD1_9	Q4#3	avI8/avC11#8	GND#91	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI7/avD1_1	GND#96	RST#32	avI7/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI7/avD1_2	avI7/avC8	Q2#15	GND#96	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI7/avD1_3	avI7/avC12	avI7/avC8#6	avI7/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI7/avD1_4	GND#95	CLK#47	avI7/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI7/avD1_5	avI7/avC13	avI7/avC9#8	GND#95	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI7/avD1_6	avI7/avC14	avI7/avC10#8	avI7/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI7/avD1_7	avI7/avC11#3	CLK#51	avI7/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI7/avD1_8	GND#94	GND#28	avI7/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI7/avD1_9	Q3#3	avI7/avC11#8	GND#94	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI6/avD1_1	GND#99	RST#24	avI6/avC9#4	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI6/avD1_2	avI6/avC8	Q1#15	GND#99	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI6/avD1_3	avI6/avC12	avI6/avC8#6	avI6/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI6/avD1_4	GND#98	CLK#34	avI6/avC12	GND#58	nmos1v	L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI6/avD1_5	avI6/avC13	avI6/avC9#8	GND#98	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI6/avD1_6	avI6/avC14	avI6/avC10#8	avI6/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI6/avD1_7	avI6/avC11#3	CLK#38	avI6/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI6/avD1_8	GND#97	GND#21	avI6/avC11#3	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI6/avD1_9	Q2#3	avI6/avC11#8	GND#97	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI5/avD1_1	GND#102	RST#16	avI5/avC9#4	GND#58	nmos1v	L=0.1U
++ W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI5/avD1_2	avI5/avC8	Q0#15	GND#102	GND#58	nmos1v	L=0.1U
++ W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI5/avD1_3	avI5/avC12	avI5/avC8#6	avI5/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI5/avD1_4	GND#101	CLK#21	avI5/avC12	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI5/avD1_5	avI5/avC13	avI5/avC9#8	GND#101	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI5/avD1_6	avI5/avC14	avI5/avC10#8	avI5/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI5/avD1_7	avI5/avC11#3	CLK#25	avI5/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI5/avD1_8	GND#100	GND#14	avI5/avC11#3	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI5/avD1_9	Q1#3	avI5/avC11#8	GND#100	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI4/avD1_1	GND#105	GND#7	avI4/avC9#4	GND#58	nmos1v	L=0.1U
++ W=0.12U
++ AD=0.0408P	AS=0.0696P	PD=0.68U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI4/avD1_2	avI4/avC8	avC13#7	GND#105	GND#58	nmos1v
++ L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0408P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI4/avD1_3	avI4/avC12	avI4/avC8#6	avI4/avC10	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.1224P	PD=0.8U	PS=1.4U
++ simW=3.6e-07 fw=3.6e-07
+MavI4/avD1_4	GND#106	CLK#8	avI4/avC12	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI4/avD1_5	avI4/avC13	avI4/avC9#8	GND#106	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI4/avD1_6	avI4/avC14	avI4/avC10#8	avI4/avC13	GND#58	nmos1v
++ L=0.1U	W=0.36U
++ AD=0.0792P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI4/avD1_7	avI4/avC11#3	CLK#12	avI4/avC14	GND#58	nmos1v	L=0.1U
++ W=0.36U
++ AD=0.0732P	AS=0.0792P	PD=0.8U	PS=0.8U
++ simW=3.6e-07 fw=3.6e-07
+MavI4/avD1_8	GND#103	RST#8	avI4/avC11#3	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0528P	AS=0.0732P	PD=0.68U	PS=0.8U
++ simW=2.4e-07 fw=2.4e-07
+MavI4/avD1_9	Q0#3	avI4/avC11#8	GND#103	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD1_1	avI3/avC6#3	avC15#12	GND#79	GND#58	nmos1v	L=0.1U
++ W=0.12U
++ AD=0.0696P	AS=0.0696P	PD=1.16U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI3/avD1_2	avI3/avC8	avI3/avC6#8	GND#78	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0528P	AS=0.0816P	PD=0.68U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD1_3	avC13#11	avI3/avC7#4	avI3/avC8	GND#58	nmos1v
++ L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0528P	PD=0.68U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD1_4	avI3/avC9	avC14#11	avC13#11	GND#58	nmos1v
++ L=0.1U	W=0.24U
++ AD=0.0528P	AS=0.0528P	PD=0.68U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD1_5	GND#77	avC15#18	avI3/avC9	GND#58	nmos1v	L=0.1U
++ W=0.24U
++ AD=0.0816P	AS=0.0528P	PD=1.16U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD1_6	avI3/avC7#7	avC14#18	GND#57	GND#58	nmos1v	L=0.1U
++ W=0.12U
++ AD=0.0696P	AS=0.0696P	PD=1.16U	PS=1.16U
++ simW=1.2e-07 fw=1.2e-07
+MavI2/avD1_1	avC15	avI2/avC6#5	Q7#9	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0468P	AS=0.1992P	PD=0.68U	PS=2.24U
++ simW=1.2e-07 fw=1.2e-07
+MavI2/avD1_2	avI2/avC6#6	Q7#14	avC15	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0468P	AS=0.0468P	PD=0.68U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI2/avD1_3	GND#80	Q6#28	avI2/avC6#6	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0468P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI1/avD1_1	avC14	avI1/avC6#5	Q5#17	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0468P	AS=0.1992P	PD=0.68U	PS=2.24U
++ simW=1.2e-07 fw=1.2e-07
+MavI1/avD1_2	avI1/avC6#6	Q5#22	avC14	GND#58	nmos1v	L=0.1U	W=0.24U
++ AD=0.0468P	AS=0.0468P	PD=0.68U	PS=0.68U
++ simW=2.4e-07 fw=2.4e-07
+MavI1/avD1_3	GND#81	Q0#28	avI1/avC6#6	GND#58	nmos1v	L=0.1U	W=0.12U
++ AD=0.0696P	AS=0.0468P	PD=1.16U	PS=0.68U
++ simW=1.2e-07 fw=1.2e-07
+MavI11/avD7_1	VDD#27	RST#62	avI11/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI11/avD7_2	avI11/avC15	Q6#13	VDD#27	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI11/avD7_3	avI11/avC8#5	CLK#94	avI11/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI11/avD7_4	VDD#26	CLK#98	avI11/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI11/avD7_5	avI11/avC11	avI11/avC9#7	VDD#26	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI11/avD7_6	avI11/avC16	avI11/avC10#7	avI11/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI11/avD7_7	VDD#25	GND#54	avI11/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI11/avD7_8	Q7#1	avI11/avC11#7	VDD#25	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_1	VDD#30	RST#54	avI10/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI10/avD7_2	avI10/avC15	Q5#13	VDD#30	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_3	avI10/avC8#5	CLK#81	avI10/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_4	VDD#29	CLK#85	avI10/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_5	avI10/avC11	avI10/avC9#7	VDD#29	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI10/avD7_6	avI10/avC16	avI10/avC10#7	avI10/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_7	VDD#28	GND#47	avI10/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI10/avD7_8	Q6#1	avI10/avC11#7	VDD#28	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_1	VDD#33	RST#46	avI9/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI9/avD7_2	avI9/avC15	Q4#13	VDD#33	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_3	avI9/avC8#5	CLK#68	avI9/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_4	VDD#32	CLK#72	avI9/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_5	avI9/avC11	avI9/avC9#7	VDD#32	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI9/avD7_6	avI9/avC16	avI9/avC10#7	avI9/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_7	VDD#31	GND#40	avI9/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI9/avD7_8	Q5#1	avI9/avC11#7	VDD#31	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_1	VDD#36	RST#38	avI8/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI8/avD7_2	avI8/avC15	Q3#13	VDD#36	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_3	avI8/avC8#5	CLK#55	avI8/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_4	VDD#35	CLK#59	avI8/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_5	avI8/avC11	avI8/avC9#7	VDD#35	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI8/avD7_6	avI8/avC16	avI8/avC10#7	avI8/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_7	VDD#34	GND#33	avI8/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI8/avD7_8	Q4#1	avI8/avC11#7	VDD#34	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_1	VDD#39	RST#30	avI7/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI7/avD7_2	avI7/avC15	Q2#13	VDD#39	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_3	avI7/avC8#5	CLK#42	avI7/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_4	VDD#38	CLK#46	avI7/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_5	avI7/avC11	avI7/avC9#7	VDD#38	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI7/avD7_6	avI7/avC16	avI7/avC10#7	avI7/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_7	VDD#37	GND#26	avI7/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI7/avD7_8	Q3#1	avI7/avC11#7	VDD#37	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_1	VDD#42	RST#22	avI6/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI6/avD7_2	avI6/avC15	Q1#13	VDD#42	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_3	avI6/avC8#5	CLK#29	avI6/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_4	VDD#41	CLK#33	avI6/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_5	avI6/avC11	avI6/avC9#7	VDD#41	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI6/avD7_6	avI6/avC16	avI6/avC10#7	avI6/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_7	VDD#40	GND#19	avI6/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI6/avD7_8	Q2#1	avI6/avC11#7	VDD#40	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_1	VDD#45	RST#14	avI5/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI5/avD7_2	avI5/avC15	Q0#13	VDD#45	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_3	avI5/avC8#5	CLK#16	avI5/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_4	VDD#44	CLK#20	avI5/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_5	avI5/avC11	avI5/avC9#7	VDD#44	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI5/avD7_6	avI5/avC16	avI5/avC10#7	avI5/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_7	VDD#43	GND#12	avI5/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI5/avD7_8	Q1#1	avI5/avC11#7	VDD#43	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_1	VDD#49	GND#5	avI4/avC9	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0936P	AS=0.0816P	PD=0.92U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI4/avD7_2	avI4/avC15	avC13#5	VDD#49	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1056P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_3	avI4/avC8#5	CLK#3	avI4/avC15	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_4	VDD#47	CLK#7	avI4/avC10#3	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_5	avI4/avC11	avI4/avC9#7	VDD#47	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0936P	AS=0.0936P	PD=0.92U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI4/avD7_6	avI4/avC16	avI4/avC10#7	avI4/avC11	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.2352P	AS=0.0936P	PD=1.46U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_7	VDD#46	RST#6	avI4/avC16	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.2352P	PD=0.92U	PS=1.46U
++ simW=4.8e-07 fw=4.8e-07
+MavI4/avD7_8	Q0#1	avI4/avC11#7	VDD#46	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI3/avD7_1	VDD#22	avC15#11	avI3/avC6	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0816P	AS=0.0816P	PD=1.16U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI3/avD7_2	avC13#9	avI3/avC6#7	avI3/avC10#2	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI3/avD7_3	avI3/avC10#4	avI3/avC7#3	avC13#9	VDD#2	pmos1v
++ L=0.1U	W=0.48U
++ AD=0.1056P	AS=0.1056P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI3/avD7_4	VDD#21	avC14#10	avI3/avC10#4	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1056P	AS=0.1056P	PD=0.92U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI3/avD7_5	avI3/avC10#6	avC15#17	VDD#21	VDD#2	pmos1v	L=0.1U
++ W=0.48U
++ AD=0.1632P	AS=0.1056P	PD=1.64U	PS=0.92U
++ simW=4.8e-07 fw=4.8e-07
+MavI3/avD7_6	VDD#1	avC14#16	avI3/avC7#5	VDD#2	pmos1v	L=0.1U
++ W=0.24U
++ AD=0.0816P	AS=0.0816P	PD=1.16U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI2/avD7_1	VDD#23	Q6#20	avI2/avC6	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0816P	PD=1.16U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI2/avD7_2	avC15#3	Q7#13	Q6#22	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI2/avD7_3	Q7#15	Q6#27	avC15#3	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0936P	PD=1.16U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+MavI1/avD7_1	VDD#24	Q0#20	avI1/avC6	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0816P	PD=1.16U	PS=1.16U
++ simW=2.4e-07 fw=2.4e-07
+MavI1/avD7_2	avC14#3	Q5#21	Q0#24	VDD#2	pmos1v	L=0.1U	W=0.48U
++ AD=0.0936P	AS=0.1632P	PD=0.92U	PS=1.64U
++ simW=4.8e-07 fw=4.8e-07
+MavI1/avD7_3	Q5#23	Q0#27	avC14#3	VDD#2	pmos1v	L=0.1U	W=0.24U
++ AD=0.0816P	AS=0.0936P	PD=1.16U	PS=0.92U
++ simW=2.4e-07 fw=2.4e-07
+*
+*
+*       RESISTOR AND CAP/DIODE CARDS
+*
+Rj1	GND#5	GND#6	   48.5435	$poly
+Rj2	GND#6	GND#7	   54.5435	$poly
+Rj3	GND#1	GND#6	   10.0000	$poly
+Rj4	avC13#5	avC13#6	   36.5435	$poly
+Rj5	avC13#6	avC13#7	   54.5435	$poly
+Rj6	avC13	avC13#6	   10.0000	$poly
+Rj7	CLK#3	CLK#1	   36.5435	$poly
+Rj8	avI4/avC8#6	avI4/avC8#3	   36.5435	$poly
+Rj9	CLK#7	CLK#4	   36.5435	$poly
+Rj10	CLK#4	CLK#8	   36.5435	$poly
+Rj11	avI4/avC9#7	avI4/avC9#5	   48.5435	$poly
+Rj12	avI4/avC9#5	avI4/avC9#8	   36.5435	$poly
+Rj13	avI4/avC10#7	avI4/avC10#5	   36.5435	$poly
+Rj14	avI4/avC10#5	avI4/avC10#8	   36.5435	$poly
+Rj15	CLK#12	CLK#9	   36.5435	$poly
+Rj16	RST#6	RST#7	   36.5435	$poly
+Rj17	RST#7	RST#8	   48.5435	$poly
+Rj18	RST#1	RST#7	   10.0000	$poly
+Rj19	avI4/avC11#7	avI4/avC11#5	   36.5435	$poly
+Rj20	avI4/avC11#5	avI4/avC11#8	   48.5435	$poly
+Rj21	RST#14	RST#15	   48.5435	$poly
+Rj22	RST#15	RST#16	   54.5435	$poly
+Rj23	RST#9	RST#15	   10.0000	$poly
+Rj24	Q0#13	Q0#14	   36.5435	$poly
+Rj25	Q0#14	Q0#15	   54.5435	$poly
+Rj26	Q0#9	Q0#14	   10.0000	$poly
+Rj27	CLK#16	CLK#14	   36.5435	$poly
+Rj28	avI5/avC8#6	avI5/avC8#3	   36.5435	$poly
+Rj29	CLK#20	CLK#17	   36.5435	$poly
+Rj30	CLK#17	CLK#21	   36.5435	$poly
+Rj31	avI5/avC9#7	avI5/avC9#5	   48.5435	$poly
+Rj32	avI5/avC9#5	avI5/avC9#8	   36.5435	$poly
+Rj33	avI5/avC10#7	avI5/avC10#5	   36.5435	$poly
+Rj34	avI5/avC10#5	avI5/avC10#8	   36.5435	$poly
+Rj35	CLK#25	CLK#22	   36.5435	$poly
+Rj36	GND#12	GND#13	   36.5435	$poly
+Rj37	GND#13	GND#14	   48.5435	$poly
+Rj38	GND#8	GND#13	   10.0000	$poly
+Rj39	avI5/avC11#7	avI5/avC11#5	   36.5435	$poly
+Rj40	avI5/avC11#5	avI5/avC11#8	   48.5435	$poly
+Rj41	RST#22	RST#23	   48.5435	$poly
+Rj42	RST#23	RST#24	   54.5435	$poly
+Rj43	RST#17	RST#23	   10.0000	$poly
+Rj44	Q1#13	Q1#14	   36.5435	$poly
+Rj45	Q1#14	Q1#15	   54.5435	$poly
+Rj46	Q1#9	Q1#14	   10.0000	$poly
+Rj47	CLK#29	CLK#27	   36.5435	$poly
+Rj48	avI6/avC8#6	avI6/avC8#3	   36.5435	$poly
+Rj49	CLK#33	CLK#30	   36.5435	$poly
+Rj50	CLK#30	CLK#34	   36.5435	$poly
+Rj51	avI6/avC9#7	avI6/avC9#5	   48.5435	$poly
+Rj52	avI6/avC9#5	avI6/avC9#8	   36.5435	$poly
+Rj53	avI6/avC10#7	avI6/avC10#5	   36.5435	$poly
+Rj54	avI6/avC10#5	avI6/avC10#8	   36.5435	$poly
+Rj55	CLK#38	CLK#35	   36.5435	$poly
+Rj56	GND#19	GND#20	   36.5435	$poly
+Rj57	GND#20	GND#21	   48.5435	$poly
+Rj58	GND#15	GND#20	   10.0000	$poly
+Rj59	avI6/avC11#7	avI6/avC11#5	   36.5435	$poly
+Rj60	avI6/avC11#5	avI6/avC11#8	   48.5435	$poly
+Rj61	RST#30	RST#31	   48.5435	$poly
+Rj62	RST#31	RST#32	   54.5435	$poly
+Rj63	RST#25	RST#31	   10.0000	$poly
+Rj64	Q2#13	Q2#14	   36.5435	$poly
+Rj65	Q2#14	Q2#15	   54.5435	$poly
+Rj66	Q2#9	Q2#14	   10.0000	$poly
+Rj67	CLK#42	CLK#40	   36.5435	$poly
+Rj68	avI7/avC8#6	avI7/avC8#3	   36.5435	$poly
+Rj69	CLK#46	CLK#43	   36.5435	$poly
+Rj70	CLK#43	CLK#47	   36.5435	$poly
+Rj71	avI7/avC9#7	avI7/avC9#5	   48.5435	$poly
+Rj72	avI7/avC9#5	avI7/avC9#8	   36.5435	$poly
+Rj73	avI7/avC10#7	avI7/avC10#5	   36.5435	$poly
+Rj74	avI7/avC10#5	avI7/avC10#8	   36.5435	$poly
+Rj75	CLK#51	CLK#48	   36.5435	$poly
+Rj76	GND#26	GND#27	   36.5435	$poly
+Rj77	GND#27	GND#28	   48.5435	$poly
+Rj78	GND#22	GND#27	   10.0000	$poly
+Rj79	avI7/avC11#7	avI7/avC11#5	   36.5435	$poly
+Rj80	avI7/avC11#5	avI7/avC11#8	   48.5435	$poly
+Rj81	RST#38	RST#39	   48.5435	$poly
+Rj82	RST#39	RST#40	   54.5435	$poly
+Rj83	RST#33	RST#39	   10.0000	$poly
+Rj84	Q3#13	Q3#14	   36.5435	$poly
+Rj85	Q3#14	Q3#15	   54.5435	$poly
+Rj86	Q3#9	Q3#14	   10.0000	$poly
+Rj87	CLK#55	CLK#53	   36.5435	$poly
+Rj88	avI8/avC8#6	avI8/avC8#3	   36.5435	$poly
+Rj89	CLK#59	CLK#56	   36.5435	$poly
+Rj90	CLK#56	CLK#60	   36.5435	$poly
+Rj91	avI8/avC9#7	avI8/avC9#5	   48.5435	$poly
+Rj92	avI8/avC9#5	avI8/avC9#8	   36.5435	$poly
+Rj93	avI8/avC10#7	avI8/avC10#5	   36.5435	$poly
+Rj94	avI8/avC10#5	avI8/avC10#8	   36.5435	$poly
+Rj95	CLK#64	CLK#61	   36.5435	$poly
+Rj96	GND#33	GND#34	   36.5435	$poly
+Rj97	GND#34	GND#35	   48.5435	$poly
+Rj98	GND#29	GND#34	   10.0000	$poly
+Rj99	avI8/avC11#7	avI8/avC11#5	   36.5435	$poly
+Rj100	avI8/avC11#5	avI8/avC11#8	   48.5435	$poly
+Rj101	RST#46	RST#47	   48.5435	$poly
+Rj102	RST#47	RST#48	   54.5435	$poly
+Rj103	RST#41	RST#47	   10.0000	$poly
+Rj104	Q4#13	Q4#14	   36.5435	$poly
+Rj105	Q4#14	Q4#15	   54.5435	$poly
+Rj106	Q4#9	Q4#14	   10.0000	$poly
+Rj107	CLK#68	CLK#66	   36.5435	$poly
+Rj108	avI9/avC8#6	avI9/avC8#3	   36.5435	$poly
+Rj109	CLK#72	CLK#69	   36.5435	$poly
+Rj110	CLK#69	CLK#73	   36.5435	$poly
+Rj111	avI9/avC9#7	avI9/avC9#5	   48.5435	$poly
+Rj112	avI9/avC9#5	avI9/avC9#8	   36.5435	$poly
+Rj113	avI9/avC10#7	avI9/avC10#5	   36.5435	$poly
+Rj114	avI9/avC10#5	avI9/avC10#8	   36.5435	$poly
+Rj115	CLK#77	CLK#74	   36.5435	$poly
+Rj116	GND#40	GND#41	   36.5435	$poly
+Rj117	GND#41	GND#42	   48.5435	$poly
+Rj118	GND#36	GND#41	   10.0000	$poly
+Rj119	avI9/avC11#7	avI9/avC11#5	   36.5435	$poly
+Rj120	avI9/avC11#5	avI9/avC11#8	   48.5435	$poly
+Rj121	RST#54	RST#55	   48.5435	$poly
+Rj122	RST#55	RST#56	   54.5435	$poly
+Rj123	RST#49	RST#55	   10.0000	$poly
+Rj124	Q5#13	Q5#14	   36.5435	$poly
+Rj125	Q5#14	Q5#15	   54.5435	$poly
+Rj126	Q5#9	Q5#14	   10.0000	$poly
+Rj127	CLK#81	CLK#79	   36.5435	$poly
+Rj128	avI10/avC8#6	avI10/avC8#3	   36.5435	$poly
+Rj129	CLK#85	CLK#82	   36.5435	$poly
+Rj130	CLK#82	CLK#86	   36.5435	$poly
+Rj131	avI10/avC9#7	avI10/avC9#5	   48.5435	$poly
+Rj132	avI10/avC9#5	avI10/avC9#8	   36.5435	$poly
+Rj133	avI10/avC10#7	avI10/avC10#5	   36.5435	$poly
+Rj134	avI10/avC10#5	avI10/avC10#8	   36.5435	$poly
+Rj135	CLK#90	CLK#87	   36.5435	$poly
+Rj136	GND#47	GND#48	   36.5435	$poly
+Rj137	GND#48	GND#49	   48.5435	$poly
+Rj138	GND#43	GND#48	   10.0000	$poly
+Rj139	avI10/avC11#7	avI10/avC11#5	   36.5435	$poly
+Rj140	avI10/avC11#5	avI10/avC11#8	   48.5435	$poly
+Rj141	RST#62	RST#63	   48.5435	$poly
+Rj142	RST#63	RST#64	   54.5435	$poly
+Rj143	RST#57	RST#63	   10.0000	$poly
+Rj144	Q6#13	Q6#14	   36.5435	$poly
+Rj145	Q6#14	Q6#15	   54.5435	$poly
+Rj146	Q6#9	Q6#14	   10.0000	$poly
+Rj147	CLK#94	CLK#92	   36.5435	$poly
+Rj148	avI11/avC8#6	avI11/avC8#3	   36.5435	$poly
+Rj149	CLK#98	CLK#95	   36.5435	$poly
+Rj150	CLK#95	CLK#99	   36.5435	$poly
+Rj151	avI11/avC9#7	avI11/avC9#5	   48.5435	$poly
+Rj152	avI11/avC9#5	avI11/avC9#8	   36.5435	$poly
+Rj153	avI11/avC10#7	avI11/avC10#5	   36.5435	$poly
+Rj154	avI11/avC10#5	avI11/avC10#8	   36.5435	$poly
+Rj155	CLK#104	CLK#101	   36.5435	$poly
+Rj156	GND#54	GND#55	   36.5435	$poly
+Rj157	GND#55	GND#56	   48.5435	$poly
+Rj158	GND#50	GND#55	   10.0000	$poly
+Rj159	avI11/avC11#7	avI11/avC11#5	   36.5435	$poly
+Rj160	avI11/avC11#5	avI11/avC11#8	   48.5435	$poly
+Rj161	Q0#20	Q0#17	   58.5435	$poly
+Rj162	avI1/avC6#5	avI1/avC6#3	   54.5435	$poly
+Rj163	Q5#21	Q5#19	   36.5435	$poly
+Rj164	Q5#19	Q5#22	   48.5435	$poly
+Rj165	Q0#27	Q0#25	   48.5435	$poly
+Rj166	Q0#25	Q0#28	   54.5435	$poly
+Rj167	Q6#20	Q6#17	   58.5435	$poly
+Rj168	avI2/avC6#5	avI2/avC6#3	   54.5435	$poly
+Rj169	Q7#13	Q7#11	   36.5435	$poly
+Rj170	Q7#11	Q7#14	   48.5435	$poly
+Rj171	Q6#27	Q6#25	   48.5435	$poly
+Rj172	Q6#25	Q6#28	   54.5435	$poly
+Rj173	avC15#11	avC15#8	   48.5435	$poly
+Rj174	avC15#8	avC15#12	   54.5435	$poly
+Rj175	avI3/avC6#7	avI3/avC6#5	   36.5435	$poly
+Rj176	avI3/avC6#5	avI3/avC6#8	   48.5435	$poly
+Rj177	avI3/avC7#3	avI3/avC7	   36.5435	$poly
+Rj178	avI3/avC7	avI3/avC7#4	   48.5435	$poly
+Rj179	avC14#10	avC14#8	   36.5435	$poly
+Rj180	avC14#8	avC14#11	   48.5435	$poly
+Rj181	avC15#17	avC15#15	   36.5435	$poly
+Rj182	avC15#15	avC15#18	   48.5435	$poly
+Rj183	avC14#16	avC14#17	   48.5435	$poly
+Rj184	avC14#17	avC14#18	   54.5435	$poly
+Rj185	avC14#12	avC14#17	   10.0000	$poly
+Ri1	avI4/avC9#2	avI4/avC9#3	2.667E-02	$mt1
+Ri2	avI4/avC9#3	avI4/avC9#4	   15.6987	$mt1
+Ri3	avI4/avC9	avI4/avC9#2	   15.0000	$mt1
+Ri5	GND#1	GND#3	    1.6827	$mt1
+Ri7	avC13	avC13#3	    1.8907	$mt1
+Ri8	avI4/avC8	avI4/avC8#2	   16.9440	$mt1
+Ri9	CLK#1	CLK#2	   11.4267	$mt1
+Ri10	avI4/avC10	avI4/avC10#2	   16.6347	$mt1
+Ri11	avI4/avC8#3	avI4/avC8#4	   10.2807	$mt1
+Ri12	avI4/avC8#4	avI4/avC8#5	   15.1813	$mt1
+Ri13	avI4/avC10#3	avI4/avC10#4	   16.8907	$mt1
+Ri14	CLK#4	CLK#5	   10.0000	$mt1
+Ri15	CLK#5	CLK#6	    1.4267	$mt1
+Ri16	avI4/avC9#5	avI4/avC9#6	   11.7360	$mt1
+Ri17	avI4/avC11	avI4/avC11#2	   16.5813	$mt1
+Ri18	avI4/avC10#5	avI4/avC10#6	   11.5280	$mt1
+Ri19	CLK#9	CLK#10	   11.4267	$mt1
+Ri20	avI4/avC11#3	avI4/avC11#4	   16.9440	$mt1
+Ri22	RST#1	RST#3	    1.6827	$mt1
+Ri23	avI4/avC11#5	avI4/avC11#6	   11.5813	$mt1
+Ri24	Q0#2	Q0#4	    0.7253	$mt1
+Ri26	Q0#2	Q0#6	    1.5280	$mt1
+Ri27	Q0#1	Q0#2	   15.0000	$mt1
+Ri28	Q0#3	Q0#4	   15.0000	$mt1
+Ri29	avI5/avC9#2	avI5/avC9#3	2.667E-02	$mt1
+Ri30	avI5/avC9#3	avI5/avC9#4	   15.6987	$mt1
+Ri31	avI5/avC9	avI5/avC9#2	   15.0000	$mt1
+Ri33	RST#9	RST#11	    1.6827	$mt1
+Ri35	Q0#9	Q0#11	    1.8907	$mt1
+Ri36	avI5/avC8	avI5/avC8#2	   16.9440	$mt1
+Ri37	CLK#14	CLK#15	   11.4267	$mt1
+Ri38	avI5/avC10	avI5/avC10#2	   16.6347	$mt1
+Ri39	avI5/avC8#3	avI5/avC8#4	   10.2807	$mt1
+Ri40	avI5/avC8#4	avI5/avC8#5	   15.1813	$mt1
+Ri41	avI5/avC10#3	avI5/avC10#4	   16.8907	$mt1
+Ri42	CLK#17	CLK#18	   10.0000	$mt1
+Ri43	CLK#18	CLK#19	    1.4267	$mt1
+Ri44	avI5/avC9#5	avI5/avC9#6	   11.7360	$mt1
+Ri45	avI5/avC11	avI5/avC11#2	   16.5813	$mt1
+Ri46	avI5/avC10#5	avI5/avC10#6	   11.5280	$mt1
+Ri47	CLK#22	CLK#23	   11.4267	$mt1
+Ri48	avI5/avC11#3	avI5/avC11#4	   16.9440	$mt1
+Ri50	GND#8	GND#10	    1.6827	$mt1
+Ri51	avI5/avC11#5	avI5/avC11#6	   11.5813	$mt1
+Ri52	Q1#2	Q1#4	    0.7253	$mt1
+Ri54	Q1#2	Q1#6	    1.5280	$mt1
+Ri55	Q1#1	Q1#2	   15.0000	$mt1
+Ri56	Q1#3	Q1#4	   15.0000	$mt1
+Ri57	avI6/avC9#2	avI6/avC9#3	2.667E-02	$mt1
+Ri58	avI6/avC9#3	avI6/avC9#4	   15.6987	$mt1
+Ri59	avI6/avC9	avI6/avC9#2	   15.0000	$mt1
+Ri61	RST#17	RST#19	    1.6827	$mt1
+Ri63	Q1#9	Q1#11	    1.8907	$mt1
+Ri64	avI6/avC8	avI6/avC8#2	   16.9440	$mt1
+Ri65	CLK#27	CLK#28	   11.4267	$mt1
+Ri66	avI6/avC10	avI6/avC10#2	   16.6347	$mt1
+Ri67	avI6/avC8#3	avI6/avC8#4	   10.2807	$mt1
+Ri68	avI6/avC8#4	avI6/avC8#5	   15.1813	$mt1
+Ri69	avI6/avC10#3	avI6/avC10#4	   16.8907	$mt1
+Ri70	CLK#30	CLK#31	   10.0000	$mt1
+Ri71	CLK#31	CLK#32	    1.4267	$mt1
+Ri72	avI6/avC9#5	avI6/avC9#6	   11.7360	$mt1
+Ri73	avI6/avC11	avI6/avC11#2	   16.5813	$mt1
+Ri74	avI6/avC10#5	avI6/avC10#6	   11.5280	$mt1
+Ri75	CLK#35	CLK#36	   11.4267	$mt1
+Ri76	avI6/avC11#3	avI6/avC11#4	   16.9440	$mt1
+Ri78	GND#15	GND#17	    1.6827	$mt1
+Ri79	avI6/avC11#5	avI6/avC11#6	   11.5813	$mt1
+Ri80	Q2#2	Q2#4	    0.7253	$mt1
+Ri82	Q2#2	Q2#6	    1.5280	$mt1
+Ri83	Q2#1	Q2#2	   15.0000	$mt1
+Ri84	Q2#3	Q2#4	   15.0000	$mt1
+Ri85	avI7/avC9#2	avI7/avC9#3	2.667E-02	$mt1
+Ri86	avI7/avC9#3	avI7/avC9#4	   15.6987	$mt1
+Ri87	avI7/avC9	avI7/avC9#2	   15.0000	$mt1
+Ri89	RST#25	RST#27	    1.6827	$mt1
+Ri91	Q2#9	Q2#11	    1.8907	$mt1
+Ri92	avI7/avC8	avI7/avC8#2	   16.9440	$mt1
+Ri93	CLK#40	CLK#41	   11.4267	$mt1
+Ri94	avI7/avC10	avI7/avC10#2	   16.6347	$mt1
+Ri95	avI7/avC8#3	avI7/avC8#4	   10.2807	$mt1
+Ri96	avI7/avC8#4	avI7/avC8#5	   15.1813	$mt1
+Ri97	avI7/avC10#3	avI7/avC10#4	   16.8907	$mt1
+Ri98	CLK#43	CLK#44	   10.0000	$mt1
+Ri99	CLK#44	CLK#45	    1.4267	$mt1
+Ri100	avI7/avC9#5	avI7/avC9#6	   11.7360	$mt1
+Ri101	avI7/avC11	avI7/avC11#2	   16.5813	$mt1
+Ri102	avI7/avC10#5	avI7/avC10#6	   11.5280	$mt1
+Ri103	CLK#48	CLK#49	   11.4267	$mt1
+Ri104	avI7/avC11#3	avI7/avC11#4	   16.9440	$mt1
+Ri106	GND#22	GND#24	    1.6827	$mt1
+Ri107	avI7/avC11#5	avI7/avC11#6	   11.5813	$mt1
+Ri108	Q3#2	Q3#4	    0.7253	$mt1
+Ri110	Q3#2	Q3#6	    1.5280	$mt1
+Ri111	Q3#1	Q3#2	   15.0000	$mt1
+Ri112	Q3#3	Q3#4	   15.0000	$mt1
+Ri113	avI8/avC9#2	avI8/avC9#3	2.667E-02	$mt1
+Ri114	avI8/avC9#3	avI8/avC9#4	   15.6987	$mt1
+Ri115	avI8/avC9	avI8/avC9#2	   15.0000	$mt1
+Ri117	RST#33	RST#35	    1.6827	$mt1
+Ri119	Q3#9	Q3#11	    1.8907	$mt1
+Ri120	avI8/avC8	avI8/avC8#2	   16.9440	$mt1
+Ri121	CLK#53	CLK#54	   11.4267	$mt1
+Ri122	avI8/avC10	avI8/avC10#2	   16.6347	$mt1
+Ri123	avI8/avC8#3	avI8/avC8#4	   10.2807	$mt1
+Ri124	avI8/avC8#4	avI8/avC8#5	   15.1813	$mt1
+Ri125	avI8/avC10#3	avI8/avC10#4	   16.8907	$mt1
+Ri126	CLK#56	CLK#57	   10.0000	$mt1
+Ri127	CLK#57	CLK#58	    1.4267	$mt1
+Ri128	avI8/avC9#5	avI8/avC9#6	   11.7360	$mt1
+Ri129	avI8/avC11	avI8/avC11#2	   16.5813	$mt1
+Ri130	avI8/avC10#5	avI8/avC10#6	   11.5280	$mt1
+Ri131	CLK#61	CLK#62	   11.4267	$mt1
+Ri132	avI8/avC11#3	avI8/avC11#4	   16.9440	$mt1
+Ri134	GND#29	GND#31	    1.6827	$mt1
+Ri135	avI8/avC11#5	avI8/avC11#6	   11.5813	$mt1
+Ri136	Q4#2	Q4#4	    0.7253	$mt1
+Ri138	Q4#2	Q4#6	    1.5280	$mt1
+Ri139	Q4#1	Q4#2	   15.0000	$mt1
+Ri140	Q4#3	Q4#4	   15.0000	$mt1
+Ri141	avI9/avC9#2	avI9/avC9#3	2.667E-02	$mt1
+Ri142	avI9/avC9#3	avI9/avC9#4	   15.6987	$mt1
+Ri143	avI9/avC9	avI9/avC9#2	   15.0000	$mt1
+Ri145	RST#41	RST#43	    1.6827	$mt1
+Ri147	Q4#9	Q4#11	    1.8907	$mt1
+Ri148	avI9/avC8	avI9/avC8#2	   16.9440	$mt1
+Ri149	CLK#66	CLK#67	   11.4267	$mt1
+Ri150	avI9/avC10	avI9/avC10#2	   16.6347	$mt1
+Ri151	avI9/avC8#3	avI9/avC8#4	   10.2807	$mt1
+Ri152	avI9/avC8#4	avI9/avC8#5	   15.1813	$mt1
+Ri153	avI9/avC10#3	avI9/avC10#4	   16.8907	$mt1
+Ri154	CLK#69	CLK#70	   10.0000	$mt1
+Ri155	CLK#70	CLK#71	    1.4267	$mt1
+Ri156	avI9/avC9#5	avI9/avC9#6	   11.7360	$mt1
+Ri157	avI9/avC11	avI9/avC11#2	   16.5813	$mt1
+Ri158	avI9/avC10#5	avI9/avC10#6	   11.5280	$mt1
+Ri159	CLK#74	CLK#75	   11.4267	$mt1
+Ri160	avI9/avC11#3	avI9/avC11#4	   16.9440	$mt1
+Ri162	GND#36	GND#38	    1.6827	$mt1
+Ri163	avI9/avC11#5	avI9/avC11#6	   11.5813	$mt1
+Ri164	Q5#2	Q5#4	    0.7253	$mt1
+Ri166	Q5#2	Q5#6	    1.5280	$mt1
+Ri167	Q5#1	Q5#2	   15.0000	$mt1
+Ri168	Q5#3	Q5#4	   15.0000	$mt1
+Ri169	avI10/avC9#2	avI10/avC9#3	2.667E-02	$mt1
+Ri170	avI10/avC9#3	avI10/avC9#4	   15.6987	$mt1
+Ri171	avI10/avC9	avI10/avC9#2	   15.0000	$mt1
+Ri173	RST#49	RST#51	    1.6827	$mt1
+Ri175	Q5#9	Q5#11	    1.8907	$mt1
+Ri176	avI10/avC8	avI10/avC8#2	   16.9440	$mt1
+Ri177	CLK#79	CLK#80	   11.4267	$mt1
+Ri178	avI10/avC10	avI10/avC10#2	   16.6347	$mt1
+Ri179	avI10/avC8#3	avI10/avC8#4	   10.2807	$mt1
+Ri180	avI10/avC8#4	avI10/avC8#5	   15.1813	$mt1
+Ri181	avI10/avC10#3	avI10/avC10#4	   16.8907	$mt1
+Ri182	CLK#82	CLK#83	   10.0000	$mt1
+Ri183	CLK#83	CLK#84	    1.4267	$mt1
+Ri184	avI10/avC9#5	avI10/avC9#6	   11.7360	$mt1
+Ri185	avI10/avC11	avI10/avC11#2	   16.5813	$mt1
+Ri186	avI10/avC10#5	avI10/avC10#6	   11.5280	$mt1
+Ri187	CLK#87	CLK#88	   11.4267	$mt1
+Ri188	avI10/avC11#3	avI10/avC11#4	   16.9440	$mt1
+Ri190	GND#43	GND#45	    1.6827	$mt1
+Ri191	avI10/avC11#5	avI10/avC11#6	   11.5813	$mt1
+Ri192	Q6#2	Q6#4	    0.7253	$mt1
+Ri194	Q6#2	Q6#6	    1.5280	$mt1
+Ri195	Q6#1	Q6#2	   15.0000	$mt1
+Ri196	Q6#3	Q6#4	   15.0000	$mt1
+Ri197	avI11/avC9#2	avI11/avC9#3	2.667E-02	$mt1
+Ri198	avI11/avC9#3	avI11/avC9#4	   15.6987	$mt1
+Ri199	avI11/avC9	avI11/avC9#2	   15.0000	$mt1
+Ri201	RST#57	RST#59	    1.6827	$mt1
+Ri203	Q6#9	Q6#11	    1.8907	$mt1
+Ri204	avI11/avC8	avI11/avC8#2	   16.9440	$mt1
+Ri205	CLK#92	CLK#93	   11.4267	$mt1
+Ri206	avI11/avC10	avI11/avC10#2	   16.6347	$mt1
+Ri207	avI11/avC8#3	avI11/avC8#4	   10.2807	$mt1
+Ri208	avI11/avC8#4	avI11/avC8#5	   15.1813	$mt1
+Ri209	avI11/avC10#3	avI11/avC10#4	   16.8907	$mt1
+Ri210	CLK#95	CLK#96	   10.0000	$mt1
+Ri211	CLK#96	CLK#97	    1.4267	$mt1
+Ri212	avI11/avC9#5	avI11/avC9#6	   11.7360	$mt1
+Ri213	avI11/avC11	avI11/avC11#2	   16.5813	$mt1
+Ri214	avI11/avC10#5	avI11/avC10#6	   11.5280	$mt1
+Ri215	CLK#101	CLK#102	   11.4267	$mt1
+Ri216	avI11/avC11#3	avI11/avC11#4	   16.9440	$mt1
+Ri218	GND#50	GND#52	    1.6827	$mt1
+Ri219	avI11/avC11#5	avI11/avC11#6	   11.5813	$mt1
+Ri220	Q7#2	Q7#4	    0.7253	$mt1
+Ri222	Q7#2	Q7#6	    1.5280	$mt1
+Ri223	Q7#1	Q7#2	   15.0000	$mt1
+Ri224	Q7#3	Q7#4	   15.0000	$mt1
+Ri225	avI1/avC6	avI1/avC6#2	   17.0453	$mt1
+Ri226	Q0#17	Q0#18	6.133E-02	$mt1
+Ri227	Q0#18	Q0#19	    1.6747	$mt1
+Ri228	Q5#17	Q5#18	   16.6347	$mt1
+Ri229	avI1/avC6#3	avI1/avC6#4	   11.6827	$mt1
+Ri230	Q0#23	Q0#24	   16.4267	$mt1
+Ri231	avC14	avC14#2	   16.7893	$mt1
+Ri232	Q5#19	Q5#20	   11.5280	$mt1
+Ri233	avC14#3	avC14#4	   15.3013	$mt1
+Ri234	avC14#4	avC14#5	    1.4347	$mt1
+Ri235	avI1/avC6#6	avI1/avC6#7	   16.4800	$mt1
+Ri236	Q0#25	Q0#26	   11.7360	$mt1
+Ri237	Q5#23	Q5#24	   15.3600	$mt1
+Ri238	Q5#24	Q5#25	    1.5307	$mt1
+Ri239	avI2/avC6	avI2/avC6#2	   17.0453	$mt1
+Ri240	Q6#17	Q6#18	6.133E-02	$mt1
+Ri241	Q6#18	Q6#19	    1.6747	$mt1
+Ri242	Q7#9	Q7#10	   16.6347	$mt1
+Ri243	avI2/avC6#3	avI2/avC6#4	   11.6827	$mt1
+Ri244	Q6#21	Q6#22	   16.4267	$mt1
+Ri245	avC15	avC15#2	   16.7893	$mt1
+Ri246	Q7#11	Q7#12	   11.5280	$mt1
+Ri247	avC15#3	avC15#4	   15.3013	$mt1
+Ri248	avC15#4	avC15#5	    1.4347	$mt1
+Ri249	avI2/avC6#6	avI2/avC6#7	   16.4800	$mt1
+Ri250	Q6#25	Q6#26	   11.7360	$mt1
+Ri251	Q7#15	Q7#16	   15.3600	$mt1
+Ri252	Q7#16	Q7#17	    1.5307	$mt1
+Ri253	avI3/avC6	avI3/avC6#2	   16.8907	$mt1
+Ri254	avC15#8	avC15#9	   10.0267	$mt1
+Ri255	avC15#9	avC15#10	3.467E-02	$mt1
+Ri256	avI3/avC6#3	avI3/avC6#4	   16.6347	$mt1
+Ri257	avI3/avC10	avI3/avC10#2	   16.4267	$mt1
+Ri258	avI3/avC6#5	avI3/avC6#6	   11.5280	$mt1
+Ri259	avC13#9	avC13#10	   17.0453	$mt1
+Ri260	avI3/avC7	avI3/avC7#2	   11.5280	$mt1
+Ri261	avI3/avC10#3	avI3/avC10#4	   16.4267	$mt1
+Ri262	avC13#11	avC13#12	   15.0453	$mt1
+Ri263	avC13#12	avC13#13	    1.4347	$mt1
+Ri264	avC14#8	avC14#9	   11.5813	$mt1
+Ri265	avC15#15	avC15#16	   11.4267	$mt1
+Ri266	avI3/avC10#5	avI3/avC10#6	   15.0267	$mt1
+Ri267	avI3/avC7#5	avI3/avC7#6	   16.8907	$mt1
+Ri268	avC14#12	avC14#13	6.133E-02	$mt1
+Ri269	avC14#13	avC14#14	    1.5200	$mt1
+Ri270	avI3/avC7#7	avI3/avC7#8	   16.6347	$mt1
+Ri271	VDD#1	VDD	   15.4191	$mt1
+Ri272	VDD#3	VDD	    7.0560	$mt1
+Ri273	VDD#4	VDD	    6.0480	$mt1
+Ri274	VDD#5	VDD	    5.3280	$mt1
+Ri275	VDD#6	VDD	    4.5720	$mt1
+Ri276	VDD#7	VDD	    3.8160	$mt1
+Ri277	VDD#8	VDD	    2.9880	$mt1
+Ri278	VDD#9	VDD	    2.2320	$mt1
+Ri279	VDD#10	VDD	    1.4040	$mt1
+Ri280	VDD#11	VDD	    0.6480	$mt1
+Ri281	VDD	VDD#12	    0.1800	$mt1
+Ri282	VDD	VDD#13	    0.9360	$mt1
+Ri283	VDD	VDD#14	    1.7640	$mt1
+Ri284	VDD	VDD#15	    2.5200	$mt1
+Ri285	VDD	VDD#16	    3.3480	$mt1
+Ri286	VDD	VDD#17	    4.1040	$mt1
+Ri287	VDD	VDD#18	    4.9320	$mt1
+Ri288	VDD	VDD#19	    5.6880	$mt1
+Ri289	VDD	VDD#20	    6.5160	$mt1
+Ri290	VDD	VDD#21	   15.4191	$mt1
+Ri291	VDD	VDD#22	   15.4191	$mt1
+Ri292	VDD	VDD#23	   15.4191	$mt1
+Ri293	VDD	VDD#24	   15.4191	$mt1
+Ri294	VDD	VDD#25	   15.4191	$mt1
+Ri295	VDD	VDD#26	   15.4191	$mt1
+Ri296	VDD	VDD#27	   15.4191	$mt1
+Ri297	VDD	VDD#28	   15.4191	$mt1
+Ri298	VDD	VDD#29	   15.4191	$mt1
+Ri299	VDD	VDD#30	   15.4191	$mt1
+Ri300	VDD	VDD#31	   15.4191	$mt1
+Ri301	VDD	VDD#32	   15.4191	$mt1
+Ri302	VDD	VDD#33	   15.4191	$mt1
+Ri303	VDD	VDD#34	   15.4191	$mt1
+Ri304	VDD	VDD#35	   15.4191	$mt1
+Ri305	VDD	VDD#36	   15.4191	$mt1
+Ri306	VDD	VDD#37	   15.4191	$mt1
+Ri307	VDD	VDD#38	   15.4191	$mt1
+Ri308	VDD	VDD#39	   15.4191	$mt1
+Ri309	VDD	VDD#40	   15.4191	$mt1
+Ri310	VDD	VDD#41	   15.4191	$mt1
+Ri311	VDD	VDD#42	   15.4191	$mt1
+Ri312	VDD	VDD#43	   15.4191	$mt1
+Ri313	VDD	VDD#44	   15.4191	$mt1
+Ri314	VDD	VDD#45	   15.4191	$mt1
+Ri315	VDD	VDD#46	   15.4191	$mt1
+Ri316	VDD#20	VDD#47	   15.4025	$mt1
+Ri317	VDD#48	VDD	    7.2720	$mt1
+Ri318	VDD	VDD#49	   15.3462	$mt1
+Ri319	VDD#2	VDD#3	    0.8824	$mt1
+Ri320	VDD#2	VDD#4	    1.6667	$mt1
+Ri321	VDD#2	VDD#5	    1.6667	$mt1
+Ri322	VDD#2	VDD#6	    1.5000	$mt1
+Ri323	VDD#2	VDD#7	    1.3636	$mt1
+Ri324	VDD#2	VDD#8	    1.5000	$mt1
+Ri325	VDD#2	VDD#9	    1.3636	$mt1
+Ri326	VDD#2	VDD#10	    1.5000	$mt1
+Ri327	VDD#2	VDD#11	    1.3636	$mt1
+Ri328	VDD#2	VDD#12	    1.5000	$mt1
+Ri329	VDD#2	VDD#13	    1.3636	$mt1
+Ri330	VDD#2	VDD#14	    1.5000	$mt1
+Ri331	VDD#2	VDD#15	    1.3636	$mt1
+Ri332	VDD#2	VDD#16	    1.5000	$mt1
+Ri333	VDD#2	VDD#17	    1.3636	$mt1
+Ri334	VDD#2	VDD#18	    1.5000	$mt1
+Ri335	VDD#2	VDD#19	    1.3636	$mt1
+Ri336	VDD#2	VDD#20	    1.5000	$mt1
+Ri337	VDD#2	VDD#48	    1.3636	$mt1
+Ri338	GND#57	GND	   15.3551	$mt1
+Ri339	GND#59	GND	    7.0560	$mt1
+Ri340	GND#60	GND	    6.0480	$mt1
+Ri341	GND#61	GND	    5.3280	$mt1
+Ri342	GND	GND#53	    4.7200	$mt1
+Ri343	GND#62	GND	    4.5720	$mt1
+Ri344	GND#63	GND	    3.8160	$mt1
+Ri345	GND#46	GND	    3.1360	$mt1
+Ri346	GND#64	GND	    2.9880	$mt1
+Ri347	GND#65	GND	    2.2320	$mt1
+Ri348	GND#39	GND	    1.5520	$mt1
+Ri349	GND#66	GND	    1.4040	$mt1
+Ri350	GND#67	GND	    0.6480	$mt1
+Ri351	GND	GND#32	3.200E-02	$mt1
+Ri352	GND	GND#68	    0.1800	$mt1
+Ri353	GND	GND#69	    0.9360	$mt1
+Ri354	GND	GND#25	    1.6160	$mt1
+Ri355	GND	GND#70	    1.7640	$mt1
+Ri356	GND	GND#71	    2.5200	$mt1
+Ri357	GND	GND#18	    3.2000	$mt1
+Ri358	GND	GND#72	    3.3480	$mt1
+Ri359	GND	GND#73	    4.1040	$mt1
+Ri360	GND	GND#11	    4.7840	$mt1
+Ri361	GND	GND#74	    4.9320	$mt1
+Ri362	GND	GND#75	    5.6880	$mt1
+Ri363	GND	GND#76	    6.5160	$mt1
+Ri364	GND	GND#77	   15.3551	$mt1
+Ri365	GND	GND#78	   15.3551	$mt1
+Ri366	GND	GND#79	   15.3551	$mt1
+Ri367	GND	GND#80	   15.3551	$mt1
+Ri368	GND	GND#81	   15.3551	$mt1
+Ri369	GND	GND#82	   15.3551	$mt1
+Ri370	GND	GND#83	   15.3551	$mt1
+Ri371	GND	GND#84	   15.3551	$mt1
+Ri372	GND	GND#85	   15.3551	$mt1
+Ri373	GND	GND#86	   15.3551	$mt1
+Ri374	GND	GND#87	   15.3551	$mt1
+Ri375	GND	GND#88	   15.3551	$mt1
+Ri376	GND	GND#89	   15.3551	$mt1
+Ri377	GND	GND#90	   15.3551	$mt1
+Ri378	GND#32	GND#91	   15.2719	$mt1
+Ri379	GND	GND#92	   15.3551	$mt1
+Ri380	GND	GND#93	   15.3551	$mt1
+Ri381	GND#25	GND#94	   15.2719	$mt1
+Ri382	GND	GND#95	   15.3551	$mt1
+Ri383	GND	GND#96	   15.3551	$mt1
+Ri384	GND#18	GND#97	   15.2719	$mt1
+Ri385	GND	GND#98	   15.3551	$mt1
+Ri386	GND	GND#99	   15.3551	$mt1
+Ri387	GND#11	GND#100	   15.2719	$mt1
+Ri388	GND	GND#101	   15.3551	$mt1
+Ri389	GND	GND#102	   15.3551	$mt1
+Ri390	GND	GND#103	   15.3551	$mt1
+Ri391	GND#104	GND	    7.2720	$mt1
+Ri392	GND	GND#4	    7.6000	$mt1
+Ri393	GND#4	GND	2.920E-02	$mt1
+Ri394	GND	GND#105	   15.2822	$mt1
+Ri395	GND#76	GND#106	   15.3385	$mt1
+Ri396	GND#58	GND#59	    0.8824	$mt1
+Ri397	GND#58	GND#60	    1.6667	$mt1
+Ri398	GND#58	GND#61	    1.6667	$mt1
+Ri399	GND#58	GND#62	    1.5000	$mt1
+Ri400	GND#58	GND#63	    1.3636	$mt1
+Ri401	GND#58	GND#64	    1.5000	$mt1
+Ri402	GND#58	GND#65	    1.3636	$mt1
+Ri403	GND#58	GND#66	    1.5000	$mt1
+Ri404	GND#58	GND#67	    1.3636	$mt1
+Ri405	GND#58	GND#68	    1.5000	$mt1
+Ri406	GND#58	GND#69	    1.3636	$mt1
+Ri407	GND#58	GND#70	    1.5000	$mt1
+Ri408	GND#58	GND#71	    1.3636	$mt1
+Ri409	GND#58	GND#72	    1.5000	$mt1
+Ri410	GND#58	GND#73	    1.3636	$mt1
+Ri411	GND#58	GND#74	    1.5000	$mt1
+Ri412	GND#58	GND#75	    1.3636	$mt1
+Ri413	GND#58	GND#76	    1.5000	$mt1
+Ri414	GND#58	GND#104	    1.3636	$mt1
+Rh1	GND#3	GND#4	    1.6806	$mt2
+Rh2	avC13#3	avC13#4	    1.4600	$mt2
+Rh3	avI4/avC8#4	avI4/avC8#2	    1.6160	$mt2
+Rh4	avI4/avC9#6	avI4/avC9#3	    2.5880	$mt2
+Rh5	avI4/avC10#6	avI4/avC10#4	    0.5400	$mt2
+Rh6	avI4/avC10#4	avI4/avC10#2	    0.2160	$mt2
+Rh7	CLK#10	CLK#11	    0.5280	$mt2
+Rh8	CLK#11	CLK#6	    0.1200	$mt2
+Rh9	CLK#6	CLK#2	    0.4320	$mt2
+Rh10	RST#4	RST#3	    1.4600	$mt2
+Rh11	avI4/avC11#6	avI4/avC11#4	    0.3240	$mt2
+Rh12	avI4/avC11#4	avI4/avC11#2	    0.4320	$mt2
+Rh13	Q0#6	Q0#7	    1.5080	$mt2
+Rh14	RST#11	RST#13	6.000E-02	$mt2
+Rh15	Q0#11	Q0#12	    1.4600	$mt2
+Rh16	avI5/avC8#4	avI5/avC8#2	    1.6160	$mt2
+Rh17	avI5/avC9#6	avI5/avC9#3	    2.5880	$mt2
+Rh18	avI5/avC10#6	avI5/avC10#4	    0.5400	$mt2
+Rh19	avI5/avC10#4	avI5/avC10#2	    0.2160	$mt2
+Rh20	CLK#23	CLK#24	    0.5280	$mt2
+Rh21	CLK#24	CLK#19	    0.1200	$mt2
+Rh22	CLK#19	CLK#15	    0.4320	$mt2
+Rh23	GND#10	GND#11	    1.6806	$mt2
+Rh24	avI5/avC11#6	avI5/avC11#4	    0.3240	$mt2
+Rh25	avI5/avC11#4	avI5/avC11#2	    0.4320	$mt2
+Rh26	Q1#6	Q1#7	    1.5080	$mt2
+Rh27	RST#19	RST#20	    1.4600	$mt2
+Rh28	Q1#11	Q1#12	    1.4600	$mt2
+Rh29	avI6/avC8#4	avI6/avC8#2	    1.6160	$mt2
+Rh30	avI6/avC9#6	avI6/avC9#3	    2.5880	$mt2
+Rh31	avI6/avC10#6	avI6/avC10#4	    0.5400	$mt2
+Rh32	avI6/avC10#4	avI6/avC10#2	    0.2160	$mt2
+Rh33	CLK#36	CLK#37	    0.5280	$mt2
+Rh34	CLK#37	CLK#32	    0.1200	$mt2
+Rh35	CLK#32	CLK#28	    0.4320	$mt2
+Rh36	GND#17	GND#18	    1.6806	$mt2
+Rh37	avI6/avC11#6	avI6/avC11#4	    0.3240	$mt2
+Rh38	avI6/avC11#4	avI6/avC11#2	    0.4320	$mt2
+Rh39	Q2#6	Q2#7	    1.5080	$mt2
+Rh40	RST#27	RST#28	    1.4600	$mt2
+Rh41	Q2#11	Q2#12	    1.4600	$mt2
+Rh42	avI7/avC8#4	avI7/avC8#2	    1.6160	$mt2
+Rh43	avI7/avC9#6	avI7/avC9#3	    2.5880	$mt2
+Rh44	avI7/avC10#6	avI7/avC10#4	    0.5400	$mt2
+Rh45	avI7/avC10#4	avI7/avC10#2	    0.2160	$mt2
+Rh46	CLK#49	CLK#50	    0.5280	$mt2
+Rh47	CLK#50	CLK#45	    0.1200	$mt2
+Rh48	CLK#45	CLK#41	    0.4320	$mt2
+Rh49	GND#24	GND#25	    1.6806	$mt2
+Rh50	avI7/avC11#6	avI7/avC11#4	    0.3240	$mt2
+Rh51	avI7/avC11#4	avI7/avC11#2	    0.4320	$mt2
+Rh52	Q3#6	Q3#7	    1.5080	$mt2
+Rh53	RST#35	RST#36	    1.4600	$mt2
+Rh54	Q3#11	Q3#12	    1.4600	$mt2
+Rh55	avI8/avC8#4	avI8/avC8#2	    1.6160	$mt2
+Rh56	avI8/avC9#6	avI8/avC9#3	    2.5880	$mt2
+Rh57	avI8/avC10#6	avI8/avC10#4	    0.5400	$mt2
+Rh58	avI8/avC10#4	avI8/avC10#2	    0.2160	$mt2
+Rh59	CLK#62	CLK#63	    0.5280	$mt2
+Rh60	CLK#63	CLK#58	    0.1200	$mt2
+Rh61	CLK#58	CLK#54	    0.4320	$mt2
+Rh62	GND#31	GND#32	    1.6806	$mt2
+Rh63	avI8/avC11#6	avI8/avC11#4	    0.3240	$mt2
+Rh64	avI8/avC11#4	avI8/avC11#2	    0.4320	$mt2
+Rh65	Q4#6	Q4#7	    1.5080	$mt2
+Rh66	RST#43	RST#44	    1.4600	$mt2
+Rh67	Q4#11	Q4#12	    1.4600	$mt2
+Rh68	avI9/avC8#4	avI9/avC8#2	    1.6160	$mt2
+Rh69	avI9/avC9#6	avI9/avC9#3	    2.5880	$mt2
+Rh70	avI9/avC10#6	avI9/avC10#4	    0.5400	$mt2
+Rh71	avI9/avC10#4	avI9/avC10#2	    0.2160	$mt2
+Rh72	CLK#75	CLK#76	    0.5280	$mt2
+Rh73	CLK#76	CLK#71	    0.1200	$mt2
+Rh74	CLK#71	CLK#67	    0.4320	$mt2
+Rh75	GND#38	GND#39	    1.6806	$mt2
+Rh76	avI9/avC11#6	avI9/avC11#4	    0.3240	$mt2
+Rh77	avI9/avC11#4	avI9/avC11#2	    0.4320	$mt2
+Rh78	Q5#6	Q5#7	    1.5080	$mt2
+Rh79	RST#51	RST#53	6.000E-02	$mt2
+Rh80	Q5#11	Q5#12	    1.4600	$mt2
+Rh81	avI10/avC8#4	avI10/avC8#2	    1.6160	$mt2
+Rh82	avI10/avC9#6	avI10/avC9#3	    2.5880	$mt2
+Rh83	avI10/avC10#6	avI10/avC10#4	    0.5400	$mt2
+Rh84	avI10/avC10#4	avI10/avC10#2	    0.2160	$mt2
+Rh85	CLK#88	CLK#89	    0.5280	$mt2
+Rh86	CLK#89	CLK#84	    0.1200	$mt2
+Rh87	CLK#84	CLK#80	    0.4320	$mt2
+Rh88	GND#45	GND#46	    1.6806	$mt2
+Rh89	avI10/avC11#6	avI10/avC11#4	    0.3240	$mt2
+Rh90	avI10/avC11#4	avI10/avC11#2	    0.4320	$mt2
+Rh91	Q6#6	Q6#7	    1.5080	$mt2
+Rh92	RST#59	RST#60	    1.4600	$mt2
+Rh93	Q6#11	Q6#12	    1.4600	$mt2
+Rh94	avI11/avC8#4	avI11/avC8#2	    1.6160	$mt2
+Rh95	avI11/avC9#6	avI11/avC9#3	    2.5880	$mt2
+Rh96	avI11/avC10#6	avI11/avC10#4	    0.5400	$mt2
+Rh97	avI11/avC10#4	avI11/avC10#2	    0.2160	$mt2
+Rh98	CLK#102	CLK#103	    0.5280	$mt2
+Rh99	CLK#103	CLK#97	    0.1200	$mt2
+Rh100	CLK#97	CLK#93	    0.4320	$mt2
+Rh101	GND#52	GND#53	    1.6806	$mt2
+Rh102	avI11/avC11#6	avI11/avC11#4	    0.3240	$mt2
+Rh103	avI11/avC11#4	avI11/avC11#2	    0.4320	$mt2
+Rh104	Q7#6	Q7#7	    1.5080	$mt2
+Rh105	avC14#5	avC14#6	    0.1080	$mt2
+Rh106	avC14#6	avC14#2	    0.1080	$mt2
+Rh107	avI1/avC6#7	avI1/avC6#4	    0.3240	$mt2
+Rh108	avI1/avC6#4	avI1/avC6#2	    0.3240	$mt2
+Rh109	Q0#26	Q0#23	    0.3240	$mt2
+Rh110	Q0#23	Q0#19	    0.3240	$mt2
+Rh113	Q5#25	Q5#20	    0.3240	$mt2
+Rh114	Q5#20	Q5#18	    0.3240	$mt2
+Rh115	avC15#5	avC15#6	    0.1080	$mt2
+Rh116	avC15#6	avC15#2	    0.1080	$mt2
+Rh117	avI2/avC6#7	avI2/avC6#4	    0.3240	$mt2
+Rh118	avI2/avC6#4	avI2/avC6#2	    0.3240	$mt2
+Rh119	Q6#26	Q6#21	    0.3240	$mt2
+Rh120	Q6#21	Q6#19	    0.3240	$mt2
+Rh123	Q7#17	Q7#12	    0.3240	$mt2
+Rh124	Q7#12	Q7#10	    0.3240	$mt2
+Rh125	avI3/avC6#6	avI3/avC6#4	    0.3240	$mt2
+Rh126	avI3/avC6#4	avI3/avC6#2	    0.2160	$mt2
+Rh127	avC13#13	avC13#14	    0.1080	$mt2
+Rh128	avC13#14	avC13#10	    0.1080	$mt2
+Rh129	avC15#16	avC15#14	    1.0800	$mt2
+Rh130	avC15#14	avC15#9	    1.4000	$mt2
+Rh131	avI3/avC10#5	avI3/avC10#3	    1.8320	$mt2
+Rh132	avI3/avC10#3	avI3/avC10	    0.4320	$mt2
+Rh133	avC14#14	avC14#15	    0.2160	$mt2
+Rh134	avC14#15	avC14#9	    0.4320	$mt2
+Rh135	avI3/avC7#8	avI3/avC7#6	    0.2160	$mt2
+Rh136	avI3/avC7#6	avI3/avC7#2	    0.7560	$mt2
+Rg1	avC13#4	avC13#8	    1.6800	$mt3
+Rg2	CLK#13	CLK#11	    2.8480	$mt3
+Rg3	RST#5	RST#4	    1.4480	$mt3
+Rg4	Q0#8	Q0#7	    1.4480	$mt3
+Rg5	RST#12	RST#13	    2.8480	$mt3
+Rg6	Q0#16	Q0#12	    1.4480	$mt3
+Rg7	CLK#26	CLK#24	    2.8480	$mt3
+Rg8	Q1#8	Q1#7	    1.4680	$mt3
+Rg9	RST#21	RST#20	    1.4480	$mt3
+Rg10	Q1#16	Q1#12	    1.4680	$mt3
+Rg11	CLK#39	CLK#37	    2.8480	$mt3
+Rg12	Q2#8	Q2#7	    1.4680	$mt3
+Rg13	RST#29	RST#28	    1.4480	$mt3
+Rg14	Q2#16	Q2#12	    1.4680	$mt3
+Rg15	CLK#52	CLK#50	    2.8480	$mt3
+Rg16	Q3#8	Q3#7	    1.4680	$mt3
+Rg17	RST#37	RST#36	    1.4480	$mt3
+Rg18	Q3#16	Q3#12	6.800E-02	$mt3
+Rg19	CLK#65	CLK#63	    2.8480	$mt3
+Rg20	Q4#8	Q4#7	    1.4680	$mt3
+Rg21	RST#45	RST#44	    1.4480	$mt3
+Rg22	Q4#16	Q4#12	    1.4680	$mt3
+Rg23	CLK#78	CLK#76	    2.8480	$mt3
+Rg24	Q5#7	Q5#8	    1.5640	$mt3
+Rg25	RST#52	RST#53	    2.8480	$mt3
+Rg26	Q5#12	Q5#16	    1.5640	$mt3
+Rg27	CLK#91	CLK#89	    2.8480	$mt3
+Rg28	Q6#8	Q6#7	    1.4680	$mt3
+Rg29	RST#61	RST#60	    1.4480	$mt3
+Rg30	Q6#16	Q6#12	    1.4680	$mt3
+Rg31	CLK#100	CLK#103	    1.4480	$mt3
+Rg32	Q7#7	Q7#8	    1.7960	$mt3
+Rg33	Q0#21	Q0#19	    2.8680	$mt3
+Rg34	avC14#6	avC14#7	    2.9640	$mt3
+Rg35	Q5#27	Q5#25	    3.1000	$mt3
+Rg36	Q6#23	Q6#19	    2.9840	$mt3
+Rg37	avC15#7	avC15#6	    2.9840	$mt3
+Rg38	Q7#19	Q7#17	    2.8680	$mt3
+Rg39	avC15#13	avC15#14	    2.9840	$mt3
+Rg40	avC13#15	avC13#14	    3.1000	$mt3
+Rg41	avC14#15	avC14#19	    3.0800	$mt3
+Rf1	Q1#16	Q1	    0.2938	$mt4
+Rf2	Q1	Q1#8	    0.2940	$mt4
+Rf3	Q2#16	Q2	    0.2938	$mt4
+Rf4	Q2	Q2#8	    0.2940	$mt4
+Rf5	Q3#16	Q3	    1.6938	$mt4
+Rf6	Q3	Q3#8	    0.2940	$mt4
+Rf7	Q4#16	Q4	    0.2938	$mt4
+Rf8	Q4	Q4#8	    0.2940	$mt4
+Rf9	RST#61	RST#52	    2.3760	$mt4
+Rf10	RST#52	RST#45	    2.3760	$mt4
+Rf11	RST#45	RST#37	    2.3760	$mt4
+Rf12	RST#37	RST	    0.2638	$mt4
+Rf13	RST	RST#29	    2.1120	$mt4
+Rf14	RST#29	RST#21	    2.3760	$mt4
+Rf15	RST#21	RST#12	    2.3760	$mt4
+Rf16	RST#12	RST#5	    0.5280	$mt4
+Rf17	CLK#100	CLK#91	    3.7760	$mt4
+Rf18	CLK#91	CLK#78	    2.3760	$mt4
+Rf19	CLK#78	CLK#65	    2.3760	$mt4
+Rf20	CLK#65	CLK	    1.1878	$mt4
+Rf21	CLK	CLK#52	    1.1880	$mt4
+Rf22	CLK#52	CLK#39	    2.3760	$mt4
+Rf23	CLK#39	CLK#26	    2.3760	$mt4
+Rf24	CLK#26	CLK#13	    2.3760	$mt4
+Rf25	Q0#21	Q0	    8.5318	$mt4
+Rf26	Q0	Q0#16	    7.9440	$mt4
+Rf27	Q0#16	Q0#8	    0.5880	$mt4
+Rf28	Q5#27	Q5	    2.9698	$mt4
+Rf29	Q5	Q5#16	    2.3820	$mt4
+Rf30	Q5#16	Q5#8	    0.5880	$mt4
+Rf31	Q6#23	Q6	    1.9438	$mt4
+Rf32	Q6	Q6#16	    1.3560	$mt4
+Rf33	Q6#16	Q6#8	    0.5880	$mt4
+Rf34	Q7#19	Q7	    1.1338	$mt4
+Rf35	Q7	Q7#8	    1.1340	$mt4
+Rf36	avC15#13	avC15#7	    0.6480	$mt4
+Rf37	avC13#15	avC13#8	   21.6600	$mt4
+Rf38	avC14#19	avC14#7	    3.0240	$mt4
+*
+*       CAPACITOR CARDS
+*
+*
+C1	VDD	GND	2.841E-15
+C2	CLK	GND	4.463E-16
+C3	Q0	GND	2.206E-15
+C4	Q1	GND	9.872E-17
+C5	Q2	GND	9.872E-17
+C6	Q3	GND	9.872E-17
+C7	Q4	GND	9.872E-17
+C8	Q5	GND	1.358E-15
+C9	Q6	GND	5.559E-16
+C10	Q7	GND	5.308E-16
+C11	RST	GND	2.251E-16
+C12	avC14	GND	1.009E-16
+C13	avC15	GND	1.013E-16
+C14	avC13	GND	1.870E-16
+C15	avI11/avC16	GND	3.269E-17
+C16	avI11/avC15	GND	1.268E-17
+C17	avI11/avC14	GND	3.772E-18
+C18	avI11/avC13	GND	5.006E-18
+C19	avI11/avC12	GND	4.978E-18
+C20	avI11/avC11	GND	5.884E-17
+C21	avI11/avC10	GND	4.187E-17
+C22	avI11/avC9	GND	2.720E-19
+C23	avI11/avC8	GND	1.031E-16
+C24	avI10/avC16	GND	5.269E-17
+C25	avI10/avC15	GND	1.683E-17
+C26	avI10/avC14	GND	1.652E-17
+C27	avI10/avC13	GND	1.499E-17
+C28	avI10/avC12	GND	1.158E-17
+C29	avI10/avC11	GND	6.764E-17
+C30	avI10/avC10	GND	4.703E-17
+C31	avI10/avC9	GND	5.035E-19
+C32	avI10/avC8	GND	1.100E-16
+C33	avI9/avC16	GND	5.613E-17
+C34	avI9/avC15	GND	1.792E-17
+C35	avI9/avC14	GND	1.652E-17
+C36	avI9/avC13	GND	1.499E-17
+C37	avI9/avC12	GND	1.158E-17
+C38	avI9/avC11	GND	6.514E-17
+C39	avI9/avC10	GND	4.703E-17
+C40	avI9/avC9	GND	4.452E-19
+C41	avI9/avC8	GND	1.100E-16
+C42	avI8/avC16	GND	5.726E-17
+C43	avI8/avC15	GND	1.792E-17
+C44	avI8/avC14	GND	1.652E-17
+C45	avI8/avC13	GND	1.499E-17
+C46	avI8/avC12	GND	1.158E-17
+C47	avI8/avC11	GND	6.478E-17
+C48	avI8/avC10	GND	4.703E-17
+C49	avI8/avC9	GND	4.452E-19
+C50	avI8/avC8	GND	1.100E-16
+C51	avI7/avC16	GND	5.727E-17
+C52	avI7/avC15	GND	1.792E-17
+C53	avI7/avC14	GND	1.652E-17
+C54	avI7/avC13	GND	1.509E-17
+C55	avI7/avC12	GND	1.158E-17
+C56	avI7/avC11	GND	6.478E-17
+C57	avI7/avC10	GND	4.703E-17
+C58	avI7/avC9	GND	4.452E-19
+C59	avI7/avC8	GND	1.100E-16
+C60	avI6/avC16	GND	5.727E-17
+C61	avI6/avC15	GND	1.796E-17
+C62	avI6/avC14	GND	1.652E-17
+C63	avI6/avC13	GND	1.499E-17
+C64	avI6/avC12	GND	1.158E-17
+C65	avI6/avC11	GND	6.477E-17
+C66	avI6/avC10	GND	4.703E-17
+C67	avI6/avC9	GND	7.612E-19
+C68	avI6/avC8	GND	1.100E-16
+C69	avI5/avC16	GND	5.727E-17
+C70	avI5/avC15	GND	1.788E-17
+C71	avI5/avC14	GND	1.652E-17
+C72	avI5/avC13	GND	1.499E-17
+C73	avI5/avC12	GND	1.158E-17
+C74	avI5/avC11	GND	6.479E-17
+C75	avI5/avC10	GND	4.700E-17
+C76	avI5/avC9	GND	9.452E-19
+C77	avI5/avC8	GND	1.099E-16
+C78	avI4/avC16	GND	4.264E-17
+C79	avI4/avC15	GND	1.361E-17
+C80	avI4/avC14	GND	3.772E-18
+C81	avI4/avC13	GND	5.006E-18
+C82	avI4/avC12	GND	6.648E-21
+C83	avI4/avC11	GND	6.704E-17
+C84	avI4/avC10	GND	4.209E-17
+C85	avI4/avC8	GND	1.011E-16
+C86	avI3/avC10	GND	1.330E-16
+C87	avI3/avC8	GND	1.232E-17
+C88	avI3/avC7	GND	1.068E-16
+C89	avI3/avC6	GND	9.271E-17
+C90	avI2/avC6	GND	1.292E-16
+C91	avI1/avC6	GND	1.332E-16
+C92	avC13#5	GND	4.574E-17
+C93	CLK#3	GND	5.775E-17
+C94	CLK#7	GND	5.821E-17
+C95	avI4/avC9#7	GND	4.163E-17
+C96	avI4/avC10#7	GND	5.283E-17
+C97	RST#6	GND	5.560E-17
+C98	avI4/avC11#7	GND	5.684E-17
+C99	RST#14	GND	5.001E-17
+C100	Q0#13	GND	4.524E-17
+C101	CLK#16	GND	5.790E-17
+C102	CLK#20	GND	5.777E-17
+C103	avI5/avC9#7	GND	4.156E-17
+C104	avI5/avC10#7	GND	5.274E-17
+C105	avI5/avC11#7	GND	5.645E-17
+C106	RST#22	GND	5.114E-17
+C107	Q1#13	GND	4.518E-17
+C108	CLK#29	GND	5.790E-17
+C109	CLK#33	GND	5.777E-17
+C110	avI6/avC9#7	GND	4.156E-17
+C111	avI6/avC10#7	GND	5.274E-17
+C112	avI6/avC11#7	GND	5.645E-17
+C113	RST#30	GND	5.098E-17
+C114	Q2#13	GND	4.518E-17
+C115	CLK#42	GND	5.789E-17
+C116	CLK#46	GND	5.774E-17
+C117	avI7/avC9#7	GND	4.156E-17
+C118	avI7/avC10#7	GND	5.274E-17
+C119	avI7/avC11#7	GND	5.645E-17
+C120	RST#38	GND	5.098E-17
+C121	Q3#13	GND	4.518E-17
+C122	CLK#55	GND	5.789E-17
+C123	CLK#59	GND	5.774E-17
+C124	avI8/avC9#7	GND	4.156E-17
+C125	avI8/avC10#7	GND	5.274E-17
+C126	avI8/avC11#7	GND	5.645E-17
+C127	RST#46	GND	5.098E-17
+C128	Q4#13	GND	4.518E-17
+C129	CLK#68	GND	5.789E-17
+C130	CLK#72	GND	5.774E-17
+C131	avI9/avC9#7	GND	4.156E-17
+C132	avI9/avC10#7	GND	5.274E-17
+C133	avI9/avC11#7	GND	6.029E-17
+C134	RST#54	GND	4.949E-17
+C135	Q5#13	GND	4.552E-17
+C136	CLK#81	GND	5.707E-17
+C137	CLK#85	GND	5.764E-17
+C138	avI10/avC9#7	GND	4.154E-17
+C139	avI10/avC10#7	GND	5.272E-17
+C140	avI10/avC11#7	GND	5.704E-17
+C141	RST#62	GND	5.115E-17
+C142	Q6#13	GND	4.480E-17
+C143	CLK#94	GND	5.730E-17
+C144	CLK#98	GND	5.965E-17
+C145	avI11/avC9#7	GND	4.183E-17
+C146	avI11/avC10#7	GND	5.464E-17
+C147	avI11/avC11#7	GND	5.745E-17
+C148	Q0#20	GND	6.296E-17
+C149	Q5#21	GND	6.814E-17
+C150	Q0#27	GND	5.087E-17
+C151	Q6#20	GND	6.161E-17
+C152	Q7#13	GND	6.960E-17
+C153	Q6#27	GND	5.182E-17
+C154	avC15#11	GND	5.764E-17
+C155	avI3/avC6#7	GND	6.544E-17
+C156	avI3/avC7#3	GND	6.491E-17
+C157	avC14#10	GND	5.814E-17
+C158	avC15#17	GND	6.887E-17
+C159	avC14#16	GND	6.493E-17
+C160	avC13#7	GND	5.863E-17
+C161	avI4/avC8#6	GND	5.697E-17
+C162	CLK#8	GND	5.718E-17
+C163	avI4/avC9#8	GND	5.605E-17
+C164	avI4/avC10#8	GND	4.838E-17
+C165	CLK#12	GND	5.640E-17
+C166	RST#8	GND	4.873E-17
+C167	avI4/avC11#8	GND	6.231E-17
+C168	RST#16	GND	4.887E-17
+C169	Q0#15	GND	5.745E-17
+C170	avI5/avC8#6	GND	5.775E-17
+C171	CLK#21	GND	5.633E-17
+C172	avI5/avC9#8	GND	5.402E-17
+C173	avI5/avC10#8	GND	4.869E-17
+C174	CLK#25	GND	5.505E-17
+C175	avI5/avC11#8	GND	6.245E-17
+C176	RST#24	GND	4.901E-17
+C177	Q1#15	GND	5.745E-17
+C178	avI6/avC8#6	GND	5.775E-17
+C179	CLK#34	GND	5.633E-17
+C180	avI6/avC9#8	GND	5.402E-17
+C181	avI6/avC10#8	GND	4.869E-17
+C182	CLK#38	GND	5.505E-17
+C183	avI6/avC11#8	GND	6.245E-17
+C184	RST#32	GND	4.901E-17
+C185	Q2#15	GND	5.745E-17
+C186	avI7/avC8#6	GND	5.775E-17
+C187	CLK#47	GND	5.633E-17
+C188	avI7/avC9#8	GND	5.402E-17
+C189	avI7/avC10#8	GND	4.869E-17
+C190	CLK#51	GND	5.505E-17
+C191	avI7/avC11#8	GND	6.245E-17
+C192	RST#40	GND	4.901E-17
+C193	Q3#15	GND	5.745E-17
+C194	avI8/avC8#6	GND	5.775E-17
+C195	CLK#60	GND	5.633E-17
+C196	avI8/avC9#8	GND	5.402E-17
+C197	avI8/avC10#8	GND	4.869E-17
+C198	CLK#64	GND	5.505E-17
+C199	avI8/avC11#8	GND	6.245E-17
+C200	RST#48	GND	4.901E-17
+C201	Q4#15	GND	5.745E-17
+C202	avI9/avC8#6	GND	5.775E-17
+C203	CLK#73	GND	5.633E-17
+C204	avI9/avC9#8	GND	5.402E-17
+C205	avI9/avC10#8	GND	4.869E-17
+C206	CLK#77	GND	5.505E-17
+C207	avI9/avC11#8	GND	6.245E-17
+C208	RST#56	GND	4.901E-17
+C209	Q5#15	GND	5.745E-17
+C210	avI10/avC8#6	GND	5.775E-17
+C211	CLK#86	GND	5.633E-17
+C212	avI10/avC9#8	GND	5.402E-17
+C213	avI10/avC10#8	GND	4.869E-17
+C214	CLK#90	GND	5.505E-17
+C215	avI10/avC11#8	GND	6.245E-17
+C216	RST#64	GND	4.904E-17
+C217	Q6#15	GND	5.752E-17
+C218	avI11/avC8#6	GND	5.912E-17
+C219	CLK#99	GND	5.718E-17
+C220	avI11/avC9#8	GND	5.475E-17
+C221	avI11/avC10#8	GND	4.845E-17
+C222	CLK#104	GND	5.615E-17
+C223	avI11/avC11#8	GND	6.439E-17
+C224	avI1/avC6#5	GND	4.636E-17
+C225	Q5#22	GND	6.022E-17
+C226	Q0#28	GND	5.911E-17
+C227	avI2/avC6#5	GND	4.604E-17
+C228	Q7#14	GND	6.128E-17
+C229	Q6#28	GND	5.793E-17
+C230	avC15#12	GND	5.807E-17
+C231	avI3/avC6#8	GND	5.486E-17
+C232	avI3/avC7#4	GND	5.254E-17
+C233	avC14#11	GND	5.727E-17
+C234	avC15#18	GND	5.793E-17
+C235	avC14#18	GND	5.733E-17
+C236	avC13#4	GND	7.803E-17
+C237	CLK#11	GND	1.457E-16
+C238	RST#4	GND	2.029E-17
+C239	Q0#7	GND	3.920E-17
+C240	RST#13	GND	1.837E-17
+C241	Q0#12	GND	3.857E-17
+C242	CLK#24	GND	1.465E-16
+C243	Q1#7	GND	6.890E-17
+C244	RST#20	GND	2.108E-17
+C245	Q1#12	GND	5.750E-17
+C246	CLK#37	GND	1.465E-16
+C247	Q2#7	GND	6.728E-17
+C248	RST#28	GND	2.105E-17
+C249	Q2#12	GND	5.750E-17
+C250	CLK#50	GND	1.463E-16
+C251	Q3#7	GND	6.890E-17
+C252	RST#36	GND	2.105E-17
+C253	Q3#12	GND	5.750E-17
+C254	CLK#63	GND	1.463E-16
+C255	Q4#7	GND	6.890E-17
+C256	RST#44	GND	2.105E-17
+C257	Q4#12	GND	5.750E-17
+C258	CLK#76	GND	1.463E-16
+C259	Q5#7	GND	6.233E-17
+C260	RST#53	GND	2.096E-17
+C261	Q5#12	GND	6.424E-17
+C262	CLK#89	GND	1.459E-16
+C263	Q6#7	GND	7.125E-17
+C264	RST#60	GND	2.108E-17
+C265	Q6#12	GND	5.904E-17
+C266	CLK#103	GND	1.506E-16
+C267	Q7#7	GND	8.668E-17
+C268	avC14#6	GND	7.901E-17
+C269	avC15#6	GND	7.789E-17
+C270	avC15#14	GND	2.739E-16
+C271	avC13#14	GND	8.018E-17
+C272	avC14#15	GND	1.477E-16
+C273	CLK#1	GND	4.601E-17
+C274	avI4/avC8#3	GND	1.507E-16
+C275	CLK#4	GND	5.206E-17
+C276	avI4/avC9#5	GND	1.411E-16
+C277	avI4/avC10#5	GND	1.080E-16
+C278	CLK#9	GND	4.453E-17
+C279	RST#1	GND	1.584E-16
+C280	avI4/avC11#5	GND	1.347E-16
+C281	RST#9	GND	1.638E-16
+C282	Q0#9	GND	1.893E-16
+C283	CLK#14	GND	4.639E-17
+C284	avI5/avC8#3	GND	1.495E-16
+C285	CLK#17	GND	5.268E-17
+C286	avI5/avC9#5	GND	1.396E-16
+C287	avI5/avC10#5	GND	1.080E-16
+C288	CLK#22	GND	4.453E-17
+C289	avI5/avC11#5	GND	1.348E-16
+C290	RST#17	GND	1.639E-16
+C291	Q1#9	GND	1.894E-16
+C292	CLK#27	GND	4.639E-17
+C293	avI6/avC8#3	GND	1.495E-16
+C294	CLK#30	GND	5.268E-17
+C295	avI6/avC9#5	GND	1.396E-16
+C296	avI6/avC10#5	GND	1.080E-16
+C297	CLK#35	GND	4.453E-17
+C298	avI6/avC11#5	GND	1.348E-16
+C299	RST#25	GND	1.639E-16
+C300	Q2#9	GND	1.894E-16
+C301	CLK#40	GND	4.639E-17
+C302	avI7/avC8#3	GND	1.495E-16
+C303	CLK#43	GND	5.268E-17
+C304	avI7/avC9#5	GND	1.396E-16
+C305	avI7/avC10#5	GND	1.080E-16
+C306	CLK#48	GND	4.453E-17
+C307	avI7/avC11#5	GND	1.348E-16
+C308	RST#33	GND	1.639E-16
+C309	Q3#9	GND	1.894E-16
+C310	CLK#53	GND	4.639E-17
+C311	avI8/avC8#3	GND	1.495E-16
+C312	CLK#56	GND	5.268E-17
+C313	avI8/avC9#5	GND	1.396E-16
+C314	avI8/avC10#5	GND	1.079E-16
+C315	CLK#61	GND	4.453E-17
+C316	avI8/avC11#5	GND	1.348E-16
+C317	RST#41	GND	1.639E-16
+C318	Q4#9	GND	1.894E-16
+C319	CLK#66	GND	4.639E-17
+C320	avI9/avC8#3	GND	1.495E-16
+C321	CLK#69	GND	5.268E-17
+C322	avI9/avC9#5	GND	1.396E-16
+C323	avI9/avC10#5	GND	1.080E-16
+C324	CLK#74	GND	4.453E-17
+C325	avI9/avC11#5	GND	1.346E-16
+C326	RST#49	GND	1.640E-16
+C327	Q5#9	GND	1.891E-16
+C328	CLK#79	GND	4.637E-17
+C329	avI10/avC8#3	GND	1.495E-16
+C330	CLK#82	GND	5.268E-17
+C331	avI10/avC9#5	GND	1.400E-16
+C332	avI10/avC10#5	GND	1.080E-16
+C333	CLK#87	GND	4.453E-17
+C334	avI10/avC11#5	GND	1.348E-16
+C335	RST#57	GND	1.658E-16
+C336	Q6#9	GND	1.933E-16
+C337	CLK#92	GND	4.646E-17
+C338	avI11/avC8#3	GND	1.521E-16
+C339	CLK#95	GND	5.268E-17
+C340	avI11/avC9#5	GND	1.426E-16
+C341	avI11/avC10#5	GND	1.106E-16
+C342	CLK#101	GND	4.436E-17
+C343	avI11/avC11#5	GND	1.375E-16
+C344	Q0#17	GND	5.582E-17
+C345	avI1/avC6#3	GND	1.429E-16
+C346	Q5#19	GND	1.264E-16
+C347	Q0#25	GND	1.786E-16
+C348	Q6#17	GND	5.512E-17
+C349	avI2/avC6#3	GND	1.431E-16
+C350	Q7#11	GND	1.265E-16
+C351	Q6#25	GND	1.817E-16
+C352	avC15#8	GND	6.717E-17
+C353	avI3/avC6#5	GND	1.019E-16
+C354	avC14#8	GND	9.762E-17
+C355	avC15#15	GND	5.450E-17
+C356	avC14#12	GND	6.323E-17
+C357	avC13#8	GND	3.864E-15
+C358	CLK#13	GND	4.834E-16
+C359	RST#5	GND	9.886E-17
+C360	Q0#8	GND	9.904E-17
+C361	RST#12	GND	2.902E-16
+C362	Q0#16	GND	1.032E-15
+C363	CLK#26	GND	9.147E-16
+C364	Q1#8	GND	9.001E-17
+C365	RST#21	GND	4.752E-16
+C366	Q1#16	GND	8.953E-17
+C367	CLK#39	GND	9.143E-16
+C368	Q2#8	GND	9.001E-17
+C369	RST#29	GND	4.500E-16
+C370	Q2#16	GND	8.953E-17
+C371	CLK#52	GND	6.901E-16
+C372	Q3#8	GND	9.001E-17
+C373	RST#37	GND	2.752E-16
+C374	Q3#16	GND	8.953E-17
+C375	CLK#65	GND	6.917E-16
+C376	Q4#8	GND	9.001E-17
+C377	RST#45	GND	4.751E-16
+C378	Q4#16	GND	8.953E-17
+C379	CLK#78	GND	9.120E-16
+C380	Q5#8	GND	2.120E-16
+C381	RST#52	GND	4.760E-16
+C382	Q5#16	GND	7.796E-16
+C383	CLK#91	GND	9.156E-16
+C384	Q6#8	GND	1.392E-16
+C385	RST#61	GND	2.812E-16
+C386	Q6#16	GND	3.346E-16
+C387	CLK#100	GND	4.599E-16
+C388	Q7#8	GND	2.614E-16
+C389	Q0#21	GND	2.008E-15
+C390	avC14#7	GND	5.776E-16
+C391	Q5#27	GND	7.445E-16
+C392	Q6#23	GND	2.176E-16
+C393	avC15#7	GND	1.591E-16
+C394	Q7#19	GND	3.551E-16
+C395	avC15#13	GND	1.632E-16
+C396	avC13#15	GND	4.704E-15
+C397	avC14#19	GND	3.032E-16
+C398	avI4/avC9#3	GND	3.333E-16
+C399	avC13#3	GND	1.569E-16
+C400	avI4/avC8#2	GND	2.383E-16
+C401	CLK#2	GND	2.804E-16
+C402	avI4/avC10#2	GND	1.477E-16
+C403	avI4/avC8#4	GND	2.349E-16
+C404	avI4/avC10#4	GND	2.848E-16
+C405	CLK#6	GND	1.181E-16
+C406	avI4/avC9#6	GND	2.795E-16
+C407	avI4/avC11#2	GND	1.748E-16
+C408	avI4/avC10#6	GND	1.573E-16
+C409	CLK#10	GND	2.363E-16
+C410	avI4/avC11#4	GND	2.341E-16
+C411	RST#3	GND	1.018E-16
+C412	avI4/avC11#6	GND	1.135E-16
+C413	Q0#6	GND	6.049E-17
+C414	avI5/avC9#3	GND	3.496E-16
+C415	RST#11	GND	9.133E-17
+C416	Q0#11	GND	1.498E-16
+C417	avI5/avC8#2	GND	2.326E-16
+C418	CLK#15	GND	2.646E-16
+C419	avI5/avC10#2	GND	1.487E-16
+C420	avI5/avC8#4	GND	2.346E-16
+C421	avI5/avC10#4	GND	2.721E-16
+C422	CLK#19	GND	1.121E-16
+C423	avI5/avC9#6	GND	2.844E-16
+C424	avI5/avC11#2	GND	1.727E-16
+C425	avI5/avC10#6	GND	1.492E-16
+C426	CLK#23	GND	2.380E-16
+C427	avI5/avC11#4	GND	2.356E-16
+C428	avI5/avC11#6	GND	1.115E-16
+C429	Q1#6	GND	5.991E-17
+C430	avI6/avC9#3	GND	3.407E-16
+C431	RST#19	GND	9.148E-17
+C432	Q1#11	GND	1.532E-16
+C433	avI6/avC8#2	GND	2.326E-16
+C434	CLK#28	GND	2.646E-16
+C435	avI6/avC10#2	GND	1.487E-16
+C436	avI6/avC8#4	GND	2.346E-16
+C437	avI6/avC10#4	GND	2.721E-16
+C438	CLK#32	GND	1.121E-16
+C439	avI6/avC9#6	GND	2.844E-16
+C440	avI6/avC11#2	GND	1.727E-16
+C441	avI6/avC10#6	GND	1.492E-16
+C442	CLK#36	GND	2.380E-16
+C443	avI6/avC11#4	GND	2.355E-16
+C444	avI6/avC11#6	GND	1.114E-16
+C445	Q2#6	GND	5.991E-17
+C446	avI7/avC9#3	GND	3.386E-16
+C447	RST#27	GND	9.144E-17
+C448	Q2#11	GND	1.532E-16
+C449	avI7/avC8#2	GND	2.324E-16
+C450	CLK#41	GND	2.646E-16
+C451	avI7/avC10#2	GND	1.487E-16
+C452	avI7/avC8#4	GND	2.344E-16
+C453	avI7/avC10#4	GND	2.720E-16
+C454	CLK#45	GND	1.118E-16
+C455	avI7/avC9#6	GND	2.824E-16
+C456	avI7/avC11#2	GND	1.721E-16
+C457	avI7/avC10#6	GND	1.497E-16
+C458	CLK#49	GND	2.379E-16
+C459	avI7/avC11#4	GND	2.344E-16
+C460	avI7/avC11#6	GND	1.114E-16
+C461	Q3#6	GND	5.991E-17
+C462	avI8/avC9#3	GND	3.386E-16
+C463	RST#35	GND	9.144E-17
+C464	Q3#11	GND	1.532E-16
+C465	avI8/avC8#2	GND	2.324E-16
+C466	CLK#54	GND	2.645E-16
+C467	avI8/avC10#2	GND	1.487E-16
+C468	avI8/avC8#4	GND	2.344E-16
+C469	avI8/avC10#4	GND	2.721E-16
+C470	CLK#58	GND	1.118E-16
+C471	avI8/avC9#6	GND	2.824E-16
+C472	avI8/avC11#2	GND	1.721E-16
+C473	avI8/avC10#6	GND	1.492E-16
+C474	CLK#62	GND	2.362E-16
+C475	avI8/avC11#4	GND	2.333E-16
+C476	avI8/avC11#6	GND	1.114E-16
+C477	Q4#6	GND	5.991E-17
+C478	avI9/avC9#3	GND	3.386E-16
+C479	RST#43	GND	9.144E-17
+C480	Q4#11	GND	1.532E-16
+C481	avI9/avC8#2	GND	2.324E-16
+C482	CLK#67	GND	2.646E-16
+C483	avI9/avC10#2	GND	1.487E-16
+C484	avI9/avC8#4	GND	2.344E-16
+C485	avI9/avC10#4	GND	2.721E-16
+C486	CLK#71	GND	1.118E-16
+C487	avI9/avC9#6	GND	2.852E-16
+C488	avI9/avC11#2	GND	1.722E-16
+C489	avI9/avC10#6	GND	1.492E-16
+C490	CLK#75	GND	2.380E-16
+C491	avI9/avC11#4	GND	2.352E-16
+C492	avI9/avC11#6	GND	1.177E-16
+C493	Q5#6	GND	6.406E-17
+C494	avI10/avC9#3	GND	3.560E-16
+C495	RST#51	GND	9.113E-17
+C496	Q5#11	GND	1.566E-16
+C497	avI10/avC8#2	GND	2.345E-16
+C498	CLK#80	GND	2.645E-16
+C499	avI10/avC10#2	GND	1.487E-16
+C500	avI10/avC8#4	GND	2.331E-16
+C501	avI10/avC10#4	GND	2.721E-16
+C502	CLK#84	GND	1.112E-16
+C503	avI10/avC9#6	GND	2.872E-16
+C504	avI10/avC11#2	GND	1.741E-16
+C505	avI10/avC10#6	GND	1.492E-16
+C506	CLK#88	GND	2.380E-16
+C507	avI10/avC11#4	GND	2.394E-16
+C508	avI10/avC11#6	GND	1.124E-16
+C509	Q6#6	GND	5.997E-17
+C510	avI11/avC9#3	GND	3.461E-16
+C511	RST#59	GND	9.913E-17
+C512	Q6#11	GND	1.490E-16
+C513	avI11/avC8#2	GND	2.305E-16
+C514	CLK#93	GND	2.638E-16
+C515	avI11/avC10#2	GND	1.505E-16
+C516	avI11/avC8#4	GND	2.335E-16
+C517	avI11/avC10#4	GND	2.834E-16
+C518	CLK#97	GND	1.104E-16
+C519	avI11/avC9#6	GND	2.912E-16
+C520	avI11/avC11#2	GND	1.753E-16
+C521	avI11/avC10#6	GND	1.574E-16
+C522	CLK#102	GND	2.529E-16
+C523	avI11/avC11#4	GND	2.390E-16
+C524	avI11/avC11#6	GND	1.130E-16
+C525	Q7#6	GND	6.716E-17
+C526	avI1/avC6#2	GND	1.711E-16
+C527	Q0#19	GND	1.425E-16
+C528	Q5#18	GND	1.757E-16
+C529	avI1/avC6#4	GND	2.021E-16
+C530	avC14#2	GND	1.810E-16
+C531	Q0#23	GND	1.336E-16
+C532	Q5#20	GND	2.461E-16
+C533	avI1/avC6#7	GND	1.551E-16
+C534	avC14#5	GND	5.883E-17
+C535	Q0#26	GND	1.583E-16
+C536	Q5#25	GND	1.291E-16
+C537	avI2/avC6#2	GND	1.711E-16
+C538	Q6#19	GND	1.412E-16
+C539	Q7#10	GND	1.760E-16
+C540	avI2/avC6#4	GND	2.048E-16
+C541	avC15#2	GND	1.803E-16
+C542	Q6#21	GND	1.321E-16
+C543	Q7#12	GND	2.402E-16
+C544	avI2/avC6#7	GND	1.304E-16
+C545	avC15#5	GND	5.903E-17
+C546	Q6#26	GND	1.548E-16
+C547	Q7#17	GND	9.100E-17
+C548	avI3/avC6#2	GND	1.501E-16
+C549	avI3/avC6#4	GND	1.351E-16
+C550	avI3/avC6#6	GND	1.357E-16
+C551	avC13#10	GND	1.777E-16
+C552	avI3/avC7#2	GND	2.778E-16
+C553	avC13#13	GND	4.360E-17
+C554	avI3/avC10#3	GND	2.009E-16
+C555	avC14#9	GND	2.106E-16
+C556	avC15#16	GND	3.821E-16
+C557	avI3/avC10#5	GND	1.693E-16
+C558	avI3/avC7#6	GND	2.266E-16
+C559	avC14#14	GND	8.330E-17
+C560	avI3/avC7#8	GND	7.826E-17
+C561	VDD#2	GND	4.329E-15
+C562	VDD#49	GND	8.935E-17
+C563	avI4/avC8#5	GND	4.209E-17
+C564	avI4/avC10#3	GND	1.123E-16
+C565	VDD#47	GND	7.488E-17
+C566	VDD#46	GND	5.775E-17
+C567	Q0#1	GND	1.157E-16
+C568	VDD#45	GND	8.664E-17
+C569	avI5/avC8#5	GND	5.143E-17
+C570	avI5/avC10#3	GND	1.158E-16
+C571	VDD#44	GND	7.982E-17
+C572	VDD#43	GND	6.239E-17
+C573	Q1#1	GND	1.186E-16
+C574	VDD#42	GND	8.421E-17
+C575	avI6/avC8#5	GND	5.122E-17
+C576	avI6/avC10#3	GND	1.157E-16
+C577	VDD#41	GND	7.979E-17
+C578	VDD#40	GND	6.223E-17
+C579	Q2#1	GND	1.186E-16
+C580	VDD#39	GND	8.387E-17
+C581	avI7/avC8#5	GND	5.114E-17
+C582	avI7/avC10#3	GND	1.156E-16
+C583	VDD#38	GND	7.969E-17
+C584	VDD#37	GND	6.239E-17
+C585	Q3#1	GND	1.186E-16
+C586	VDD#36	GND	8.387E-17
+C587	avI8/avC8#5	GND	5.114E-17
+C588	avI8/avC10#3	GND	1.156E-16
+C589	VDD#35	GND	7.969E-17
+C590	VDD#34	GND	6.239E-17
+C591	Q4#1	GND	1.186E-16
+C592	VDD#33	GND	8.387E-17
+C593	avI9/avC8#5	GND	5.114E-17
+C594	avI9/avC10#3	GND	1.156E-16
+C595	VDD#32	GND	7.969E-17
+C596	VDD#31	GND	6.119E-17
+C597	Q5#1	GND	1.166E-16
+C598	VDD#30	GND	8.665E-17
+C599	avI10/avC8#5	GND	4.865E-17
+C600	avI10/avC10#3	GND	1.167E-16
+C601	VDD#29	GND	7.898E-17
+C602	VDD#28	GND	6.134E-17
+C603	Q6#1	GND	1.178E-16
+C604	VDD#27	GND	8.325E-17
+C605	avI11/avC8#5	GND	4.199E-17
+C606	avI11/avC10#3	GND	1.089E-16
+C607	VDD#26	GND	7.442E-17
+C608	VDD#25	GND	5.375E-17
+C609	Q7#1	GND	1.128E-16
+C610	VDD#24	GND	7.111E-17
+C611	avC14#3	GND	7.722E-17
+C612	Q5#23	GND	7.718E-17
+C613	VDD#23	GND	6.626E-17
+C614	Q6#22	GND	6.615E-21
+C615	avC15#3	GND	7.861E-17
+C616	Q7#15	GND	8.524E-17
+C617	VDD#22	GND	5.440E-17
+C618	avC13#9	GND	1.145E-16
+C619	avI3/avC10#4	GND	1.038E-18
+C620	VDD#21	GND	6.504E-17
+C621	avI3/avC10#6	GND	7.398E-19
+C622	avI3/avC7#5	GND	1.071E-16
+C623	VDD#1	GND	3.265E-17
+C624	avI4/avC9#4	GND	1.286E-16
+C625	avI4/avC11#3	GND	1.304E-16
+C626	Q0#3	GND	5.903E-18
+C627	avI5/avC9#4	GND	1.424E-16
+C628	avI5/avC11#3	GND	1.319E-16
+C629	Q1#3	GND	5.903E-18
+C630	avI6/avC9#4	GND	1.439E-16
+C631	avI6/avC11#3	GND	1.319E-16
+C632	Q2#3	GND	5.903E-18
+C633	avI7/avC9#4	GND	1.439E-16
+C634	avI7/avC11#3	GND	1.318E-16
+C635	Q3#3	GND	5.903E-18
+C636	avI8/avC9#4	GND	1.439E-16
+C637	avI8/avC11#3	GND	1.319E-16
+C638	Q4#3	GND	5.903E-18
+C639	avI9/avC9#4	GND	1.439E-16
+C640	avI9/avC11#3	GND	1.319E-16
+C641	Q5#3	GND	5.903E-18
+C642	avI10/avC9#4	GND	1.439E-16
+C643	avI10/avC11#3	GND	1.319E-16
+C644	Q6#3	GND	5.903E-18
+C645	avI11/avC9#4	GND	1.439E-16
+C646	avI11/avC11#3	GND	1.304E-16
+C647	Q5#17	GND	7.719E-17
+C648	avI1/avC6#6	GND	4.140E-17
+C649	Q7#9	GND	7.806E-17
+C650	avI2/avC6#6	GND	4.140E-17
+C651	avI3/avC6#3	GND	4.240E-17
+C652	avC13#11	GND	7.852E-17
+C653	avI3/avC7#7	GND	3.450E-17
+C654	CLK#5	GND	9.683E-17
+C655	CLK#18	GND	9.459E-17
+C656	CLK#31	GND	9.459E-17
+C657	CLK#44	GND	9.459E-17
+C658	CLK#57	GND	9.459E-17
+C659	CLK#70	GND	9.459E-17
+C660	CLK#83	GND	9.459E-17
+C661	CLK#96	GND	9.490E-17
+C662	Q0#18	GND	9.903E-17
+C663	avC14#4	GND	1.160E-16
+C664	Q5#24	GND	8.266E-17
+C665	Q6#18	GND	9.611E-17
+C666	avC15#4	GND	1.161E-16
+C667	Q7#16	GND	8.712E-17
+C668	avC15#10	GND	1.026E-16
+C669	avC14#13	GND	7.427E-17
+C670	Q0#4	GND	1.283E-16
+C671	Q1#4	GND	1.294E-16
+C672	Q2#4	GND	1.294E-16
+C673	Q3#4	GND	1.294E-16
+C674	Q4#4	GND	1.294E-16
+C675	Q5#4	GND	1.294E-16
+C676	Q6#4	GND	1.294E-16
+C677	Q7#4	GND	1.228E-16
+*
+*
+.ENDS TSPC_LFSR_8bit
+*

@@ -1,0 +1,4 @@
+.SUBCKT INV_CLK A Y VDD GND
+MMN0 Y A GND GND nmos1v w=0.48u l=0.1u
+MMP0 Y A VDD VDD pmos1v w=0.96u l=0.1u
+.ENDS
