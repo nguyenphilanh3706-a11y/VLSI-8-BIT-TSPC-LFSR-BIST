@@ -1,6 +1,0 @@
-// XOR2_TG sau layout (Assura RCX), cmp, corner SS
-simulator lang=spectre
-include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
-include "../../cells/INV_X1/INV_X1.scs"
-include "XOR2_TG_rcx.scs"
-include "../../tb/tb_XOR2_TG_cmp.scs"

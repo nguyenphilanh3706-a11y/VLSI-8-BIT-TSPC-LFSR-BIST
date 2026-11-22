@@ -1,9 +1,0 @@
-Schematic           | Layout                              | Status
--------------------------------------------------------------------------------
-XOR2_X1             | XOR2_X1                             | matched         
-NOR2_X1             | NOR2_X1                             | matched         
-INV_X1              | INV_X1                              | matched         
-NAND2_X1            | NAND2_X1                            | matched         
-CFSR_FB_CMOS        | CFSR_FB_CMOS                        | matched         
-
-Schematic and Layout Match

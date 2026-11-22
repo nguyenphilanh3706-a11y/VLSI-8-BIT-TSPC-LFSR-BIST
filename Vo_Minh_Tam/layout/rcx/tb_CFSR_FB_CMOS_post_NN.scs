@@ -1,6 +1,0 @@
-// CFSR_FB_CMOS sau layout (Assura RCX), corner NN
-simulator lang=spectre
-include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
-include "../../cells/INV_X1/INV_X1.scs"
-include "CFSR_FB_CMOS_rcx.scs"
-include "../../tb/tb_CFSR_FB_CMOS.scs"
