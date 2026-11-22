@@ -1,0 +1,68 @@
+// CFSR vong kin, 1 GHz, 258 chu ky, khoi hoi tiep sau layout (RCX) + 8 flip-flop mau.
+// L: LFSR thuan bat dau 00 (bi ket). S: LFSR thuan bat dau 01 (255 trang thai).
+// C, B, P: CFSR_FB_CMOS, CFSR_FB, CFSR_FB_OPT bat dau 00 (tu thoat, 256 trang thai).
+simulator lang=spectre
+global 0
+include "dff_mau.scs"
+VVDD (VDD 0) vsource dc=1.2
+VGND (GND 0) vsource dc=0
+VCLK (CLK 0) vsource type=pulse val0=0 val1=1.2 delay=1n rise=20p fall=20p width=480p period=1n
+
+XFB_L (L0 L5 L6 L7 DL VDD GND) XORTAP8
+FF_L0 (DL CLK L0) dff_mau q0=0
+FF_L1 (L0 CLK L1) dff_mau q0=0
+FF_L2 (L1 CLK L2) dff_mau q0=0
+FF_L3 (L2 CLK L3) dff_mau q0=0
+FF_L4 (L3 CLK L4) dff_mau q0=0
+FF_L5 (L4 CLK L5) dff_mau q0=0
+FF_L6 (L5 CLK L6) dff_mau q0=0
+FF_L7 (L6 CLK L7) dff_mau q0=0
+
+XFB_S (S0 S5 S6 S7 DS VDD GND) XORTAP8
+FF_S0 (DS CLK S0) dff_mau q0=1
+FF_S1 (S0 CLK S1) dff_mau q0=0
+FF_S2 (S1 CLK S2) dff_mau q0=0
+FF_S3 (S2 CLK S3) dff_mau q0=0
+FF_S4 (S3 CLK S4) dff_mau q0=0
+FF_S5 (S4 CLK S5) dff_mau q0=0
+FF_S6 (S5 CLK S6) dff_mau q0=0
+FF_S7 (S6 CLK S7) dff_mau q0=0
+
+XFB_C (C0 C1 C2 C3 C4 C5 C6 C7 DC VDD GND) CFSR_FB_CMOS
+FF_C0 (DC CLK C0) dff_mau q0=0
+FF_C1 (C0 CLK C1) dff_mau q0=0
+FF_C2 (C1 CLK C2) dff_mau q0=0
+FF_C3 (C2 CLK C3) dff_mau q0=0
+FF_C4 (C3 CLK C4) dff_mau q0=0
+FF_C5 (C4 CLK C5) dff_mau q0=0
+FF_C6 (C5 CLK C6) dff_mau q0=0
+FF_C7 (C6 CLK C7) dff_mau q0=0
+
+XFB_B (B0 B1 B2 B3 B4 B5 B6 B7 DB VDD GND) CFSR_FB
+FF_B0 (DB CLK B0) dff_mau q0=0
+FF_B1 (B0 CLK B1) dff_mau q0=0
+FF_B2 (B1 CLK B2) dff_mau q0=0
+FF_B3 (B2 CLK B3) dff_mau q0=0
+FF_B4 (B3 CLK B4) dff_mau q0=0
+FF_B5 (B4 CLK B5) dff_mau q0=0
+FF_B6 (B5 CLK B6) dff_mau q0=0
+FF_B7 (B6 CLK B7) dff_mau q0=0
+
+XFB_P (P0 P1 P2 P3 P4 P5 P6 P7 DP VDD GND) CFSR_FB_OPT
+FF_P0 (DP CLK P0) dff_mau q0=0
+FF_P1 (P0 CLK P1) dff_mau q0=0
+FF_P2 (P1 CLK P2) dff_mau q0=0
+FF_P3 (P2 CLK P3) dff_mau q0=0
+FF_P4 (P3 CLK P4) dff_mau q0=0
+FF_P5 (P4 CLK P5) dff_mau q0=0
+FF_P6 (P5 CLK P6) dff_mau q0=0
+FF_P7 (P6 CLK P7) dff_mau q0=0
+
+save CLK DL DS DC DB DP \
+  L0 L1 L2 L3 L4 L5 L6 L7 \
+  S0 S1 S2 S3 S4 S5 S6 S7 \
+  C0 C1 C2 C3 C4 C5 C6 C7 \
+  B0 B1 B2 B3 B4 B5 B6 B7 \
+  P0 P1 P2 P3 P4 P5 P6 P7
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=258.1n maxstep=20p errpreset=moderate

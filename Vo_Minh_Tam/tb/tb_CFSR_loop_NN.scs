@@ -1,0 +1,8 @@
+// CFSR vong kin sau layout, corner NN
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../layout/rcx/XORTAP8_rcx.scs"
+include "../layout/rcx/CFSR_FB_CMOS_rcx.scs"
+include "../layout/rcx/CFSR_FB_rcx.scs"
+include "../layout/rcx/CFSR_FB_OPT_rcx.scs"
+include "tb_CFSR_loop.scs"
