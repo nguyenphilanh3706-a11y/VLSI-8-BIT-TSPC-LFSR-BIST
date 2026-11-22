@@ -39,6 +39,7 @@ So sánh đầy đủ: `KET_QUA_TV3.md` mục 10.
 | `cells/` | netlist và testbench 9 cell lá |
 | `blocks/` | XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT và bản đối chứng CMOS |
 | `tb/` | testbench khối, so sánh XOR/XNOR (FO4, FO8), bản NN/SS/FF |
+| `cadence/` | thư viện Virtuoso TV3_CELLS, TV3_BLK, TV3_OPT và `cds.lib` |
 | `layout/gds/` | GDS cell lá, cell lấp (FILL), khối; `*_OPT.gds` là bản tối ưu |
 | `layout/assura/` | báo cáo DRC/LVS khối |
 | `layout/rcx/` | netlist trích ký sinh và testbench sau layout |
@@ -47,8 +48,8 @@ So sánh đầy đủ: `KET_QUA_TV3.md` mục 10.
 | `HUONG_DAN_TV3.md` | mô tả cell, cách chạy testbench, ADE L, layout |
 | `BAO_CAO_CHUONG3_TV3.md` | phần Chương 3 của báo cáo |
 
-Thư viện Virtuoso trong VM: `~/TV3_PROJ/TV3_CELLS` (cell lá, schematic và symbol khối), `~/TV3_PROJ/TV3_BLK` (layout khối),
-`~/TV3_PROJ/TV3_OPT` (XOR2_X1 bản nén).
+Thư viện Virtuoso trong `cadence/`: `TV3_CELLS` (cell lá, schematic và symbol khối), `TV3_BLK` (layout khối),
+`TV3_OPT` (XOR2_X1 bản nén). Mở: `cd cadence && virtuoso &` (cần cài sẵn gpdk090 v4.6).
 
 ## Còn lại
 

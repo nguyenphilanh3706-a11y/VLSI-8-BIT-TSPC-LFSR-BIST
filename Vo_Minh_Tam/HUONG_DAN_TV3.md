@@ -5,6 +5,7 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm cho mọi transistor. Chân nguồn
 ## 1. Thư mục
 | Thư mục | Nội dung |
 |---|---|
+| `cadence/` | thư viện Virtuoso (schematic, symbol, layout, av_extracted) và `cds.lib` |
 | `cells/<CELL>/<CELL>.scs` | netlist cell (subckt) |
 | `cells/<CELL>/tb_<CELL>.scs`, `.exp` | testbench cell và bảng giá trị mong đợi |
 | `cells/cells.scs` | include chung các cell cơ bản |
@@ -88,7 +89,7 @@ năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 
 ## 5. Mô phỏng bằng ADE L
 
-1. `cd ~/TV3_PROJ && virtuoso &`, thư viện `TV3_CELLS`.
+1. `cd cadence && virtuoso &`, thư viện `TV3_CELLS`.
 2. Tạo cell `tb_<CELL>` view `schematic`: DUT, 4 INV_X1 tải trên Y, `analogLib/vdc` 1,2 V cho VDD, `vdc` 0 V cho GND,
    `analogLib/vpulse` cho mỗi ngõ vào (v1 0, v2 1.2, tr = tf = 20p), `analogLib/gnd`. Check and Save.
 3. Launch -> ADE L. Setup -> Model Libraries: `/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs`, section `NN`.
@@ -100,15 +101,15 @@ năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 
 | Nội dung | Vị trí |
 |---|---|
-| Layout + av_extracted 9 cell lá, gồm AOI21_X1, XNOR2_X1 (và FILL1/2/4/8 lấp chỗ trống) | `~/TV3_PROJ/TV3_CELLS` |
-| Layout + av_extracted 6 khối (XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT, bản CMOS) | `~/TV3_PROJ/TV3_BLK` |
-| XOR2_X1 bản nén 15 cột (so sánh với XOR2_X1 17 cột) | `~/TV3_PROJ/TV3_OPT` |
+| Layout + av_extracted 9 cell lá, gồm AOI21_X1, XNOR2_X1 (và FILL1/2/4/8 lấp chỗ trống) | `cadence/TV3_CELLS` |
+| Layout + av_extracted 6 khối (XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT, bản CMOS) | `cadence/TV3_BLK` |
+| XOR2_X1 bản nén 15 cột (so sánh với XOR2_X1 17 cột) | `cadence/TV3_OPT` |
 | GDS từng cell và từng khối (khối đã gộp cell lá) | `layout/gds/` |
 | Báo cáo LVS khối | `layout/assura/` |
 | Ảnh layout | `layout/hinh/` |
 | Netlist trích ký sinh (Spectre) và testbench sau layout | `layout/rcx/` |
 
-Mở xem: `cd ~/TV3_PROJ && virtuoso &`, Library Manager -> `TV3_CELLS` hoặc `TV3_BLK` -> view `layout` / `av_extracted`.
+Mở xem: `cd cadence && virtuoso &` (cần gpdk090 v4.6, sửa đường dẫn trong `cadence/cds.lib` nếu cài nơi khác), Library Manager -> `TV3_CELLS` hoặc `TV3_BLK` -> view `layout` / `av_extracted`.
 Khuôn cell: cao 2,76 µm, bước cột 0,27 µm, ray GND (dưới) và VDD (trên) Metal1 rộng 0,24 µm, chân tín hiệu Metal1.
 Cell khác nhóm làm cùng khuôn này thì xếp liền hàng với cell TV3 được (dùng chung ray).
 
