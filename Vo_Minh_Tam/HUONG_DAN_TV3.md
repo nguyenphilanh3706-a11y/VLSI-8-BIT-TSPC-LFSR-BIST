@@ -90,10 +90,12 @@ năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 ## 5. Mô phỏng bằng ADE L
 
 1. `cd cadence && virtuoso &`, thư viện `TV3_CELLS`.
-2. Tạo cell `tb_<CELL>` view `schematic`: DUT, 4 INV_X1 tải trên Y, `analogLib/vdc` 1,2 V cho VDD, `vdc` 0 V cho GND,
+2. Mở `tb_<CELL>` view `schematic` có sẵn (so sánh XOR tải 8 cổng: `tb_XOR2_FO8`), bỏ qua phần còn lại của bước này.
+   Nếu tự tạo testbench mới: DUT, 4 INV_X1 tải trên Y, `analogLib/vdc` 1,2 V cho VDD, `vdc` 0 V cho GND,
    `analogLib/vpulse` cho mỗi ngõ vào (v1 0, v2 1.2, tr = tf = 20p), `analogLib/gnd`. Check and Save.
 3. Launch -> ADE L. Setup -> Model Libraries: `/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs`, section `NN`.
-4. Analyses -> `tran`, stop 1.5n (INV) hoặc 4.5n (cổng 2-3 ngõ vào), `conservative`.
+4. Analyses -> `tran`, `conservative`, stop: 1.5n (INV), 2n (cổng 2 ngõ vào), 4n (cổng 3 ngõ vào), 8n (tb_XOR2_FO8),
+   16n (XORTAP8), 128n (ZERO7), 256n (CFSR_FB).
 5. Outputs -> To Be Plotted -> chọn ngõ vào và Y trên schematic. Netlist and Run.
 6. Đo trễ: Calculator -> `delay`, ngưỡng 0,6 V cả hai tín hiệu. Session -> Save State để dùng lại.
 
@@ -102,10 +104,10 @@ năng lượng mỗi phép = VDD x |dòng VVDD trung bình| x chu kỳ vector.
 | Nội dung | Vị trí |
 |---|---|
 | Layout + av_extracted 9 cell lá, gồm AOI21_X1, XNOR2_X1 (và FILL1/2/4/8 lấp chỗ trống) | `cadence/TV3_CELLS` |
-| Layout + av_extracted 6 khối (XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT, bản CMOS) | `cadence/TV3_BLK` |
+| Layout + av_extracted 6 khối (XORTAP8, ZERO7, CFSR_FB, CFSR_FB_OPT, bản CMOS) | `cadence/TV3_CELLS` (cell con và via: `cadence/TV3_BLK`) |
 | XOR2_X1 bản nén 15 cột (so sánh với XOR2_X1 17 cột) | `cadence/TV3_OPT` |
 | GDS từng cell và từng khối (khối đã gộp cell lá) | `layout/gds/` |
-| Báo cáo LVS khối | `layout/assura/` |
+| Báo cáo DRC/LVS | `layout/assura/`, `layout/assura/cell_view/`, ảnh `anh/drc_lvs/` |
 | Ảnh layout | `layout/hinh/` |
 | Netlist trích ký sinh (Spectre) và testbench sau layout | `layout/rcx/` |
 
@@ -120,3 +122,25 @@ spectre tb_CFSR_FB_OPT_post_NN.scs -raw ../../out/cfsr_opt_post +log ../../out/c
 cd ../../tb && spectre tb_XOR2_TG6_fo8_NN.scs -raw ../out/tg6_fo8 +log ../out/tg6_fo8.log   # XOR tải 8 cổng, trước layout
 ```
 Testbench sau layout dùng lại phần thân `tb/*.scs` và bảng `.exp` cũ, chỉ thay mạch DUT bằng `layout/rcx/<CELL>_rcx.scs`.
+
+## 7. Thành viên khác dùng thư viện TV3
+
+Thêm vào `cds.lib` của mình (thay `<repo>` bằng đường dẫn đã clone), cần cả ba dòng:
+```
+DEFINE TV3_CELLS <repo>/Vo_Minh_Tam/cadence/TV3_CELLS
+DEFINE TV3_BLK <repo>/Vo_Minh_Tam/cadence/TV3_BLK
+DEFINE TV3_OPT <repo>/Vo_Minh_Tam/cadence/TV3_OPT
+```
+Schematic: Create -> Instance -> `TV3_CELLS`, view `symbol`. Layout: cùng thư viện, view `layout`.
+
+| Tên trong kế hoạch | Cell | Chân |
+|---|---|---|
+| INV | INV_X1 | A, Y, VDD, GND |
+| NAND2 | NAND2_X1 | A, B, Y, VDD, GND |
+| NOR2 | NOR2_X1 | A, B, Y, VDD, GND |
+| XOR2 CMOS 12T | XOR2_X1 | A, B, Y, VDD, GND |
+| XOR2 TG 8T / 6T | XOR2_TG / XOR2_TG6 | A, B, Y, VDD, GND |
+| Mạng XOR hồi tiếp | XORTAP8 | Q0, Q5, Q6, Q7, FB, VDD, GND |
+| CFSR | CFSR_FB_OPT (bản cũ: CFSR_FB) | Q0..Q7, FB, VDD, GND |
+
+Nối FB vào ngõ D của flip-flop Q0. Mô phỏng vòng kín mẫu: `cd tb && spectre tb_CFSR_loop_NN.scs -raw ../out/loop +log ../out/loop.log`.
