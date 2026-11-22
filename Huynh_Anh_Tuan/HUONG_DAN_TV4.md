@@ -1,6 +1,6 @@
 # Hướng dẫn dùng phần việc của TV4
 
-Dành cho các thành viên ghép khối của TV4 vào phần của mình (TV5, TV6), thay cell vào khối của TV4 (TV1), hoặc chạy lại kết quả. Tóm tắt kết quả: [KET_QUA_TV4.md](KET_QUA_TV4.md).
+Dành cho các thành viên ghép khối của TV4 vào phần của mình (TV5, TV6) hoặc chạy lại kết quả. Tóm tắt kết quả: [KET_QUA_TV4.md](KET_QUA_TV4.md).
 
 Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm. Chân nguồn thống nhất của nhóm: `VDD`, `GND`.
 
@@ -73,18 +73,6 @@ Mọi lệnh gõ trong **terminal**, đứng ở thư mục `Huynh_Anh_Tuan/`, k
 
 Chi tiết từng bước: [docs/3_mo_phong.md](docs/3_mo_phong.md), [docs/5_layout.md](docs/5_layout.md) mục 5.6.
 
-## 6. Dành cho TV1: thay flip-flop tạm của bản MS
-
-Khối MS hiện gọi lớp chuyển đổi `DFF_MS (D CLK CLKB SET RST Q VDD GND)`, trỏ tới flip-flop tạm `DFF_MS_TMP`. Cần từ TV1:
-
-| Cần | Yêu cầu |
-|---|---|
-| Netlist Spectre | kích cạnh lên; có Set và Reset bất đồng bộ (một cell có cả hai, hoặc tách hai cell như TV2); ghi rõ mức tích cực của SET/RST và có cần CLKB ngoài không |
-| Layout | cao **2,76 µm**, ray GND ở dưới (y 0–0,24 µm) và VDD ở trên (y 2,52–2,76 µm) bằng Metal1, Nwell phủ nửa trên (khuôn TV3: y 1,38–3,00 µm), như cell của TV3 và TV2; DRC/LVS sạch |
-| CDL cho LVS | cùng tên chân với netlist |
-
-TV4 sẽ đổi một dòng trong `cells/DFF_MS/DFF_MS.scs`, thêm vị trí chân vào `scripts/layout/build_layout.py`, rồi chạy lại toàn bộ (các bước ở [docs/2_thiet_ke_mach.md](docs/2_thiet_ke_mach.md) mục 2.5).
-
-## 7. Nguồn gốc file của thành viên khác
+## 6. Nguồn gốc file của thành viên khác
 
 Bản sao chỉ đọc trong `depend/`, ghi commit nguồn ở `depend/tv2/NGUON.md` và `depend/tv3/NGUON.md`. Khi TV2/TV3 cập nhật branch, TV4 chép lại rồi chạy lại mô phỏng; không sửa các file này.
