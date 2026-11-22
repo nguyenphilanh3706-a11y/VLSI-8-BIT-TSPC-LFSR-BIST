@@ -10,12 +10,12 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 | MS_LFSR_8bit, TSPC_LFSR_8bit, TSPC_CFSR_8bit, LT_RTPG_8bit (netlist + schematic/symbol) | Xong; bản TSPC dùng flip-flop của TV2, bản MS dùng flip-flop tạm |
 | Mô phỏng Spectre trước layout, 300 chu kỳ, 3 corner NN/SS/FF | 18/18 testbench PASS 301/301 (TSPC với flip-flop TV2) |
 | f_max, độ dốc sườn clock, so sánh MS và TSPC | Xong |
-| Thay flip-flop TV2 (TSPC) | **Xong ở netlist** (22/11): 15/15 testbench TSPC PASS 301/301; layout chờ TV2 |
+| Thay flip-flop TV2 (TSPC) | **Xong** (22/11): netlist (15/15 testbench TSPC PASS 301/301) và layout (commit TV2 `ac228bf`) |
 | Thay flip-flop TV1 (MS) | Chờ cell |
-| Layout dải TSPC_LFSR_8bit và MS_LFSR_8bit (khuôn cell TV3), DRC/LVS/RCX | Xong với flip-flop tạm (TV1, TV2 chưa có layout): DRC 0 lỗi, LVS khớp |
+| Layout dải TSPC_LFSR_8bit và MS_LFSR_8bit (khuôn cell TV3), DRC/LVS/RCX | Xong: DRC 0 lỗi, LVS khớp. TSPC dùng layout flip-flop TV2; MS dùng flip-flop tạm (TV1 chưa có cell) |
 | Mô phỏng hậu layout (RCX) NN/SS/FF | 6/6 testbench PASS 301/301 |
 
-> **Flip-flop đang dùng:** bản TSPC trước layout dùng **cell thật của TV2** (TSPC_DFF_R/S 15T, có keeper, commit `25fc686`). Bản MS dùng **flip-flop tạm** DFF_MS_TMP (24T) của TV4 cho đến khi TV1 nộp cell. Layout và số hậu layout dùng flip-flop tạm cho cả hai bản (TV1, TV2 chưa có layout). Cách thay: [Thiết kế mạch, 2.5](docs/2_thiet_ke_mach.md#25-thay-flip-flop-tạm).
+> **Flip-flop đang dùng:** bản TSPC dùng **cell thật của TV2** (TSPC_DFF_R/S 15T, có keeper) cả ở netlist (commit `25fc686`) lẫn layout (commit `ac228bf`). Bản MS dùng **flip-flop tạm** DFF_MS_TMP (24T) của TV4 ở cả netlist và layout, cho đến khi TV1 nộp cell. Cách thay: [Thiết kế mạch, 2.5](docs/2_thiet_ke_mach.md#25-thay-flip-flop-tạm).
 
 ## Kết quả chính
 
@@ -23,17 +23,19 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 
 | Trước layout, NN, 27 °C, 500 MHz | Transistor | Trễ CLK→Q | P_DUT | P_DUT + P_clock | f_max (NN / SS) |
 |---|---:|---:|---:|---:|---:|
-| MS_LFSR_8bit (flip-flop tạm) | 218 | 240,1 ps | 94,1 µW | 115,4 µW | 1,82 / 1,25 GHz |
+| MS_LFSR_8bit (flip-flop tạm) | 218 | 240,1 ps | 94,1 µW | 115,5 µW | 1,82 / 1,25 GHz |
 | **TSPC_LFSR_8bit (flip-flop TV2)** | **144** | **186,6 ps** | **63,5 µW** | **87,5 µW** | **3,45 / 2,38 GHz** |
 | TSPC so với MS | −33,9 % | −22,3 % | −32,6 % | −24,2 % | ×1,9 / ×1,9 |
 
-**Sau layout** (trích RC, NN, 500 MHz, **cả hai bản dùng flip-flop tạm**; chi tiết ở [5. Layout](docs/5_layout.md)):
+**Sau layout** (trích RC, NN, 500 MHz; TSPC dùng layout flip-flop TV2, MS dùng flip-flop tạm; chi tiết ở [5. Layout](docs/5_layout.md)):
 
 | | Diện tích | Trễ CLK→Q | P_DUT + P_clock | f_max NN |
 |---|---:|---:|---:|---:|
 | MS_LFSR_8bit | 235,48 µm² | 381,6 ps | 160,6 µW | 1,33 GHz |
-| **TSPC_LFSR_8bit** | **159,47 µm²** | **201,5 ps** | **89,8 µW** | **3,45 GHz** |
-| TSPC so với MS | −32,3 % | −47,2 % | −44,1 % | ×2,6 |
+| **TSPC_LFSR_8bit** | **218,10 µm²** | **238,8 ps** | **102,3 µW** | **2,63 GHz** |
+| TSPC so với MS | −7,4 % | −37,4 % | −36,3 % | ×2,0 |
+
+Diện tích chỉ còn nhỏ hơn 7,4 % vì cell flip-flop của TV2 (8,00–8,68 µm, có keeper L = 0,40 µm) rộng hơn flip-flop tạm (5,94 µm). Bản 21/11 với flip-flop tạm: 159,47 µm², 201,5 ps, 89,8 µW, 3,45 GHz.
 
 ![So sánh sau layout](docs/images/so_sanh_hau_layout.png)
 
@@ -43,7 +45,7 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 - **CFSR_FB_OPT của TV3 trong thanh ghi TSPC:** đúng 256 trạng thái ở cả 3 corner; so với CFSR_FB cũ, f_max tăng **14–27 %** (NN 2,63 → 3,33 GHz trước layout khối, 3,13 → 3,57 GHz với netlist RCX của khối), công suất chỉ giảm 1,6–2 % vì 8 flip-flop chiếm phần lớn ([4.3.1](docs/4_ket_qua.md#431-so-sánh-3-khối-hồi-tiếp-cfsr-của-tv3-trong-thanh-ghi-tspc-22112026)).
 - **Tải clock:** 32 cổng MOS nối clock (TSPC) so với 66 (MS), không cần tạo CLKB.
 - **LT-RTPG bật (LP = 1):** công suất tải ngõ vào CUT giảm **44,8 %**; golden model dự đoán giảm 50 % số bit lật.
-- **Giới hạn của TSPC:** với flip-flop TV2, sai khi sườn clock ≥ 600 ps (MS vẫn đúng tới 800 ps), nên cây clock phải giữ sườn ≤ 400 ps; ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race tìm thấy ở hậu layout corner FF đã sửa, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-và-cách-sửa)).
+- **Giới hạn của TSPC:** với flip-flop TV2, sai khi sườn clock ≥ 600 ps (MS vẫn đúng tới 800 ps), nên cây clock phải giữ sườn ≤ 400 ps; ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race của flip-flop tạm ở hậu layout corner FF đã sửa; dải dùng layout flip-flop TV2 không bị, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
 
 ![Dạng sóng Q[7:0] của TSPC_LFSR_8bit trong ViVA, 42 ns đầu](docs/images/wave_tspc_0-42ns.png)
 
@@ -116,7 +118,7 @@ Huynh_Anh_Tuan/
 │   └── ngspice/              kiểm tra logic nhanh không cần Cadence
 ├── results/                  kết quả Spectre dạng chữ (RESULT, f_max, sườn clock, số transistor)
 └── depend/                  bản sao phần của thành viên khác mà mạch TV4 dùng (dependencies), chỉ đọc
-    ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2, commit 25fc686): TSPC_DFF_R, TSPC_DFF_S
+    ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2): netlist TSPC_DFF_R/S (25fc686), layout GDS/CDL/RCX (ac228bf)
     └── tv3/                  bản sao cell TV3 (branch TV3, commit 435f6f0, giống hệt 195bacb) mà khối LFSR dùng, kèm GDS và RCX khối CFSR
 ```
 
@@ -156,7 +158,7 @@ bash scripts/layout/assura.sh lvs TSPC_LFSR_8bit
 | Thành viên | Dùng gì | Trạng thái |
 |---|---|---|
 | TV1 | `MS_DFF_SetReset` (netlist + layout cùng khuôn cell) thay cho DFF_MS_TMP | chờ |
-| TV2 | `TSPC_DFF_R`, `TSPC_DFF_S` (15T, có keeper) | **netlist đã dùng** (commit `25fc686`, 22/11); **layout còn chờ** (layout dải vẫn dùng DFF_TSPC_TMP) |
+| TV2 | `TSPC_DFF_R`, `TSPC_DFF_S` (15T, có keeper) | **đã dùng**: netlist (commit `25fc686`) và layout (GDS, CDL, RCX, commit `ac228bf`), 22/11 |
 | TV3 | INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB_OPT; khuôn cell và GDS XOR2_TG6, XOR2_X1 cho layout | đã dùng, branch TV3 commit `435f6f0` (kiểm lại với `195bacb` ngày 22/11: netlist không đổi); đã thử 3 khối CFSR trong thanh ghi TSPC |
 | TV5, TV6 | nhận V[7:0] từ LT_RTPG_8bit cho CUT và MISR | – |
 

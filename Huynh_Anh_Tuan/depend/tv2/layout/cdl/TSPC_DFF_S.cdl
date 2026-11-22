@@ -1,0 +1,18 @@
+* CDL
+.SUBCKT TSPC_DFF_S D CLK SET Q QB VDD GND
+M1 pa D VDD VDD pmos1v w=480e-9 l=100e-9
+M2 X CLK pa VDD pmos1v w=480e-9 l=100e-9
+M3 X D GND GND nmos1v w=240e-9 l=100e-9
+M6 Y CLK VDD VDD pmos1v w=480e-9 l=100e-9
+M4 Y X n4 GND nmos1v w=480e-9 l=100e-9
+M5 n4 CLK GND GND nmos1v w=480e-9 l=100e-9
+MSP ps SET VDD VDD pmos1v w=480e-9 l=100e-9
+M9 QB Y ps VDD pmos1v w=480e-9 l=100e-9
+M7 QB CLK n7 GND nmos1v w=240e-9 l=100e-9
+M8 n7 Y GND GND nmos1v w=240e-9 l=100e-9
+MSN QB SET GND GND nmos1v w=240e-9 l=100e-9
+MP Q QB VDD VDD pmos1v w=480e-9 l=100e-9
+MN Q QB GND GND nmos1v w=240e-9 l=100e-9
+MKQ QB Q VDD VDD pmos1v w=120e-9 l=400e-9
+MKY Y QB VDD VDD pmos1v w=120e-9 l=400e-9
+.ENDS

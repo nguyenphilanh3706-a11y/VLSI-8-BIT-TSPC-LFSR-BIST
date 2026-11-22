@@ -1,0 +1,5 @@
+# Thu vien Virtuoso cua TV4 (duong dan tuong doi theo vi tri file nay)
+# Them vao cds.lib cua ban:  SOFTINCLUDE <duong_dan>/Huynh_Anh_Tuan/cadence/cds.lib
+# (cds.lib cua ban phai co san DEFINE gpdk090 ...)
+DEFINE tv4 ./tv4
+DEFINE tv4_lay ./tv4_lay

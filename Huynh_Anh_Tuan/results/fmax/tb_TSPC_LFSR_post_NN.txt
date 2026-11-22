@@ -1,10 +1,14 @@
-# tb_TSPC_LFSR_post corner NN  Sat Nov 21 20:49:16 BDT 2026  (them diem T=290ps)
-T=500ps f=2000MHz  RESULT fx_tb_TSPC_LFSR_post_500ps_NN PASS 301/301 T=5e-10 tre_ps=200.5 P_dut_uW=210.053 P_clk_uW=138.458 P_tai_uW=12.871 E_dut_pJ=0.1050 E_clk_pJ=0.0692
-T=400ps f=2500MHz  RESULT fx_tb_TSPC_LFSR_post_400ps_NN PASS 301/301 T=4e-10 tre_ps=197.8 P_dut_uW=262.640 P_clk_uW=167.386 P_tai_uW=16.017 E_dut_pJ=0.1051 E_clk_pJ=0.0670
-T=350ps f=2857MHz  RESULT fx_tb_TSPC_LFSR_post_350ps_NN PASS 301/301 T=3.5e-10 tre_ps=194.5 P_dut_uW=299.689 P_clk_uW=183.511 P_tai_uW=18.273 E_dut_pJ=0.1049 E_clk_pJ=0.0642
-T=320ps f=3125MHz  RESULT fx_tb_TSPC_LFSR_post_320ps_NN PASS 301/301 T=3.2e-10 tre_ps=191.7 P_dut_uW=326.982 P_clk_uW=193.064 P_tai_uW=19.956 E_dut_pJ=0.1046 E_clk_pJ=0.0618
-T=300ps f=3333MHz  RESULT fx_tb_TSPC_LFSR_post_300ps_NN PASS 301/301 T=3e-10 tre_ps=189.6 P_dut_uW=348.138 P_clk_uW=199.192 P_tai_uW=21.266 E_dut_pJ=0.1044 E_clk_pJ=0.0598
-T=290ps f=3448MHz  RESULT fx_tb_TSPC_LFSR_post_290ps_NN PASS 301/301 T=2.9e-10 tre_ps=188.4 P_dut_uW=359.749 P_clk_uW=202.198 P_tai_uW=21.997 E_dut_pJ=0.1043 E_clk_pJ=0.0586
-T=280ps f=3571MHz  RESULT fx_tb_TSPC_LFSR_post_280ps_NN FAIL 10/301 T=2.8e-10 tre_ps=206.1 P_dut_uW=386.430 P_clk_uW=205.334 P_tai_uW=21.204 E_dut_pJ=0.1082 E_clk_pJ=0.0575
-T=260ps f=3846MHz  RESULT fx_tb_TSPC_LFSR_post_260ps_NN FAIL 9/301 T=2.6e-10 tre_ps=185.4 P_dut_uW=209.103 P_clk_uW=209.081 P_tai_uW=15.663 E_dut_pJ=0.0544 E_clk_pJ=0.0544
-T=250ps f=4000MHz  RESULT fx_tb_TSPC_LFSR_post_250ps_NN FAIL 26/301 T=2.5e-10 tre_ps=225.0 P_dut_uW=422.436 P_clk_uW=213.468 P_tai_uW=24.734 E_dut_pJ=0.1056 E_clk_pJ=0.0534
+# tb_TSPC_LFSR_post corner NN, 22/11/2026, layout flip-flop TV2 (ac228bf)
+T=400ps f=2500MHz  RESULT fx_tb_TSPC_LFSR_post_400ps_NN PASS 301/301 T=4e-10 tre_ps=227.9 P_dut_uW=300.733 P_clk_uW=182.374 P_tai_uW=16.559 E_dut_pJ=0.1203 E_clk_pJ=0.0729
+T=390ps f=2564MHz  RESULT fx_tb_TSPC_LFSR_post_390ps_NN PASS 301/301 T=3.9e-10 tre_ps=227.3 P_dut_uW=308.214 P_clk_uW=184.955 P_tai_uW=16.978 E_dut_pJ=0.1202 E_clk_pJ=0.0721
+T=380ps f=2632MHz  RESULT fx_tb_TSPC_LFSR_post_380ps_NN PASS 301/301 T=3.8e-10 tre_ps=239.4 P_dut_uW=316.059 P_clk_uW=187.521 P_tai_uW=17.419 E_dut_pJ=0.1201 E_clk_pJ=0.0713
+T=370ps f=2703MHz  RESULT fx_tb_TSPC_LFSR_post_370ps_NN FAIL 10/301 T=3.7e-10 tre_ps=345.9 P_dut_uW=309.916 P_clk_uW=189.890 P_tai_uW=16.793 E_dut_pJ=0.1147 E_clk_pJ=0.0703
+T=360ps f=2778MHz  RESULT fx_tb_TSPC_LFSR_post_360ps_NN FAIL 9/301 T=3.6e-10 tre_ps=214.0 P_dut_uW=193.463 P_clk_uW=190.562 P_tai_uW=11.849 E_dut_pJ=0.0696 E_clk_pJ=0.0686
+T=350ps f=2857MHz  RESULT fx_tb_TSPC_LFSR_post_350ps_NN FAIL 9/301 T=3.5e-10 tre_ps=213.0 P_dut_uW=192.726 P_clk_uW=193.196 P_tai_uW=12.179 E_dut_pJ=0.0675 E_clk_pJ=0.0676
+T=320ps f=3125MHz  RESULT fx_tb_TSPC_LFSR_post_320ps_NN FAIL 8/301 T=3.2e-10 tre_ps=260.1 P_dut_uW=208.619 P_clk_uW=200.863 P_tai_uW=13.331 E_dut_pJ=0.0668 E_clk_pJ=0.0643
+T=300ps f=3333MHz  RESULT fx_tb_TSPC_LFSR_post_300ps_NN FAIL 8/301 T=3e-10 tre_ps=289.2 P_dut_uW=338.035 P_clk_uW=206.445 P_tai_uW=19.129 E_dut_pJ=0.1014 E_clk_pJ=0.0619
+T=290ps f=3448MHz  RESULT fx_tb_TSPC_LFSR_post_290ps_NN FAIL 6/301 T=2.9e-10 tre_ps=268.1 P_dut_uW=299.956 P_clk_uW=208.355 P_tai_uW=17.910 E_dut_pJ=0.0870 E_clk_pJ=0.0604
+T=280ps f=3571MHz  RESULT fx_tb_TSPC_LFSR_post_280ps_NN FAIL 6/301 T=2.8e-10 tre_ps=218.2 P_dut_uW=322.374 P_clk_uW=210.963 P_tai_uW=15.382 E_dut_pJ=0.0903 E_clk_pJ=0.0591
+T=270ps f=3704MHz  RESULT fx_tb_TSPC_LFSR_post_270ps_NN FAIL 6/301 T=2.7e-10 tre_ps=230.2 P_dut_uW=354.708 P_clk_uW=213.234 P_tai_uW=18.565 E_dut_pJ=0.0958 E_clk_pJ=0.0576
+T=260ps f=3846MHz  RESULT fx_tb_TSPC_LFSR_post_260ps_NN FAIL 6/301 T=2.6e-10 tre_ps=235.6 P_dut_uW=370.243 P_clk_uW=215.481 P_tai_uW=16.854 E_dut_pJ=0.0963 E_clk_pJ=0.0560
+T=250ps f=4000MHz  RESULT fx_tb_TSPC_LFSR_post_250ps_NN FAIL 7/301 T=2.5e-10 tre_ps=239.0 P_dut_uW=332.245 P_clk_uW=217.475 P_tai_uW=18.829 E_dut_pJ=0.0831 E_clk_pJ=0.0544

@@ -13,12 +13,12 @@ Mỗi cell là một file Spectre (`subckt`), ghép theo thứ tự include: mod
 | `AND2_T` | A B Y VDD GND | NAND2_X1 + INV_X1, tính a_i trong LT-RTPG | 6 |
 | `MUX2_N` | A B S SB Y VDD GND | Y = S ? B : A bằng 3 NAND2_X1; SB đưa từ ngoài vào để 8 mux dùng chung một inverter | 12 |
 | `DFF_MS_TMP` | D CLK CLKB SET RST Q VDD GND | flip-flop master-slave cổng truyền, 4 TG + 4 NOR2 (NOR làm luôn SET/RST) | 24 |
-| `DFF_TSPC_TMP` | D CLK SET RST Q VDD GND | flip-flop TSPC 9T (Yuan–Svensson) kích cạnh lên + SET/RST, chưa có keeper; **chỉ còn dùng trong layout** (TV2 chưa có layout) | 17 |
+| `DFF_TSPC_TMP` | D CLK SET RST Q VDD GND | flip-flop TSPC 9T (Yuan–Svensson) kích cạnh lên + SET/RST, chưa có keeper; **không còn dùng** từ 22/11 (netlist và layout dải TSPC đều dùng cell TV2), giữ lại để đối chiếu | 17 |
 | `DFF_MS` | như DFF_MS_TMP | **lớp chuyển đổi**: khối MS chỉ gọi tên này; hiện trỏ tới bản tạm, chờ cell TV1 | – |
 
 SET/RST tích cực mức cao, bất đồng bộ. `DFF_MS_TMP` chỉ để ghép và kiểm chứng lõi LFSR trong lúc chờ cell của TV1 (MS); không dùng làm số liệu cuối cùng. Từ 22/11/2026 các khối TSPC dùng flip-flop thật của TV2 (mục 2.2).
 
-**DFF_TSPC_TMP**: tầng 1 p-C2MOS (X = D̅ khi CLK = 0), tầng 2 n-precharge (Y = 1 khi CLK = 0, Y = X̅ khi CLK = 1), tầng 3 n-C2MOS ra QB, cộng một inverter ra Q. pMOS SET đặt sát VDD, nMOS RST̅ đặt sát GND để tránh chia sẻ điện tích vào nút QB khi nhả SET/RST (lỗi này từng làm Q0 chỉ lên ~0,75 V, đã sửa). MN1 (tầng 1) để 0,12 µm: với 0,24 µm, mô phỏng hậu layout ở corner FF bị race khi D đổi ngay sau cạnh clock ([5. Layout](5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-và-cách-sửa)).
+**DFF_TSPC_TMP**: tầng 1 p-C2MOS (X = D̅ khi CLK = 0), tầng 2 n-precharge (Y = 1 khi CLK = 0, Y = X̅ khi CLK = 1), tầng 3 n-C2MOS ra QB, cộng một inverter ra Q. pMOS SET đặt sát VDD, nMOS RST̅ đặt sát GND để tránh chia sẻ điện tích vào nút QB khi nhả SET/RST (lỗi này từng làm Q0 chỉ lên ~0,75 V, đã sửa). MN1 (tầng 1) để 0,12 µm: với 0,24 µm, mô phỏng hậu layout ở corner FF bị race khi D đổi ngay sau cạnh clock ([5. Layout](5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
 
 ## 2.2. Flip-flop TSPC của TV2 (`depend/tv2/`)
 
@@ -70,7 +70,7 @@ Số transistor và MOS nối clock đếm tự động từ netlist: `python3 s
 
 ## 2.5. Thay flip-flop tạm
 
-**TSPC (TV2) – đã thay ngày 22/11/2026.** TV2 nộp hai cell riêng (chỉ Reset, chỉ Set) thay vì một cell có cả SET/RST, nên các khối gọi thẳng `TSPC_DFF_S` (FF0) và `TSPC_DFF_R` (các FF còn lại), bỏ lớp chuyển đổi `DFF_TSPC`. Khi TV2 cập nhật: chép lại `depend/tv2/`, chạy lại mô phỏng.
+**TSPC (TV2) – đã thay ngày 22/11/2026.** TV2 nộp hai cell riêng (chỉ Reset, chỉ Set) thay vì một cell có cả SET/RST, nên các khối gọi thẳng `TSPC_DFF_S` (FF0) và `TSPC_DFF_R` (các FF còn lại), bỏ lớp chuyển đổi `DFF_TSPC`. Layout của TV2 (commit `ac228bf`) đã thay vào dải `TSPC_LFSR_8bit` cùng ngày ([5. Layout](5_layout.md)). Khi TV2 cập nhật: chép lại `depend/tv2/`, chạy lại mô phỏng, `build_layout.py`, Assura và mô phỏng hậu layout.
 
 **MS (TV1) – còn chờ.** Khối MS chỉ gọi `DFF_MS`, nên khi TV1 nộp cell:
 
@@ -78,6 +78,7 @@ Số transistor và MOS nối clock đếm tự động từ netlist: `python3 s
 2. Trong [`cells/DFF_MS/DFF_MS.scs`](../cells/DFF_MS/DFF_MS.scs), đổi dòng instance `X0` sang cell mới, sắp lại thứ tự chân (thêm inverter nếu reset tích cực thấp; nếu TV1 cũng tách cell Set/Reset thì gọi thẳng như bản TSPC).
 3. Chạy lại `scripts/ngspice/precheck_ngspice.py`, `scripts/run_tv4.sh`, `run_fmax.sh`, `run_slew.sh`, `count_tx.py`; cập nhật [`4_ket_qua.md`](4_ket_qua.md).
 4. Chạy lại `scripts/cadence/gen_skill.py` và vẽ lại thư viện `tv4`.
+5. Layout: chép GDS + CDL của TV1 vào `depend/tv1/layout/`, thêm vị trí chân vào bảng `ACC` (và `DROP` nếu chân chỉ có Metal1) trong `scripts/layout/build_layout.py`, cho dải MS đọc cell mới như dải TSPC đọc cell TV2, rồi chạy lại Assura và mô phỏng hậu layout ([5.6](5_layout.md#56-cách-chạy-lại)).
 
 Khối, testbench và golden model giữ nguyên.
 

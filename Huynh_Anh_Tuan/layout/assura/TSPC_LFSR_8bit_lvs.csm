@@ -1,6 +1,7 @@
 Schematic           | Layout                              | Status
 -------------------------------------------------------------------------------
-DFF_TSPC_TMP        | DFF_TSPC_TMP                        | matched         
+TSPC_DFF_S          | TSPC_DFF_S                          | matched         
+TSPC_DFF_R          | TSPC_DFF_R                          | matched         
 XOR2_TG6            | XOR2_TG6                            | matched         
 XOR2_X1             | XOR2_X1                             | matched         
 TSPC_LFSR_8bit      | TSPC_LFSR_8bit                      | matched         

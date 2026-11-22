@@ -2,3 +2,5 @@
 *.gds binary
 *.docx binary
 *.png binary
+*.oa binary
+*.dm binary

@@ -73,7 +73,7 @@ Kết quả trong `out/` (không đưa lên git):
 Ví dụ một dòng kết quả:
 ```text
 PASS: 301/301 vector dung, 0 sai
-RESULT tb_TSPC_LFSR_NN PASS 301/301 T=2e-09 tre_ps=181.2 P_dut_uW=59.007 P_clk_uW=23.486 P_tai_uW=3.288 ...
+RESULT tb_TSPC_LFSR_NN PASS 301/301 T=2e-09 tre_ps=186.6 P_dut_uW=63.456 P_clk_uW=24.047 P_tai_uW=3.300 ...
 ```
 
 Xem dạng sóng: `gunzip out/tb_TSPC_LFSR_NN/tran.tran.gz && viva -datadir out/tb_TSPC_LFSR_NN &`.
@@ -93,7 +93,7 @@ f_max là tần số cao nhất mà mọi vector đều đúng và mọi chu k�
 
 ## 3.5. Virtuoso: thư viện `tv4`
 
-Schematic và symbol vẽ tự động từ netlist, nên luôn khớp với mạch đã mô phỏng.
+Schematic và symbol vẽ tự động từ netlist, nên luôn khớp với mạch đã mô phỏng. Bản đã vẽ sẵn (thư viện `tv4` và layout `tv4_lay`) có trong [`cadence/`](../cadence/README.md): chỉ cần thêm một dòng `SOFTINCLUDE` vào `cds.lib` là mở được, không phải chạy lại các bước dưới.
 
 ```bash
 python3 scripts/cadence/gen_skill.py        # netlist -> scripts/cadence/tv4_build.il

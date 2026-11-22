@@ -28,9 +28,9 @@ chart([("Trễ CLK→Q lớn nhất (ps)\nNN, 500 MHz – thấp hơn là tốt"
        ("Tần số tối đa f_max (GHz)\nNN, 301/301 trạng thái đúng – cao hơn là tốt",[1.82,3.45],"{:.2f}")],
       "Trước layout: MS và TSPC, LFSR 8 bit, gpdk090 (22/11/2026)","docs/images/so_sanh_MS_TSPC.png",
       ["MS_LFSR_8bit (flip-flop tạm 24T, 2 pha clock)","TSPC_LFSR_8bit (flip-flop TV2 15T, 1 pha clock)"])
-chart([("Diện tích layout (µm²)\nmột hàng cao 2,76 µm – thấp hơn là tốt",[235.48,159.47],"{:.1f}"),
-       ("Trễ CLK→Q lớn nhất (ps)\nNN, 500 MHz – thấp hơn là tốt",[381.6,201.5],"{:.1f}"),
-       ("P_DUT + P_clock (µW)\nNN, 500 MHz – thấp hơn là tốt",[160.6,89.8],"{:.1f}"),
-       ("Tần số tối đa f_max (GHz)\nNN, 301/301 trạng thái đúng – cao hơn là tốt",[1.33,3.45],"{:.2f}")],
-      "Sau layout (trích RC): MS và TSPC, LFSR 8 bit, gpdk090 (flip-flop tạm của TV4, 21/11/2026)","docs/images/so_sanh_hau_layout.png",
-      ["MS_LFSR_8bit (flip-flop tạm 24T, 2 pha clock)","TSPC_LFSR_8bit (flip-flop tạm 17T, 1 pha clock)"])
+chart([("Diện tích layout (µm²)\nmột hàng cao 2,76 µm – thấp hơn là tốt",[235.48,218.10],"{:.1f}"),
+       ("Trễ CLK→Q lớn nhất (ps)\nNN, 500 MHz – thấp hơn là tốt",[381.6,238.8],"{:.1f}"),
+       ("P_DUT + P_clock (µW)\nNN, 500 MHz – thấp hơn là tốt",[160.6,102.3],"{:.1f}"),
+       ("Tần số tối đa f_max (GHz)\nNN, 301/301 trạng thái đúng – cao hơn là tốt",[1.33,2.63],"{:.2f}")],
+      "Sau layout (trích RC): MS (flip-flop tạm, 21/11) và TSPC (layout flip-flop TV2, 22/11/2026), LFSR 8 bit, gpdk090","docs/images/so_sanh_hau_layout.png",
+      ["MS_LFSR_8bit (flip-flop tạm 24T, 2 pha clock)","TSPC_LFSR_8bit (layout flip-flop TV2 15T, 1 pha clock)"])

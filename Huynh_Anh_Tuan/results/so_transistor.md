@@ -1,4 +1,4 @@
-# So transistor va tai clock (dem tu netlist, flip-flop TAM THOI cua TV4)
+# So transistor va tai clock (dem tu netlist; ban MS dung flip-flop tam DFF_MS_TMP cua TV4, ban TSPC dung TSPC_DFF_R/S cua TV2)
 
 | Cell | So transistor | Cong MOS noi CLK/CLKB (tinh ca inverter tao CLKB) |
 |---|---:|---:|

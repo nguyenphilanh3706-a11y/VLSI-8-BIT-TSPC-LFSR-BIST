@@ -75,9 +75,10 @@ Mỗi điểm chạy đủ 300 chu kỳ; PASS khi cả 301 trạng thái đúng.
 | TSPC_LFSR_8bit (flip-flop TV2) | **3,45 GHz** (290 ps đúng, 280 ps sai) | **2,38 GHz** (420 ps đúng, 400 ps sai) | ≥ 4,0 GHz (đúng mọi điểm đã thử, nhỏ nhất 250 ps) |
 | TSPC_CFSR_8bit (flip-flop TV2, CFSR_FB_OPT) | **3,33 GHz** (300 ps đúng, 290 ps sai) | **2,22 GHz** (450 ps đúng, 430 ps sai) | – |
 | MS_LFSR_8bit, hậu layout (flip-flop tạm) | **1,33 GHz** (750 ps đúng, 700 ps sai) | – | – |
-| TSPC_LFSR_8bit, hậu layout (flip-flop tạm DFF_TSPC_TMP) | **3,45 GHz** (290 ps đúng, 280 ps sai) | – | – |
+| TSPC_LFSR_8bit, hậu layout (layout flip-flop TV2, 22/11) | **2,63 GHz** (380 ps đúng, 370 ps sai) | **1,85 GHz** (540 ps đúng, 530 ps sai) | – |
+| TSPC_LFSR_8bit, hậu layout bản 21/11 (flip-flop tạm DFF_TSPC_TMP) | 3,45 GHz (290 ps đúng, 280 ps sai) | – | – |
 
-Trước layout, TSPC (TV2) đạt khoảng **1,9 lần** tần số của MS (tạm) ở cả NN và SS; sau layout (cả hai dùng flip-flop tạm) **2,6 lần** ở NN. Số MS ở SS là cận dưới (điểm thử thưa). Chi tiết từng điểm: [`results/fmax/`](../results/fmax/); TSPC_CFSR_8bit ở [`results/cfsr_cmp/`](../results/cfsr_cmp/) (`fmax_cmp_CFSR_OPT_*`).
+Trước layout, TSPC (TV2) đạt khoảng **1,9 lần** tần số của MS (tạm) ở cả NN và SS; sau layout (TSPC dùng layout flip-flop TV2, MS dùng flip-flop tạm) **2,0 lần** ở NN. Số MS ở SS là cận dưới (điểm thử thưa). Chi tiết từng điểm: [`results/fmax/`](../results/fmax/); TSPC_CFSR_8bit ở [`results/cfsr_cmp/`](../results/cfsr_cmp/) (`fmax_cmp_CFSR_OPT_*`).
 
 ### 4.3.1. So sánh 3 khối hồi tiếp CFSR của TV3 trong thanh ghi TSPC (22/11/2026)
 
@@ -140,6 +141,6 @@ TSPC dùng chung một pha clock cho cả ba tầng; khi sườn chậm, có kho
 
 ## 4.7. Việc tiếp theo
 
-1. Netlist TSPC đã dùng cell TV2. Còn: thay DFF_MS_TMP bằng cell TV1; thay DFF_TSPC_TMP trong layout bằng layout cell TV2 khi có; chạy lại trang này và [5. Layout](5_layout.md).
-2. Đã xong tuần 3: layout hai dải LFSR 8 bit, DRC/LVS, trích RC, mô phỏng hậu layout NN/SS/FF; xem [5. Layout](5_layout.md).
+1. Bản TSPC đã dùng cell TV2 ở cả netlist và layout (22/11). Còn: thay DFF_MS_TMP bằng cell TV1 (netlist + layout) rồi chạy lại trang này và [5. Layout](5_layout.md).
+2. Đã xong tuần 3: layout hai dải LFSR 8 bit (TSPC với layout flip-flop TV2), DRC/LVS, trích RC, mô phỏng hậu layout NN/SS/FF, ảnh chụp Virtuoso; xem [5. Layout](5_layout.md).
 3. Ghép layout với BILBO/MISR của TV5 và CUT của TV6 khi có.

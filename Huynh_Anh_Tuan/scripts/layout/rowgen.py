@@ -22,8 +22,11 @@ class Row:
         self.nets = {}         # net -> list (x, y) diem dat Via2
         self.ties = []         # (x, y) chan can noi GND
 
-    def place(self, iname, cell, width, access):
+    def place(self, iname, cell, width, access, extra=()):
+        """extra: hinh ve them o muc hang, toa do trong cell: (lop, x0, y0, x1, y1)."""
         self.cell.add(gdstk.Reference(cell, (r(self.x), 0)))
+        for (lay, a, b, c2, d) in extra:
+            rect(self.cell, lay, self.x + a, b, self.x + c2, d)
         self.insts.append((iname, cell.name, self.x))
         for pin, (px, py) in access.items():
             self.pins[(iname, pin)] = (r(self.x + px), py)

@@ -1,0 +1,10 @@
+# tb_TSPC_LFSR_post corner NN, BAN CU flip-flop tam DFF_TSPC_TMP  Sat Nov 21 20:49:16 BDT 2026  (them diem T=290ps)
+T=500ps f=2000MHz  RESULT fx_tb_TSPC_LFSR_post_500ps_NN PASS 301/301 T=5e-10 tre_ps=200.5 P_dut_uW=210.053 P_clk_uW=138.458 P_tai_uW=12.871 E_dut_pJ=0.1050 E_clk_pJ=0.0692
+T=400ps f=2500MHz  RESULT fx_tb_TSPC_LFSR_post_400ps_NN PASS 301/301 T=4e-10 tre_ps=197.8 P_dut_uW=262.640 P_clk_uW=167.386 P_tai_uW=16.017 E_dut_pJ=0.1051 E_clk_pJ=0.0670
+T=350ps f=2857MHz  RESULT fx_tb_TSPC_LFSR_post_350ps_NN PASS 301/301 T=3.5e-10 tre_ps=194.5 P_dut_uW=299.689 P_clk_uW=183.511 P_tai_uW=18.273 E_dut_pJ=0.1049 E_clk_pJ=0.0642
+T=320ps f=3125MHz  RESULT fx_tb_TSPC_LFSR_post_320ps_NN PASS 301/301 T=3.2e-10 tre_ps=191.7 P_dut_uW=326.982 P_clk_uW=193.064 P_tai_uW=19.956 E_dut_pJ=0.1046 E_clk_pJ=0.0618
+T=300ps f=3333MHz  RESULT fx_tb_TSPC_LFSR_post_300ps_NN PASS 301/301 T=3e-10 tre_ps=189.6 P_dut_uW=348.138 P_clk_uW=199.192 P_tai_uW=21.266 E_dut_pJ=0.1044 E_clk_pJ=0.0598
+T=290ps f=3448MHz  RESULT fx_tb_TSPC_LFSR_post_290ps_NN PASS 301/301 T=2.9e-10 tre_ps=188.4 P_dut_uW=359.749 P_clk_uW=202.198 P_tai_uW=21.997 E_dut_pJ=0.1043 E_clk_pJ=0.0586
+T=280ps f=3571MHz  RESULT fx_tb_TSPC_LFSR_post_280ps_NN FAIL 10/301 T=2.8e-10 tre_ps=206.1 P_dut_uW=386.430 P_clk_uW=205.334 P_tai_uW=21.204 E_dut_pJ=0.1082 E_clk_pJ=0.0575
+T=260ps f=3846MHz  RESULT fx_tb_TSPC_LFSR_post_260ps_NN FAIL 9/301 T=2.6e-10 tre_ps=185.4 P_dut_uW=209.103 P_clk_uW=209.081 P_tai_uW=15.663 E_dut_pJ=0.0544 E_clk_pJ=0.0544
+T=250ps f=4000MHz  RESULT fx_tb_TSPC_LFSR_post_250ps_NN FAIL 26/301 T=2.5e-10 tre_ps=225.0 P_dut_uW=422.436 P_clk_uW=213.468 P_tai_uW=24.734 E_dut_pJ=0.1056 E_clk_pJ=0.0534

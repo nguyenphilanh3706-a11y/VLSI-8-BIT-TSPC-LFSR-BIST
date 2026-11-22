@@ -9,6 +9,14 @@ Bản sao **chỉ đọc** từ repo nhóm `nguyenphilanh3706-a11y/VLSI-8-BIT-TS
 
 Quy tắc của TV2 được giữ: chỉ nhả `SET` khi `CLK = 0` (testbench của TV4 nhả RST/SET ở 0,5T, trước cạnh clock đầu tiên ở T); `QB` là nút động bên trong, để hở, không nối tải.
 
-TV2 chưa có layout: layout dải LFSR (`layout/`) vẫn dùng flip-flop tạm DFF_TSPC_TMP của TV4.
+Layout (thêm 22/11/2026), từ commit `ac228bf` ("Week 3 - summary"), thư mục `Nguyen_Phuoc_An/Tuan3/layout/`:
+
+| File | Nội dung | TV4 dùng để |
+|---|---|---|
+| `layout/gds/TV2_TSPC.gds` | GDS hai cell `TSPC_DFF_S` (8,00 × 2,76 µm) và `TSPC_DFF_R` (8,68 × 2,76 µm), cao 2,76 µm như khuôn TV3 | Đặt vào dải `TSPC_LFSR_8bit` (`scripts/layout/build_layout.py`) |
+| `layout/cdl/TSPC_DFF_S.cdl`, `TSPC_DFF_R.cdl` | Netlist LVS của TV2 | Ghép vào `layout/cdl/TSPC_LFSR_8bit.cdl` |
+| `layout/rcx/TSPC_DFF_S_rcx.scs`, `TSPC_DFF_R_rcx.scs` | Netlist trích RC của từng cell (TV2) | Đối chiếu; testbench hậu layout của TV4 dùng RCX của cả dải |
+
+Netlist cell trong `cells/` ở `ac228bf` giống hệt `25fc686`. Cell TV2 chỉ có pad Metal1 ở chân D, SET, RST; TV4 nối các chân này ở mức dải (không sửa cell), xem [docs/5_layout.md](../../docs/5_layout.md).
 
 Không sửa các file này. Khi TV2 cập nhật: chép lại đè rồi chạy lại mô phỏng.

@@ -1,14 +1,26 @@
 # Mo phong hau layout (Assura RCX, R + C), Spectre, gpdk090, 27 C, T = 2 ns, 300 canh clock
-# tb/tb_<ten>_post_<corner>.scs, netlist layout/rcx/<dai>_post.scs, chay ngay 21/11/2026
+# tb/tb_<ten>_post_<corner>.scs, netlist layout/rcx/<dai>_post.scs
 # Cot: T chu ky (s), tre_ps tre CLK->Q lon nhat, P_dut_uW / P_clk_uW / P_tai_uW cong suat nguon VVDD / VVDDCK / VVDDL
 
-## Ban cuoi (DFF_TSPC_TMP: MN1 = 0.12u)
-RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=201.5 P_dut_uW=54.694 P_clk_uW=35.110 P_tai_uW=3.442 E_dut_pJ=0.1094 E_clk_pJ=0.0702
-RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=283.6 P_dut_uW=49.775 P_clk_uW=34.348 P_tai_uW=3.141 E_dut_pJ=0.0996 E_clk_pJ=0.0687
-RESULT tb_TSPC_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=157.1 P_dut_uW=63.058 P_clk_uW=36.118 P_tai_uW=4.025 E_dut_pJ=0.1261 E_clk_pJ=0.0722
+## Ban hien tai (22/11/2026): TSPC_LFSR_8bit dung layout TSPC_DFF_S/R cua TV2 (commit ac228bf), khoi XOR o cuoi hang
+RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=238.8 P_dut_uW=61.527 P_clk_uW=40.726 P_tai_uW=3.512 E_dut_pJ=0.1231 E_clk_pJ=0.0815
+RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=335.7 P_dut_uW=57.238 P_clk_uW=39.929 P_tai_uW=3.272 E_dut_pJ=0.1145 E_clk_pJ=0.0799
+RESULT tb_TSPC_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=186.8 P_dut_uW=66.812 P_clk_uW=41.754 P_tai_uW=3.834 E_dut_pJ=0.1336 E_clk_pJ=0.0835
+# MS_LFSR_8bit (flip-flop tam DFF_MS_TMP, 21/11/2026, khong doi):
 RESULT tb_MS_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=381.6 P_dut_uW=118.268 P_clk_uW=42.318 P_tai_uW=5.134 E_dut_pJ=0.2365 E_clk_pJ=0.0846
 RESULT tb_MS_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=535.7 P_dut_uW=111.567 P_clk_uW=41.709 P_tai_uW=4.599 E_dut_pJ=0.2231 E_clk_pJ=0.0834
 RESULT tb_MS_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=298.1 P_dut_uW=125.990 P_clk_uW=43.136 P_tai_uW=5.766 E_dut_pJ=0.2520 E_clk_pJ=0.0863
+
+## Thu nghiem 22/11: khoi XOR dat dau hang (TSPC_XOR=-1 python3 scripts/layout/build_layout.py), DRC 0, LVS khop
+# tre CLK->Q giam nhung f_max khong tang (NN: 400 ps dung, 380 ps sai 295/301), nen giu khoi XOR o cuoi hang
+RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=223.2 P_dut_uW=62.649 P_clk_uW=39.575 P_tai_uW=3.789 E_dut_pJ=0.1253 E_clk_pJ=0.0792
+RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=315.9 P_dut_uW=58.432 P_clk_uW=38.777 P_tai_uW=3.507 E_dut_pJ=0.1169 E_clk_pJ=0.0776
+RESULT tb_TSPC_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=174.1 P_dut_uW=67.860 P_clk_uW=40.601 P_tai_uW=4.155 E_dut_pJ=0.1357 E_clk_pJ=0.0812
+
+## Ban cu 21/11/2026: TSPC_LFSR_8bit dung flip-flop tam DFF_TSPC_TMP cua TV4 (MN1 = 0.12u)
+RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=201.5 P_dut_uW=54.694 P_clk_uW=35.110 P_tai_uW=3.442 E_dut_pJ=0.1094 E_clk_pJ=0.0702
+RESULT tb_TSPC_LFSR_post_SS PASS 301/301 T=2e-09 tre_ps=283.6 P_dut_uW=49.775 P_clk_uW=34.348 P_tai_uW=3.141 E_dut_pJ=0.0996 E_clk_pJ=0.0687
+RESULT tb_TSPC_LFSR_post_FF PASS 301/301 T=2e-09 tre_ps=157.1 P_dut_uW=63.058 P_clk_uW=36.118 P_tai_uW=4.025 E_dut_pJ=0.1261 E_clk_pJ=0.0722
 
 ## Lan chay dau (DFF_TSPC_TMP: MN1 = 0.24u) - loi race o corner FF, xem docs/5_layout.md
 RESULT tb_TSPC_LFSR_post_NN PASS 301/301 T=2e-09 tre_ps=202.3 P_dut_uW=56.738 P_clk_uW=35.115 P_tai_uW=3.455 E_dut_pJ=0.1135 E_clk_pJ=0.0702
