@@ -73,10 +73,42 @@ Mỗi điểm chạy đủ 300 chu kỳ; PASS khi cả 301 trạng thái đúng.
 |---|---|---|---|
 | MS_LFSR_8bit | **1,82 GHz** (550 ps đúng, 500 ps sai) | **1,25 GHz** (800 ps đúng, 650 ps sai) | ≥ 2,22 GHz (đúng mọi điểm đã thử, nhỏ nhất 450 ps) |
 | TSPC_LFSR_8bit (flip-flop TV2) | **3,45 GHz** (290 ps đúng, 280 ps sai) | **2,38 GHz** (420 ps đúng, 400 ps sai) | ≥ 4,0 GHz (đúng mọi điểm đã thử, nhỏ nhất 250 ps) |
+| TSPC_CFSR_8bit (flip-flop TV2, CFSR_FB_OPT) | **3,33 GHz** (300 ps đúng, 290 ps sai) | **2,22 GHz** (450 ps đúng, 430 ps sai) | – |
 | MS_LFSR_8bit, hậu layout (flip-flop tạm) | **1,33 GHz** (750 ps đúng, 700 ps sai) | – | – |
 | TSPC_LFSR_8bit, hậu layout (flip-flop tạm DFF_TSPC_TMP) | **3,45 GHz** (290 ps đúng, 280 ps sai) | – | – |
 
-Trước layout, TSPC (TV2) đạt khoảng **1,9 lần** tần số của MS (tạm) ở cả NN và SS; sau layout (cả hai dùng flip-flop tạm) **2,6 lần** ở NN. Số MS ở SS là cận dưới (điểm thử thưa). Chi tiết từng điểm: [`results/fmax/`](../results/fmax/).
+Trước layout, TSPC (TV2) đạt khoảng **1,9 lần** tần số của MS (tạm) ở cả NN và SS; sau layout (cả hai dùng flip-flop tạm) **2,6 lần** ở NN. Số MS ở SS là cận dưới (điểm thử thưa). Chi tiết từng điểm: [`results/fmax/`](../results/fmax/); TSPC_CFSR_8bit ở [`results/cfsr_cmp/`](../results/cfsr_cmp/) (`fmax_cmp_CFSR_OPT_*`).
+
+### 4.3.1. So sánh 3 khối hồi tiếp CFSR của TV3 trong thanh ghi TSPC (22/11/2026)
+
+TV3 cập nhật branch (`195bacb`) với bản tối ưu `CFSR_FB_OPT`. Netlist của khối này giống hệt bản `435f6f0` mà `TSPC_CFSR_8bit` đang dùng, nên mục này không thay mạch. Mục này đo xem phần lợi TV3 báo ở mức khối còn lại bao nhiêu khi khối nằm trong thanh ghi thật. Có 6 biến thể: `TSPC_CFSR_8bit` (8 TSPC_DFF_R của TV2) với mỗi khối hồi tiếp `CFSR_FB_CMOS` (74T), `CFSR_FB` (56T), `CFSR_FB_OPT` (42T), dùng netlist schematic và netlist sau layout (Assura RCX của TV3). Flip-flop vẫn là netlist schematic. Kích thích, tải và bảng golden model giống `tb_TSPC_CFSR`. Cả 18 testbench (6 biến thể × NN/SS/FF) ở 500 MHz đều **PASS 301/301**, tức thanh ghi tự thoát khỏi 0x00 và đi đủ 256 trạng thái.
+
+| Khối hồi tiếp | T khối / thanh ghi | P_DUT NN 500 MHz (µW) | Trễ CLK→Q NN (ps) | f_max NN | f_max SS |
+|---|---|---|---|---|---|
+| CFSR_FB_CMOS | 74 / 194 | 72,47 | 154,4 | 2,78 GHz (360 ps) | 1,82 GHz (550 ps) |
+| CFSR_FB | 56 / 176 | 68,20 | 166,3 | 2,63 GHz (380 ps) | 1,82 GHz (550 ps) |
+| **CFSR_FB_OPT** | **42 / 162** | **67,10** | 165,1 | **3,33 GHz** (300 ps) | **2,22 GHz** (450 ps) |
+| CFSR_FB_CMOS, sau layout | 74 / 194 | 71,10 | 160,9 | 3,13 GHz (320 ps) | 2,13 GHz (470 ps) |
+| CFSR_FB, sau layout | 56 / 176 | 67,04 | 170,3 | 3,13 GHz (320 ps) | 2,13 GHz (470 ps) |
+| **CFSR_FB_OPT, sau layout** | **42 / 162** | **65,67** | 166,7 | **3,57 GHz** (280 ps) | **2,50 GHz** (400 ps) |
+
+Chu kỳ trong ngoặc là điểm nhỏ nhất còn đúng; điểm kế tiếp trong lưới quét (bước 10–20 ps ở NN, 20–50 ps ở SS) đã sai. Cột SS của CFSR_FB và CFSR_FB_CMOS là cận dưới, vì lưới chỉ có 550 và 500 ps.
+
+| CFSR_FB_OPT so với CFSR_FB, trong thanh ghi | Schematic | Sau layout |
+|---|---|---|
+| Transistor (khối / cả thanh ghi) | −25 % / −8,0 % | −25 % / −8,0 % |
+| P_DUT ở 500 MHz, NN | −1,6 % | −2,0 % |
+| f_max NN | **+26,7 %** | **+14,3 %** |
+| f_max SS | +22,2 % | +17,5 % |
+| Trễ CLK→Q | gần như không đổi (−0,7 %) | −2,1 % |
+
+Nhận xét:
+- **Bản tối ưu đúng chức năng trong thanh ghi thật** (256 trạng thái, tự thoát 0x00, cả 3 corner). Đã mở log ở điểm sai đầu tiên của CFSR_FB, CFSR_FB_OPT và CFSR_FB_OPT sau layout: lần nào bit sai đầu tiên cũng là Q0. Q0 lấy D0 từ khối hồi tiếp, nên f_max do đường CLK→Q → khối hồi tiếp → D0 của FF0 quyết định. Khối hồi tiếp nhanh hơn thì f_max tăng thẳng.
+- **f_max tăng 14–27 %** là phần lợi rõ nhất. Với CFSR_FB_OPT, CFSR (3,33 GHz) chỉ chậm hơn LFSR thường (TSPC_LFSR_8bit, 3,45 GHz) khoảng 3 %. Với CFSR_FB cũ, mức chậm hơn là 24 %.
+- **Công suất chỉ giảm 1,6–2 %**: P_DUT chủ yếu do 8 flip-flop TSPC được clock mỗi chu kỳ, còn khối hồi tiếp chỉ chiếm phần nhỏ. Mức −10 % năng lượng và −43 % tích diện tích × trễ × năng lượng mà TV3 báo là con số **của riêng khối**, không phải của cả thanh ghi.
+- Netlist schematic của TV3 không khai báo `ad/as/pd/ps`. Netlist RCX có kích thước vùng khuếch tán thật (dùng chung giữa các MOS nối tiếp) cộng RC dây, nên trong thí nghiệm này bản sau layout lại nhanh hơn bản schematic. Đây là phép so sánh tương đối giữa 3 khối, cùng flip-flop schematic. Số chính thức của thanh ghi sau layout chờ có layout TSPC_CFSR_8bit với cell flip-flop của TV2.
+
+Chạy lại: `python3 scripts/gen_tb_cfsr_cmp.py && bash scripts/run_cfsr_cmp.sh` (trong máy ảo). Số liệu: [`results/cfsr_cmp/`](../results/cfsr_cmp/).
 
 ## 4.4. Độ dốc sườn clock (NN, T = 2 ns, clock nối thẳng nguồn)
 

@@ -1,0 +1,11 @@
+# cmp_CFSR_CMOS_rcx corner SS, 22/11/2026 (chay trong thu muc thu nghiem, ten cu tb_TN_CMOSr)
+T=550ps f=1818MHz  RESULT fx_cmp_CFSR_CMOS_rcx_550ps_SS PASS 301/301 T=5.5e-10 tre_ps=223.3 P_dut_uW=240.312 P_clk_uW=84.018 P_tai_uW=11.127 E_dut_pJ=0.1322 E_clk_pJ=0.0462
+T=500ps f=2000MHz  RESULT fx_cmp_CFSR_CMOS_rcx_500ps_SS PASS 301/301 T=5e-10 tre_ps=223.1 P_dut_uW=263.182 P_clk_uW=91.831 P_tai_uW=12.228 E_dut_pJ=0.1316 E_clk_pJ=0.0459
+T=470ps f=2128MHz  RESULT fx_cmp_CFSR_CMOS_rcx_470ps_SS PASS 301/301 T=4.7e-10 tre_ps=260.6 P_dut_uW=279.004 P_clk_uW=97.112 P_tai_uW=12.999 E_dut_pJ=0.1311 E_clk_pJ=0.0456
+T=450ps f=2222MHz  RESULT fx_cmp_CFSR_CMOS_rcx_450ps_SS FAIL 15/301 T=4.5e-10 tre_ps=260.5 P_dut_uW=254.213 P_clk_uW=100.195 P_tai_uW=11.495 E_dut_pJ=0.1144 E_clk_pJ=0.0451
+T=430ps f=2326MHz  RESULT fx_cmp_CFSR_CMOS_rcx_430ps_SS FAIL 21/301 T=4.3e-10 tre_ps=390.1 P_dut_uW=257.775 P_clk_uW=104.055 P_tai_uW=11.691 E_dut_pJ=0.1108 E_clk_pJ=0.0447
+T=410ps f=2439MHz  RESULT fx_cmp_CFSR_CMOS_rcx_410ps_SS FAIL 10/301 T=4.1e-10 tre_ps=215.6 P_dut_uW=159.900 P_clk_uW=106.080 P_tai_uW=8.944 E_dut_pJ=0.0656 E_clk_pJ=0.0435
+T=400ps f=2500MHz  RESULT fx_cmp_CFSR_CMOS_rcx_400ps_SS FAIL 10/301 T=4e-10 tre_ps=215.3 P_dut_uW=162.861 P_clk_uW=108.353 P_tai_uW=9.173 E_dut_pJ=0.0651 E_clk_pJ=0.0433
+T=390ps f=2564MHz  RESULT fx_cmp_CFSR_CMOS_rcx_390ps_SS FAIL 10/301 T=3.9e-10 tre_ps=221.1 P_dut_uW=167.443 P_clk_uW=110.716 P_tai_uW=9.418 E_dut_pJ=0.0653 E_clk_pJ=0.0432
+T=380ps f=2632MHz  RESULT fx_cmp_CFSR_CMOS_rcx_380ps_SS FAIL 10/301 T=3.8e-10 tre_ps=310.9 P_dut_uW=178.774 P_clk_uW=113.198 P_tai_uW=10.118 E_dut_pJ=0.0679 E_clk_pJ=0.0430
+T=360ps f=2778MHz  RESULT fx_cmp_CFSR_CMOS_rcx_360ps_SS FAIL 7/301 T=3.6e-10 tre_ps=219.7 P_dut_uW=282.747 P_clk_uW=119.891 P_tai_uW=12.589 E_dut_pJ=0.1018 E_clk_pJ=0.0432

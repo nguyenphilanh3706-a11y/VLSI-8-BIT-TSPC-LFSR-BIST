@@ -1,0 +1,15 @@
+# cmp_CFSR_FB corner NN, 22/11/2026 (chay trong thu muc thu nghiem, ten cu tb_TN_FB)
+T=400ps f=2500MHz  RESULT fx_cmp_CFSR_FB_400ps_NN PASS 301/301 T=4e-10 tre_ps=162.7 P_dut_uW=329.238 P_clk_uW=119.272 P_tai_uW=15.655 E_dut_pJ=0.1317 E_clk_pJ=0.0477
+T=390ps f=2564MHz  RESULT fx_cmp_CFSR_FB_390ps_NN PASS 301/301 T=3.9e-10 tre_ps=170.9 P_dut_uW=337.350 P_clk_uW=122.193 P_tai_uW=16.050 E_dut_pJ=0.1316 E_clk_pJ=0.0477
+T=380ps f=2632MHz  RESULT fx_cmp_CFSR_FB_380ps_NN PASS 301/301 T=3.8e-10 tre_ps=204.2 P_dut_uW=345.903 P_clk_uW=125.226 P_tai_uW=16.467 E_dut_pJ=0.1314 E_clk_pJ=0.0476
+T=370ps f=2703MHz  RESULT fx_cmp_CFSR_FB_370ps_NN FAIL 100/301 T=3.7e-10 tre_ps=161.8 P_dut_uW=368.510 P_clk_uW=128.506 P_tai_uW=18.323 E_dut_pJ=0.1363 E_clk_pJ=0.0475
+T=360ps f=2778MHz  RESULT fx_cmp_CFSR_FB_360ps_NN FAIL 100/301 T=3.6e-10 tre_ps=170.1 P_dut_uW=377.656 P_clk_uW=131.865 P_tai_uW=18.825 E_dut_pJ=0.1360 E_clk_pJ=0.0475
+T=350ps f=2857MHz  RESULT fx_cmp_CFSR_FB_350ps_NN FAIL 11/301 T=3.5e-10 tre_ps=246.4 P_dut_uW=383.221 P_clk_uW=135.848 P_tai_uW=16.387 E_dut_pJ=0.1341 E_clk_pJ=0.0475
+T=330ps f=3030MHz  RESULT fx_cmp_CFSR_FB_330ps_NN FAIL 10/301 T=3.3e-10 tre_ps=175.9 P_dut_uW=216.033 P_clk_uW=138.097 P_tai_uW=12.303 E_dut_pJ=0.0713 E_clk_pJ=0.0456
+T=320ps f=3125MHz  RESULT fx_cmp_CFSR_FB_320ps_NN FAIL 7/301 T=3.2e-10 tre_ps=250.5 P_dut_uW=257.743 P_clk_uW=142.872 P_tai_uW=14.123 E_dut_pJ=0.0825 E_clk_pJ=0.0457
+T=310ps f=3226MHz  RESULT fx_cmp_CFSR_FB_310ps_NN FAIL 10/301 T=3.1e-10 tre_ps=149.7 P_dut_uW=210.401 P_clk_uW=146.088 P_tai_uW=11.922 E_dut_pJ=0.0652 E_clk_pJ=0.0453
+T=300ps f=3333MHz  RESULT fx_cmp_CFSR_FB_300ps_NN FAIL 10/301 T=3e-10 tre_ps=149.6 P_dut_uW=217.222 P_clk_uW=150.415 P_tai_uW=12.321 E_dut_pJ=0.0652 E_clk_pJ=0.0451
+T=290ps f=3448MHz  RESULT fx_cmp_CFSR_FB_290ps_NN FAIL 10/301 T=2.9e-10 tre_ps=168.8 P_dut_uW=226.573 P_clk_uW=154.942 P_tai_uW=12.785 E_dut_pJ=0.0657 E_clk_pJ=0.0449
+T=280ps f=3571MHz  RESULT fx_cmp_CFSR_FB_280ps_NN FAIL 7/301 T=2.8e-10 tre_ps=156.6 P_dut_uW=342.463 P_clk_uW=162.123 P_tai_uW=15.036 E_dut_pJ=0.0959 E_clk_pJ=0.0454
+T=270ps f=3704MHz  RESULT fx_cmp_CFSR_FB_270ps_NN FAIL 8/301 T=2.7e-10 tre_ps=236.1 P_dut_uW=439.421 P_clk_uW=167.310 P_tai_uW=22.647 E_dut_pJ=0.1186 E_clk_pJ=0.0452
+T=260ps f=3846MHz  RESULT fx_cmp_CFSR_FB_260ps_NN FAIL 6/301 T=2.6e-10 tre_ps=176.2 P_dut_uW=429.051 P_clk_uW=172.853 P_tai_uW=19.121 E_dut_pJ=0.1116 E_clk_pJ=0.0449

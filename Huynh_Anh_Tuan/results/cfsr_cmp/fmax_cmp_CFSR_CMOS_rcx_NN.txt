@@ -1,0 +1,15 @@
+# cmp_CFSR_CMOS_rcx corner NN, 22/11/2026 (chay trong thu muc thu nghiem, ten cu tb_TN_CMOSr)
+T=400ps f=2500MHz  RESULT fx_cmp_CFSR_CMOS_rcx_400ps_NN PASS 301/301 T=4e-10 tre_ps=159.4 P_dut_uW=343.013 P_clk_uW=119.376 P_tai_uW=15.896 E_dut_pJ=0.1372 E_clk_pJ=0.0478
+T=390ps f=2564MHz  RESULT fx_cmp_CFSR_CMOS_rcx_390ps_NN PASS 301/301 T=3.9e-10 tre_ps=159.2 P_dut_uW=351.517 P_clk_uW=122.311 P_tai_uW=16.297 E_dut_pJ=0.1371 E_clk_pJ=0.0477
+T=380ps f=2632MHz  RESULT fx_cmp_CFSR_CMOS_rcx_380ps_NN PASS 301/301 T=3.8e-10 tre_ps=159.1 P_dut_uW=360.407 P_clk_uW=125.345 P_tai_uW=16.721 E_dut_pJ=0.1370 E_clk_pJ=0.0476
+T=370ps f=2703MHz  RESULT fx_cmp_CFSR_CMOS_rcx_370ps_NN PASS 301/301 T=3.7e-10 tre_ps=159.0 P_dut_uW=369.746 P_clk_uW=128.526 P_tai_uW=17.166 E_dut_pJ=0.1368 E_clk_pJ=0.0476
+T=360ps f=2778MHz  RESULT fx_cmp_CFSR_CMOS_rcx_360ps_NN PASS 301/301 T=3.6e-10 tre_ps=159.1 P_dut_uW=379.526 P_clk_uW=131.843 P_tai_uW=17.634 E_dut_pJ=0.1366 E_clk_pJ=0.0475
+T=350ps f=2857MHz  RESULT fx_cmp_CFSR_CMOS_rcx_350ps_NN PASS 301/301 T=3.5e-10 tre_ps=159.0 P_dut_uW=389.770 P_clk_uW=135.311 P_tai_uW=18.132 E_dut_pJ=0.1364 E_clk_pJ=0.0474
+T=330ps f=3030MHz  RESULT fx_cmp_CFSR_CMOS_rcx_330ps_NN PASS 301/301 T=3.3e-10 tre_ps=167.5 P_dut_uW=411.852 P_clk_uW=142.663 P_tai_uW=19.216 E_dut_pJ=0.1359 E_clk_pJ=0.0471
+T=320ps f=3125MHz  RESULT fx_cmp_CFSR_CMOS_rcx_320ps_NN PASS 301/301 T=3.2e-10 tre_ps=210.4 P_dut_uW=424.351 P_clk_uW=146.566 P_tai_uW=19.809 E_dut_pJ=0.1358 E_clk_pJ=0.0469
+T=310ps f=3226MHz  RESULT fx_cmp_CFSR_CMOS_rcx_310ps_NN FAIL 15/301 T=3.1e-10 tre_ps=183.3 P_dut_uW=381.970 P_clk_uW=149.658 P_tai_uW=17.316 E_dut_pJ=0.1184 E_clk_pJ=0.0464
+T=300ps f=3333MHz  RESULT fx_cmp_CFSR_CMOS_rcx_300ps_NN FAIL 11/301 T=3e-10 tre_ps=277.6 P_dut_uW=443.290 P_clk_uW=154.782 P_tai_uW=19.553 E_dut_pJ=0.1330 E_clk_pJ=0.0464
+T=290ps f=3448MHz  RESULT fx_cmp_CFSR_CMOS_rcx_290ps_NN FAIL 7/301 T=2.9e-10 tre_ps=224.6 P_dut_uW=335.733 P_clk_uW=156.414 P_tai_uW=17.163 E_dut_pJ=0.0974 E_clk_pJ=0.0454
+T=280ps f=3571MHz  RESULT fx_cmp_CFSR_CMOS_rcx_280ps_NN FAIL 10/301 T=2.8e-10 tre_ps=153.3 P_dut_uW=242.113 P_clk_uW=159.633 P_tai_uW=13.566 E_dut_pJ=0.0678 E_clk_pJ=0.0447
+T=270ps f=3704MHz  RESULT fx_cmp_CFSR_CMOS_rcx_270ps_NN FAIL 10/301 T=2.7e-10 tre_ps=167.4 P_dut_uW=252.014 P_clk_uW=164.515 P_tai_uW=14.119 E_dut_pJ=0.0680 E_clk_pJ=0.0444
+T=260ps f=3846MHz  RESULT fx_cmp_CFSR_CMOS_rcx_260ps_NN FAIL 7/301 T=2.6e-10 tre_ps=192.1 P_dut_uW=388.423 P_clk_uW=171.686 P_tai_uW=17.857 E_dut_pJ=0.1010 E_clk_pJ=0.0446

@@ -40,6 +40,7 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 ![Layout TSPC_LFSR_8bit](docs/images/layout_TSPC_LFSR_8bit.png)
 
 - **Đúng chức năng:** cả 4 mạch LFSR/CFSR và LT-RTPG khớp golden model ở **301/301 trạng thái** (300 cạnh clock, qua trọn chu kỳ 255 và quay về seed 0x01) ở cả 3 corner.
+- **CFSR_FB_OPT của TV3 trong thanh ghi TSPC:** đúng 256 trạng thái ở cả 3 corner; so với CFSR_FB cũ, f_max tăng **14–27 %** (NN 2,63 → 3,33 GHz trước layout khối, 3,13 → 3,57 GHz với netlist RCX của khối), công suất chỉ giảm 1,6–2 % vì 8 flip-flop chiếm phần lớn ([4.3.1](docs/4_ket_qua.md#431-so-sánh-3-khối-hồi-tiếp-cfsr-của-tv3-trong-thanh-ghi-tspc-22112026)).
 - **Tải clock:** 32 cổng MOS nối clock (TSPC) so với 66 (MS), không cần tạo CLKB.
 - **LT-RTPG bật (LP = 1):** công suất tải ngõ vào CUT giảm **44,8 %**; golden model dự đoán giảm 50 % số bit lật.
 - **Giới hạn của TSPC:** với flip-flop TV2, sai khi sườn clock ≥ 600 ps (MS vẫn đúng tới 800 ps), nên cây clock phải giữ sườn ≤ 400 ps; ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race tìm thấy ở hậu layout corner FF đã sửa, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-và-cách-sửa)).
@@ -105,6 +106,7 @@ Huynh_Anh_Tuan/
 │   ├── run_tv4.sh            chạy Spectre và kiểm tra từng vector
 │   ├── run_fmax.sh           quét chu kỳ clock tìm f_max
 │   ├── run_slew.sh           quét độ dốc sườn clock
+│   ├── gen_tb_cfsr_cmp.py, run_cfsr_cmp.sh  so sánh 3 khối hồi tiếp CFSR của TV3 trong thanh ghi TSPC
 │   ├── check_tv4.awk         so dạng sóng với .exp, đo trễ và công suất
 │   ├── count_tx.py           đếm transistor, cổng nối clock
 │   ├── ve_so_sanh.py         vẽ biểu đồ so sánh MS và TSPC (trước và sau layout)
@@ -115,7 +117,7 @@ Huynh_Anh_Tuan/
 ├── results/                  kết quả Spectre dạng chữ (RESULT, f_max, sườn clock, số transistor)
 └── depend/                  bản sao phần của thành viên khác mà mạch TV4 dùng (dependencies), chỉ đọc
     ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2, commit 25fc686): TSPC_DFF_R, TSPC_DFF_S
-    └── tv3/                  bản sao cell TV3 (branch TV3, commit 435f6f0) mà khối LFSR dùng, kèm GDS
+    └── tv3/                  bản sao cell TV3 (branch TV3, commit 435f6f0, giống hệt 195bacb) mà khối LFSR dùng, kèm GDS và RCX khối CFSR
 ```
 
 ## Chạy nhanh
@@ -155,7 +157,7 @@ bash scripts/layout/assura.sh lvs TSPC_LFSR_8bit
 |---|---|---|
 | TV1 | `MS_DFF_SetReset` (netlist + layout cùng khuôn cell) thay cho DFF_MS_TMP | chờ |
 | TV2 | `TSPC_DFF_R`, `TSPC_DFF_S` (15T, có keeper) | **netlist đã dùng** (commit `25fc686`, 22/11); **layout còn chờ** (layout dải vẫn dùng DFF_TSPC_TMP) |
-| TV3 | INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB_OPT; khuôn cell và GDS XOR2_TG6, XOR2_X1 cho layout | đã dùng, branch TV3 commit `435f6f0` |
+| TV3 | INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB_OPT; khuôn cell và GDS XOR2_TG6, XOR2_X1 cho layout | đã dùng, branch TV3 commit `435f6f0` (kiểm lại với `195bacb` ngày 22/11: netlist không đổi); đã thử 3 khối CFSR trong thanh ghi TSPC |
 | TV5, TV6 | nhận V[7:0] từ LT_RTPG_8bit cho CUT và MISR | – |
 
 Quy ước chung của nhóm: chân nguồn `VDD`, `GND`; tín hiệu reset hiện đặt tên `RST`, tích cực mức cao.

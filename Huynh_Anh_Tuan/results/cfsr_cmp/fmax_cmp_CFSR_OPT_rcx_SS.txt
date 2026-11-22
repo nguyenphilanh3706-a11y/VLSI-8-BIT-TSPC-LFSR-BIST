@@ -1,0 +1,11 @@
+# cmp_CFSR_OPT_rcx corner SS, 22/11/2026 (chay trong thu muc thu nghiem, ten cu tb_TN_OPTr)
+T=550ps f=1818MHz  RESULT fx_cmp_CFSR_OPT_rcx_550ps_SS PASS 301/301 T=5.5e-10 tre_ps=230.4 P_dut_uW=221.753 P_clk_uW=84.042 P_tai_uW=11.096 E_dut_pJ=0.1220 E_clk_pJ=0.0462
+T=500ps f=2000MHz  RESULT fx_cmp_CFSR_OPT_rcx_500ps_SS PASS 301/301 T=5e-10 tre_ps=228.7 P_dut_uW=243.324 P_clk_uW=91.884 P_tai_uW=12.194 E_dut_pJ=0.1217 E_clk_pJ=0.0459
+T=470ps f=2128MHz  RESULT fx_cmp_CFSR_OPT_rcx_470ps_SS PASS 301/301 T=4.7e-10 tre_ps=227.6 P_dut_uW=258.170 P_clk_uW=97.141 P_tai_uW=12.964 E_dut_pJ=0.1213 E_clk_pJ=0.0457
+T=450ps f=2222MHz  RESULT fx_cmp_CFSR_OPT_rcx_450ps_SS PASS 301/301 T=4.5e-10 tre_ps=226.6 P_dut_uW=268.984 P_clk_uW=100.898 P_tai_uW=13.535 E_dut_pJ=0.1210 E_clk_pJ=0.0454
+T=430ps f=2326MHz  RESULT fx_cmp_CFSR_OPT_rcx_430ps_SS PASS 301/301 T=4.3e-10 tre_ps=225.4 P_dut_uW=280.578 P_clk_uW=104.894 P_tai_uW=14.160 E_dut_pJ=0.1206 E_clk_pJ=0.0451
+T=410ps f=2439MHz  RESULT fx_cmp_CFSR_OPT_rcx_410ps_SS PASS 301/301 T=4.1e-10 tre_ps=233.5 P_dut_uW=293.004 P_clk_uW=109.089 P_tai_uW=14.840 E_dut_pJ=0.1201 E_clk_pJ=0.0447
+T=400ps f=2500MHz  RESULT fx_cmp_CFSR_OPT_rcx_400ps_SS PASS 301/301 T=4e-10 tre_ps=261.9 P_dut_uW=299.571 P_clk_uW=111.259 P_tai_uW=15.208 E_dut_pJ=0.1198 E_clk_pJ=0.0445
+T=390ps f=2564MHz  RESULT fx_cmp_CFSR_OPT_rcx_390ps_SS FAIL 43/301 T=3.9e-10 tre_ps=343.8 P_dut_uW=306.843 P_clk_uW=113.565 P_tai_uW=15.487 E_dut_pJ=0.1197 E_clk_pJ=0.0443
+T=380ps f=2632MHz  RESULT fx_cmp_CFSR_OPT_rcx_380ps_SS FAIL 43/301 T=3.8e-10 tre_ps=271.5 P_dut_uW=289.989 P_clk_uW=115.417 P_tai_uW=15.096 E_dut_pJ=0.1102 E_clk_pJ=0.0439
+T=360ps f=2778MHz  RESULT fx_cmp_CFSR_OPT_rcx_360ps_SS FAIL 10/301 T=3.6e-10 tre_ps=342.0 P_dut_uW=329.803 P_clk_uW=121.042 P_tai_uW=13.446 E_dut_pJ=0.1187 E_clk_pJ=0.0436

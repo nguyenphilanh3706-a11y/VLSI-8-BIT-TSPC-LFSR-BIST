@@ -40,7 +40,7 @@ INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, AOI21_X1, XOR2_X1 (CMOS 12T), XNOR2_X1 (CMOS
 | `CFSR_FB_OPT` | cùng hàm D0 = Q0 ⊕ Q5 ⊕ Q6 ⊕ Q7 ⊕ NOR(Q0..Q6), thêm trạng thái 0x00; rút gọn thành (Q6 ⊕ Q7) ⊕ [(Q0 ⊕ Q5) + NOR3(Q0,Q1,Q2)·NOR3(Q3,Q4,Q6)]: 2 XOR2_TG6 + 2 NOR3 + AOI21 + XNOR2 | 42 |
 | `CFSR_FB` | bản cũ, XORTAP8 ⊕ ZERO7 (TV3 giữ để so sánh, TV4 không dùng nữa) | 56 |
 
-Bản sao lấy từ branch `cell/XOR-CFSR-LOGIC(3)`, commit `435f6f0` (PR #2, chưa gộp vào `main`), không sửa ([`depend/tv3/NGUON.md`](../depend/tv3/NGUON.md)).
+Bản sao lấy từ branch `cell/XOR-CFSR-LOGIC(3)`, commit `435f6f0` (PR #2, chưa gộp vào `main`; bản `195bacb` ngày 22/11 có netlist giống hệt), không sửa ([`depend/tv3/NGUON.md`](../depend/tv3/NGUON.md)).
 
 ## 2.4. Khối của TV4 (`blocks/`)
 

@@ -1,0 +1,12 @@
+# cmp_CFSR_OPT corner NN, 22/11/2026 (chay trong thu muc thu nghiem, ten cu tb_TN_OPT)
+T=500ps f=2000MHz  RESULT fx_cmp_CFSR_OPT_500ps_NN PASS 301/301 T=5e-10 tre_ps=164.4 P_dut_uW=259.584 P_clk_uW=95.864 P_tai_uW=12.529 E_dut_pJ=0.1298 E_clk_pJ=0.0479
+T=400ps f=2500MHz  RESULT fx_cmp_CFSR_OPT_400ps_NN PASS 301/301 T=4e-10 tre_ps=162.9 P_dut_uW=324.037 P_clk_uW=119.381 P_tai_uW=15.605 E_dut_pJ=0.1296 E_clk_pJ=0.0478
+T=350ps f=2857MHz  RESULT fx_cmp_CFSR_OPT_350ps_NN PASS 301/301 T=3.5e-10 tre_ps=161.5 P_dut_uW=368.866 P_clk_uW=135.290 P_tai_uW=17.803 E_dut_pJ=0.1291 E_clk_pJ=0.0474
+T=320ps f=3125MHz  RESULT fx_cmp_CFSR_OPT_320ps_NN PASS 301/301 T=3.2e-10 tre_ps=160.2 P_dut_uW=401.507 P_clk_uW=146.574 P_tai_uW=19.450 E_dut_pJ=0.1285 E_clk_pJ=0.0469
+T=300ps f=3333MHz  RESULT fx_cmp_CFSR_OPT_300ps_NN PASS 301/301 T=3e-10 tre_ps=201.6 P_dut_uW=426.303 P_clk_uW=154.939 P_tai_uW=20.723 E_dut_pJ=0.1279 E_clk_pJ=0.0465
+T=290ps f=3448MHz  RESULT fx_cmp_CFSR_OPT_290ps_NN FAIL 10/301 T=2.9e-10 tre_ps=256.1 P_dut_uW=449.219 P_clk_uW=160.107 P_tai_uW=17.024 E_dut_pJ=0.1303 E_clk_pJ=0.0464
+T=280ps f=3571MHz  RESULT fx_cmp_CFSR_OPT_280ps_NN FAIL 10/301 T=2.8e-10 tre_ps=151.4 P_dut_uW=254.916 P_clk_uW=160.001 P_tai_uW=14.442 E_dut_pJ=0.0714 E_clk_pJ=0.0448
+T=270ps f=3704MHz  RESULT fx_cmp_CFSR_OPT_270ps_NN FAIL 8/301 T=2.7e-10 tre_ps=178.3 P_dut_uW=270.012 P_clk_uW=165.008 P_tai_uW=15.282 E_dut_pJ=0.0729 E_clk_pJ=0.0446
+T=260ps f=3846MHz  RESULT fx_cmp_CFSR_OPT_260ps_NN FAIL 7/301 T=2.6e-10 tre_ps=211.4 P_dut_uW=314.105 P_clk_uW=170.359 P_tai_uW=17.269 E_dut_pJ=0.0817 E_clk_pJ=0.0443
+T=250ps f=4000MHz  RESULT fx_cmp_CFSR_OPT_250ps_NN FAIL 9/301 T=2.5e-10 tre_ps=148.5 P_dut_uW=260.505 P_clk_uW=174.947 P_tai_uW=14.727 E_dut_pJ=0.0651 E_clk_pJ=0.0437
+T=240ps f=4167MHz  RESULT fx_cmp_CFSR_OPT_240ps_NN FAIL 9/301 T=2.4e-10 tre_ps=187.8 P_dut_uW=374.901 P_clk_uW=181.471 P_tai_uW=19.791 E_dut_pJ=0.0900 E_clk_pJ=0.0436

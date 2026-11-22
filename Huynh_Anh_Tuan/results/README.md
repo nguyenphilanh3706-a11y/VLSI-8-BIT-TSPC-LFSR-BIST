@@ -9,6 +9,7 @@ Spectre, gpdk090, cell TV3 commit `435f6f0`. Bản TSPC trước layout dùng fl
 | `fmax/<tb>_<corner>.txt` | `scripts/run_fmax.sh` | quét chu kỳ clock cho MS_LFSR và TSPC_LFSR ở NN/SS/FF; `*_post_NN` là bản hậu layout |
 | `hau_layout.txt` | `scripts/run_tv4.sh` | dòng `RESULT` của 6 testbench hậu layout, kèm lần chạy đầu bị lỗi race và hai cách sửa đã thử |
 | `slew/<tb>_NN.txt` | `scripts/run_slew.sh` | quét độ dốc sườn clock |
+| `cfsr_cmp/` | `scripts/run_cfsr_cmp.sh` | So sánh CFSR_FB_CMOS / CFSR_FB / CFSR_FB_OPT (netlist schematic và RCX của TV3, branch `195bacb`) trong thanh ghi TSPC: `spectre_500MHz*.txt` (18 testbench), `fmax_cmp_CFSR_<khối>_<NN\|SS>.txt` (22/11/2026) |
 | `so_transistor.md` | `scripts/count_tx.py` | số transistor và MOS nối clock của mỗi cell/khối |
 
 Cột trong dòng `RESULT`: `T` chu kỳ (s), `tre_ps` trễ CLK→Q lớn nhất, `P_dut_uW` / `P_clk_uW` / `P_tai_uW` công suất trung bình của nguồn VVDD / VVDDCK / VVDDL, `E_*_pJ` năng lượng mỗi chu kỳ.
