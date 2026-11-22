@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.gds binary
 *.docx binary
+cadence/TV3_*/** binary

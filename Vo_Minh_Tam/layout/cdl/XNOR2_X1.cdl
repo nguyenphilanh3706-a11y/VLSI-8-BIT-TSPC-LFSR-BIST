@@ -1,0 +1,16 @@
+* TV3_CELLS/XNOR2_X1: netlist from Virtuoso schematic
+.SUBCKT XNOR2_X1 A B GND VDD Y
+MMN5 n2 B GND GND nmos1v w=240n l=100n
+MMN4 Y An n2 GND nmos1v w=240n l=100n
+MMN3 n1 Bn GND GND nmos1v w=240n l=100n
+MMN2 Y A n1 GND nmos1v w=240n l=100n
+MMN1 Bn B GND GND nmos1v w=120n l=100n
+MMN0 An A GND GND nmos1v w=120n l=100n
+MMP5 Y Bn p1 VDD pmos1v w=480n l=100n
+MMP4 Y A p1 VDD pmos1v w=480n l=100n
+MMP3 p1 B VDD VDD pmos1v w=480n l=100n
+MMP2 p1 An VDD VDD pmos1v w=480n l=100n
+MMP1 Bn B VDD VDD pmos1v w=240n l=100n
+MMP0 An A VDD VDD pmos1v w=240n l=100n
+.ENDS XNOR2_X1
+

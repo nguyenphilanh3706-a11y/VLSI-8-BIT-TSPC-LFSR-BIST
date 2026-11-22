@@ -1,0 +1,10 @@
+* TV3_CELLS/AOI21_X1: netlist from Virtuoso schematic
+.SUBCKT AOI21_X1 A1 A2 B GND VDD Y
+MMN2 Y B GND GND nmos1v w=120n l=100n
+MMN1 n1 A2 GND GND nmos1v w=240n l=100n
+MMN0 Y A1 n1 GND nmos1v w=240n l=100n
+MMP2 Y B p1 VDD pmos1v w=480n l=100n
+MMP1 p1 A2 VDD VDD pmos1v w=480n l=100n
+MMP0 p1 A1 VDD VDD pmos1v w=480n l=100n
+.ENDS AOI21_X1
+

@@ -1,0 +1,12 @@
+// Flip-flop mau ly tuong kich canh len de kiem khoi hoi tiep trong vong kin, khong thay cho flip-flop TSPC.
+// Chot chu nhan D khi CLK < 0,3 V; chot to xuat ra Q khi CLK > 0,9 V.
+simulator lang=spectre
+subckt dff_mau D CLK Q
+parameters q0=0 vdd=1.2
+SM (D m 0 CLK) relay vt1=-0.5 vt2=-0.3 ropen=1T rclosed=2k
+CM (m 0) capacitor c=1f ic=q0*vdd
+EM (mb 0 m 0) vcvs gain=1
+SS (mb s CLK 0) relay vt1=0.7 vt2=0.9 ropen=1T rclosed=2k
+CS (s 0) capacitor c=1f ic=q0*vdd
+EQ (Q 0 s 0) vcvs gain=1
+ends dff_mau

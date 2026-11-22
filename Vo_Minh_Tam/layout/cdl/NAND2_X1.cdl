@@ -1,0 +1,8 @@
+* TV3_CELLS/NAND2_X1: netlist from Virtuoso schematic
+.SUBCKT NAND2_X1 A B GND VDD Y
+MMN1 n1 B GND GND nmos1v w=240n l=100n
+MMN0 Y A n1 GND nmos1v w=240n l=100n
+MMP1 Y B VDD VDD pmos1v w=240n l=100n
+MMP0 Y A VDD VDD pmos1v w=240n l=100n
+.ENDS NAND2_X1
+
