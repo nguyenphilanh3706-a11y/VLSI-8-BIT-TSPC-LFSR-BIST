@@ -1,0 +1,10 @@
+* TV3_CELLS/XOR2_TG6: netlist from Virtuoso schematic
+.SUBCKT XOR2_TG6 A B GND VDD Y
+MMN2 Y An B GND nmos1v w=120n l=100n
+MMN1 Y B An GND nmos1v w=240n l=100n
+MMN0 An A GND GND nmos1v w=120n l=100n
+MMP2 Y A B VDD pmos1v w=240n l=100n
+MMP1 Y B A VDD pmos1v w=480n l=100n
+MMP0 An A VDD VDD pmos1v w=240n l=100n
+.ENDS XOR2_TG6
+

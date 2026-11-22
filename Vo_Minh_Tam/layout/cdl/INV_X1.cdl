@@ -1,0 +1,6 @@
+* TV3_CELLS/INV_X1: netlist from Virtuoso schematic
+.SUBCKT INV_X1 A GND VDD Y
+MMN0 Y A GND GND nmos1v w=120n l=100n
+MMP0 Y A VDD VDD pmos1v w=240n l=100n
+.ENDS INV_X1
+
