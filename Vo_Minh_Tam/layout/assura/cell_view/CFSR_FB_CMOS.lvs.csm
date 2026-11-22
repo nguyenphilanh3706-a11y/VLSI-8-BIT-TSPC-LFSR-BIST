@@ -1,9 +1,0 @@
-Schematic           | Layout                              | Status
--------------------------------------------------------------------------------
-XOR2_X1             | XOR2_X1 layout TV3_BLK              | matched         
-NOR2_X1             | NOR2_X1 layout TV3_BLK              | matched         
-INV_X1              | INV_X1 layout TV3_BLK               | matched         
-NAND2_X1            | NAND2_X1 layout TV3_BLK             | matched         
-CFSR_FB_CMOS        | CFSR_FB_CMOS layout TV3_CELLS       | matched         
-
-Schematic and Layout Match

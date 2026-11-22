@@ -1,9 +1,0 @@
-// NOR2_X1 (ALU_CELLS_A).  Y = !(A | B)
-// Pins: A B Y VDD GND
-simulator lang=spectre
-subckt NOR2_X1 A B Y VDD GND
-    MN0 (Y A GND GND) gpdk090_nmos1v w=0.12u l=0.1u
-    MN1 (Y B GND GND) gpdk090_nmos1v w=0.12u l=0.1u
-    MP0 (p1 A VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
-    MP1 (Y B p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
-ends NOR2_X1

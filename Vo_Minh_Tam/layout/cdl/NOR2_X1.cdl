@@ -1,8 +1,0 @@
-* TV3_CELLS/NOR2_X1: netlist from Virtuoso schematic
-.SUBCKT NOR2_X1 A B GND VDD Y
-MMN1 Y B GND GND nmos1v w=120n l=100n
-MMN0 Y A GND GND nmos1v w=120n l=100n
-MMP1 Y B p1 VDD pmos1v w=480n l=100n
-MMP0 p1 A VDD VDD pmos1v w=480n l=100n
-.ENDS NOR2_X1
-

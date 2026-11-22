@@ -1,9 +1,0 @@
-Schematic           | Layout                              | Status
--------------------------------------------------------------------------------
-XOR2_TG6            | XOR2_TG6 layout TV3_BLK             | matched         
-NOR3_X1             | NOR3_X1 layout TV3_BLK              | matched         
-AOI21_X1            | AOI21_X1 layout TV3_BLK             | matched         
-XNOR2_X1            | XNOR2_X1 layout TV3_BLK             | matched         
-CFSR_FB_OPT         | CFSR_FB_OPT layout TV3_CELLS        | matched         
-
-Schematic and Layout Match

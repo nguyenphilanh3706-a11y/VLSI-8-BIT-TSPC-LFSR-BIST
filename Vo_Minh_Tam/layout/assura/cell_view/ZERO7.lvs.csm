@@ -1,8 +1,0 @@
-Schematic           | Layout                              | Status
--------------------------------------------------------------------------------
-NOR3_X1             | NOR3_X1 layout TV3_BLK              | matched         
-NAND2_X1            | NAND2_X1 layout TV3_BLK             | matched         
-NOR2_X1             | NOR2_X1 layout TV3_BLK              | matched         
-ZERO7               | ZERO7 layout TV3_CELLS              | matched         
-
-Schematic and Layout Match
