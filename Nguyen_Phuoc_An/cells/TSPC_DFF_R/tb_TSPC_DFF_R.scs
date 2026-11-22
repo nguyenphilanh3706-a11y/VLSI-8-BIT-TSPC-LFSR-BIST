@@ -1,0 +1,27 @@
+// Testbench chuc nang TSPC_DFF_R, goc NN, VDD=1.2 V, CLK 500 MHz (T = 2 ns), canh 50 ps.
+// CLK len o 1n,3n,5n,...  D doi o giua pha CLK=0 (2.5n, 4.5n,...) -> du setup/hold.
+// RST: giu 1 tu 0 den 2.5n (power-on); xung 15.5-15.8n (RST khi CLK=1); 18.3-19.5n (RST khi CLK=0, di qua canh len 19n).
+// Tai: moi ngo ra Q, QB mang 4 INV_X1 (FO4).
+simulator lang=spectre
+global 0
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../INV_X1_tai.scs"
+include "TSPC_DFF_R.scs"
+parameters vdd=1.2
+Vvdd (VDD 0) vsource dc=vdd
+Vgnd (GND 0) vsource dc=0
+VCLK (CLK 0) vsource type=pulse val0=0 val1=vdd delay=1n rise=50p fall=50p width=0.95n period=2n
+VD (D 0) vsource type=pwl wave=[ 0 0  2.5n 0  2.55n 1.2  6.5n 1.2  6.55n 0  10.5n 0  10.55n 1.2  12.5n 1.2  12.55n 0  14.5n 0  14.55n 1.2  22.5n 1.2 ]
+VRST (RST 0) vsource type=pwl wave=[ 0 1.2  2.5n 1.2  2.55n 0  15.5n 0  15.55n 1.2  15.8n 1.2  15.85n 0  18.3n 0  18.35n 1.2  19.5n 1.2  19.55n 0  22.5n 0 ]
+XDUT (D CLK RST Q QB VDD GND) TSPC_DFF_R
+XLQ0 (Q LQ0 VDD GND) INV_X1
+XLQ1 (Q LQ1 VDD GND) INV_X1
+XLQ2 (Q LQ2 VDD GND) INV_X1
+XLQ3 (Q LQ3 VDD GND) INV_X1
+XLB0 (QB LB0 VDD GND) INV_X1
+XLB1 (QB LB1 VDD GND) INV_X1
+XLB2 (QB LB2 VDD GND) INV_X1
+XLB3 (QB LB3 VDD GND) INV_X1
+saveOpts options save=selected
+save D CLK RST Q QB XDUT.X XDUT.Y Vvdd:p
+tr tran stop=22.5n maxstep=2p errpreset=conservative

@@ -1,0 +1,21 @@
+// TSPC_DFF_S: TSPC D flip-flop, kich canh len, Set bat dong bo (SET=1 -> Q=1). 15 transistor (gom 2 keeper).
+// Pins: D CLK SET Q QB VDD GND.  QUY TAC: phai nha SET khi CLK=0 (xem tai lieu thiet ke).
+simulator lang=spectre
+subckt TSPC_DFF_S D CLK SET Q QB VDD GND
+    M1  (pa D VDD VDD)   gpdk090_pmos1v w=480n l=100n
+    M2  (X CLK pa VDD)   gpdk090_pmos1v w=480n l=100n
+    M3  (X D GND GND)    gpdk090_nmos1v w=240n l=100n
+    M6  (Y CLK VDD VDD)  gpdk090_pmos1v w=480n l=100n
+    M4  (Y X n4 GND)     gpdk090_nmos1v w=480n l=100n
+    M5  (n4 CLK GND GND) gpdk090_nmos1v w=480n l=100n
+    MSP (ps SET VDD VDD) gpdk090_pmos1v w=480n l=100n
+    M9  (QB Y ps VDD)    gpdk090_pmos1v w=480n l=100n
+    M7  (QB CLK n7 GND)    gpdk090_nmos1v w=240n l=100n
+    M8  (n7 Y GND GND) gpdk090_nmos1v w=240n l=100n
+    MSN (QB SET GND GND) gpdk090_nmos1v w=240n l=100n
+    MP  (Q QB VDD VDD)   gpdk090_pmos1v w=480n l=100n
+    MN  (Q QB GND GND)   gpdk090_nmos1v w=240n l=100n
+    // keeper yeu (staticizer): giu QB va Y khi clock dung
+    MKQ (QB Q VDD VDD)   gpdk090_pmos1v w=120n l=400n
+    MKY (Y QB VDD VDD)   gpdk090_pmos1v w=120n l=400n
+ends TSPC_DFF_S

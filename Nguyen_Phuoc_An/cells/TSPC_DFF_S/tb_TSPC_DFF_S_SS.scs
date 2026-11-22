@@ -1,0 +1,24 @@
+// Testbench chuc nang TSPC_DFF_S, NN, VDD=1.2 V, T = 2 ns. SET luon duoc nha khi CLK=0.
+simulator lang=spectre
+global 0
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../INV_X1_tai.scs"
+include "TSPC_DFF_S.scs"
+parameters vdd=1.2
+Vvdd (VDD 0) vsource dc=vdd
+Vgnd (GND 0) vsource dc=0
+VCLK (CLK 0) vsource type=pulse val0=0 val1=vdd delay=1n rise=50p fall=50p width=0.95n period=2n
+VD (D 0) vsource type=pwl wave=[ 0 0  4.5n 0  4.55n 1.2  6.5n 1.2  6.55n 0  10.5n 0  10.55n 1.2  12.5n 1.2  12.55n 0  22.5n 0 ]
+VSET (SET 0) vsource type=pwl wave=[ 0 1.2  2.5n 1.2  2.55n 0  13.5n 0  13.55n 1.2  14.5n 1.2  14.55n 0  16.3n 0  16.35n 1.2  18.5n 1.2  18.55n 0  22.5n 0 ]
+XDUT (D CLK SET Q QB VDD GND) TSPC_DFF_S
+XLQ0 (Q LQ0 VDD GND) INV_X1
+XLQ1 (Q LQ1 VDD GND) INV_X1
+XLQ2 (Q LQ2 VDD GND) INV_X1
+XLQ3 (Q LQ3 VDD GND) INV_X1
+XLB0 (QB LB0 VDD GND) INV_X1
+XLB1 (QB LB1 VDD GND) INV_X1
+XLB2 (QB LB2 VDD GND) INV_X1
+XLB3 (QB LB3 VDD GND) INV_X1
+saveOpts options save=selected
+save D CLK SET Q QB XDUT.X XDUT.Y Vvdd:p
+tr tran stop=22.5n maxstep=2p errpreset=conservative

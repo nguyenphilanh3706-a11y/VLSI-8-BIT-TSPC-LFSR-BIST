@@ -1,0 +1,16 @@
+# tb_TSPC_DFF_S: Q QB mong doi cuoi moi chu ky 2 ns
+T 2e-9
+MARGIN 1e-11
+STRICT 1
+OUT Q QB
+V 0 0 10 ; power-on: SET=1 -> Q=1
+V 1 0 01 ; nha SET luc CLK=0, D=0 chot o canh 3n
+V 2 0 10 ; D=1 chot o canh 5n
+V 3 0 01 ; D=0 chot o canh 7n
+V 4 0 01 ; D=0 giu
+V 5 0 10 ; D=1 chot o canh 11n
+V 6 0 10 ; SET=1 luc CLK=1 (13.5n) -> Q=1 du D=0
+V 7 0 01 ; nha SET luc CLK=0 (14.5n), D=0 chot o canh 15n
+V 8 0 10 ; SET=1 tu CLK=0 (16.3n), giu qua canh 17n
+V 9 0 01 ; nha SET luc CLK=0 (18.5n), D=0 chot o canh 19n
+V 10 0 01 ; D=0 chot o canh 21n

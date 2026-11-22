@@ -1,0 +1,16 @@
+# tb_TSPC_DFF_R: Q va QB mong doi cuoi moi chu ky 2 ns (lay mau tai (k+1)T - MARGIN)
+T 2e-9
+MARGIN 1e-11
+STRICT 1
+OUT Q QB
+V 0 0 01 ; power-on: RST=1 -> Q=0
+V 1 0 10 ; D=1 chot o canh 3n
+V 2 0 10 ; D=1 giu
+V 3 0 01 ; D=0 chot o canh 7n
+V 4 0 01 ; D=0 nhieu chu ky (kiem glitch)
+V 5 0 10 ; D=1 chot o canh 11n
+V 6 0 01 ; D=0 chot o canh 13n
+V 7 0 01 ; RST=1 luc CLK=1 (15.5-15.8n) -> Q=0 du D=1
+V 8 0 10 ; D=1 chot o canh 17n
+V 9 0 01 ; RST=1 luc CLK=0, giu qua canh 19n -> Q=0
+V 10 0 10 ; nha RST, D=1 chot o canh 21n
