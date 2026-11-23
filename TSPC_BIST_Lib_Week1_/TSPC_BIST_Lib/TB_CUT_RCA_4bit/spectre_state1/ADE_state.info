@@ -1,0 +1,3 @@
+projectDir = '"~/simulation"
+designInfo = '("TSPC_BIST_Lib" "TB_CUT_RCA_4bit" "schematic" "spectre")
+descriptionText = "None"
