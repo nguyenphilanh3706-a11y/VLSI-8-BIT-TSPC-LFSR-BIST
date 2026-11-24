@@ -1,0 +1,6 @@
+PASS: 301/301 vector dung, 0 sai
+  tre lon nhat  113.0 ps  (vector 99 [k=99 Q=02], truoc do [k=98 Q=81], ngo ra Q0)
+  DUT(VVDD)     cong suat TB    46.00 uW   nang luong/chu ky 0.0920 pJ
+  clock(VVDDCK) cong suat TB    25.03 uW   nang luong/chu ky 0.0501 pJ
+  tai(VVDDL)    cong suat TB     3.41 uW   nang luong/chu ky 0.0068 pJ
+RESULT tb_TSPC_LFSR_asad_FF PASS 301/301 T=2e-09 tre_ps=113.0 P_dut_uW=46.001 P_clk_uW=25.035 P_tai_uW=3.412 E_dut_pJ=0.0920 E_clk_pJ=0.0501

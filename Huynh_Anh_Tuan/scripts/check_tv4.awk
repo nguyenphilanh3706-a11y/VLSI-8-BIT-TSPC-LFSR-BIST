@@ -8,7 +8,7 @@
 # Tre vector k = lan cat VDD/2 cuoi cung cua moi ngo ra trong [kT, (k+1)T] - (kT + 10 ps).
 # Nang luong / phep = VDD * |I(VVDD) trung binh| * T (can "save VVDD:p" trong testbench).
 # Ma thoat 0 khi moi vector dung.
-BEGIN { VDD = 1.2; VTH = VDD / 2; EDGE = 20e-12; nv = 0; ks = 0; havep = 0; np = split("VVDD:p VVDDCK:p VVDDL:p", PS, " ") }
+BEGIN { VDD = (VDDV != "" ? VDDV + 0 : 1.2); VTH = VDD / 2; EDGE = 20e-12; nv = 0; ks = 0; havep = 0; np = split("VVDD:p VVDDCK:p VVDDL:p", PS, " ") }
 FNR == NR {
     if ($1 == "T") T = $2 + 0
     else if ($1 == "MARGIN") MARGIN = $2 + 0

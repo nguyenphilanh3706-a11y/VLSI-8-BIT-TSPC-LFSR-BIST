@@ -30,7 +30,7 @@ def flat(name, ports=None):
 
 
 rows = []
-for nmx in ["DFF_MS_TMP", "DFF_TSPC_TMP", "TSPC_DFF_R", "TSPC_DFF_S", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "CFSR_FB_OPT", "AND2_T", "MUX2_N",
+for nmx in ["MS_DFF_SetReset", "DFF_MS_TMP", "DFF_TSPC_TMP", "TSPC_DFF_R", "TSPC_DFF_S", "XORTAP8", "XORTAP8_CMOS", "ZERO7", "CFSR_FB", "CFSR_FB_OPT", "AND2_T", "MUX2_N",
             "MS_LFSR_8bit", "TSPC_LFSR_8bit", "TSPC_LFSR_8bit_CMOS", "TSPC_CFSR_8bit", "LT_RTPG_8bit"]:
     n, k = flat(nmx)
     rows.append((nmx, n, k))
@@ -40,5 +40,5 @@ txt = "\n".join(out)
 print(txt)
 os.makedirs(os.path.join(ROOT, "results"), exist_ok=True)
 open(os.path.join(ROOT, "results", "so_transistor.md"), "w").write(
-    "# So transistor va tai clock (dem tu netlist, flip-flop TAM THOI cua TV4)\n\n" + txt +
-    "\n\nLuu y: DFF_*_TMP la cell tam; khi thay bang cell TV1/TV2 thi chay lai `python3 scripts/count_tx.py`.\n")
+    "# So transistor va tai clock (dem tu netlist)\n\n" + txt +
+    "\n\nMS_LFSR_8bit dung MS_DFF_SetReset cua TV1, cac khoi TSPC dung TSPC_DFF_R/S cua TV2. DFF_*_TMP la flip-flop tam cua TV4 (DFF_MS_TMP chi con dung cho dai layout MS).\n")

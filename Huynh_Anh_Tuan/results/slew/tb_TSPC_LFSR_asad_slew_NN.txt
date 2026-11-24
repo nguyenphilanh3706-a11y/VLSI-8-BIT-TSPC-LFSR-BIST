@@ -1,0 +1,9 @@
+# tb_TSPC_LFSR_asad_slew corner NN  Tue Nov 24 12:39:24 BDT 2026
+trf=20ps  RESULT sx_tb_TSPC_LFSR_asad_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=77.7 P_dut_uW=38.138 P_clk_uW=0.000 P_tai_uW=3.137 E_dut_pJ=0.0763 E_clk_pJ=0.0000
+trf=100ps  RESULT sx_tb_TSPC_LFSR_asad_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=118.2 P_dut_uW=41.855 P_clk_uW=0.000 P_tai_uW=3.151 E_dut_pJ=0.0837 E_clk_pJ=0.0000
+trf=200ps  RESULT sx_tb_TSPC_LFSR_asad_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=167.3 P_dut_uW=52.184 P_clk_uW=0.000 P_tai_uW=3.183 E_dut_pJ=0.1044 E_clk_pJ=0.0000
+trf=300ps  RESULT sx_tb_TSPC_LFSR_asad_slew_300ps_NN FAIL 6/301 T=2e-09 tre_ps=1217.4 P_dut_uW=50.957 P_clk_uW=0.000 P_tai_uW=1.744 E_dut_pJ=0.1019 E_clk_pJ=0.0000
+trf=400ps  RESULT sx_tb_TSPC_LFSR_asad_slew_400ps_NN FAIL 5/301 T=2e-09 tre_ps=1295.3 P_dut_uW=88.157 P_clk_uW=0.000 P_tai_uW=0.529 E_dut_pJ=0.1763 E_clk_pJ=0.0000
+trf=500ps  RESULT sx_tb_TSPC_LFSR_asad_slew_500ps_NN FAIL 1/301 T=2e-09 tre_ps=1491.5 P_dut_uW=107.056 P_clk_uW=0.000 P_tai_uW=0.666 E_dut_pJ=0.2141 E_clk_pJ=0.0000
+trf=600ps  RESULT sx_tb_TSPC_LFSR_asad_slew_600ps_NN FAIL 1/301 T=2e-09 tre_ps=1560.1 P_dut_uW=110.890 P_clk_uW=0.000 P_tai_uW=6.374 E_dut_pJ=0.2218 E_clk_pJ=0.0000
+trf=800ps  RESULT sx_tb_TSPC_LFSR_asad_slew_800ps_NN FAIL 1/301 T=2e-09 tre_ps=1491.0 P_dut_uW=163.195 P_clk_uW=0.000 P_tai_uW=0.697 E_dut_pJ=0.3264 E_clk_pJ=0.0000

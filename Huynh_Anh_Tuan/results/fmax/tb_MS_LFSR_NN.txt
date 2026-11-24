@@ -1,9 +1,18 @@
-# tb_MS_LFSR corner NN  Thu Nov 19 08:31:49 BDT 2026
-T=800ps f=1250MHz  RESULT fx_tb_MS_LFSR_800ps_NN PASS 301/301 T=8e-10 tre_ps=239.9 P_dut_uW=230.513 P_clk_uW=53.131 P_tai_uW=12.138 E_dut_pJ=0.1844 E_clk_pJ=0.0425
-T=650ps f=1538MHz  RESULT fx_tb_MS_LFSR_650ps_NN PASS 301/301 T=6.5e-10 tre_ps=239.8 P_dut_uW=282.610 P_clk_uW=65.442 P_tai_uW=14.946 E_dut_pJ=0.1837 E_clk_pJ=0.0425
-T=600ps f=1667MHz  RESULT fx_tb_MS_LFSR_600ps_NN PASS 301/301 T=6e-10 tre_ps=239.6 P_dut_uW=305.712 P_clk_uW=70.925 P_tai_uW=16.239 E_dut_pJ=0.1834 E_clk_pJ=0.0426
-T=550ps f=1818MHz  RESULT fx_tb_MS_LFSR_550ps_NN PASS 301/301 T=5.5e-10 tre_ps=239.5 P_dut_uW=333.043 P_clk_uW=77.466 P_tai_uW=17.846 E_dut_pJ=0.1832 E_clk_pJ=0.0426
-T=500ps f=2000MHz  RESULT fx_tb_MS_LFSR_500ps_NN FAIL 284/301 T=5e-10 tre_ps=239.8 P_dut_uW=365.880 P_clk_uW=85.283 P_tai_uW=19.979 E_dut_pJ=0.1829 E_clk_pJ=0.0426
-T=480ps f=2083MHz  RESULT fx_tb_MS_LFSR_480ps_NN FAIL 168/301 T=4.8e-10 tre_ps=240.4 P_dut_uW=381.065 P_clk_uW=88.879 P_tai_uW=21.078 E_dut_pJ=0.1829 E_clk_pJ=0.0427
-T=460ps f=2174MHz  RESULT fx_tb_MS_LFSR_460ps_NN FAIL 20/301 T=4.6e-10 tre_ps=249.1 P_dut_uW=414.427 P_clk_uW=92.675 P_tai_uW=23.408 E_dut_pJ=0.1906 E_clk_pJ=0.0426
-T=450ps f=2222MHz  RESULT fx_tb_MS_LFSR_450ps_NN FAIL 6/301 T=4.5e-10 tre_ps=243.0 P_dut_uW=438.063 P_clk_uW=94.809 P_tai_uW=25.344 E_dut_pJ=0.1971 E_clk_pJ=0.0427
+# tb_MS_LFSR corner NN  Tue Nov 24 11:36:58 BDT 2026
+T=800ps f=1250MHz  RESULT fx_tb_MS_LFSR_800ps_NN PASS 301/301 T=8e-10 tre_ps=139.1 P_dut_uW=164.911 P_clk_uW=32.332 P_tai_uW=8.583 E_dut_pJ=0.1319 E_clk_pJ=0.0259
+T=700ps f=1429MHz  RESULT fx_tb_MS_LFSR_700ps_NN PASS 301/301 T=7e-10 tre_ps=139.1 P_dut_uW=187.828 P_clk_uW=36.934 P_tai_uW=9.763 E_dut_pJ=0.1315 E_clk_pJ=0.0259
+T=650ps f=1538MHz  RESULT fx_tb_MS_LFSR_650ps_NN PASS 301/301 T=6.5e-10 tre_ps=139.1 P_dut_uW=201.914 P_clk_uW=39.770 P_tai_uW=10.488 E_dut_pJ=0.1312 E_clk_pJ=0.0259
+T=600ps f=1667MHz  RESULT fx_tb_MS_LFSR_600ps_NN PASS 301/301 T=6e-10 tre_ps=139.1 P_dut_uW=218.342 P_clk_uW=43.100 P_tai_uW=11.336 E_dut_pJ=0.1310 E_clk_pJ=0.0259
+T=550ps f=1818MHz  RESULT fx_tb_MS_LFSR_550ps_NN PASS 301/301 T=5.5e-10 tre_ps=139.1 P_dut_uW=237.744 P_clk_uW=47.025 P_tai_uW=12.340 E_dut_pJ=0.1308 E_clk_pJ=0.0259
+T=500ps f=2000MHz  RESULT fx_tb_MS_LFSR_500ps_NN PASS 301/301 T=5e-10 tre_ps=139.1 P_dut_uW=261.026 P_clk_uW=51.707 P_tai_uW=13.548 E_dut_pJ=0.1305 E_clk_pJ=0.0259
+T=450ps f=2222MHz  RESULT fx_tb_MS_LFSR_450ps_NN PASS 301/301 T=4.5e-10 tre_ps=139.0 P_dut_uW=289.499 P_clk_uW=57.462 P_tai_uW=15.029 E_dut_pJ=0.1303 E_clk_pJ=0.0259
+T=400ps f=2500MHz  RESULT fx_tb_MS_LFSR_400ps_NN PASS 301/301 T=4e-10 tre_ps=139.0 P_dut_uW=325.176 P_clk_uW=64.579 P_tai_uW=16.884 E_dut_pJ=0.1301 E_clk_pJ=0.0258
+# tb_MS_LFSR corner NN  Tue Nov 24 15:28:20 BDT 2026
+T=350ps f=2857MHz  RESULT fx_tb_MS_LFSR_350ps_NN PASS 301/301 T=3.5e-10 tre_ps=138.9 P_dut_uW=371.212 P_clk_uW=73.732 P_tai_uW=19.273 E_dut_pJ=0.1299 E_clk_pJ=0.0258
+T=300ps f=3333MHz  RESULT fx_tb_MS_LFSR_300ps_NN PASS 301/301 T=3e-10 tre_ps=139.2 P_dut_uW=433.250 P_clk_uW=85.989 P_tai_uW=22.481 E_dut_pJ=0.1300 E_clk_pJ=0.0258
+T=280ps f=3571MHz  RESULT fx_tb_MS_LFSR_280ps_NN FAIL 10/301 T=2.8e-10 tre_ps=140.2 P_dut_uW=350.706 P_clk_uW=92.134 P_tai_uW=16.700 E_dut_pJ=0.0982 E_clk_pJ=0.0258
+T=260ps f=3846MHz  RESULT fx_tb_MS_LFSR_260ps_NN FAIL 9/301 T=2.6e-10 tre_ps=151.5 P_dut_uW=369.491 P_clk_uW=99.278 P_tai_uW=17.364 E_dut_pJ=0.0961 E_clk_pJ=0.0258
+T=240ps f=4167MHz  RESULT fx_tb_MS_LFSR_240ps_NN FAIL 7/301 T=2.4e-10 tre_ps=180.3 P_dut_uW=67.603 P_clk_uW=107.443 P_tai_uW=1.210 E_dut_pJ=0.0162 E_clk_pJ=0.0258
+T=220ps f=4545MHz  RESULT fx_tb_MS_LFSR_220ps_NN FAIL 6/301 T=2.2e-10 tre_ps=138.9 P_dut_uW=88.845 P_clk_uW=117.241 P_tai_uW=2.107 E_dut_pJ=0.0195 E_clk_pJ=0.0258
+T=200ps f=5000MHz  RESULT fx_tb_MS_LFSR_200ps_NN FAIL 5/301 T=2e-10 tre_ps=132.8 P_dut_uW=466.821 P_clk_uW=128.602 P_tai_uW=22.582 E_dut_pJ=0.0934 E_clk_pJ=0.0257
+T=180ps f=5556MHz  RESULT fx_tb_MS_LFSR_180ps_NN FAIL 3/301 T=1.8e-10 tre_ps=150.1 P_dut_uW=617.508 P_clk_uW=142.779 P_tai_uW=31.045 E_dut_pJ=0.1112 E_clk_pJ=0.0257

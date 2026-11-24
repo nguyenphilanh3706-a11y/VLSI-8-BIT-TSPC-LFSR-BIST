@@ -7,27 +7,41 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 | Hạng mục | Trạng thái |
 |---|---|
 | Golden model MATLAB (255 trạng thái, đa thức nguyên thủy, Golomb, CFSR, LT-RTPG) | Xong |
-| MS_LFSR_8bit, TSPC_LFSR_8bit, TSPC_CFSR_8bit, LT_RTPG_8bit (netlist + schematic/symbol) | Xong; bản TSPC dùng flip-flop của TV2, bản MS dùng flip-flop tạm |
-| Mô phỏng Spectre trước layout, 300 chu kỳ, 3 corner NN/SS/FF | 18/18 testbench PASS 301/301 (TSPC với flip-flop TV2) |
-| f_max, độ dốc sườn clock, so sánh MS và TSPC | Xong |
+| MS_LFSR_8bit, TSPC_LFSR_8bit, TSPC_CFSR_8bit, LT_RTPG_8bit (netlist + schematic/symbol) | Xong; bản TSPC dùng flip-flop của TV2, bản MS dùng flip-flop của TV1 |
+| Mô phỏng Spectre trước layout, 300 chu kỳ, 3 corner NN/SS/FF | 27/27 testbench PASS 301/301 (TSPC với flip-flop TV2, MS với flip-flop TV1) |
+| f_max, độ dốc sườn clock, so sánh MS và TSPC trước layout | Xong (24/11, cell thật của TV1 và TV2) |
+| PVT: 3 corner × VDD 0,8/1,0/1,2 V × 0/27/125 °C | **Xong** (24/11): 81/81 điểm PASS 301/301 (MS, TSPC trước layout, TSPC sau layout) |
+| Công suất mạng clock đo riêng | Xong (24/11): gồm cả inverter tạo CLKB của bản MS |
 | Thay flip-flop TV2 (TSPC) | **Xong** (22/11): netlist (15/15 testbench TSPC PASS 301/301) và layout (commit TV2 `ac228bf`) |
-| Thay flip-flop TV1 (MS) | Chờ cell |
-| Layout dải TSPC_LFSR_8bit và MS_LFSR_8bit (khuôn cell TV3), DRC/LVS/RCX | Xong: DRC 0 lỗi, LVS khớp. TSPC dùng layout flip-flop TV2; MS dùng flip-flop tạm (TV1 chưa có cell) |
+| Thay flip-flop TV1 (MS) | **Xong netlist** (24/11, `MS_DFF_SetReset` commit TV1 `fa999e9`). Layout của TV1 chưa có hình vẽ → chờ |
+| Layout dải TSPC_LFSR_8bit và MS_LFSR_8bit (khuôn cell TV3), DRC/LVS/RCX | Xong: DRC 0 lỗi, LVS khớp. TSPC dùng layout flip-flop TV2; dải MS dùng flip-flop tạm (TV1 chưa có layout) |
 | Mô phỏng hậu layout (RCX) NN/SS/FF | 6/6 testbench PASS 301/301 |
 
-> **Flip-flop đang dùng:** bản TSPC dùng **cell thật của TV2** (TSPC_DFF_R/S 15T, có keeper) cả ở netlist (commit `25fc686`) lẫn layout (commit `ac228bf`). Bản MS dùng **flip-flop tạm** DFF_MS_TMP (24T) của TV4 ở cả netlist và layout, cho đến khi TV1 nộp cell. Cách thay: [Thiết kế mạch, 2.5](docs/2_thiet_ke_mach.md#25-thay-flip-flop-tạm).
+> **Trạng thái phần TV4: Hoàn thành.** Bản MS chỉ dùng để so sánh. So sánh trước layout đã dùng cell thật của TV1 (24/11); phần duy nhất còn chờ là **so sánh sau layout MS/TSPC**, vì layout `MS_DFF_SetReset` của TV1 chưa có hình vẽ.
+
+> **Đọc nhanh:** [KET_QUA_TV4.md](KET_QUA_TV4.md) (tóm tắt kết quả 1 trang) · [HUONG_DAN_TV4.md](HUONG_DAN_TV4.md) (chân khối, quy tắc dùng, cách chạy lại) · [cadence/](cadence/README.md) (thư viện Virtuoso `tv4`, `tv4_lay`) · [`report1,4.docx`](report1,4.docx) (Chương 1 + Chương 4).
+
+> **Flip-flop đang dùng:** bản TSPC dùng **cell thật của TV2** (TSPC_DFF_R/S 15T, có keeper) cả ở netlist (commit `25fc686`) lẫn layout (commit `ac228bf`). Bản MS dùng **cell thật của TV1** (`MS_DFF_SetReset` 26T, commit `fa999e9`) ở netlist; dải layout MS vẫn dùng flip-flop tạm DFF_MS_TMP (24T) cho đến khi TV1 có layout. Cách thay: [Thiết kế mạch, 2.5](docs/2_thiet_ke_mach.md#25-thay-flip-flop-tạm).
 
 ## Kết quả chính
 
 ![So sánh MS và TSPC](docs/images/so_sanh_MS_TSPC.png)
 
-| Trước layout, NN, 27 °C, 500 MHz | Transistor | Trễ CLK→Q | P_DUT | P_DUT + P_clock | f_max (NN / SS) |
-|---|---:|---:|---:|---:|---:|
-| MS_LFSR_8bit (flip-flop tạm) | 218 | 240,1 ps | 94,1 µW | 115,5 µW | 1,82 / 1,25 GHz |
-| **TSPC_LFSR_8bit (flip-flop TV2)** | **144** | **186,6 ps** | **63,5 µW** | **87,5 µW** | **3,45 / 2,38 GHz** |
-| TSPC so với MS | −33,9 % | −22,3 % | −32,6 % | −24,2 % | ×1,9 / ×1,9 |
+| Trước layout, NN, 27 °C, 500 MHz | Transistor | Trễ CLK→Q | P_DUT (logic) | P mạng clock | P_DUT + P_clock | f_max NN / SS |
+|---|---:|---:|---:|---:|---:|---:|
+| MS_LFSR_8bit (cell TV1) | 234 | 139,2 ps | 62,0 µW | 19,0 µW | 81,1 µW | 3,33 / 2,22 GHz |
+| **TSPC_LFSR_8bit (cell TV2)** | **144** | **143,1 ps** | **42,0 µW** | **24,0 µW** | **66,0 µW** | **4,17 / 2,86 GHz** |
+| TSPC so với MS | **−38,5 %** | +2,8 % | **−32,3 %** | +26 % | **−18,5 %** | **×1,25 / ×1,29** |
+
+Hai bản đều dùng netlist có `as/ad` (TV1 có sẵn; netlist TV2 được thêm theo đúng quy ước TV2 dùng trong bảng so sánh của TV2, [`scripts/add_asad.py`](scripts/add_asad.py)). P mạng clock = 2 inverter đệm clock, cộng inverter tạo CLKB nằm trong khối MS. Mỗi flip-flop: 15T so với 26T (**−42,3 %**). Kết luận: TSPC ít transistor hơn, tổng công suất thấp hơn và f_max cao hơn; trễ gần ngang MS; mạng clock của TSPC tốn hơn vì MOS nối clock của cell TV2 rộng 240–480 nm (cổng truyền của TV1 chỉ 120 nm). Số cũ với flip-flop tạm (19/11) ở [4. Kết quả](docs/4_ket_qua.md).
+
+**PVT** (500 MHz, 3 corner × VDD 0,8/1,0/1,2 V × 0/27/125 °C, cùng lưới với TV2): **81/81 điểm PASS 301/301** cho MS (TV1), TSPC trước layout và TSPC sau layout. Trễ xấu nhất ở SS, 0,8 V, 125 °C: MS 465,9 ps, TSPC 475,1 ps, TSPC sau layout 776,8 ps (vẫn dưới chu kỳ 2 ns). [`results/pvt/`](results/pvt/)
+
+![PVT](docs/images/pvt_tre.png)
 
 **Sau layout** (trích RC, NN, 500 MHz; TSPC dùng layout flip-flop TV2, MS dùng flip-flop tạm; chi tiết ở [5. Layout](docs/5_layout.md)):
+
+> ⚠️ **Chưa hoàn thành (chỉ phần so sánh với TV1):** dòng MS và dòng "TSPC so với MS" sau layout vẫn đo với **flip-flop tạm** DFF_MS_TMP, vì layout `MS_DFF_SetReset` của TV1 (commit `fa999e9`) chưa có hình vẽ. Số của bản TSPC là chính thức.
 
 | | Diện tích | Trễ CLK→Q | P_DUT + P_clock | f_max NN |
 |---|---:|---:|---:|---:|
@@ -43,9 +57,9 @@ Diện tích chỉ còn nhỏ hơn 7,4 % vì cell flip-flop của TV2 (8,00–8,
 
 - **Đúng chức năng:** cả 4 mạch LFSR/CFSR và LT-RTPG khớp golden model ở **301/301 trạng thái** (300 cạnh clock, qua trọn chu kỳ 255 và quay về seed 0x01) ở cả 3 corner.
 - **CFSR_FB_OPT của TV3 trong thanh ghi TSPC:** đúng 256 trạng thái ở cả 3 corner; so với CFSR_FB cũ, f_max tăng **14–27 %** (NN 2,63 → 3,33 GHz trước layout khối, 3,13 → 3,57 GHz với netlist RCX của khối), công suất chỉ giảm 1,6–2 % vì 8 flip-flop chiếm phần lớn ([4.3.1](docs/4_ket_qua.md#431-so-sánh-3-khối-hồi-tiếp-cfsr-của-tv3-trong-thanh-ghi-tspc-22112026)).
-- **Tải clock:** 32 cổng MOS nối clock (TSPC) so với 66 (MS), không cần tạo CLKB.
+- **Tải clock:** 32 cổng MOS nối clock (TSPC) so với 66 (MS), không cần tạo CLKB; nhưng tổng độ rộng cổng nối clock của TSPC lớn hơn nên công suất mạng clock cao hơn MS 26 % (trước layout).
 - **LT-RTPG bật (LP = 1):** công suất tải ngõ vào CUT giảm **44,8 %**; golden model dự đoán giảm 50 % số bit lật.
-- **Giới hạn của TSPC:** với flip-flop TV2, sai khi sườn clock ≥ 600 ps (MS vẫn đúng tới 800 ps), nên cây clock phải giữ sườn ≤ 400 ps; ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race của flip-flop tạm ở hậu layout corner FF đã sửa; dải dùng layout flip-flop TV2 không bị, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
+- **Giới hạn của TSPC:** với flip-flop TV2 (có `as/ad`), sai khi sườn clock ≥ 300 ps (netlist gốc không `as/ad`: ≥ 600 ps), trong khi MS của TV1 vẫn đúng tới 1000 ps, nên cây clock phải giữ sườn ≤ 200 ps (2 INV_CLK đệm hiện cho 20–40 ps); ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race của flip-flop tạm ở hậu layout corner FF đã sửa; dải dùng layout flip-flop TV2 không bị, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
 
 ![Dạng sóng Q[7:0] của TSPC_LFSR_8bit trong ViVA, 42 ns đầu](docs/images/wave_tspc_0-42ns.png)
 
@@ -69,7 +83,7 @@ flowchart LR
 
 | Khối | Mô tả | Transistor |
 |---|---|---:|
-| `MS_LFSR_8bit` | bản chuẩn: 8 DFF_MS + XORTAP8 + INV_CLK tạo CLKB | 218 |
+| `MS_LFSR_8bit` | bản chuẩn: 8 DFF_MS (MS_DFF_SetReset của TV1) + XORTAP8 + INV_CLK tạo CLKB | 234 |
 | `TSPC_LFSR_8bit` | bản đề xuất: 8 flip-flop TSPC của TV2 + XORTAP8, một pha clock | 144 |
 | `TSPC_LFSR_8bit_CMOS` | đối chứng mạng hồi tiếp: XORTAP8_CMOS (3 XOR CMOS 12T) | 156 |
 | `TSPC_CFSR_8bit` | LFSR đầy đủ 256 trạng thái (thêm 0x00), dùng CFSR_FB_OPT của TV3 | 162 |
@@ -84,6 +98,9 @@ Schematic TSPC_LFSR_8bit trong Virtuoso (thêm ảnh khối, symbol, testbench �
 ```text
 Huynh_Anh_Tuan/
 ├── README.md                 trang này
+├── KET_QUA_TV4.md            tóm tắt kết quả 1 trang
+├── HUONG_DAN_TV4.md          hướng dẫn dùng khối, quy tắc, chạy lại
+├── report1,4.docx            Chương 1 + Chương 4 (bảng so sánh MS chờ cell TV1)
 ├── docs/                     tài liệu kỹ thuật
 │   ├── 1_golden_model.md     kiểm chứng toán học
 │   ├── 2_thiet_ke_mach.md    cell, khối, chân, cách thay flip-flop
@@ -108,6 +125,8 @@ Huynh_Anh_Tuan/
 │   ├── run_tv4.sh            chạy Spectre và kiểm tra từng vector
 │   ├── run_fmax.sh           quét chu kỳ clock tìm f_max
 │   ├── run_slew.sh           quét độ dốc sườn clock
+│   ├── run_pvt.sh            quét PVT (corner × VDD × nhiệt độ)
+│   ├── add_asad.py           thêm as/ad cho netlist TV2 (so sánh công bằng với TV1)
 │   ├── gen_tb_cfsr_cmp.py, run_cfsr_cmp.sh  so sánh 3 khối hồi tiếp CFSR của TV3 trong thanh ghi TSPC
 │   ├── check_tv4.awk         so dạng sóng với .exp, đo trễ và công suất
 │   ├── count_tx.py           đếm transistor, cổng nối clock
@@ -116,9 +135,10 @@ Huynh_Anh_Tuan/
 │   ├── hinh/                 xử lý ảnh: schematic nền trắng, ghép dạng sóng ViVA với dải giá trị bus
 │   ├── layout/               sinh layout (Python + gdstk), Assura DRC/LVS/RCX, đổi netlist RCX sang Spectre
 │   └── ngspice/              kiểm tra logic nhanh không cần Cadence
-├── results/                  kết quả Spectre dạng chữ (RESULT, f_max, sườn clock, số transistor)
+├── results/                  kết quả Spectre dạng chữ (RESULT, f_max, sườn clock, PVT, số transistor)
 └── depend/                  bản sao phần của thành viên khác mà mạch TV4 dùng (dependencies), chỉ đọc
-    ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2): netlist TSPC_DFF_R/S (25fc686), layout GDS/CDL/RCX (ac228bf)
+    ├── tv1/                  bản sao flip-flop MS của TV1 (branch TV1, commit fa999e9): netlist MS_DFF_SetReset
+    ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2): netlist TSPC_DFF_R/S (25fc686), bản thêm as/ad, layout GDS/CDL/RCX (ac228bf)
     └── tv3/                  bản sao cell TV3 (branch TV3, commit 435f6f0, giống hệt 195bacb) mà khối LFSR dùng, kèm GDS và RCX khối CFSR
 ```
 
@@ -134,8 +154,9 @@ cd golden_model && matlab -batch lfsr_golden_tv4        # hoặc mở MATLAB và
 python3 scripts/gen_tb.py
 
 # 3. Mô phỏng Spectre (máy có Cadence MMSIM, model gpdk090)
-bash scripts/run_tv4.sh                                  # 24 testbench NN/SS/FF (18 trước layout + 6 hậu layout)
+bash scripts/run_tv4.sh                                  # 30 testbench NN/SS/FF (24 trước layout + 6 hậu layout)
 bash scripts/run_tv4.sh tb/tb_TSPC_LFSR_NN.scs           # chạy một testbench
+bash scripts/run_pvt.sh tb_TSPC_LFSR_post "NN SS FF" "0.8 1.0 1.2" "0 27 125"   # PVT 27 điểm
 
 # 4. Layout (Python 3 + gdstk) và Assura DRC/LVS/RCX (máy có Assura)
 python3 scripts/layout/build_layout.py
@@ -157,7 +178,7 @@ bash scripts/layout/assura.sh lvs TSPC_LFSR_8bit
 
 | Thành viên | Dùng gì | Trạng thái |
 |---|---|---|
-| TV1 | `MS_DFF_SetReset` (netlist + layout cùng khuôn cell) thay cho DFF_MS_TMP | chờ |
+| TV1 | `MS_DFF_SetReset` (26T) thay cho DFF_MS_TMP | **đã dùng netlist** (commit `fa999e9`, 24/11); layout của TV1 chưa có hình vẽ → dải layout MS vẫn dùng flip-flop tạm. Ghi chú cho TV1: [depend/tv1/NGUON.md](depend/tv1/NGUON.md) |
 | TV2 | `TSPC_DFF_R`, `TSPC_DFF_S` (15T, có keeper) | **đã dùng**: netlist (commit `25fc686`) và layout (GDS, CDL, RCX, commit `ac228bf`), 22/11 |
 | TV3 | INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB_OPT; khuôn cell và GDS XOR2_TG6, XOR2_X1 cho layout | đã dùng, branch TV3 commit `435f6f0` (kiểm lại với `195bacb` ngày 22/11: netlist không đổi); đã thử 3 khối CFSR trong thanh ghi TSPC |
 | TV5, TV6 | nhận V[7:0] từ LT_RTPG_8bit cho CUT và MISR | – |
@@ -168,4 +189,6 @@ Quy ước chung của nhóm: chân nguồn `VDD`, `GND`; tín hiệu reset hi�
 
 - N. H. E. Weste, D. M. Harris, *CMOS VLSI Design: A Circuits and Systems Perspective*, 4th ed., 2011: Bảng 11.8 (đa thức LFSR), chương 10 (flip-flop TSPC).
 - J. Yuan, C. Svensson, "High-speed CMOS circuit technique," *IEEE JSSC*, vol. 24, no. 1, 1989.
-- S. Wang, S. K. Gupta, "LT-RTPG: A new test-per-scan BIST TPG for low switching activity," *IEEE Trans. CAD*, 2006.
+- S. Wang, S. K. Gupta, "LT-RTPG: A new test-per-scan BIST TPG for low switching activity," *IEEE Trans. CAD*, vol. 25, no. 8, pp. 1565–1574, 2006.
+- G. Giustolisi, R. Mita, G. Palumbo, G. Scotti, "A Novel Clock Gating Approach for the Design of Low-Power Linear Feedback Shift Registers," *IEEE Access*, vol. 10, pp. 99702–99708, 2022, doi:10.1109/ACCESS.2022.3207151.
+- Vinodhini, "Low-Power Linear Feedback Shift Register Using TSPC Flip-Flop and Clock Gating," *ICAECT 2025*, IEEE, doi:10.1109/ICAECT63952.2025.10958909.

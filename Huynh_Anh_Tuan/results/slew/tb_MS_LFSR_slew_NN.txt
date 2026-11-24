@@ -1,7 +1,10 @@
-# tb_MS_LFSR_slew corner NN  Thu Nov 19 08:18:22 BDT 2026
-trf=20ps  RESULT sx_tb_MS_LFSR_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=172.0 P_dut_uW=92.729 P_clk_uW=0.000 P_tai_uW=5.123 E_dut_pJ=0.1855 E_clk_pJ=0.0000
-trf=100ps  RESULT sx_tb_MS_LFSR_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=224.3 P_dut_uW=94.779 P_clk_uW=0.000 P_tai_uW=5.025 E_dut_pJ=0.1896 E_clk_pJ=0.0000
-trf=200ps  RESULT sx_tb_MS_LFSR_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=289.6 P_dut_uW=99.775 P_clk_uW=0.000 P_tai_uW=4.920 E_dut_pJ=0.1995 E_clk_pJ=0.0000
-trf=400ps  RESULT sx_tb_MS_LFSR_slew_400ps_NN PASS 301/301 T=2e-09 tre_ps=408.7 P_dut_uW=112.075 P_clk_uW=0.000 P_tai_uW=4.854 E_dut_pJ=0.2241 E_clk_pJ=0.0000
-trf=600ps  RESULT sx_tb_MS_LFSR_slew_600ps_NN PASS 301/301 T=2e-09 tre_ps=520.4 P_dut_uW=125.372 P_clk_uW=0.000 P_tai_uW=4.870 E_dut_pJ=0.2507 E_clk_pJ=0.0000
-trf=800ps  RESULT sx_tb_MS_LFSR_slew_800ps_NN PASS 301/301 T=2e-09 tre_ps=629.4 P_dut_uW=139.375 P_clk_uW=0.000 P_tai_uW=4.919 E_dut_pJ=0.2788 E_clk_pJ=0.0000
+# tb_MS_LFSR_slew corner NN  Tue Nov 24 12:22:44 BDT 2026
+trf=20ps  RESULT sx_tb_MS_LFSR_slew_20ps_NN PASS 301/301 T=2e-09 tre_ps=98.1 P_dut_uW=67.590 P_clk_uW=0.000 P_tai_uW=3.574 E_dut_pJ=0.1352 E_clk_pJ=0.0000
+trf=100ps  RESULT sx_tb_MS_LFSR_slew_100ps_NN PASS 301/301 T=2e-09 tre_ps=151.2 P_dut_uW=70.200 P_clk_uW=0.000 P_tai_uW=3.576 E_dut_pJ=0.1404 E_clk_pJ=0.0000
+trf=200ps  RESULT sx_tb_MS_LFSR_slew_200ps_NN PASS 301/301 T=2e-09 tre_ps=215.9 P_dut_uW=75.944 P_clk_uW=0.000 P_tai_uW=3.611 E_dut_pJ=0.1519 E_clk_pJ=0.0000
+trf=300ps  RESULT sx_tb_MS_LFSR_slew_300ps_NN PASS 301/301 T=2e-09 tre_ps=274.4 P_dut_uW=82.334 P_clk_uW=0.000 P_tai_uW=3.649 E_dut_pJ=0.1647 E_clk_pJ=0.0000
+trf=400ps  RESULT sx_tb_MS_LFSR_slew_400ps_NN PASS 301/301 T=2e-09 tre_ps=330.0 P_dut_uW=88.991 P_clk_uW=0.000 P_tai_uW=3.683 E_dut_pJ=0.1780 E_clk_pJ=0.0000
+trf=600ps  RESULT sx_tb_MS_LFSR_slew_600ps_NN PASS 301/301 T=2e-09 tre_ps=437.5 P_dut_uW=102.867 P_clk_uW=0.000 P_tai_uW=3.747 E_dut_pJ=0.2057 E_clk_pJ=0.0000
+trf=800ps  RESULT sx_tb_MS_LFSR_slew_800ps_NN PASS 301/301 T=2e-09 tre_ps=542.6 P_dut_uW=117.370 P_clk_uW=0.000 P_tai_uW=3.826 E_dut_pJ=0.2347 E_clk_pJ=0.0000
+trf=1000ps  RESULT sx_tb_MS_LFSR_slew_1000ps_NN PASS 301/301 T=2e-09 tre_ps=646.2 P_dut_uW=132.149 P_clk_uW=0.000 P_tai_uW=3.903 E_dut_pJ=0.2643 E_clk_pJ=0.0000
+trf=1200ps  RESULT sx_tb_MS_LFSR_slew_1200ps_NN LOI_SPECTRE (xem out/sx_tb_MS_LFSR_slew_1200ps_NN.log)

@@ -20,3 +20,5 @@ Layout (thêm 22/11/2026), từ commit `ac228bf` ("Week 3 - summary"), thư mụ
 Netlist cell trong `cells/` ở `ac228bf` giống hệt `25fc686`. Cell TV2 chỉ có pad Metal1 ở chân D, SET, RST; TV4 nối các chân này ở mức dải (không sửa cell), xem [docs/5_layout.md](../../docs/5_layout.md).
 
 Không sửa các file này. Khi TV2 cập nhật: chép lại đè rồi chạy lại mô phỏng.
+
+`cells_asad/` (thêm 24/11/2026): bản sao của `cells/` có thêm `as/ad/ps/pd` cho mọi MOS (as = ad = W × 0,28 µm, ps = pd = 2(W + 0,28 µm)), sinh bằng [`scripts/add_asad.py`](../../scripts/add_asad.py). Netlist gốc của TV2 không có các tham số này nên mô hình dùng diện tích tiếp giáp mặc định (lớn hơn), chậm và tốn công suất hơn; netlist của TV1 thì có. Testbench `tb_TSPC_LFSR_asad*` dùng bản này để so sánh trước layout với MS của TV1 trong cùng điều kiện, đúng cách TV2 làm trong `Tuan4/SO_SANH_TV1.md`. `cells/` giữ nguyên.

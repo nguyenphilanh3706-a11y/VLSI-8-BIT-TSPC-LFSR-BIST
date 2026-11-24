@@ -25,7 +25,7 @@ flowchart LR
 | `tb_MS_LFSR_slew`, `tb_TSPC_LFSR_slew` | clock nối thẳng nguồn, không qua đệm | NN | quét độ dốc sườn clock |
 | `tb_MS_LFSR_post`, `tb_TSPC_LFSR_post` | netlist trích RC sau layout (`layout/rcx/*_post.scs`) | NN, SS, FF | giống `tb_*_LFSR`, chỉ thay khối LFSR; xem [5. Layout](5_layout.md) |
 
-Mỗi testbench gồm: thân `tb_<tên>.scs`, ba file corner `tb_<tên>_<NN|SS|FF>.scs` (chỉ khác `section=` của model) và bảng mong đợi `tb_<tên>.exp`. Tất cả sinh bằng `python3 scripts/gen_tb.py`, không sửa tay.
+Mỗi testbench gồm: thân `tb_<tên>.scs`, ba file corner `tb_<tên>_<NN|SS|FF>.scs` (chỉ khác `section=` của model) và bảng mong đợi `tb_<tên>.exp`. Tất cả sinh bằng `python3 scripts/gen_tb.py`, không sửa tay (trừ các bản `_asad`, `_ck` thêm ngày 24/11, xem 3.4).
 
 **Kích thích** (T = 2 ns, 500 MHz):
 - RST = 1 trong [0; 0,5T] rồi về 0; cạnh lên clock thứ k tại thời điểm kT;
@@ -58,7 +58,7 @@ Cần Cadence MMSIM (Spectre) và model gpdk090. Đường dẫn model nằm ở
 
 ```bash
 cd Huynh_Anh_Tuan
-bash scripts/run_tv4.sh                                   # 24 testbench NN/SS/FF: 18 trước layout + 6 hậu layout (khoảng 55 phút)
+bash scripts/run_tv4.sh                                   # 30 testbench NN/SS/FF: 24 trước layout + 6 hậu layout (khoảng 70 phút)
 bash scripts/run_tv4.sh tb/tb_TSPC_LFSR_NN.scs            # một testbench
 ```
 
@@ -90,6 +90,23 @@ bash scripts/run_slew.sh tb_TSPC_LFSR_slew NN "20 100 200 300 400 600 800"
 ```
 
 f_max là tần số cao nhất mà mọi vector đều đúng và mọi chu kỳ dài hơn cũng đúng. Kết quả: `out/fmax_<tb>_<corner>.txt`, `out/slew_<tb>_<corner>.txt`.
+
+### PVT
+
+```bash
+# 3 corner x VDD x nhiet do, 500 MHz, moi diem 301 vector; ket qua out/pvt_<tb>.txt
+bash scripts/run_pvt.sh tb_TSPC_LFSR_post "NN SS FF" "0.8 1.0 1.2" "0 27 125"
+bash scripts/run_pvt.sh tb_MS_LFSR        "NN SS FF" "0.8 1.0 1.2" "0 27 125"
+```
+
+Script đổi mọi nguồn 1,2 V trong testbench (DUT, clock, tải, xung CLK/RST) thành VDD đang quét, đổi `temp`, rồi kiểm tra bằng `check_tv4.awk -v VDDV=<VDD>` (ngưỡng VDD/2, mức logic cách ray ≤ 10 % VDD). Mỗi bản 27 điểm, khoảng 3 phút mỗi điểm.
+
+### Testbench thêm ngày 24/11/2026
+
+| Testbench | Khác với bản gốc | Dùng để |
+|---|---|---|
+| `tb_TSPC_LFSR_asad_{NN,SS,FF}`, `tb_TSPC_LFSR_asad_slew_NN` | include `depend/tv2/cells_asad/` (netlist TV2 thêm as/ad, sinh bằng `scripts/add_asad.py`) | so sánh công bằng với MS của TV1 (netlist TV1 có as/ad) |
+| `tb_MS_LFSR_ck_{NN,SS,FF}` | inverter tạo CLKB bên trong khối MS lấy nguồn từ VVDDCK | P_clk của MS gồm cả công suất tạo CLKB (công suất mạng clock đầy đủ) |
 
 ## 3.5. Virtuoso: thư viện `tv4`
 

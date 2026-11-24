@@ -4,7 +4,7 @@
 
 Tuần 3: layout hai dải LFSR 8 bit (`TSPC_LFSR_8bit`, `MS_LFSR_8bit`) khớp bước (pitch-matched) với cell của TV3, kiểm tra DRC/LVS bằng Assura, trích RC và mô phỏng hậu layout so với golden model.
 
-> **Từ 22/11/2026, dải TSPC dùng layout flip-flop thật của TV2** (`TSPC_DFF_S`, `TSPC_DFF_R`, branch `cell/TSPC_DFF(2)` commit `ac228bf`, bản sao trong [`depend/tv2/layout/`](../depend/tv2/NGUON.md)). Dải MS vẫn dùng flip-flop tạm DFF_MS_TMP của TV4 vì TV1 chưa có cell. Khi TV1 có layout, chỉ cần thay cell lá rồi chạy lại `build_layout.py` và Assura; phần đi dây của dải tự sinh lại theo vị trí chân mới (bảng `ACC` trong `scripts/layout/build_layout.py`). Số của dải TSPC dùng flip-flop tạm (21/11) giữ ở cuối mục 5.5 để đối chiếu.
+> **Từ 22/11/2026, dải TSPC dùng layout flip-flop thật của TV2** (`TSPC_DFF_S`, `TSPC_DFF_R`, branch `cell/TSPC_DFF(2)` commit `ac228bf`, bản sao trong [`depend/tv2/layout/`](../depend/tv2/NGUON.md)). Dải MS vẫn dùng flip-flop tạm DFF_MS_TMP của TV4: TV1 đã nộp schematic `MS_DFF_SetReset` (netlist đã thay vào khối MS ngày 24/11, xem [4. Kết quả](4_ket_qua.md)), nhưng view layout trên branch TV1 (commit `fa999e9`) chưa có hình vẽ nào. Khi TV1 có layout, chỉ cần thay cell lá rồi chạy lại `build_layout.py` và Assura; phần đi dây của dải tự sinh lại theo vị trí chân mới (bảng `ACC` trong `scripts/layout/build_layout.py`). Số của dải TSPC dùng flip-flop tạm (21/11) giữ ở cuối mục 5.5 để đối chiếu.
 
 ## 5.1. Khuôn cell (lấy từ GDS của TV3)
 
@@ -117,9 +117,11 @@ Trích RC đầy đủ (R + C nối đất, decoupled), netlist trong [`layout/r
 | TSPC_LFSR_8bit (flip-flop TV2) | 144 | 1087 | 666 |
 | MS_LFSR_8bit | 220 | 1118 | 945 |
 
-MS có 220 MOS trong layout (so với 218 trong netlist) vì INV_CLK vẽ 2 ngón song song; LVS gộp ngón nên vẫn khớp.
+MS có 220 MOS trong layout (so với 218 của netlist dùng flip-flop tạm) vì INV_CLK vẽ 2 ngón song song; LVS gộp ngón nên vẫn khớp.
 
 ## 5.5. Mô phỏng hậu layout
+
+> ⚠️ **Chưa hoàn thành (chỉ phần so sánh với TV1):** số sau layout của MS_LFSR_8bit và các dòng "TSPC so với MS" là tham khảo, đo với flip-flop tạm DFF_MS_TMP vì layout của TV1 chưa có; chạy lại khi TV1 có layout `MS_DFF_SetReset`. Số của bản TSPC là chính thức. So sánh trước layout với cell thật của TV1 ở [4.2](4_ket_qua.md#42-so-sánh-ở-nn); PVT của dải TSPC sau layout (27/27 điểm PASS) ở [4.7](4_ket_qua.md#47-pvt-24112026).
 
 Testbench `tb/tb_*_post_{NN,SS,FF}.scs` giống hệt testbench trước layout (cùng 300 cạnh clock, cùng tải, cùng clock qua 2 INV_CLK đệm), chỉ thay khối LFSR bằng netlist trích RC `layout/rcx/<dải>_post.scs`. Kết quả so với golden model ([`results/hau_layout.txt`](../results/hau_layout.txt)):
 

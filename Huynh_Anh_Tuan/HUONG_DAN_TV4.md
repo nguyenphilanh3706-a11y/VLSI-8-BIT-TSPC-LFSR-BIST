@@ -17,7 +17,7 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm. Chân nguồn thống nhất của
 | Khối | Chân (theo thứ tự subckt) | Chức năng |
 |---|---|---|
 | `TSPC_LFSR_8bit` | `CLK RST Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 VDD GND` | LFSR 8 bit, P(x) = 1 + x + x⁶ + x⁷ + x⁸, flip-flop TSPC của TV2, **khối đề xuất** |
-| `MS_LFSR_8bit` | như trên | cùng hàm, flip-flop master-slave (hiện là flip-flop tạm), khối chuẩn so sánh |
+| `MS_LFSR_8bit` | như trên | cùng hàm, flip-flop master-slave `MS_DFF_SetReset` của TV1, khối chuẩn so sánh |
 | `TSPC_LFSR_8bit_CMOS` | như trên | như TSPC_LFSR_8bit nhưng XOR hồi tiếp CMOS 36T (đối chứng) |
 | `TSPC_CFSR_8bit` | như trên | 256 trạng thái (có 0x00), khối hồi tiếp CFSR_FB_OPT của TV3 |
 | `LT_RTPG_8bit` | `Q0..Q7 CLK RST LP V0..V7 VDD GND` | bộ sinh mẫu ít chuyển mạch: nhận Q0..Q7 từ LFSR, ra V0..V7 tới CUT |
@@ -49,8 +49,8 @@ include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
 include "../depend/tv3/cells/cells.scs"           // cell TV3: INV_X1, XOR2_X1, XOR2_TG6, NOR3, AOI21, XNOR2...
 include "../depend/tv3/blocks/XORTAP8.scs"        // mạng XOR hồi tiếp của TV3
 include "../depend/tv3/blocks/CFSR_FB_OPT.scs"    // khối hồi tiếp CFSR của TV3
-include "../depend/tv2/cells/cells.scs"           // TSPC_DFF_R, TSPC_DFF_S của TV2
-include "../cells/cells.scs"                      // cell của TV4: AND2_T, MUX2_N, INV_CLK, flip-flop tạm
+include "../depend/tv2/cells/cells.scs"           // TSPC_DFF_R, TSPC_DFF_S của TV2 (cells_asad/: bản thêm as/ad)
+include "../cells/cells.scs"                      // cell của TV4: AND2_T, MUX2_N, INV_CLK, lớp DFF_MS (tự include MS_DFF_SetReset của TV1)
 include "../blocks/LFSR_8bit.scs"                 // MS/TSPC_LFSR_8bit, _CMOS, TSPC_CFSR_8bit
 include "../blocks/LT_RTPG_8bit.scs"              // LT_RTPG_8bit
 ```

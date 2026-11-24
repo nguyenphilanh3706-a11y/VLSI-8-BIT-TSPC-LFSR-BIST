@@ -17,7 +17,7 @@ FILES = [  # thu tu phu thuoc: cell con truoc
     "depend/tv3/blocks/XORTAP8.scs", "depend/tv3/blocks/CFSR_FB.scs", "depend/tv3/blocks/CFSR_FB_OPT.scs",
     "cells/INV_CLK/INV_CLK.scs", "cells/AND2_T/AND2_T.scs", "cells/MUX2_N/MUX2_N.scs",
     "cells/DFF_MS_TMP/DFF_MS_TMP.scs", "cells/DFF_TSPC_TMP/DFF_TSPC_TMP.scs",
-    "cells/DFF_MS/DFF_MS.scs",
+    "depend/tv1/cells/MS_DFF_SetReset/MS_DFF_SetReset.scs", "cells/DFF_MS/DFF_MS.scs",
     "depend/tv2/cells/TSPC_DFF_R/TSPC_DFF_R.scs", "depend/tv2/cells/TSPC_DFF_S/TSPC_DFF_S.scs",
     "blocks/LFSR_8bit.scs", "blocks/LT_RTPG_8bit.scs",
 ]
