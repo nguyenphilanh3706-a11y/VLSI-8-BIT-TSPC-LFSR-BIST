@@ -15,6 +15,8 @@ Công nghệ gpdk090, VDD 1,2 V, Spectre, Assura 4.1. Chân nguồn thống nh�
 | So sánh với MS-DFF của TV1 | `Tuan4/SO_SANH_TV1.md` (Bảng A, trước layout) |
 | Báo cáo | Bản nháp Chương 3 phần TV2: `Tuan4/BAO_CAO_TUAN4.md` |
 
+Báo cáo tổng hợp việc đã làm kèm hình minh chứng (theo mẫu nhánh `report`): `BAO_CAO_TV2_MINH_CHUNG.md` / `.pdf`.
+
 ## Đối chiếu việc được giao
 
 | Việc trong kế hoạch | Tệp |
