@@ -52,6 +52,6 @@ Hai chuỗi cho cùng ngưỡng. Ở T ngay dưới ngưỡng, FF1 vẫn đúng 
 
 ## 5. Còn lại của Tuần 2
 
-- Bảng so sánh định thời và công suất với MS-DFF (Bảng A): chưa làm; cần cell MS-DFF để đo cùng testbench (cùng tải FO4, cùng mẫu D, cùng góc).
+- Bảng so sánh định thời và công suất với MS-DFF (Bảng A): đã làm ở `../Tuan4/SO_SANH_TV1.md` (cùng tải FO4 trên Q, QB để hở, cùng mẫu D, cùng góc). Lưu ý số Tuần 1–2 đo không có `as/ad` và có tải FO4 cả trên QB, nên chậm hơn số trong Bảng A (R, NN: t_pcq lên 75,9 ps so với 45,9 ps).
 - Ma trận corner rút gọn cho PDP/EDP (hiện chỉ ở NN, 1 GHz).
 - Độ dốc clock tối đa cho chuỗi 2 FF.

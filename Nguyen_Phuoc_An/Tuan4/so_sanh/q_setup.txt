@@ -1,0 +1,19 @@
+R NN D-rise: nominal tcq (tsu=300ps) = 45.9 ps | chot D moi khi d <= 0 ps (setup = 0 ps, hold = 0 ps) | tsu cho tcq<=+10% = 0 ps | don dieu: co
+R NN D-fall: nominal tcq (tsu=300ps) = 50.3 ps | chot D moi khi d <= -20 ps (setup = 20 ps, hold = -20 ps) | tsu cho tcq<=+10% = 30 ps | don dieu: co
+R SS D-rise: nominal tcq (tsu=300ps) = 62.8 ps | chot D moi khi d <= 10 ps (setup = -10 ps, hold = 10 ps) | tsu cho tcq<=+10% = 0 ps | don dieu: co
+R SS D-fall: nominal tcq (tsu=300ps) = 70.6 ps | chot D moi khi d <= -30 ps (setup = 30 ps, hold = -30 ps) | tsu cho tcq<=+10% = 40 ps | don dieu: co
+R FF D-rise: nominal tcq (tsu=300ps) = 36.4 ps | chot D moi khi d <= 0 ps (setup = 0 ps, hold = 0 ps) | tsu cho tcq<=+10% = 0 ps | don dieu: co
+R FF D-fall: nominal tcq (tsu=300ps) = 38.9 ps | chot D moi khi d <= -20 ps (setup = 20 ps, hold = -20 ps) | tsu cho tcq<=+10% = 30 ps | don dieu: co
+S NN D-rise: nominal tcq (tsu=300ps) = 47.3 ps | chot D moi khi d <= 0 ps (setup = 0 ps, hold = 0 ps) | tsu cho tcq<=+10% = 10 ps | don dieu: co
+S NN D-fall: nominal tcq (tsu=300ps) = 61.3 ps | chot D moi khi d <= -20 ps (setup = 20 ps, hold = -20 ps) | tsu cho tcq<=+10% = 30 ps | don dieu: co
+S SS D-rise: nominal tcq (tsu=300ps) = 65.0 ps | chot D moi khi d <= 10 ps (setup = -10 ps, hold = 10 ps) | tsu cho tcq<=+10% = 10 ps | don dieu: co
+S SS D-fall: nominal tcq (tsu=300ps) = 87.5 ps | chot D moi khi d <= -30 ps (setup = 30 ps, hold = -30 ps) | tsu cho tcq<=+10% = 40 ps | don dieu: co
+S FF D-rise: nominal tcq (tsu=300ps) = 37.6 ps | chot D moi khi d <= 0 ps (setup = 0 ps, hold = 0 ps) | tsu cho tcq<=+10% = 10 ps | don dieu: co
+S FF D-fall: nominal tcq (tsu=300ps) = 47.2 ps | chot D moi khi d <= -20 ps (setup = 20 ps, hold = -20 ps) | tsu cho tcq<=+10% = 30 ps | don dieu: co
+MS NN D-rise: nominal tcq (tsu=300ps) = 60.2 ps | chot D moi khi d <= -50 ps (setup = 50 ps, hold = -50 ps) | tsu cho tcq<=+10% = 70 ps | don dieu: co
+MS NN D-fall: nominal tcq (tsu=300ps) = 79.1 ps | chot D moi khi d <= -40 ps (setup = 40 ps, hold = -40 ps) | tsu cho tcq<=+10% = 40 ps | don dieu: co
+MS SS D-rise: nominal tcq (tsu=300ps) = 83.3 ps | chot D moi khi d <= -70 ps (setup = 70 ps, hold = -70 ps) | tsu cho tcq<=+10% = 100 ps | don dieu: co
+MS SS D-fall: nominal tcq (tsu=300ps) = 109.1 ps | chot D moi khi d <= -50 ps (setup = 50 ps, hold = -50 ps) | tsu cho tcq<=+10% = 60 ps | don dieu: co
+MS FF D-rise: nominal tcq (tsu=300ps) = 47.8 ps | chot D moi khi d <= -50 ps (setup = 50 ps, hold = -50 ps) | tsu cho tcq<=+10% = 60 ps | don dieu: co
+MS FF D-fall: nominal tcq (tsu=300ps) = 62.9 ps | chot D moi khi d <= -30 ps (setup = 30 ps, hold = -30 ps) | tsu cho tcq<=+10% = 40 ps | don dieu: co
+done

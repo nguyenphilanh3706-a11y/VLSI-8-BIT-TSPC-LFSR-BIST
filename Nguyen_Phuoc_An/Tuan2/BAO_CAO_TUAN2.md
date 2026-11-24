@@ -45,6 +45,6 @@ Nối QB thẳng vào D thấp hơn khoảng 10–20% so với nối qua inverte
 
 ## 4. Chưa làm
 
-- Bảng so sánh định thời và công suất với MS-DFF (Bảng A): chờ có cell MS-DFF để đo cùng testbench.
+- Bảng so sánh định thời và công suất với MS-DFF (Bảng A): đã làm ở `../Tuan4/SO_SANH_TV1.md`.
 - Ma trận corner rút gọn cho PDP/EDP; độ dốc clock tối đa cho chuỗi 2 FF.
 - Layout, DRC/LVS, PEX (Tuần 3).

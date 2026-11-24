@@ -1,0 +1,33 @@
+// MS_DFF_SetReset (TV1): flip-flop master-slave TG + NOR, Set/Reset bat dong bo. Netlist lay tu schematic
+// VLSI_TV1/MS_DFF_SetReset (doc bang SKILL, ngay 2026-11-23). 26 transistor + inverter clock cuc bo (2T) ben ngoai.
+// Chan: D CLK CLKB SET RESET Q Q_bar VDD GND
+simulator lang=spectre
+subckt MSTG a b gn gp VDD GND
+    NM0 (a gn b GND) gpdk090_nmos1v w=120n l=100n
+    PM0 (b gp a VDD) gpdk090_pmos1v w=120n l=100n
+ends MSTG
+subckt MSNOR A B VDD GND OUT
+    PM1 (OUT B net17 net17) gpdk090_pmos1v w=960n l=100n
+    PM0 (net17 A VDD VDD)   gpdk090_pmos1v w=960n l=100n
+    NM1 (OUT B GND GND)     gpdk090_nmos1v w=240n l=100n
+    NM0 (OUT A GND GND)     gpdk090_nmos1v w=240n l=100n
+ends MSNOR
+subckt MSINVQB Q Q_bar VDD GND
+    PM0 (Q_bar Q VDD VDD) gpdk090_pmos1v w=480n l=100n
+    NM0 (Q_bar Q GND GND) gpdk090_nmos1v w=240n l=100n
+ends MSINVQB
+subckt MSINVCLK CLK CLKB VDDC GND
+    PM0 (CLKB CLK VDDC VDDC) gpdk090_pmos1v w=480n l=100n
+    NM0 (CLKB CLK GND GND)   gpdk090_nmos1v w=240n l=100n
+ends MSINVCLK
+subckt MS_DFF_SetReset D CLK CLKB SET RESET Q Q_bar VDD GND
+    I11 (Q SET VDD GND s2) MSNOR
+    I10 (s1 RESET VDD GND Q) MSNOR
+    I1  (m2 RESET VDD GND m3) MSNOR
+    I0  (m1 SET VDD GND m2) MSNOR
+    I9  (s2 s1 CLKB CLK VDD GND) MSTG
+    I8  (s1 m2 CLK CLKB VDD GND) MSTG
+    I3  (m3 m1 CLK CLKB VDD GND) MSTG
+    I2  (m1 D CLKB CLK VDD GND) MSTG
+    I16 (Q Q_bar VDD GND) MSINVQB
+ends MS_DFF_SetReset

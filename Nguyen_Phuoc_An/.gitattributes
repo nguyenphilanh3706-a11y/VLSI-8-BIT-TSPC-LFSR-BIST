@@ -2,3 +2,5 @@
 *.gds binary
 *.pdf binary
 *.png binary
+*.oa binary
+cadence/TV2_*/** binary

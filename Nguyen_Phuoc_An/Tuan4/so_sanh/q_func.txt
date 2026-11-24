@@ -1,0 +1,13 @@
+R NN mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=45.9 max=45.9 ps | tcq fall: n=2 avg=50.3 max=50.3 ps
+R SS mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=62.8 max=62.9 ps | tcq fall: n=2 avg=70.7 max=70.7 ps
+R FF mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=36.4 max=36.4 ps | tcq fall: n=2 avg=39.0 max=39.0 ps
+S NN mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=47.3 max=47.3 ps | tcq fall: n=5 avg=61.4 max=61.4 ps
+S SS mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=65.0 max=65.0 ps | tcq fall: n=5 avg=87.7 max=87.7 ps
+S FF mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=37.6 max=37.6 ps | tcq fall: n=5 avg=47.2 max=47.2 ps
+MS NN mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=60.0 max=60.3 ps | tcq fall: n=2 avg=79.1 max=79.2 ps
+MS NN mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=60.2 max=60.3 ps | tcq fall: n=5 avg=79.1 max=79.1 ps
+MS SS mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=83.0 max=83.4 ps | tcq fall: n=2 avg=109.1 max=109.2 ps
+MS SS mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=83.2 max=83.4 ps | tcq fall: n=5 avg=109.0 max=109.1 ps
+MS FF mode=R PASS: 11/11 vector dung, 0 sai | tcq rise: n=5 avg=47.7 max=47.9 ps | tcq fall: n=2 avg=62.9 max=62.9 ps
+MS FF mode=S PASS: 11/11 vector dung, 0 sai | tcq rise: n=2 avg=47.8 max=47.9 ps | tcq fall: n=5 avg=62.8 max=62.9 ps
+done

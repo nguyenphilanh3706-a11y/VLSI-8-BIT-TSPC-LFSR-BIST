@@ -90,9 +90,9 @@ Với cạnh clock từ 200 ps trở xuống, chuỗi 8 FF dịch đúng ở c�
 
 ## 5. Chưa làm trong Tuần 3
 
-- Đối chiếu chiều cao cell (2,76 µm) và quy ước chân với TV3; ghép thử dải 8-bit với TV4.
+- Ghép thử dải 8-bit với TV4. Đối chiếu với TV3 đã làm (`../README.md`): chiều cao 2,76 µm, ray Metal1 0,24 µm, chân Metal1, tên VDD/GND trùng; chiều rộng cell chưa là bội của bước cột 0,27 µm của TV3.
 - Setup/hold, công suất, f_max, f_min trên netlist trích (số hiện có là trước layout).
-- Ảnh chụp màn hình thật của cửa sổ Virtuoso (layout, kết quả DRC, LVS).
+- Ảnh chụp màn hình thật của cửa sổ Virtuoso (layout, kết quả DRC, LVS): đã có trong `../anh/layout`, `../anh/drc_lvs`, `../anh/schematic`.
 - Ma trận PVT 45 điểm trên bản sau layout (Tuần 4).
 - Bảng so sánh diện tích với cell MS-DFF của TV1 (chờ có cell).
 

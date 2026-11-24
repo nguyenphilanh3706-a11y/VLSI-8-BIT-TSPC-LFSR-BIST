@@ -39,11 +39,11 @@ Hai ảnh được vẽ lại từ dữ liệu view `layout` của Virtuoso, kh�
 
 ## 5. Chưa làm
 
-- Đối chiếu chiều cao cell và quy ước chân với TV3; ghép thử dải 8-bit với TV4.
+- Ghép thử dải 8-bit với TV4. Đã đối chiếu với TV3 (xem `../README.md`): chiều cao 2,76 µm, ray VDD/GND Metal1 rộng 0,24 µm, chân Metal1 và tên chân VDD, GND trùng với chuẩn của TV3; chiều rộng cell chưa là bội của bước cột 0,27 µm của TV3.
 - Setup/hold, công suất, f_max trên netlist trích.
-- Ảnh chụp thật của Virtuoso (layout, DRC, LVS).
-- PVT 45 điểm (Tuần 4); so sánh diện tích với cell MS-DFF của TV1.
+- Ảnh chụp thật của Virtuoso đã có trong `../anh/` (schematic, layout, DRC/LVS); thư viện Virtuoso trong `../cadence/`.
+- PVT 45 điểm (Tuần 4, đã làm); so sánh với MS-DFF của TV1 (`../Tuan4/SO_SANH_TV1.md`, trước layout; TV1 chưa có layout nên chưa so sánh diện tích layout).
 
-## 6. Tệp bàn giao
+## 6. Tệp đi kèm
 
 `layout/TV2_TSPC.gds` (GDS hai cell), `layout/*.cdl` (netlist LVS), `layout/*_rcx.scs` (netlist trích RC cho Spectre, cùng tên và thứ tự chân với cell trước layout).

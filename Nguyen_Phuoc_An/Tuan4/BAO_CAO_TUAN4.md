@@ -92,7 +92,7 @@ Hai ảnh được vẽ lại từ dữ liệu view `layout`, không phải ản
 
 ## 3.8. Chưa làm
 
-- Đối chiếu chiều cao cell và quy ước chân với TV3; ghép thử dải 8-bit với TV4.
+- Ghép thử dải 8-bit với TV4. Đối chiếu với TV3 đã làm (`../README.md`): chiều cao 2,76 µm, ray Metal1 0,24 µm, chân Metal1, tên VDD/GND trùng; chiều rộng cell chưa là bội của bước cột 0,27 µm của TV3.
 - Setup/hold, công suất, f_min, hold/race, glitch và charge sharing trên toàn bộ ma trận PVT.
-- Bảng so sánh với cell MS-DFF của TV1 (Bảng A): chưa có cell để đo cùng testbench.
-- Ảnh chụp màn hình thật của Virtuoso (layout, DRC, LVS); slide phần TV2.
+- Bảng A (so sánh với MS-DFF của TV1) đã có trước layout, trong `SO_SANH_TV1.md`. Chưa so sánh sau layout vì TV1 chưa có layout.
+- Slide phần TV2. Ảnh chụp thật của Virtuoso (schematic, layout, DRC/LVS) đã có trong `../anh/`.

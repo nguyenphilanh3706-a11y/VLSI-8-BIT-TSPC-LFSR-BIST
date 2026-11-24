@@ -1,2 +1,5 @@
 out/
 .cadence/
+thumbnail_*.png
+*.cdslck*
+*.oa-

@@ -1,0 +1,25 @@
+R T=2000 zeros cell=3.62uW clkinv=0uW clksrc=0.01uW
+R T=2000 ones cell=0.22uW clkinv=0uW clksrc=0.00uW
+R T=2000 alt cell=6.14uW clkinv=0uW clksrc=-0.03uW
+R T=2000 rand cell=2.38uW clkinv=0uW clksrc=0.00uW
+R T=1000 zeros cell=6.91uW clkinv=0uW clksrc=0.01uW
+R T=1000 ones cell=0.27uW clkinv=0uW clksrc=-0.00uW
+R T=1000 alt cell=12.03uW clkinv=0uW clksrc=-0.05uW
+R T=1000 rand cell=4.51uW clkinv=0uW clksrc=0.00uW
+S T=2000 zeros cell=3.53uW clkinv=0uW clksrc=0.01uW
+S T=2000 ones cell=0.17uW clkinv=0uW clksrc=-0.00uW
+S T=2000 alt cell=6.25uW clkinv=0uW clksrc=-0.03uW
+S T=2000 rand cell=2.33uW clkinv=0uW clksrc=-0.00uW
+S T=1000 zeros cell=6.69uW clkinv=0uW clksrc=0.01uW
+S T=1000 ones cell=0.22uW clkinv=0uW clksrc=-0.00uW
+S T=1000 alt cell=12.26uW clkinv=0uW clksrc=-0.06uW
+S T=1000 rand cell=4.43uW clkinv=0uW clksrc=-0.00uW
+MS T=2000 zeros cell=0.47uW clkinv=0.67uW clksrc=0.67uW
+MS T=2000 ones cell=0.27uW clkinv=0.68uW clksrc=0.68uW
+MS T=2000 alt cell=11.72uW clkinv=0.70uW clksrc=0.70uW
+MS T=2000 rand cell=1.89uW clkinv=0.68uW clksrc=0.68uW
+MS T=1000 zeros cell=0.47uW clkinv=1.33uW clksrc=1.33uW
+MS T=1000 ones cell=0.30uW clkinv=1.35uW clksrc=1.35uW
+MS T=1000 alt cell=23.01uW clkinv=1.37uW clksrc=1.37uW
+MS T=1000 rand cell=3.43uW clkinv=1.35uW clksrc=1.35uW
+done
