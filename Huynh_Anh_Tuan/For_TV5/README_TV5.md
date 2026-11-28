@@ -3,7 +3,7 @@
 Người gửi: TV4 – Huỳnh Anh Tuấn. Ngày 28/11/2026. Công nghệ gpdk090, VDD 1,2 V, Cadence Virtuoso IC6.1.5.
 Nguồn gốc: branch `module/LFSR-8BIT-PRPG(4)`. Gói này gồm những gì TV5 cần để kiểm `BILBO_8BIT` với bộ sinh mẫu (TPG) của TV4: quy ước LFSR, chuỗi vector chuẩn và chữ ký MISR chuẩn tính theo đúng cấu trúc `BILBO_8BIT` của TV5.
 
-Khối TPG để ghép vào top BIST (thư viện Virtuoso, netlist, layout) nằm trong gói của TV6: [`../TV4_goi_cho_TV6/`](../TV4_goi_cho_TV6/README_TV6.md).
+Khối TPG để ghép vào top BIST (thư viện Virtuoso, netlist, layout) nằm trong gói của TV6: [`../For_TV6/`](../For_TV6/README_TV6.md).
 
 ## 1. Trong gói có gì
 

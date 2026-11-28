@@ -19,7 +19,7 @@ Bộ sinh mẫu giả ngẫu nhiên 8 bit (PRPG) với đa thức nguyên thủy
 
 > **Trạng thái phần TV4: Hoàn thành.** Bản MS chỉ dùng để so sánh. So sánh trước layout đã dùng cell thật của TV1 (24/11); phần duy nhất còn chờ là **so sánh sau layout MS/TSPC**, vì layout `MS_DFF_SetReset` của TV1 chưa có hình vẽ.
 
-> **Đọc nhanh:** [KET_QUA_TV4.md](KET_QUA_TV4.md) (tóm tắt kết quả 1 trang) · [HUONG_DAN_TV4.md](HUONG_DAN_TV4.md) (chân khối, quy tắc dùng, cách chạy lại) · [cadence/](cadence/README.md) (thư viện Virtuoso `tv4`, `tv4_lay`) · [`report1,4.docx`](report1,4.docx) (Chương 1 + Chương 4) · [Gói cho TV5](TV4_goi_cho_TV5/README_TV5.md) · [Gói cho TV6](TV4_goi_cho_TV6/README_TV6.md).
+> **Đọc nhanh:** [KET_QUA_TV4.md](KET_QUA_TV4.md) (tóm tắt kết quả 1 trang) · [HUONG_DAN_TV4.md](HUONG_DAN_TV4.md) (chân khối, quy tắc dùng, cách chạy lại) · [cadence/](cadence/README.md) (thư viện Virtuoso `tv4`, `tv4_lay`) · [`report1,4.docx`](report1,4.docx) (Chương 1 + Chương 4) · [Gói cho TV5](For_TV5/README_TV5.md) · [Gói cho TV6](For_TV6/README_TV6.md).
 
 > **Flip-flop đang dùng:** bản TSPC dùng **cell thật của TV2** (TSPC_DFF_R/S 15T, có keeper) cả ở netlist (commit `25fc686`) lẫn layout (commit `ac228bf`). Bản MS dùng **cell thật của TV1** (`MS_DFF_SetReset` 26T, commit `fa999e9`) ở netlist; dải layout MS vẫn dùng flip-flop tạm DFF_MS_TMP (24T) cho đến khi TV1 có layout. Cách thay: [Thiết kế mạch, 2.5](docs/2_thiet_ke_mach.md#25-thay-flip-flop-tạm).
 
@@ -137,8 +137,8 @@ Huynh_Anh_Tuan/
 │   ├── layout/               sinh layout (Python + gdstk), Assura DRC/LVS/RCX, đổi netlist RCX sang Spectre
 │   └── ngspice/              kiểm tra logic nhanh không cần Cadence
 ├── results/                  kết quả Spectre dạng chữ (RESULT, f_max, sườn clock, PVT, số transistor)
-├── TV4_goi_cho_TV5/          gói gửi TV5: quy ước LFSR, chuỗi vector và chữ ký MISR chuẩn theo BILBO_8BIT
-├── TV4_goi_cho_TV6/          gói gửi TV6: thư viện Virtuoso, netlist, layout, golden, ảnh để ghép top BIST
+├── For_TV5/                  gói gửi TV5: quy ước LFSR, chuỗi vector và chữ ký MISR chuẩn theo BILBO_8BIT
+├── For_TV6/                  gói gửi TV6: thư viện Virtuoso, netlist, layout, golden, ảnh để ghép top BIST
 └── depend/                  bản sao phần của thành viên khác mà mạch TV4 dùng (dependencies), chỉ đọc
     ├── tv1/                  bản sao flip-flop MS của TV1 (branch TV1, commit fa999e9): netlist MS_DFF_SetReset
     ├── tv2/                  bản sao flip-flop TSPC của TV2 (branch TV2): netlist TSPC_DFF_R/S (25fc686), bản thêm as/ad, layout GDS/CDL/RCX (ac228bf)
@@ -184,7 +184,7 @@ bash scripts/layout/assura.sh lvs TSPC_LFSR_8bit
 | TV1 | `MS_DFF_SetReset` (26T) thay cho DFF_MS_TMP | **đã dùng netlist** (commit `fa999e9`, 24/11); layout của TV1 chưa có hình vẽ → dải layout MS vẫn dùng flip-flop tạm. Ghi chú cho TV1: [depend/tv1/NGUON.md](depend/tv1/NGUON.md) |
 | TV2 | `TSPC_DFF_R`, `TSPC_DFF_S` (15T, có keeper) | **đã dùng**: netlist (commit `25fc686`) và layout (GDS, CDL, RCX, commit `ac228bf`), 22/11 |
 | TV3 | INV_X1, NAND2_X1, NOR2_X1, NOR3_X1, XOR2_X1, XOR2_TG6, AOI21_X1, XNOR2_X1, XORTAP8, CFSR_FB_OPT; khuôn cell và GDS XOR2_TG6, XOR2_X1 cho layout | đã dùng, branch TV3 commit `435f6f0` (kiểm lại với `195bacb` ngày 22/11: netlist không đổi); đã thử 3 khối CFSR trong thanh ghi TSPC |
-| TV5, TV6 | nhận V[7:0] từ LT_RTPG_8bit cho CUT và MISR | gói bàn giao riêng cho từng người: [`TV4_goi_cho_TV5/`](TV4_goi_cho_TV5/README_TV5.md) (quy ước LFSR, chữ ký MISR chuẩn theo `BILBO_8BIT`), [`TV4_goi_cho_TV6/`](TV4_goi_cho_TV6/README_TV6.md) (thư viện Virtuoso, netlist, layout, golden, ảnh để ghép top BIST) |
+| TV5, TV6 | nhận V[7:0] từ LT_RTPG_8bit cho CUT và MISR | gói bàn giao riêng cho từng người: [`For_TV5/`](For_TV5/README_TV5.md) (quy ước LFSR, chữ ký MISR chuẩn theo `BILBO_8BIT`), [`For_TV6/`](For_TV6/README_TV6.md) (thư viện Virtuoso, netlist, layout, golden, ảnh để ghép top BIST) |
 
 Quy ước chung của nhóm: chân nguồn `VDD`, `GND`; tín hiệu reset hiện đặt tên `RST`, tích cực mức cao.
 

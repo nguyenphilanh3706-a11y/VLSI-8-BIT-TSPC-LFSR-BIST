@@ -13,7 +13,7 @@ Hai thư viện OpenAccess (Virtuoso IC6.1.5, gpdk090) lấy từ máy ảo Cade
 2. Thêm một dòng vào `cds.lib` đó (đổi `<duong_dan>` thành chỗ bạn clone repo):
 
    ```text
-   SOFTINCLUDE <duong_dan>/Huynh_Anh_Tuan/TV4_goi_cho_TV6/cadence/cds.lib
+   SOFTINCLUDE <duong_dan>/Huynh_Anh_Tuan/For_TV6/cadence/cds.lib
    ```
 
    File [`cds.lib`](cds.lib) ở đây chỉ có `DEFINE tv4 ./tv4` và `DEFINE tv4_lay ./tv4_lay`. Đường dẫn tương đối được tính theo vị trí của chính file này, nên không cần sửa.
