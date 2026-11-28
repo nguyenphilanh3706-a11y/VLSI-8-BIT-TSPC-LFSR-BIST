@@ -1,0 +1,4 @@
+// cells.scs - flip-flop TSPC cua TV2 (ban sao tu repo nhom, xem ../NGUON.md). Include sau file model.
+simulator lang=spectre
+include "TSPC_DFF_R/TSPC_DFF_R.scs"
+include "TSPC_DFF_S/TSPC_DFF_S.scs"

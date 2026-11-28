@@ -6,7 +6,8 @@ Ket qua:
                                                               tu 22/11 (dai TSPC dung TSPC_DFF_S/R cua TV2)
   layout/gds/TSPC_LFSR_8bit.gds, MS_LFSR_8bit.gds            dai LFSR 8 bit (1 hang, gom ca cell la)
   layout/cdl/<ten>.cdl                                        netlist so sanh LVS (sinh tu netlist Spectre)
-  docs/images/layout_<ten>.png                                hinh xem nhanh
+  out/hinh_layout/layout_<ten>.png                            hinh xem nhanh (anh trong docs/images
+                                                              chup tu Virtuoso, khong ghi de)
 Can: Python 3, gdstk, matplotlib. Cell XOR cua TV3 lay tu depend/tv3/layout/gds/,
 flip-flop TSPC_DFF_S / TSPC_DFF_R cua TV2 lay tu depend/tv2/layout/gds/TV2_TSPC.gds.
 """
@@ -22,7 +23,7 @@ TV2G = os.path.join(ROOT, "depend", "tv2", "layout", "gds", "TV2_TSPC.gds")
 TV2C = os.path.join(ROOT, "depend", "tv2", "layout", "cdl")
 GDS = os.path.join(ROOT, "layout", "gds")
 CDL = os.path.join(ROOT, "layout", "cdl")
-IMG = os.path.join(ROOT, "docs", "images")
+IMG = os.path.join(ROOT, "out", "hinh_layout")
 
 # diem dat Via2 cho cap tren (toa do trong cell), chon trong vung pinaccess.access() tra ve
 ACC = {

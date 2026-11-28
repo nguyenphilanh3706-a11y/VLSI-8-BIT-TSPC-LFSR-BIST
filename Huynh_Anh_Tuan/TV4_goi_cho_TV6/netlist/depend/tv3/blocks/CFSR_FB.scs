@@ -1,0 +1,31 @@
+// Hoi tiep day du (CFSR): FB = Q0 ^ Q5 ^ Q6 ^ Q7 ^ NOR(Q0..Q6).
+// Nhanh NOR dua trang thai toan 0 vao chuoi: 255 -> 256 trang thai.
+simulator lang=spectre
+
+// Phat hien Q0..Q6 = 0: Z = NOR(NAND(NOR3(Q0,Q1,Q2), NOR3(Q3,Q4,Q5)), Q6), 20 transistor
+subckt ZERO7 Q0 Q1 Q2 Q3 Q4 Q5 Q6 Z VDD GND
+I0 (Q0 Q1 Q2 n012 VDD GND) NOR3_X1
+I1 (Q3 Q4 Q5 n345 VDD GND) NOR3_X1
+I2 (n012 n345 a VDD GND) NAND2_X1
+I3 (a Q6 Z VDD GND) NOR2_X1
+ends ZERO7
+
+// 56 transistor
+subckt CFSR_FB Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 FB VDD GND
+I0 (Q0 Q5 Q6 Q7 tap VDD GND) XORTAP8
+I1 (Q0 Q1 Q2 Q3 Q4 Q5 Q6 z VDD GND) ZERO7
+I2 (tap z FB VDD GND) XOR2_X1
+ends CFSR_FB
+
+// Ban doi chung: 4 XOR CMOS + cay NOR2/NAND2, 74 transistor
+subckt CFSR_FB_CMOS Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 FB VDD GND
+I0 (Q0 Q5 Q6 Q7 tap VDD GND) XORTAP8_CMOS
+I1 (Q0 Q1 n01 VDD GND) NOR2_X1
+I2 (Q2 Q3 n23 VDD GND) NOR2_X1
+I3 (Q4 Q5 n45 VDD GND) NOR2_X1
+I4 (Q6 q6n VDD GND) INV_X1
+I5 (n01 n23 a VDD GND) NAND2_X1
+I6 (n45 q6n b VDD GND) NAND2_X1
+I7 (a b z VDD GND) NOR2_X1
+I8 (tap z FB VDD GND) XOR2_X1
+ends CFSR_FB_CMOS

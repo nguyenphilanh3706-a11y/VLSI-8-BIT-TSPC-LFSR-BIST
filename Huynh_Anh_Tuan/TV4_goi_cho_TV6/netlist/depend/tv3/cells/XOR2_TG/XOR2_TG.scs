@@ -1,0 +1,13 @@
+// Y = A ^ B.  Pins: A B Y VDD GND.  Transmission gate, 8 transistors:
+// 2 input inverters + 2 TG: A=0 truyen B, A=1 truyen !B.
+simulator lang=spectre
+subckt XOR2_TG A B Y VDD GND
+    MN0 (An A GND GND) gpdk090_nmos1v w=0.12u l=0.1u
+    MP0 (An A VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN1 (Bn B GND GND) gpdk090_nmos1v w=0.12u l=0.1u
+    MP1 (Bn B VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN2 (Y An B GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP2 (Y A B VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MN3 (Y A Bn GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP3 (Y An Bn VDD) gpdk090_pmos1v w=0.48u l=0.1u
+ends XOR2_TG

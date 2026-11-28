@@ -1,0 +1,10 @@
+// Cong co ban dung chung. Include mot lan sau file model.
+simulator lang=spectre
+include "INV_X1/INV_X1.scs"
+include "NAND2_X1/NAND2_X1.scs"
+include "NOR2_X1/NOR2_X1.scs"
+include "XOR2_X1/XOR2_X1.scs"
+include "NOR3_X1/NOR3_X1.scs"
+include "XOR2_TG6/XOR2_TG6.scs"
+include "AOI21_X1/AOI21_X1.scs"
+include "XNOR2_X1/XNOR2_X1.scs"

@@ -1,0 +1,11 @@
+// cells.scs - cell cua TV4 (Huynh Anh Tuan). Include SAU file model va SAU cells.scs cua TV3.
+// Nguon VDD, GND (quy uoc nhom). Can cell TV3: INV_X1, NAND2_X1, NOR2_X1, XOR2_X1.
+simulator lang=spectre
+include "INV_CLK/INV_CLK.scs"
+include "AND2_T/AND2_T.scs"
+include "MUX2_N/MUX2_N.scs"
+// flip-flop TAM cua TV4: DFF_MS_TMP (thay bang cell TV1 khi co, qua lop DFF_MS);
+// DFF_TSPC_TMP chi con dung cho layout dai LFSR (TV2 chua co layout). Khoi TSPC dung TSPC_DFF_R/S cua TV2 (depend/tv2).
+include "DFF_MS_TMP/DFF_MS_TMP.scs"
+include "DFF_TSPC_TMP/DFF_TSPC_TMP.scs"
+include "DFF_MS/DFF_MS.scs"

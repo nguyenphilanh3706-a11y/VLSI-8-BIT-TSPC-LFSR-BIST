@@ -1,0 +1,11 @@
+// DFF_MS.scs - LOP CHUYEN DOI giua LFSR cua TV4 va flip-flop cua TV1.
+// Khoi MS_LFSR_8bit cua TV4 chi goi ten co dinh nay:
+//     DFF_MS   (D CLK CLKB SET RST Q VDD GND)   SET/RST tich cuc cao, bat dong bo
+// Tu 24/11/2026 tro toi cell that cua TV1: MS_DFF_SetReset (depend/tv1, 26T, chan RESET tich cuc cao -> noi thang RST).
+// Q_bar de ho (chi Q co tai). Flip-flop tam DFF_MS_TMP van giu trong cells/ cho dai layout MS (TV1 chua co layout that).
+simulator lang=spectre
+include "../../depend/tv1/cells/cells.scs"
+
+subckt DFF_MS D CLK CLKB SET RST Q VDD GND
+    X0 (D CLK CLKB SET RST Q qb VDD GND) MS_DFF_SetReset
+ends DFF_MS

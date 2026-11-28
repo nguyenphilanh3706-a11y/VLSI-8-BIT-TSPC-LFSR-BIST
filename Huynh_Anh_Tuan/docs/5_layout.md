@@ -6,6 +6,8 @@ Tuần 3: layout hai dải LFSR 8 bit (`TSPC_LFSR_8bit`, `MS_LFSR_8bit`) khớp 
 
 > **Từ 22/11/2026, dải TSPC dùng layout flip-flop thật của TV2** (`TSPC_DFF_S`, `TSPC_DFF_R`, branch `cell/TSPC_DFF(2)` commit `ac228bf`, bản sao trong [`depend/tv2/layout/`](../depend/tv2/NGUON.md)). Dải MS vẫn dùng flip-flop tạm DFF_MS_TMP của TV4: TV1 đã nộp schematic `MS_DFF_SetReset` (netlist đã thay vào khối MS ngày 24/11, xem [4. Kết quả](4_ket_qua.md)), nhưng view layout trên branch TV1 (commit `fa999e9`) chưa có hình vẽ nào. Khi TV1 có layout, chỉ cần thay cell lá rồi chạy lại `build_layout.py` và Assura; phần đi dây của dải tự sinh lại theo vị trí chân mới (bảng `ACC` trong `scripts/layout/build_layout.py`). Số của dải TSPC dùng flip-flop tạm (21/11) giữ ở cuối mục 5.5 để đối chiếu.
 
+> Mọi ảnh layout trong mục này chụp trực tiếp trong Virtuoso Layout Suite (GDS nhập bằng `strmin` vào thư viện `tv4_lay`, gắn tech `gpdk090`), ngày 28/11/2026.
+
 ## 5.1. Khuôn cell (lấy từ GDS của TV3)
 
 | Thông số | Giá trị |
@@ -174,7 +176,7 @@ Các lệnh gõ trong **terminal**, đứng ở thư mục gốc `Huynh_Anh_Tuan
 Chỉ phần xem layout cuối mục mới làm trong giao diện Virtuoso.
 
 ```bash
-# 1. Sinh GDS + CDL + hình (Python 3, gdstk, matplotlib)
+# 1. Sinh GDS + CDL + hình xem nhanh vào out/hinh_layout/ (Python 3, gdstk, matplotlib)
 pip install gdstk matplotlib
 python3 scripts/layout/build_layout.py
 
@@ -197,7 +199,7 @@ bash scripts/run_tv4.sh tb/tb_TSPC_LFSR_post_NN.scs
 | `scripts/layout/rowgen.py` | đặt cell thành hàng, đi dây Metal3/Metal4, nối GND, chân |
 | `scripts/layout/pinaccess.py` | tìm vùng đặt Via2 của từng chân trong cell |
 | `scripts/layout/scs2cdl.py` | netlist Spectre → CDL cho LVS |
-| `scripts/layout/render.py` | vẽ hình PNG từ GDS |
+| `scripts/layout/render.py` | vẽ hình PNG xem nhanh từ GDS (ghi vào `out/hinh_layout/`; ảnh trong tài liệu chụp từ Virtuoso) |
 | `scripts/layout/build_layout.py` | chạy toàn bộ: cell lá, hai dải (TSPC dùng GDS + CDL của TV2 trong `depend/tv2/layout/`), CDL, hình, `dien_tich.json`; biến `TSPC_XOR` đổi chỗ đặt khối XOR |
 | `scripts/layout/assura.sh` | DRC / LVS / RCX trên GDS |
 | `scripts/layout/rcx2scs.py` | netlist RCX → file include Spectre cho testbench hậu layout |

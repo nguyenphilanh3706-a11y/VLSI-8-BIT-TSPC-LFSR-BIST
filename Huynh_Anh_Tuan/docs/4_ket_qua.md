@@ -45,10 +45,14 @@ LT-RTPG tắt và bật (ngõ ra V[7:0] tới CUT): khi LP = 1 các bit lật th
 
 ![ViVA LT-RTPG LP=1](images/wave_lt_lp1_0-42ns.png)
 
-<details>
-<summary>Bản MS_LFSR_8bit (ảnh 19/11, flip-flop tạm, chỉ để tham khảo; số liệu hiện dùng cell TV1)</summary>
+MS_LFSR_8bit dùng cell `MS_DFF_SetReset` của TV1 (NN, 500 MHz, mở kết quả Spectre trong ViVA): cùng chuỗi `01 03 07 0F 1F 3F 7E FC …` như bản TSPC.
 
-![MS_LFSR_8bit NN 0-80 ns](images/spectre_MS_LFSR_8bit_NN_0-80ns.png)
+![ViVA MS_LFSR_8bit (cell TV1) 0-42 ns](images/viva_MS_TV1_0-42ns.png)
+
+<details>
+<summary>Bản MS_LFSR_8bit (kết quả 19/11, flip-flop tạm, chỉ để tham khảo; số liệu hiện dùng cell TV1)</summary>
+
+![ViVA MS_LFSR_8bit flip-flop tạm, NN 0-80 ns](images/spectre_MS_LFSR_8bit_NN_0-80ns.png)
 
 ![ViVA MS 0-42 ns](images/viva_MS_Q8_0-42ns.png)
 

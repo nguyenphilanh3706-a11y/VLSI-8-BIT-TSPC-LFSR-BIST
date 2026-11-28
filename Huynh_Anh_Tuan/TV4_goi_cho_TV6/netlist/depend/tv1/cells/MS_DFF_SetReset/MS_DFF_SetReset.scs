@@ -1,0 +1,33 @@
+// MS_DFF_SetReset: D flip-flop master-slave cong truyen cua TV1 (Le Thanh Tai), kich canh len,
+// SET / RESET bat dong bo tich cuc cao. 26 transistor: 4 NOR2 + 4 TG + 1 inverter ra Q_bar.
+// Netlist xuat tu schematic VLSI_TV1/MS_DFF_SetReset (branch cell/MS_DFF(1), commit fa999e9, 23/11/2026)
+// bang OCEAN createNetlist; chi doi ten cell con (NOR, TG, INV_QB -> TV1_NOR, TV1_TG, TV1_INV_QB) de khong trung ten,
+// bo m=(1)*(1). Kich thuoc, noi day, as/ad/ps/pd giu nguyen.
+// Pins: D CLK CLKB SET RESET Q Q_bar VDD GND   (CLKB tu inverter ngoai cell)
+// Luu y: PM1 cua NOR co than (bulk) noi vao nut giua net17 nhu schematic TV1 (khong phai VDD).
+simulator lang=spectre
+subckt TV1_NOR A B GND OUT VDD
+    PM1 (OUT B net17 net17) gpdk090_pmos1v w=960n l=100n as=268.8f ad=268.8f ps=2.48u pd=2.48u
+    PM0 (net17 A VDD VDD) gpdk090_pmos1v w=960n l=100n as=268.8f ad=268.8f ps=2.48u pd=2.48u
+    NM1 (OUT B GND GND) gpdk090_nmos1v w=240n l=100n as=67.2f ad=67.2f ps=1.04u pd=1.04u
+    NM0 (OUT A GND GND) gpdk090_nmos1v w=240n l=100n as=67.2f ad=67.2f ps=1.04u pd=1.04u
+ends TV1_NOR
+subckt TV1_TG GND VDD a b gn gp
+    NM0 (a gn b GND) gpdk090_nmos1v w=120n l=100n as=69.6f ad=69.6f ps=1.16u pd=1.16u
+    PM0 (b gp a VDD) gpdk090_pmos1v w=120n l=100n as=69.6f ad=69.6f ps=1.16u pd=1.16u
+ends TV1_TG
+subckt TV1_INV_QB GND Q Q_bar VDD
+    PM0 (Q_bar Q VDD VDD) gpdk090_pmos1v w=480n l=100n as=134.4f ad=134.4f ps=1.52u pd=1.52u
+    NM0 (Q_bar Q GND GND) gpdk090_nmos1v w=240n l=100n as=67.2f ad=67.2f ps=1.04u pd=1.04u
+ends TV1_INV_QB
+subckt MS_DFF_SetReset D CLK CLKB SET RESET Q Q_bar VDD GND
+    I11 (Q SET GND s2 VDD) TV1_NOR
+    I10 (s1 RESET GND Q VDD) TV1_NOR
+    I1 (m2 RESET GND m3 VDD) TV1_NOR
+    I0 (m1 SET GND m2 VDD) TV1_NOR
+    I9 (GND VDD s2 s1 CLKB CLK) TV1_TG
+    I8 (GND VDD s1 m2 CLK CLKB) TV1_TG
+    I3 (GND VDD m3 m1 CLK CLKB) TV1_TG
+    I2 (GND VDD m1 D CLKB CLK) TV1_TG
+    I16 (GND Q Q_bar VDD) TV1_INV_QB
+ends MS_DFF_SetReset

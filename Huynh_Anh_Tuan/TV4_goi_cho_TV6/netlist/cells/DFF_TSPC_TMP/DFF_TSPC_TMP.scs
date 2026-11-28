@@ -1,0 +1,34 @@
+// DFF_TSPC_TMP - flip-flop TSPC (Yuan-Svensson 9T, kich canh len) TAM THOI cua TV4, them SET/RST.
+// CHI DE THU LUONG TICH HOP khi TV2 chua co cell TSPC_DFF_SetReset (chua co keeper, chua toi uu).
+// Khi TV2 nop cell that: sua cells/DFF_TSPC/DFF_TSPC.scs, KHONG dung file nay de lay so lieu bao cao.
+// Pins: D CLK SET RST Q VDD GND ; SET, RST tich cuc muc cao, bat dong bo. 17 transistor.
+// Ten nut noi bo viet thuong co tien to (p1, n1 ...) de khong trung ten chan khi chuyen sang SPICE
+// (SPICE khong phan biet hoa/thuong: "d" se trung "D").
+simulator lang=spectre
+subckt DFF_TSPC_TMP D CLK SET RST Q VDD GND
+    // tang 1 (p-C2MOS): X = !D khi CLK = 0, giu khi CLK = 1
+    MP1 (p1 D VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP2 (X CLK p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    // MN1 de nho (0.12u): khi CLK vua len, Q cua FF truoc doi lam X xa qua nhanh se cat MN2 truoc khi Y xa xong
+    // (Y lo lung -> QB tranh chap). Loi nay xuat hien o mo phong hau layout corner FF voi MN1 = 0.24u (docs/5_layout.md).
+    MN1 (X D GND GND) gpdk090_nmos1v w=0.12u l=0.1u
+    // tang 2 (n-precharge): Y = 1 khi CLK = 0 ; CLK = 1 -> Y = !X
+    MP3 (Y CLK VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MN2 (Y X n1 GND) gpdk090_nmos1v w=0.36u l=0.1u
+    MN3 (n1 CLK GND GND) gpdk090_nmos1v w=0.36u l=0.1u
+    // tang 3 (n-C2MOS): CLK = 1 -> QB = !Y ; CLK = 0 -> giu (nut dong)
+    // pMOS SET dat sat VDD, nMOS RSTB dat sat GND: tranh chia se dien tich vao QB khi nha SET/RST
+    MPS (p2 SET VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP4 (QB Y p2 VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MN4 (QB CLK n2 GND) gpdk090_nmos1v w=0.36u l=0.1u
+    MN5 (n2 Y n3 GND) gpdk090_nmos1v w=0.36u l=0.1u
+    MNR (n3 RSTB GND GND) gpdk090_nmos1v w=0.36u l=0.1u
+    // SET: ep QB = 0 (Q = 1) ; RST: ep QB = 1 (Q = 0)
+    MNS (QB SET GND GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MPR (QB RSTB VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN6 (RSTB RST GND GND) gpdk090_nmos1v w=0.12u l=0.1u
+    MP6 (RSTB RST VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    // ngo ra
+    MN7 (Q QB GND GND) gpdk090_nmos1v w=0.24u l=0.1u
+    MP7 (Q QB VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+ends DFF_TSPC_TMP

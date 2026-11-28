@@ -1,0 +1,52 @@
+GOLDEN MODEL TV4 (MATLAB 2019b) - LFSR 8 bit, P(x) = 1 + x + x^6 + x^7 + x^8
+Hoi tiep: D0 = Q0 ^ Q5 ^ Q6 ^ Q7, dich Q0 -> Q7, seed = 0x01
+========================================================================
+1. Chu ky LFSR tu seed 0x01: 255 (ly thuyet 2^8 - 1 = 255)
+   So trang thai khac nhau trong 255 chu ky: 255 ; co trang thai 00: 0
+   11 trang thai dau: 01 03 07 0F 1F 3F 7E FC F9 F2 E5
+   Trang thai sau 255 canh = 0x01 (quay ve seed: 1)
+
+2. Ma tran dong hanh T (Q(t+1) = T.Q(t) mod 2), khop mo phong 255 buoc: 1
+      1 0 0 0 0 1 1 1 
+      1 0 0 0 0 0 0 0 
+      0 1 0 0 0 0 0 0 
+      0 0 1 0 0 0 0 0 
+      0 0 0 1 0 0 0 0 
+      0 0 0 0 1 0 0 0 
+      0 0 0 0 0 1 0 0 
+      0 0 0 0 0 0 1 0 
+   T^255 = I: 1 ; T^85 = I: 0 ; T^51 = I: 0 ; T^15 = I: 0
+   => bac cua T = 255 = 2^8 - 1 (255 = 3.5.17): da thuc dac trung NGUYEN THUY: 1
+   Da thuc dac trung cua T: x^8 + x^7 + x^2 + x + 1 (doi xung cua P(x), cung nguyen thuy)
+
+3. CFSR tu 0x00: chu ky 256, so trang thai khac nhau 256 (ly thuyet 256)
+   Doan qua trang thai 0: 80 -> 00 -> 01
+
+4. Golomb tren dong bit Q7, 255 chu ky
+   (1) Can bang: 128 so 1, 127 so 0 (ly thuyet 128 / 127)
+   (2) Tong so run: 128 (ly thuyet 128)
+       dai 1:  32 run so 1,  32 run so 0
+       dai 2:  16 run so 1,  16 run so 0
+       dai 3:   8 run so 1,   8 run so 0
+       dai 4:   4 run so 1,   4 run so 0
+       dai 5:   2 run so 1,   2 run so 0
+       dai 6:   1 run so 1,   1 run so 0
+       dai 7:   0 run so 1,   1 run so 0
+       dai 8:   1 run so 1,   0 run so 0
+   (3) Tu tuong quan: R(0) = 255 ; R(1..254) chi nhan gia tri -1
+
+5. LT-RTPG (LP = 1), 255 chu ky, 8 ngo ra den CUT
+   LFSR thuong (LP = 0): 4.016 bit lat/chu ky, 255 vector khac nhau
+   LT k=2: 2.008 bit lat/chu ky (giam 50.0%), 101 vector khac nhau, phu A[3:0] 14/16, B[3:0] 16/16
+   LT k=3: 1.004 bit lat/chu ky (giam 75.0%), 61 vector khac nhau, phu A[3:0] 14/16, B[3:0] 16/16
+   Chon phan cung LT_RTPG_8bit: k = 2 (cap Q_i, Q_i+1), T-FF reset ve 0.
+
+6. MISR 8 bit (cung da thuc, S(t+1) = step(S) ^ Z, reset 0x00), CUT = cong 4 bit A = V[3:0], B = V[7:4]
+   LP0        chu ky dung 0xDE ; phat hien 10/10 loi SA0/SA1 o ngo ra CUT
+   LP1_LT_k2  chu ky dung 0x79 ; phat hien 10/10 loi SA0/SA1 o ngo ra CUT
+   Nhan xet: chay dung 255 chu ky thi SA0 va SA1 tren cung mot day cho CUNG chu ky (I + T + ... + T^254 = 0
+   khi T^255 = I): van phat hien loi nhung khong phan biet SA0/SA1; muon chan doan thi chay so chu ky khac 255.
+
+
+KET LUAN: chu ky 255 = 1, nguyen thuy = 1, Golomb (can bang 128/127) = 1, CFSR 256 = 1
+File ket qua: thu muc out/ canh file lfsr_golden_tv4.m
