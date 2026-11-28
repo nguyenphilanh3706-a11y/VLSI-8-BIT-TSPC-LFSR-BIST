@@ -35,7 +35,7 @@ Công nghệ gpdk090, VDD 1,2 V, L = 0,1 µm. Chân nguồn thống nhất của
 | Quy tắc | Lý do |
 |---|---|
 | Chỉ nhả `RST` (1 → 0) khi `CLK = 0` | quy tắc của cell TSPC của TV2; testbench của TV4 nhả ở 0,5T, cạnh clock đầu tiên ở T |
-| Sườn clock ≤ 400 ps (testbench của TV4 dùng 2 tầng INV_CLK đệm, sườn khoảng 20–40 ps) | TSPC sai từ sườn 600 ps (race qua các tầng cùng mở) |
+| Sườn clock ≤ 200 ps (testbench của TV4 dùng 2 tầng INV_CLK đệm: sườn tại chân CLK khoảng 85–95 ps (10–90 %) ở bản TSPC, 35–40 ps ở bản MS) | Với netlist TV2 có `as/ad`, TSPC sai từ sườn 300 ps (netlist gốc: từ 600 ps), do race qua các tầng cùng mở |
 | Không nối tải vào chân `QB` của TSPC_DFF_R/S | `QB` là nút động bên trong cell TV2 |
 | Tải đã kiểm: mỗi Q 1 INV_X1, mỗi V 4 INV_X1 | tải nặng hơn thì chạy lại để kiểm trễ |
 | Tần số: 500 MHz là điểm đo chính của mọi khối; riêng dải TSPC_LFSR_8bit sau layout đã kiểm đúng tới 2,63 GHz (NN) và 1,85 GHz (SS) | LT_RTPG_8bit chưa quét tần số; xem [docs/5_layout.md](docs/5_layout.md) |

@@ -66,7 +66,7 @@ Netlist gốc của TV2 không có `as/ad`; bảng trên thêm `as/ad` cho TV2 t
 1. Golden model chứng minh đại số P(x) nguyên thủy và chuỗi đạt Golomb; phần cứng Spectre khớp golden model ở mọi chu kỳ, mọi corner, trước và sau layout, và ở cả 81 điểm PVT.
 2. So với MS của TV1 (cùng điều kiện, trước layout): TSPC ít hơn 38,5 % transistor (−42,3 % mỗi flip-flop, mục tiêu nhóm ≥ 45 %), tổng công suất −18,5 %, f_max cao hơn 25–29 %; trễ gần ngang (+2,8 %). Công suất mạng clock của TSPC cao hơn 26 %, nên mục tiêu giảm công suất clock **không đạt** với kích thước cell TV2 hiện tại.
 3. Sau layout, TSPC đạt 238,8 ps, 102,3 µW, 2,63 GHz, 218,10 µm². So sánh sau layout với MS chờ layout của TV1.
-4. Giới hạn của TSPC: cần sườn clock ≤ 200 ps (cây clock hiện cho 20–40 ps).
+4. Giới hạn của TSPC: cần sườn clock ≤ 200 ps (2 tầng INV_CLK đệm hiện cho khoảng 85–95 ps, đo 10–90 % tại chân CLK).
 
 ## File chính
 

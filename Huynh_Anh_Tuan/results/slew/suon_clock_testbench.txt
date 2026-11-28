@@ -1,0 +1,7 @@
+# Suon clock tai chan CLK cua khoi (sau 2 tang INV_CLK dem trong testbench), do 28/11/2026
+# NN, 500 MHz, nguon clock ly tuong suon 20 ps; do 10-90 % (0,12 V -> 1,08 V), trung binh / lon nhat tren 299 canh sau 5 ns
+# Script: scripts/do_suon.py (doc tran.tran psfascii). Netlist TSPC dung cell TV2 co as/ad (depend/tv2/cells_asad), MS dung cell TV1.
+testbench               len_tb_ps  len_max_ps  xuong_tb_ps  xuong_max_ps
+tb_TSPC_LFSR_asad_NN    91.6       97.6        83.6         90.9
+tb_MS_LFSR_ck_NN        40.0       40.5        36.0         36.4
+# Ket qua dung cua hai testbench (chay lai cung luc): TSPC PASS 301/301, tre 143,1 ps; MS PASS 301/301, tre 139,2 ps.

@@ -59,7 +59,7 @@ Diện tích chỉ còn nhỏ hơn 7,4 % vì cell flip-flop của TV2 (8,00–8,
 - **CFSR_FB_OPT của TV3 trong thanh ghi TSPC:** đúng 256 trạng thái ở cả 3 corner; so với CFSR_FB cũ, f_max tăng **14–27 %** (NN 2,63 → 3,33 GHz trước layout khối, 3,13 → 3,57 GHz với netlist RCX của khối), công suất chỉ giảm 1,6–2 % vì 8 flip-flop chiếm phần lớn ([4.3.1](docs/4_ket_qua.md#431-so-sánh-3-khối-hồi-tiếp-cfsr-của-tv3-trong-thanh-ghi-tspc-22112026)).
 - **Tải clock:** 32 cổng MOS nối clock (TSPC) so với 66 (MS), không cần tạo CLKB; nhưng tổng độ rộng cổng nối clock của TSPC lớn hơn nên công suất mạng clock cao hơn MS 26 % (trước layout).
 - **LT-RTPG bật (LP = 1):** công suất tải ngõ vào CUT giảm **44,8 %**; golden model dự đoán giảm 50 % số bit lật.
-- **Giới hạn của TSPC:** với flip-flop TV2 (có `as/ad`), sai khi sườn clock ≥ 300 ps (netlist gốc không `as/ad`: ≥ 600 ps), trong khi MS của TV1 vẫn đúng tới 1000 ps, nên cây clock phải giữ sườn ≤ 200 ps (2 INV_CLK đệm hiện cho 20–40 ps); ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race của flip-flop tạm ở hậu layout corner FF đã sửa; dải dùng layout flip-flop TV2 không bị, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
+- **Giới hạn của TSPC:** với flip-flop TV2 (có `as/ad`), sai khi sườn clock ≥ 300 ps (netlist gốc không `as/ad`: ≥ 600 ps), trong khi MS của TV1 vẫn đúng tới 1000 ps, nên cây clock phải giữ sườn ≤ 200 ps (2 INV_CLK đệm hiện cho sườn khoảng 85–95 ps ở bản TSPC, 35–40 ps ở bản MS, đo 10–90 %); ngoài ra cần đủ lề hold khi Q của flip-flop trước nối thẳng vào D (lỗi race của flip-flop tạm ở hậu layout corner FF đã sửa; dải dùng layout flip-flop TV2 không bị, xem [5. Layout](docs/5_layout.md#lỗi-race-tìm-thấy-ở-hậu-layout-của-bản-flip-flop-tạm-2111-và-cách-sửa)).
 
 ![Dạng sóng Q[7:0] của TSPC_LFSR_8bit trong ViVA, 42 ns đầu](docs/images/wave_tspc_0-42ns.png)
 
@@ -125,6 +125,7 @@ Huynh_Anh_Tuan/
 │   ├── run_tv4.sh            chạy Spectre và kiểm tra từng vector
 │   ├── run_fmax.sh           quét chu kỳ clock tìm f_max
 │   ├── run_slew.sh           quét độ dốc sườn clock
+│   ├── do_suon.py            đo sườn clock 10–90 % tại chân CLK từ kết quả Spectre
 │   ├── run_pvt.sh            quét PVT (corner × VDD × nhiệt độ)
 │   ├── add_asad.py           thêm as/ad cho netlist TV2 (so sánh công bằng với TV1)
 │   ├── gen_tb_cfsr_cmp.py, run_cfsr_cmp.sh  so sánh 3 khối hồi tiếp CFSR của TV3 trong thanh ghi TSPC

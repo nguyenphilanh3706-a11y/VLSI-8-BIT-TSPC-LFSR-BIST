@@ -147,7 +147,7 @@ Chạy lại: `python3 scripts/gen_tb_cfsr_cmp.py && bash scripts/run_cfsr_cmp.s
 | TSPC_LFSR_8bit (cell TV2, netlist gốc) | đúng | đúng | đúng | đúng | đúng | **sai** | sai |
 | TSPC_LFSR_8bit (flip-flop tạm, 21/11) | đúng | đúng | đúng | sai | sai | sai | sai |
 
-TSPC dùng chung một pha clock cho cả ba tầng; khi sườn chậm, có khoảng thời gian các tầng kế tiếp cùng mở nên dữ liệu có thể chạy xuyên qua (race), đây là giới hạn đã biết của TSPC. Với flip-flop của TV2 (có keeper, tầng 2 rộng 0,48 µm), dải LFSR chịu được sườn tới 400 ps với netlist gốc; khi thêm `as/ad` (nút trong nhẹ hơn, chạy nhanh hơn nên dễ chạy xuyên hơn) thì sai từ 300 ps. MS của TV1 đúng tới 1000 ps (điểm 1200 ps Spectre không hội tụ). Cây clock nên giữ sườn ≤ 200 ps; 2 tầng INV_CLK đệm hiện cho sườn khoảng 20–40 ps nên đạt. Chi tiết: [`results/slew/`](../results/slew/).
+TSPC dùng chung một pha clock cho cả ba tầng; khi sườn chậm, có khoảng thời gian các tầng kế tiếp cùng mở nên dữ liệu có thể chạy xuyên qua (race), đây là giới hạn đã biết của TSPC. Với flip-flop của TV2 (có keeper, tầng 2 rộng 0,48 µm), dải LFSR chịu được sườn tới 400 ps với netlist gốc; khi thêm `as/ad` (nút trong nhẹ hơn, chạy nhanh hơn nên dễ chạy xuyên hơn) thì sai từ 300 ps. MS của TV1 đúng tới 1000 ps (điểm 1200 ps Spectre không hội tụ). Cây clock nên giữ sườn ≤ 200 ps; 2 tầng INV_CLK đệm hiện cho sườn tại chân CLK khoảng 85–95 ps ở bản TSPC và 35–40 ps ở bản MS (đo 10–90 %, 28/11, [`results/slew/suon_clock_testbench.txt`](../results/slew/suon_clock_testbench.txt)) nên đạt; TSPC có nhiều cổng nối clock hơn nên sườn chậm hơn. Chi tiết: [`results/slew/`](../results/slew/).
 
 ## 4.5. Số transistor ([`results/so_transistor.md`](../results/so_transistor.md))
 

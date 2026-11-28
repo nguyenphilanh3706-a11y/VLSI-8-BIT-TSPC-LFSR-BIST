@@ -36,7 +36,7 @@ CLK, RST ──┬────────────────────�
 | Quy tắc | Lý do |
 |---|---|
 | `RST = 1` thì LFSR nạp seed **0x01**, T-flip-flop của LT_RTPG về 0. **Chỉ nhả RST (1 → 0) khi CLK = 0** | Quy tắc của cell TSPC (TV2). Testbench của TV4 nhả RST ở giữa chu kỳ đầu (0,5T) |
-| **Sườn clock ≤ 200 ps** | Với netlist TV2 có `as/ad`, TSPC sai từ sườn 300 ps. Testbench của TV4 cho clock qua 2 inverter `INV_CLK` nên sườn chỉ khoảng 20–40 ps |
+| **Sườn clock ≤ 200 ps** | Với netlist TV2 có `as/ad`, TSPC sai từ sườn 300 ps. Testbench của TV4 cho clock qua 2 inverter `INV_CLK`; sườn đo tại chân CLK của `TSPC_LFSR_8bit` khoảng 85–95 ps (10–90 %). Cây clock của top BIST cần giữ sườn cỡ này hoặc nhanh hơn |
 | Không nối tải vào chân `QB` của `TSPC_DFF_R/S` | `QB` là nút động bên trong cell |
 | Tải đã kiểm tra: mỗi Q một INV_X1, mỗi V bốn INV_X1 | Tải CUT nặng hơn thì chạy lại để kiểm trễ |
 | Một nguồn clock chung cho LFSR, LT_RTPG và BILBO; `LP` chỉ đổi khi RST = 1 hoặc giữa hai lần chạy | Tránh làm lệch chuỗi vector so với golden model |
